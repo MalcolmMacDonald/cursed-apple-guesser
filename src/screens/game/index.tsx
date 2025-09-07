@@ -2,7 +2,7 @@
 //show title
 //show map selection element
 
-import MapSelection from "../../components/map-selection";
+import MapSelection from "@/components/map-selection";
 import locations from "../../../public/locations/metadata.json" with {type: "json"};
 import React from "react";
 import {type GameState, type LocationData} from "../../types";
