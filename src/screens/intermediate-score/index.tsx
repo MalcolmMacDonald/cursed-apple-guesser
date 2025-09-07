@@ -12,18 +12,19 @@ function IntermediateScore({setState, gameData, setGameData}:
         loc1: MapLocation,
         loc2: MapLocation
     ) {
-        const dx = loc1.x - loc2.x;
-        const dy = loc1.y - loc2.y;
+        const dx = loc2.x - loc1.x;
+        const dy = loc2.y - loc1.y;
         return Math.sqrt(dx * dx + dy * dy);
     }
 
+    const mapRadius = 10900;
     const maxScore = 1000;
-    const maxDistance = Math.sqrt(2) * (10900 * 2); // Maximum possible distance on the map
+    const maxDistance = (mapRadius); // Maximum possible distance on the map
 
     const location = gameData.locations[gameData.currentRound].location;
     const guessedLocation = gameData.guesses[gameData.currentRound];
     const distance = calculateDistance(location, guessedLocation);
-    const score = Math.max(0, Math.round((1 - (distance / maxDistance)) * maxScore));
+    const score = Math.max(Math.round((1 - (distance / maxDistance)) * maxScore), 0);
 
     return (
         <div>
