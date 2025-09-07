@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [react()],
     base: '/cursed-apple-guesser/',
     publicDir: 'public',
-
+    assetsInclude: ['**/*.png']
 })
 
 

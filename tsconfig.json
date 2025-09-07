@@ -9,10 +9,8 @@
     }
   ],
   "compilerOptions": {
-    "paths": {
-      "@components/*": [
-        "./src/components/*"
-      ]
-    }
+    "types": [
+      "vite/client"
+    ]
   }
 }
