@@ -2,8 +2,8 @@
 
 
 import React, {useState} from "react";
-import MapImage from "@/assets/IMG_6117.png";
-import "@/index.css";
+import MapImage from "/src/assets/IMG_6117.png";
+import "/src/index.css";
 
 function MapSelection({onContinue}: { onContinue: (location: { x: number, y: number }) => void }) {
     const [selectedLocation, setSelectedLocation] = useState<{ x: number, y: number } | null>(null);
