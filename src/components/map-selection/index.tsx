@@ -4,8 +4,14 @@
 import React, {useState} from "react";
 import MapImage from "../../assets/IMG_6117.png";
 import "../../index.css";
+import type {GameData, GameScreenName} from "../../types.ts";
 
-function MapSelection({onContinue}: { onContinue: (location: { x: number, y: number }) => void }) {
+function MapSelection({setState, gameData, setGameData}:
+                      {
+                          setState: (gameState: GameScreenName) => void,
+                          gameData: GameData,
+                          setGameData: (gameData: GameData) => void
+                      }) {
     const [selectedLocation, setSelectedLocation] = useState<{ x: number, y: number } | null>(null);
 
     const handleMapClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -32,9 +38,13 @@ function MapSelection({onContinue}: { onContinue: (location: { x: number, y: num
             console.log("Selected location", selectedLocation);
             selectedLocation.x = (selectedLocation.x - 0.5) * mapSize;
             selectedLocation.y = (selectedLocation.y - 0.5) * mapSize;
-            onContinue(selectedLocation);
 
-            setSelectedLocation(null);
+            setGameData({
+                ...gameData,
+                guesses: [...gameData.guesses, selectedLocation]
+            });
+            setState('intermediate_scoring');
+
         }
     };
 
@@ -127,6 +137,7 @@ function MapSelection({onContinue}: { onContinue: (location: { x: number, y: num
             </div>
         </div>
     );
-};
+
+}
 
 export default MapSelection;

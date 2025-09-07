@@ -1,10 +1,8 @@
 import './App.css'
 
 //import Screens from "./screens";
-import LandingScreen from "./screens/landing-screen";
-import GameScreen from "./screens/game";
 import React from "react";
-import {FinalScoreScreen} from "./screens/final-score";
+import GameController from "./controllers/game-controller.tsx";
 
 //disble scrolling
 function App() {
@@ -13,16 +11,10 @@ function App() {
     //disable dragging of images
     document.body.style.userSelect = 'none';
     //route to landing screen
-    const [state, setState] = React.useState('landing');
-    if (state === 'landing') {
-        return <LandingScreen setState={setState}/>;
-    }
-    if (state === 'final_scoring') {
-        return <FinalScoreScreen totalScore={0} onRestart={() => {
-            setState('landing')
-        }}/>
-    }
-    return <GameScreen setState={setState}/>;
+
+    return (
+        <GameController/>
+    )
 }
 
 export default App;

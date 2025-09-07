@@ -3,19 +3,17 @@
 //show map selection element
 
 import MapSelection from "../../components/map-selection";
-import locations from "/public/locations/metadata.json" with {type: "json"};
-import React from "react";
-import {type GameState, type LocationData} from "../../types";
-import IntermediateScore from "../intermediate-score";
-import FinalScoreScreen from "../final-score";
+import {type GameData, type GameScreenName, type LocationData} from "../../types";
 
-const rountCount = 3;
 
-function Screen({location, onContinue}: {
-    location: LocationData,
-    onContinue: (location: { x: number, y: number }) => void
-}) {
+function GameScreen({setState, gameData, setGameData}:
+                    {
+                        setState: (state: GameScreenName) => void,
+                        gameData: (GameData),
+                        setGameData: (gameData: GameData) => void
+                    }) {
 
+    const location: LocationData = gameData.locations[gameData.currentRound];
     //full background image, no scrolling
     return (
         <div className="game-screen" draggable={false}>
@@ -40,40 +38,8 @@ function Screen({location, onContinue}: {
                 userSelect: 'none'
 
             }}>Cursed Apple Guesser</h1>
-            <MapSelection onContinue={onContinue}/>
+            <MapSelection setState={setState} gameData={gameData} setGameData={setGameData}/>
         </div>
-    );
-}
-
-//go through 3 rounds of guessing, with random locations each time
-function GameScreen({setState}: { setState: (state: GameState) => void }) {
-    const chosenLocations = locations.sort(() => 0.5 - Math.random()).slice(0, rountCount);
-//use state for index
-    const [index, setIndex] = React.useState(0);
-    const [showingScore, setShowingScore] = React.useState(false);
-    const [guessedLocation, setGuessedLocation] = React.useState<{ x: number, y: number } | null>(null);
-    //const [distances, setDistances] = React.useState<number[]>([]);
-
-    if (showingScore) {
-        return <IntermediateScore location={chosenLocations[index].location}
-                                  guessedLocation={guessedLocation as { x: number, y: number }}
-                                  onComplete={() => {
-
-                                      setShowingScore(false);
-                                      setGuessedLocation(null);
-                                      setIndex(index + 1);
-                                      if (index >= rountCount - 1) {
-                                          setState("final_scoring");
-                                          return;
-                                      }
-                                  }}/>;
-    }
-
-    return (
-        <Screen location={chosenLocations[index]} onContinue={(location) => {
-            setGuessedLocation(location);
-            setShowingScore(true);
-        }}/>
     );
 }
 

@@ -1,18 +1,23 @@
-type LocationData = {
+export type LocationData = {
     fileName: string,
-    location: {
-        x: number,
-        y: number,
-        z: number
-    }
+    location: MapLocation
+}
+export type MapLocation = {
+    x: number,
+    y: number
 }
 
-type GameState =
+export type GameScreenName =
     "landing" |
     "game" |
     "intermediate_scoring" |
     "final_scoring";
 
-
-export type {LocationData};
-export type {GameState};
+export type GameData = {
+    locations: LocationData[],
+    currentRound: number,
+    totalRounds: number,
+    scores: number[],
+    guesses: MapLocation[],
+    seed: any
+}

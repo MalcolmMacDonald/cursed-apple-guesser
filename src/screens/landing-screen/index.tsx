@@ -1,9 +1,23 @@
 //landing screen for Geoguessr style game
 
 
-import {type GameState} from "../../types.ts";
+import {type GameData, type GameScreenName} from "../../types.ts";
+import locations from "../../../public/locations/metadata.json";
 
-function LandingScreen({setState}: { setState: (state: GameState) => void }) {
+import seedRandom from 'seedrandom';
+
+const rountCount = 3;
+const seed = (seedRandom()() * 1000).toFixed(0);
+const random = seedRandom(seed);
+
+function LandingScreen({setState, setGameData}: {
+                           setState: (state: GameScreenName) => void,
+                           setGameData: (gameData: GameData) => void
+                       }
+) {
+
+    const startLocations = locations.sort(() => 0.5 - random()).slice(0, rountCount);
+
 
     //when start game is pressed, go to game screen
     return (
@@ -11,6 +25,14 @@ function LandingScreen({setState}: { setState: (state: GameState) => void }) {
             <h1>Cursed Apple Guesser</h1>
 
             <button onClick={() => {
+                setGameData({
+                    locations: startLocations,
+                    currentRound: 0,
+                    totalRounds: rountCount,
+                    scores: [],
+                    guesses: [],
+                    seed: seed
+                })
                 setState('game');
             }}
             >Start Game
