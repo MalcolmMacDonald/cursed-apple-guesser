@@ -4,6 +4,7 @@ import './App.css'
 import LandingScreen from "./screens/landing-screen";
 import GameScreen from "./screens/game";
 import React from "react";
+import {FinalScoreScreen} from "./screens/final-score";
 
 //disble scrolling
 function App() {
@@ -17,7 +18,9 @@ function App() {
         return <LandingScreen setState={setState}/>;
     }
     if (state === 'final_scoring') {
-
+        return <FinalScoreScreen totalScore={0} onRestart={() => {
+            setState('landing')
+        }}/>
     }
     return <GameScreen setState={setState}/>;
 }

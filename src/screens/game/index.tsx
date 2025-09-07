@@ -7,6 +7,7 @@ import locations from "/public/locations/metadata.json" with {type: "json"};
 import React from "react";
 import {type GameState, type LocationData} from "../../types";
 import IntermediateScore from "../intermediate-score";
+import FinalScoreScreen from "../final-score";
 
 const rountCount = 3;
 
