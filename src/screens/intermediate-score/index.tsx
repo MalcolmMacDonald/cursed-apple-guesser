@@ -1,4 +1,6 @@
 import type {GameData, GameScreenName, MapLocation} from "../../types.ts";
+import MapDisplay from "../../components/map-display";
+import GuessLocation from "../../components/guess-location";
 
 function IntermediateScore({setState, gameData, setGameData}:
                            {
@@ -25,12 +27,15 @@ function IntermediateScore({setState, gameData, setGameData}:
     const guessedLocation = gameData.guesses[gameData.currentRound];
     const distance = calculateDistance(location, guessedLocation);
     const score = Math.max(Math.round((1 - (distance / maxDistance)) * maxScore), 0);
-
+    const imageSize = "30vw";
     return (
         <div>
             <h1>Intermediate Score</h1>
-            <p>Actual Location: {`(${location.x}, ${location.y})`}</p>
-            <p>Guessed Location: {`(${guessedLocation.x}, ${guessedLocation.y})`}</p>
+            <div style={{position: 'relative'}}>
+                <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined}/>
+                <GuessLocation actualLocation={location} guessLocation={guessedLocation} imageSize={imageSize}/>
+            </div>
+
             <p>Distance: {calculateDistance(location, guessedLocation).toFixed(2)} units</p>
             <p>Score for this round: {score}/{maxScore}</p>
             <button onClick={() => {

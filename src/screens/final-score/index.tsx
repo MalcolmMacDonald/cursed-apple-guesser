@@ -25,7 +25,6 @@ export function FinalScoreScreen({setState, gameData}:
             <p style={{fontSize: '24px'}}>Your total score is:</p>
             <p style={{fontSize: '32px', fontWeight: 'bold'}}>{totalScore} out of a
                 possible {gameData.totalRounds * 1000}</p>
-            <p> Seed: {gameData.seed}</p>
             <button style={{
                 padding: '10px 20px',
                 fontSize: '18px',

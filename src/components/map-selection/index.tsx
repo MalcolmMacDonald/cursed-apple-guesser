@@ -5,6 +5,7 @@ import React, {useState} from "react";
 import MapImage from "../../assets/IMG_6117.png";
 import "../../index.css";
 import type {GameData, GameScreenName} from "../../types.ts";
+import MapDisplay from "../map-display";
 
 function MapSelection({setState, gameData, setGameData}:
                       {
@@ -47,6 +48,7 @@ function MapSelection({setState, gameData, setGameData}:
 
         }
     };
+    const pinSize = 16;
 
 
     const imageSize = 512; // Assuming a square image for simplicity
@@ -68,27 +70,24 @@ function MapSelection({setState, gameData, setGameData}:
 
             <div className="map" style={{position: "relative", width: imageSize, height: imageSize}}>
 
-                <img src={MapImage} alt="World Map" className="map-image"
-                     draggable={false}
-                     onClick={handleMapClick}
-                     onMouseMove={(e) => {
-                         if (e.buttons === 1) {
-                             handleMapClick(e);
-                         }
-                     }}
-                     style={{
-                         cursor: 'crosshair',
-                         userSelect: 'none',
-                         width: imageSize,
-                         height: imageSize,
-                     }}
+                <MapDisplay
+                    imageSize={imageSize}
+                    onClick={handleMapClick}
+                    onMouseMove={(e) => {
+                        if (e.buttons === 1) {
+                            handleMapClick(e);
+                        }
+                    }}
+                    style={{
+                        cursor: 'crosshair',
+                    }}
                 />
                 {selectedLocation && (
                     <div
                         className="marker"
                         style={{
-                            width: '24px',
-                            height: '24px',
+                            width: `${pinSize}px`,
+                            height: `${pinSize}px`,
                             backgroundColor: 'red',
                             borderRadius: '50%',
                             position: "absolute",

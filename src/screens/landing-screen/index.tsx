@@ -22,7 +22,13 @@ function LandingScreen({setState, setGameData}: {
     //when start game is pressed, go to game screen
     return (
         <div>
-            <h1>Cursed Apple Guesser</h1>
+            <h1 style={{
+                width: '100%',
+                color: 'white',
+                textShadow: '2px 2px 4px #000000',
+                userSelect: 'none',
+            }}>Cursed Apple Guesser</h1>
+            
 
             <button onClick={() => {
                 setGameData({
