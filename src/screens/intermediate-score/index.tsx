@@ -27,7 +27,7 @@ function IntermediateScore({setState, gameData, setGameData}:
     const guessedLocation = gameData.guesses[gameData.currentRound];
     const distance = calculateDistance(location, guessedLocation);
     const score = Math.max(Math.round((1 - (distance / maxDistance)) * maxScore), 0);
-    const imageSize = "30vw";
+    const imageSize = window.innerWidth / 3;
     return (
         <div>
             <h1>Intermediate Score</h1>

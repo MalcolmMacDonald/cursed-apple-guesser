@@ -38,19 +38,17 @@ function GuessLocation({actualLocation, guessLocation, imageSize}) {
         zIndex: 1,
     };
 
-    const imageSizeInPixels = typeof imageSize === 'string' && imageSize.endsWith('vw') ?
-        window.innerWidth * parseFloat(imageSize) / 100 :
-        parseFloat(imageSize);
 
     //draw a line between the two points using svg
     return (
         <>
-            <div style={actualStyle}></div>
+            <div style={actualStyle}/>
+
             <div style={guessStyle}></div>
             <svg style={{position: 'absolute', top: 0, left: 0, pointerEvents: 'none'}} width={imageSize}
                  height={imageSize}>
-                <line x1={actualLocation.x * imageSizeInPixels} y1={actualLocation.y * imageSizeInPixels}
-                      x2={guessLocation.x * imageSizeInPixels} y2={guessLocation.y * imageSizeInPixels} stroke="yellow"
+                <line x1={actualLocation.x * imageSize} y1={actualLocation.y * imageSize}
+                      x2={guessLocation.x * imageSize} y2={guessLocation.y * imageSize} stroke="yellow"
                       strokeWidth="4"
                       strokeDasharray={"5,2"}
                 />
