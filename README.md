@@ -1,69 +1,24 @@
-# React + TypeScript + Vite
+# Cursed Apple Guesser
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To run this website locally, clone the repo and run the following commands:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install bun
+bun install
+bun run dev
 ```
+Then open your browser and navigate to `http://localhost:5173/cursed-apple-guesser/`
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+To contribute by adding locations, please follow these steps:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Open Deadlock and enter Explore NYC
+2. Make sure you are running the game in a 16:9 aspect ratio (1920x1080 is recommended).
+3. Press F7 to open the console
+4. Paste this command into the console and press Enter:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+      ```cl_showpos 1; citadel_hud_visible false;citadel_camera_use_overrides true;citadel_camera_override_fov 90; noclip; citadel_camera_override_x_offset -150;``` 
+5. If you want to undo this change (for example to see your Build menu), paste this command into the console and press Enter:
+      ```cl_showpos 0; citadel_hud_visible true;citadel_camera_use_overrides false; noclip;```
+6. Find a location, take a screenshot (F12 by default)
+7. Find your screenshots folder (In Steam go to View -> Recordings and Screenshots -> Right click a screenshot and select "Show On Disk")
+8. Upload your screenshots to this OneDrive folder https://1drv.ms/f/c/c384143795c87160/ErXc4FKaOZBPp1fR2XVxufUBLAkGKqWBk1vNBrvDOF2cpg?e=DS0EsQ
