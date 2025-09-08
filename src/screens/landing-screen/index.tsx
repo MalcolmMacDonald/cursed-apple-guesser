@@ -6,7 +6,7 @@ import locations from "../../../public/locations/metadata.json";
 
 import seedRandom from 'seedrandom';
 
-const rountCount = 3;
+const rountCount = 5;
 const seed = (seedRandom()() * 1000).toFixed(0);
 const random = seedRandom(seed);
 
@@ -28,7 +28,7 @@ function LandingScreen({setState, setGameData}: {
                 textShadow: '2px 2px 4px #000000',
                 userSelect: 'none',
             }}>Cursed Apple Guesser</h1>
-            
+
 
             <button onClick={() => {
                 setGameData({

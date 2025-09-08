@@ -1,6 +1,7 @@
 import type {GameData, GameScreenName, MapLocation} from "../../types.ts";
 import MapDisplay from "../../components/map-display";
 import GuessLocation from "../../components/guess-location";
+import game from "../game";
 
 function IntermediateScore({setState, gameData, setGameData}:
                            {
@@ -30,7 +31,7 @@ function IntermediateScore({setState, gameData, setGameData}:
     const imageSize = window.innerWidth / 3;
     return (
         <div>
-            <h1>Intermediate Score</h1>
+            <h1>Round {gameData.currentRound + 1}/{gameData.totalRounds}</h1>
             <div style={{position: 'relative'}}>
                 <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined}/>
                 <GuessLocation actualLocation={location} guessLocation={guessedLocation} imageSize={imageSize}/>

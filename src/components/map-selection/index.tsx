@@ -48,7 +48,7 @@ function MapSelection({setState, gameData, setGameData}:
 
         }
     };
-    const pinSize = 16;
+    const pinSize = 10;
 
 
     const imageSize = 512; // Assuming a square image for simplicity
@@ -110,7 +110,7 @@ function MapSelection({setState, gameData, setGameData}:
                         position: 'absolute',
                         bottom: '5%',
                         left: '0vw',
-                        color: 'white',
+                        color: 'orange',
                         textShadow: '2px 2px 4px #000000',
                         userSelect: 'none',
                         zIndex: 2,
@@ -125,7 +125,7 @@ function MapSelection({setState, gameData, setGameData}:
                         position: 'absolute',
                         top: '5%',
                         right: '-0.5vw',
-                        color: 'white',
+                        color: 'cadetblue',
                         textShadow: '2px 2px 4px #000000',
                         userSelect: 'none',
                         zIndex: 2,

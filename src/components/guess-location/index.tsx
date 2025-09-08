@@ -9,7 +9,7 @@ function GuessLocation({actualLocation, guessLocation, imageSize}) {
         x: (guessLocation.x + mapSize / 2) / mapSize,
         y: 1 - (guessLocation.y + mapSize / 2) / mapSize, // Invert Y axis
     };
-    const pinSize = 16;
+    const pinSize = 10;
 
 
     const actualStyle = {

@@ -28,16 +28,15 @@ function GameScreen({setState, gameData, setGameData}:
                 userSelect: 'none',
                 pointerEvents: 'none'
             }}/>
-            <h1 style={{
+            <div style={{
+                backgroundColor: 'Background',
+                left: 0,
+                top: '19vh',
+                height: '14vh',
+                width: '30vw',
                 position: 'absolute',
-                top: '10px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                color: 'white',
-                textShadow: '2px 2px 4px #000000',
-                userSelect: 'none'
-
-            }}>Cursed Apple Guesser</h1>
+                borderRadius: '10px',
+            }}/>
             <MapSelection setState={setState} gameData={gameData} setGameData={setGameData}/>
         </div>
     );
