@@ -1,0 +1,14 @@
+{
+  "name": "deadlock-capture",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "capture": "bun run src/main.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "@types/node": "^24.0.0"
+  }
+}
