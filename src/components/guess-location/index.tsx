@@ -1,3 +1,5 @@
+import './guess-location.css';
+
 function GuessLocation({actualLocation, guessLocation, imageSize}) {
     const mapSize = 10900 * 2;
     // Convert actualLocation and guessLocation from map coordinates to [0,1] range
@@ -9,48 +11,25 @@ function GuessLocation({actualLocation, guessLocation, imageSize}) {
         x: (guessLocation.x + mapSize / 2) / mapSize,
         y: 1 - (guessLocation.y + mapSize / 2) / mapSize, // Invert Y axis
     };
-    const pinSize = 10;
-
-
-    const actualStyle = {
-        width: `${pinSize}px`,
-        height: `${pinSize}px`,
-        backgroundColor: 'white',
-        borderRadius: '50%',
-        position: "absolute",
-        transform: 'translate(-50%, -50%)',
-        left: `${actualLocation.x * 100}%`,
-        top: `${actualLocation.y * 100}%`,
-        pointerEvents: 'none',
-        zIndex: 1,
-    };
-
-    const guessStyle = {
-        width: ` ${pinSize}px`,
-        height: `${pinSize}px`,
-        backgroundColor: 'red',
-        borderRadius: '50%',
-        position: "absolute",
-        transform: 'translate(-50%, -50%)',
-        left: `${guessLocation.x * 100}%`,
-        top: `${guessLocation.y * 100}%`,
-        pointerEvents: 'none',
-        zIndex: 1,
-    };
-
 
     //draw a line between the two points using svg
     return (
         <>
-            <div style={actualStyle}/>
-
-            <div style={guessStyle}></div>
-            <svg style={{position: 'absolute', top: 0, left: 0, pointerEvents: 'none'}} width={imageSize}
-                 height={imageSize}>
-                <line x1={actualLocation.x * imageSize} y1={actualLocation.y * imageSize}
-                      x2={guessLocation.x * imageSize} y2={guessLocation.y * imageSize} stroke="yellow"
-                      strokeWidth="4"
-                      strokeDasharray={"5,2"}
+            <div
+                className="pin pin--actual"
+                style={{ left: `${actualLocation.x * 100}%`, top: `${actualLocation.y * 100}%` }}
+            />
+            <div
+                className="pin pin--guess"
+                style={{ left: `${guessLocation.x * 100}%`, top: `${guessLocation.y * 100}%` }}
+            />
+            <svg className="pin-line" width={imageSize} height={imageSize}>
+                <line
+                    x1={actualLocation.x * imageSize} y1={actualLocation.y * imageSize}
+                    x2={guessLocation.x * imageSize} y2={guessLocation.y * imageSize}
+                    stroke="yellow"
+                    strokeWidth="4"
+                    strokeDasharray="5,2"
                 />
             </svg>
         </>

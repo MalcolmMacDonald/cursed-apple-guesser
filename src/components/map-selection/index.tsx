@@ -1,9 +1,7 @@
 //show map, with "Select location" button that becomes enabled when a location is selected
 
-
 import React, {useState} from "react";
-import MapImage from "../../assets/IMG_6117.png";
-import "../../index.css";
+import './map-selection.css';
 import type {GameData, GameScreenName} from "../../types.ts";
 import MapDisplay from "../map-display";
 
@@ -54,12 +52,7 @@ function MapSelection({setState, gameData, setGameData}:
     const imageSize = 512; // Assuming a square image for simplicity
 
     return (
-        <div className="map-selection" style={{
-            right: '1vw',
-            bottom: 0,
-            position: 'absolute',
-        }}>
-
+        <div className="map-selection">
             <button
                 className="select-button"
                 onClick={handleSelectLocation}
@@ -68,8 +61,7 @@ function MapSelection({setState, gameData, setGameData}:
                 {selectedLocation ? "Continue" : "Click on the map to select a location"}
             </button>
 
-            <div className="map" style={{position: "relative", width: imageSize, height: imageSize}}>
-
+            <div className="map" style={{ width: imageSize, height: imageSize }}>
                 <MapDisplay
                     imageSize={imageSize}
                     onClick={handleMapClick}
@@ -78,61 +70,20 @@ function MapSelection({setState, gameData, setGameData}:
                             handleMapClick(e);
                         }
                     }}
-                    style={{
-                        cursor: 'crosshair',
-                    }}
                 />
                 {selectedLocation && (
                     <div
                         className="marker"
                         style={{
-                            width: `${pinSize}px`,
-                            height: `${pinSize}px`,
-                            backgroundColor: 'red',
-                            borderRadius: '50%',
-                            position: "absolute",
-                            transform: 'translate(-50%, -50%)',
                             left: `${selectedLocation.x * 100}%`,
                             top: `${selectedLocation.y * 100}%`,
-                            pointerEvents: 'none',
-                            zIndex: 1,
-                            flex: '0 0 auto',
-
                         }}
                         title="Selected Location"
                         draggable={false}
                     />
                 )}
-                <div
-                    style={{
-                        textAlign: 'left',
-                        fontSize: 30,
-                        position: 'absolute',
-                        bottom: '5%',
-                        left: '0vw',
-                        color: 'orange',
-                        textShadow: '2px 2px 4px #000000',
-                        userSelect: 'none',
-                        zIndex: 2,
-                        pointerEvents: 'none'
-                    }}>
-                    Amber Hand
-                </div>
-                <div
-                    style={{
-                        textAlign: 'right',
-                        fontSize: 30,
-                        position: 'absolute',
-                        top: '5%',
-                        right: '-0.5vw',
-                        color: 'cadetblue',
-                        textShadow: '2px 2px 4px #000000',
-                        userSelect: 'none',
-                        zIndex: 2,
-                        pointerEvents: 'none'
-                    }}>
-                    Sapphire Flame
-                </div>
+                <div className="map-faction-label map-faction-label--amber">Amber Hand</div>
+                <div className="map-faction-label map-faction-label--sapphire">Sapphire Flame</div>
             </div>
         </div>
     );

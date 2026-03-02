@@ -4,9 +4,8 @@
     {
       "name": "dev",
       "runtimeExecutable": "bun",
-      "runtimeArgs": ["run", "dev"],
-      "port": 5173,
-      "url": "http://localhost:5173/cursed-apple-guesser/"
+      "runtimeArgs": ["run", "dev", "--", "--host"],
+      "port": 5173
     }
   ]
 }

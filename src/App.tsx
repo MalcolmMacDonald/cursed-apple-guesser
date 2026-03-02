@@ -3,7 +3,7 @@ import './App.css'
 import React from "react";
 import GameController from "./controllers/game-controller.tsx";
 import HubScreen from "./screens/hub/index.tsx";
-import TopBar, { TOPBAR_HEIGHT } from "./components/top-bar/index.tsx";
+import TopBar from "./components/top-bar/index.tsx";
 
 type TopLevelScreen = 'hub' | 'geoguesser';
 
@@ -18,7 +18,7 @@ function App() {
                 currentGame={screen === 'geoguesser' ? 'Cursed Apple Guesser' : undefined}
                 onHome={() => setScreen('hub')}
             />
-            <div style={{ paddingTop: TOPBAR_HEIGHT }}>
+            <div className="app-content">
                 {screen === 'hub' && (
                     <HubScreen onSelectGame={(id) => {
                         if (id === 'geoguesser') setScreen('geoguesser');

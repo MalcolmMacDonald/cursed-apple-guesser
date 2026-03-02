@@ -1,0 +1,50 @@
+.map-selection {
+    position: absolute;
+    right: 1vw;
+    bottom: 0;
+}
+
+.select-button {
+    display: block;
+    width: 100%;
+}
+
+.map {
+    position: relative;
+    cursor: crosshair;
+}
+
+.marker {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    flex: 0 0 auto;
+}
+
+.map-faction-label {
+    font-size: 30px;
+    position: absolute;
+    text-shadow: 2px 2px 4px #000000;
+    user-select: none;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.map-faction-label--amber {
+    text-align: left;
+    bottom: 5%;
+    left: 0;
+    color: orange;
+}
+
+.map-faction-label--sapphire {
+    text-align: right;
+    top: 5%;
+    right: -0.5vw;
+    color: cadetblue;
+}
