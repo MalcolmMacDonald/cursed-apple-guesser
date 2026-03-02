@@ -1,5 +1,3 @@
-import './guess-location.css';
-
 function GuessLocation({actualLocation, guessLocation, imageSize}) {
     const mapSize = 10900 * 2;
     // Convert actualLocation and guessLocation from map coordinates to [0,1] range

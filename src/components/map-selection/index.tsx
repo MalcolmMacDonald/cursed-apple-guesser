@@ -1,7 +1,6 @@
 //show map, with "Select location" button that becomes enabled when a location is selected
 
 import React, {useState} from "react";
-import './map-selection.css';
 import type {GameData, GameScreenName} from "../../types.ts";
 import MapDisplay from "../map-display";
 

@@ -1,5 +1,3 @@
-import './top-bar.css';
-
 export const TOPBAR_HEIGHT = 52;
 
 function TopBar({ currentGame, onHome }: {

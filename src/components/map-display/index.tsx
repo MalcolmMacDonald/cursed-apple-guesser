@@ -1,4 +1,3 @@
-import './map-display.css';
 import MapImage from "../../assets/IMG_6117.png";
 
 function MapDisplay({imageSize, onClick, onMouseMove}) {

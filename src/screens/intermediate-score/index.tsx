@@ -32,7 +32,7 @@ function IntermediateScore({setState, gameData, setGameData}:
     return (
         <div>
             <h1>Round {gameData.currentRound + 1}/{gameData.totalRounds}</h1>
-            <div style={{position: 'relative'}}>
+            <div className="intermediate-map-wrapper">
                 <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined}/>
                 <GuessLocation actualLocation={location} guessLocation={guessedLocation} imageSize={imageSize}/>
             </div>
