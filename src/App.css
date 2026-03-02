@@ -288,6 +288,38 @@
     line-height: 1.6;
 }
 
+.landing__settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 280px;
+}
+
+.landing__setting-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.landing__setting-value {
+    color: #6ee7b7;
+}
+
+.landing__slider {
+    width: 100%;
+    accent-color: #6ee7b7;
+}
+
+.landing__setting-hint {
+    margin: 0;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    line-height: 1.4;
+}
+
 .landing__start-btn {
     padding: 14px 48px;
     background: rgba(40, 145, 108, 0.9);
@@ -417,6 +449,14 @@
     background-color: red;
 }
 
+.pin--mirror {
+    background-color: cyan;
+    opacity: 0.85;
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid rgba(255,255,255,0.5);
+}
+
 .pin-line {
     position: absolute;
     top: 0;
@@ -465,6 +505,11 @@
     margin: 0;
     font-size: clamp(0.8rem, 2vw, 0.95rem);
     color: rgba(255, 255, 255, 0.45);
+}
+
+.intermediate-score__mirror-tag {
+    color: cyan;
+    font-weight: 600;
 }
 
 .intermediate-score__score {

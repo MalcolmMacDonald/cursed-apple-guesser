@@ -17,6 +17,7 @@ function LandingScreen({setState, setGameData, onExit}: {
                            onExit?: () => void,
                        }
 ) {
+    const [mirrorMultiplier, setMirrorMultiplier] = React.useState(1.0);
 
     const startLocations = locations.sort(() => 0.5 - random()).slice(0, rountCount);
 
@@ -29,6 +30,22 @@ function LandingScreen({setState, setGameData, onExit}: {
                 <p className="landing__subtitle">5 rounds — guess the location on the map</p>
             </div>
 
+            <div className="landing__settings">
+                <label className="landing__setting-label">
+                    Mirror credit: <span className="landing__setting-value">{Math.round(mirrorMultiplier * 100)}%</span>
+                </label>
+                <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.05"
+                    value={mirrorMultiplier}
+                    onChange={e => setMirrorMultiplier(parseFloat(e.target.value))}
+                    className="landing__slider"
+                />
+                <p className="landing__setting-hint">Score multiplier when your guess matches the mirrored location</p>
+            </div>
+
             <button
                 className="landing__start-btn"
                 onClick={() => {
@@ -38,7 +55,8 @@ function LandingScreen({setState, setGameData, onExit}: {
                         totalRounds: rountCount,
                         scores: [],
                         guesses: [],
-                        seed: seed
+                        seed: seed,
+                        mirrorMultiplier
                     });
                     setState('game');
                 }}

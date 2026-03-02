@@ -19,5 +19,6 @@ export type GameData = {
     totalRounds: number,
     scores: number[],
     guesses: MapLocation[],
-    seed: any
+    seed: any,
+    mirrorMultiplier: number
 }
