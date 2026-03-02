@@ -60,7 +60,7 @@ function MapSelection({setState, gameData, setGameData}:
                 {selectedLocation ? "Continue" : "Click on the map to select a location"}
             </button>
 
-            <div className="map" style={{ width: imageSize, height: imageSize }}>
+            <div className="map" style={{width: imageSize, height: imageSize}}>
                 <MapDisplay
                     imageSize={imageSize}
                     onClick={handleMapClick}
@@ -81,8 +81,8 @@ function MapSelection({setState, gameData, setGameData}:
                         draggable={false}
                     />
                 )}
-                <div className="map-faction-label map-faction-label--amber">Amber Hand</div>
-                <div className="map-faction-label map-faction-label--sapphire">Sapphire Flame</div>
+                <div className="map-faction-label map-faction-label--amber">The Hidden King</div>
+                <div className="map-faction-label map-faction-label--sapphire">The Archmother</div>
             </div>
         </div>
     );
