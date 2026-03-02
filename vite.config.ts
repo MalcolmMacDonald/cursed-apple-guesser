@@ -2,11 +2,11 @@ import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
     plugins: [react()],
-    base: '/cursed-apple-guesser/',
+    base: command === 'serve' ? '/' : '/cursed-apple-guesser/',
     publicDir: 'public',
     assetsInclude: ['**/*.png']
-})
+}))
 
 

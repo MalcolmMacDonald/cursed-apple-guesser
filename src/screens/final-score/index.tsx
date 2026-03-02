@@ -9,32 +9,13 @@ export function FinalScoreScreen({setState, gameData}:
     const totalScore = gameData.scores.reduce((a, b) => a + b, 0);
 
     return (
-        <div style={{
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#282c34',
-            color: 'white',
-            userSelect: 'none'
-        }}>
-            <h1>Final Score</h1>
-            <p style={{fontSize: '24px'}}>Your total score is:</p>
-            <p style={{fontSize: '32px', fontWeight: 'bold'}}>{totalScore} out of a
-                possible {gameData.totalRounds * 1000}</p>
-            <button style={{
-                padding: '10px 20px',
-                fontSize: '18px',
-                marginTop: '20px',
-                cursor: 'pointer',
-                borderRadius: '5px',
-                border: 'none',
-                backgroundColor: '#61dafb',
-                color: '#282c34'
-            }} onClick={() => setState('landing')}>Play Again
+        <div className="final-score">
+            <h2 className="final-score__title">Final Score</h2>
+            <p className="final-score__subtitle">Your total score is:</p>
+            <p className="final-score__total">{totalScore}</p>
+            <p className="final-score__total-max">out of a possible {gameData.totalRounds * 1000}</p>
+            <button className="final-score__play-again" onClick={() => setState('landing')}>
+                Play Again
             </button>
         </div>
     );

@@ -4,7 +4,6 @@
 
 import MapSelection from "../../components/map-selection";
 import {type GameData, type GameScreenName, type LocationData} from "../../types";
-import { TOPBAR_HEIGHT } from "../../components/top-bar";
 
 
 function GameScreen({setState, gameData, setGameData}:
@@ -16,32 +15,9 @@ function GameScreen({setState, gameData, setGameData}:
 
     const location: LocationData = gameData.locations[gameData.currentRound];
     return (
-        <div className="game-screen" draggable={false} style={{
-            position: 'relative',
-            width: '100%',
-            height: `calc(100vh - ${TOPBAR_HEIGHT}px)`,
-            overflow: 'hidden',
-        }}>
-            <img src={`locations/${location.fileName}`} alt="Location" style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                zIndex: -1,
-                userSelect: 'none',
-                pointerEvents: 'none'
-            }}/>
-            <div style={{
-                backgroundColor: 'Background',
-                left: 0,
-                top: '19vh',
-                height: '14vh',
-                width: '30vw',
-                position: 'absolute',
-                borderRadius: '10px',
-            }}/>
+        <div className="game-screen" draggable={false}>
+            <img src={`locations/${location.fileName}`} alt="Location" className="game-bg" />
+            <div className="game-overlay" />
             <MapSelection setState={setState} gameData={gameData} setGameData={setGameData}/>
         </div>
     );
