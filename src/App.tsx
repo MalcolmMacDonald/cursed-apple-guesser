@@ -1,20 +1,35 @@
 import './App.css'
 
-//import Screens from "./screens";
 import React from "react";
 import GameController from "./controllers/game-controller.tsx";
+import HubScreen from "./screens/hub/index.tsx";
+import TopBar, { TOPBAR_HEIGHT } from "./components/top-bar/index.tsx";
 
-//disble scrolling
+type TopLevelScreen = 'hub' | 'geoguesser';
+
 function App() {
-
-    document.body.style.overflow = 'hidden';
-    //disable dragging of images
     document.body.style.userSelect = 'none';
-    //route to landing screen
+
+    const [screen, setScreen] = React.useState<TopLevelScreen>('hub');
 
     return (
-        <GameController/>
-    )
+        <>
+            <TopBar
+                currentGame={screen === 'geoguesser' ? 'Cursed Apple Guesser' : undefined}
+                onHome={() => setScreen('hub')}
+            />
+            <div style={{ paddingTop: TOPBAR_HEIGHT }}>
+                {screen === 'hub' && (
+                    <HubScreen onSelectGame={(id) => {
+                        if (id === 'geoguesser') setScreen('geoguesser');
+                    }} />
+                )}
+                {screen === 'geoguesser' && (
+                    <GameController onExit={() => setScreen('hub')} />
+                )}
+            </div>
+        </>
+    );
 }
 
 export default App;
