@@ -4,6 +4,7 @@
 
 import MapSelection from "../../components/map-selection";
 import {type GameData, type GameScreenName, type LocationData} from "../../types";
+import { TOPBAR_HEIGHT } from "../../components/top-bar";
 
 
 function GameScreen({setState, gameData, setGameData}:
@@ -14,9 +15,13 @@ function GameScreen({setState, gameData, setGameData}:
                     }) {
 
     const location: LocationData = gameData.locations[gameData.currentRound];
-    //full background image, no scrolling
     return (
-        <div className="game-screen" draggable={false}>
+        <div className="game-screen" draggable={false} style={{
+            position: 'relative',
+            width: '100%',
+            height: `calc(100vh - ${TOPBAR_HEIGHT}px)`,
+            overflow: 'hidden',
+        }}>
             <img src={`locations/${location.fileName}`} alt="Location" style={{
                 position: 'absolute',
                 top: 0,

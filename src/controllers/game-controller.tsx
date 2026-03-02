@@ -7,12 +7,12 @@ import IntermediateScore from "../screens/intermediate-score";
 import {FinalScoreScreen} from "../screens/final-score";
 
 
-function GameController() {
+function GameController({ onExit }: { onExit?: () => void }) {
     const [state, setState] = React.useState<GameScreenName>('landing');
     const [gameData, setGameData] = React.useState<GameData>();
     return (
         <>
-            {state === 'landing' && <LandingScreen setState={setState} setGameData={setGameData}/>}
+            {state === 'landing' && <LandingScreen setState={setState} setGameData={setGameData} onExit={onExit}/>}
             {state === 'game' && <GameScreen setState={setState} gameData={gameData} setGameData={setGameData}/>}
             {state === 'intermediate_scoring' &&
                 <IntermediateScore setState={setState} gameData={gameData} setGameData={setGameData}/>}
