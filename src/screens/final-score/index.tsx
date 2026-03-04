@@ -10,10 +10,17 @@ export function FinalScoreScreen({setState, gameData}:
     const [copied, setCopied] = React.useState(false);
     const totalScore = gameData.scores.reduce((a, b) => a + b, 0);
 
+    React.useEffect(() => {
+        if (gameData.isDaily && gameData.dailyDate) {
+            localStorage.setItem('dailyChallenge_completed', gameData.dailyDate);
+        }
+    }, [gameData.isDaily, gameData.dailyDate]);
+
     const handleCopyResults = () => {
         const date = gameData.dailyDate ?? new Date().toISOString().split('T')[0];
+        const url = window.location.href;
         const lines = [
-            `Deadlock Map Trainer — Daily Challenge ${date}`,
+            `Deadlock Map Trainer - Location Guesser - ${date} - ${url}`,
             ...gameData.scores.map((s, i) => `Round ${i + 1}: ${s} / 1000`),
             `Total: ${totalScore} / ${gameData.totalRounds * 1000}`,
         ];

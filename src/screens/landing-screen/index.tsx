@@ -18,6 +18,8 @@ function LandingScreen({setState, setGameData, onExit}: {
                            onExit?: () => void,
                        }
 ) {
+    const dailyPlayed = localStorage.getItem('dailyChallenge_completed') === dailyDate;
+
     const startLocations = React.useMemo(() =>
         [...locations].sort(() => 0.5 - random()).slice(0, roundCount), []);
 
@@ -53,8 +55,8 @@ function LandingScreen({setState, setGameData, onExit}: {
             <button className="landing__start-btn" onClick={() => startGame(false)}>
                 Start Game
             </button>
-            <button className="landing__daily-btn" onClick={() => startGame(true)}>
-                Daily Challenge
+            <button className="landing__daily-btn" onClick={() => startGame(true)} disabled={dailyPlayed}>
+                {dailyPlayed ? 'Daily Completed ✓' : 'Daily Challenge'}
             </button>
         </div>
     );
