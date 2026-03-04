@@ -14,7 +14,9 @@ export function loadConfig(): CaptureConfig {
   if (!gameScreenshotDir) {
     throw new Error(
       "GAME_SCREENSHOT_DIR environment variable is required.\n" +
-      "Example: C:\\Program Files (x86)\\Steam\\userdata\\<steamid>\\760\\remote\\1422450\\screenshots"
+      "This should be the parent directory containing date-based subdirectories\n" +
+      "(e.g. 2024-06-01/screenshot_0001.jpg).\n" +
+      "Example: C:\\Program Files (x86)\\Steam\\steamapps\\common\\Deadlock\\game\\citadel\\rpt"
     );
   }
 
@@ -26,6 +28,12 @@ export function loadConfig(): CaptureConfig {
     "..", "..", ".."
   );
   const defaultOutputDir = join(repoRoot, "public", "locations");
+
+  // Resolve tool root for session output directory
+  const toolRoot = join(
+    decodeURIComponent(new URL(".", import.meta.url).pathname.replace(/^\//, "")),
+    ".."
+  );
 
   const outputDir = process.env["OUTPUT_DIR"] ?? defaultOutputDir;
   const metadataPath = join(outputDir, "metadata.json");
@@ -39,5 +47,8 @@ export function loadConfig(): CaptureConfig {
     metadataPath,
     teleportDelayMs: parseInt(process.env["TELEPORT_DELAY_MS"] ?? "1500", 10),
     screenshotTimeoutMs: parseInt(process.env["SCREENSHOT_TIMEOUT_MS"] ?? "8000", 10),
+    sessionIntervalMs: parseInt(process.env["SESSION_INTERVAL_MS"] ?? "1000", 10),
+    maxPending: parseInt(process.env["MAX_PENDING"] ?? "3", 10),
+    sessionOutputDir: process.env["SESSION_OUTPUT_DIR"] ?? join(toolRoot, "output", "sessions"),
   };
 }

@@ -26,3 +26,4 @@ tools/**/.env
 *.njsproj
 *.sln
 *.sw?
+/tools/deadlock-capture/output

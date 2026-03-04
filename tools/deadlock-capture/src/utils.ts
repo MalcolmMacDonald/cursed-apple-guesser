@@ -1,4 +1,4 @@
-import type { GetposResult } from "./types.ts";
+import type { GetposResult, WorldCoord } from "./types.ts";
 
 export function generateFilename(): string {
   const now = new Date();
@@ -26,12 +26,12 @@ export function parseGetpos(raw: string): GetposResult | null {
 
   return {
     position: {
-      x: parseFloat(x),
-      y: parseFloat(y),
-      z: parseFloat(z),
+      x: parseFloat(x!),
+      y: parseFloat(y!),
+      z: parseFloat(z!),
     },
     angles: angMatch
-      ? { pitch: parseFloat(angMatch[1]), yaw: parseFloat(angMatch[2]), roll: parseFloat(angMatch[3]) }
+      ? { pitch: parseFloat(angMatch[1]!), yaw: parseFloat(angMatch[2]!), roll: parseFloat(angMatch[3]!) }
       : { pitch: 0, yaw: 0, roll: 0 },
   };
 }
@@ -42,4 +42,22 @@ export function sleep(ms: number): Promise<void> {
 
 export function formatCoord(x: number, y: number, z: number): string {
   return `(${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})`;
+}
+
+export function generateSessionId(): string {
+  const now = new Date();
+  return `session_${formatTimestamp(now)}`;
+}
+
+function formatTimestamp(date: Date): string {
+  const pad = (n: number, len = 2) => String(n).padStart(len, "0");
+  return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}_${pad(date.getHours())}${pad(date.getMinutes())}${pad(date.getSeconds())}`;
+}
+
+export function generateCaptureFilename(index: number, position: WorldCoord): string {
+  const idx = String(index).padStart(3, "0");
+  const x = Math.round(position.x);
+  const y = Math.round(position.y);
+  const z = Math.round(position.z);
+  return `cap_${idx}_x${x}_y${y}_z${z}.jpg`;
 }

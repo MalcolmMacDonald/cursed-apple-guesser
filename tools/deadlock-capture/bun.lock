@@ -3,6 +3,9 @@
   "workspaces": {
     "": {
       "name": "deadlock-capture",
+      "dependencies": {
+        "@fabricio-191/valve-server-query": "^4.1.9",
+      },
       "devDependencies": {
         "@types/node": "^24.0.0",
         "bun-types": "latest",
@@ -10,6 +13,8 @@
     },
   },
   "packages": {
+    "@fabricio-191/valve-server-query": ["@fabricio-191/valve-server-query@4.1.9", "", {}, "sha512-iusHln6oil63+sB7mLul+7YwtgSUFgJykNn3EBhJjXXeCMWLE8iav9MoCf7+txWWZqZ4dwr+54PHgDyT698jXw=="],
+
     "@types/node": ["@types/node@24.11.0", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-fPxQqz4VTgPI/IQ+lj9r0h+fDR66bzoeMGHp8ASee+32OSGIkeASsoZuJixsQoVef1QJbeubcPBxKk22QVoWdw=="],
 
     "bun-types": ["bun-types@1.3.10", "", { "dependencies": { "@types/node": "*" } }, "sha512-tcpfCCl6XWo6nCVnpcVrxQ+9AYN1iqMIzgrSKYMB/fjLtV2eyAVEg7AxQJuCq/26R6HpKWykQXuSOq/21RYcbg=="],

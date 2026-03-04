@@ -10,5 +10,8 @@
   "devDependencies": {
     "bun-types": "latest",
     "@types/node": "^24.0.0"
+  },
+  "dependencies": {
+    "@fabricio-191/valve-server-query": "^4.1.9"
   }
 }

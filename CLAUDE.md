@@ -24,23 +24,30 @@ bun run preview   # Preview production build
 ```
 src/
   controllers/
-    game-controller.tsx   # Top-level state machine; routes between screens
+    game-controller.tsx   # Geo-game state machine; routes between game screens
   screens/
-    landing-screen/       # Title screen; seeds + selects random locations; starts game
+    hub/                  # Game selection hub; card grid with active/coming-soon games
+    landing-screen/       # Geo-game title screen; seeds + selects random locations
     game/                 # Shows screenshot; renders MapSelection for guessing
     intermediate-score/   # Post-round result: distance, score, map with pins + line
     final-score/          # End-of-game total score; Play Again button
   components/
+    top-bar/              # Navigation bar; shows current game name and Home button
     map-display/          # Renders the minimap image (IMG_6117.png)
     map-selection/        # Interactive minimap for clicking a guess; shows red pin
     guess-location/       # Overlays actual (white) and guessed (red) pins + SVG line
   types.ts                # Shared TypeScript types
-  App.tsx                 # Root; disables scroll/drag, renders GameController
+  App.tsx                 # Root; hub/game router ('hub' | 'geoguesser'); renders TopBar
 
 public/
   locations/
     *.jpg                 # In-game screenshots (Deadlock map)
-    metadata.json         # Array of { fileName, location: { x, y, z } } in map units
+    metadata.json         # Array of { fileName, location: { x, y, z }, tags? } in map units
+    tag-definitions.json  # Global tag vocabulary { tags: string[] }
+
+tools/
+  deadlock-capture/       # Automated in-game screenshot capture tool (Bun + RCON)
+  screenshot-metadata-manager/  # Web UI for viewing, filtering and tagging captures (port 5174)
 ```
 
 ## Game Flow
@@ -91,3 +98,25 @@ GameScreenName = "landing" | "game" | "intermediate_scoring" | "final_scoring"
 - The two in-game factions are labeled on the minimap: **Amber Hand** (bottom-left, orange) and **Sapphire Flame** (top-right, cadetblue)
 - Round count is set in `landing-screen/index.tsx` (`roundCount = 5`)
 - Adding new locations: add `.jpg` files to `public/locations/` and add entries to `metadata.json` with the correct world coordinates
+
+## Tools
+
+### deadlock-capture (`tools/deadlock-capture/`)
+Automated Deadlock screenshot capture tool. Uses RCON to connect to a running Deadlock instance and captures screenshots at defined map positions with world coordinates and camera angles. Output sessions are stored in `tools/deadlock-capture/output/sessions/`.
+
+Run: `bun run --cwd tools/deadlock-capture start`
+
+### screenshot-metadata-manager (`tools/screenshot-metadata-manager/`)
+Vite + React UI (port 5174) for reviewing, filtering, and tagging captured screenshots.
+
+Run: `bun run --cwd tools/screenshot-metadata-manager dev`
+
+Features:
+- Minimap with interactive pins (select, drag-box-select, hover highlight)
+- Single and multi-image views with tag editor
+- Defined tag vocabulary with one-click apply to selection
+- Regex tag filter with include/exclude toggle
+- Arrow key navigation through screenshots
+- Resizable image preview panel
+- Image deletion
+- Auto-saves tags back to session manifests (Ctrl+S)

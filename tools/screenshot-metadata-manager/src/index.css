@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a18;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3a6a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5aaa;
+}
+
+/* Tag suggestion dropdown hover */
+.suggestion-item:hover {
+  background: #2a2a50 !important;
+  color: #ddddff !important;
+}
+
+/* Pin hover */
+.map-pin:hover {
+  transform: scale(1.5) !important;
+  z-index: 10 !important;
+}
+
+/* Thumbnail hover */
+.thumb-item:hover {
+  outline: 2px solid #6060cc;
+}
+
+/* Show delete button on thumbnail hover */
+.thumb-item:hover button {
+  opacity: 1 !important;
+}
+
+/* Tag def hover */
+.tag-def-remove:hover {
+  color: #ff6666 !important;
+}
+
+/* Button hover effects */
+.btn-save:hover:not(:disabled) {
+  background: #5555dd !important;
+}
+
+.btn-add:hover {
+  background: #3a5a8a !important;
+}
+
+.btn-define:hover {
+  background: #2a5a3a !important;
+}
+
+.btn-remove:hover {
+  color: #ff4444 !important;
+}
+
+input:focus {
+  border-color: #6060cc !important;
+  box-shadow: 0 0 0 2px rgba(96, 96, 204, 0.2);
+}
