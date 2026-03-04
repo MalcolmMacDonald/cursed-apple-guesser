@@ -24,7 +24,7 @@ const games: GameEntry[] = [
     },
     {
         id: "navigate",
-        title: "Dead Reckoning",
+        title: "🚧 (WIP) 🚧 Dead Reckoning",
         description: "You're shown a start and a destination. Give step-by-step directions — forward, left, turn around — to get there.",
         icon: "🧭",
         gradient: "linear-gradient(135deg, #3d2000 0%, #7a4500 50%, #b86800 100%)",
