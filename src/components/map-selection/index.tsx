@@ -8,12 +8,13 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
     const [selectedLocation, setSelectedLocation] = useState<{ x: number, y: number } | null>(null);
     const [animPhase, setAnimPhase] = useState<'idle' | 'fixed' | 'centering'>('idle');
     const [fixedStyle, setFixedStyle] = useState<{ centerX: number, centerY: number, width: number } | null>(null);
+    const [isHovered, setIsHovered] = useState(false);
     const pendingLocationRef = useRef<MapLocation | null>(null);
     const transitionFiredRef = useRef(false);
     const divRef = useRef<HTMLDivElement>(null);
 
     const mapSize = 10900 * 2;
-    const imageSize = 512;
+    const imageSize = isHovered ? 512 * 2 : 512;
 
     const handleMapClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (animPhase !== 'idle') return;
@@ -100,16 +101,16 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
             ref={divRef}
             style={dynamicStyle}
             onTransitionEnd={handleTransitionEnd}
+            onMouseEnter={() => {
+                if (animPhase === 'idle') setIsHovered(true);
+            }}
+            onMouseLeave={() => setIsHovered(false)}
         >
-            <button
-                className="select-button"
-                onClick={handleContinue}
-                disabled={!selectedLocation || animPhase !== 'idle'}
-            >
-                {selectedLocation ? "Continue" : "Click on the map to select a location"}
-            </button>
+            <div
+                className="map"
+                style={{width: imageSize, height: imageSize}}
 
-            <div className="map" style={{width: imageSize, height: imageSize}}>
+            >
                 <MapDisplay
                     imageSize={imageSize}
                     onClick={handleMapClick}
@@ -128,9 +129,18 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
                         draggable={false}
                     />
                 )}
+
                 <div className="map-faction-label map-faction-label--amber">The Hidden King</div>
                 <div className="map-faction-label map-faction-label--sapphire">The Archmother</div>
+
             </div>
+            <button
+                className="select-button"
+                onClick={handleContinue}
+                disabled={!selectedLocation || animPhase !== 'idle'}
+            >
+                {selectedLocation ? "Continue" : "Click on the map to select a location"}
+            </button>
         </div>
     );
 }

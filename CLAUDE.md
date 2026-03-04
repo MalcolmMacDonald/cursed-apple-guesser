@@ -89,7 +89,7 @@ GameScreenName = "landing" | "game" | "intermediate_scoring" | "final_scoring"
 ## Deployment
 
 - Deploys automatically to GitHub Pages on push to `main`
-- Vite base path is `/cursed-apple-guesser/`
+- Vite base path is `/`
 - Build output: `./dist`
 
 ## Notes
@@ -109,7 +109,7 @@ Run: `bun run --cwd tools/deadlock-capture start`
 ### screenshot-metadata-manager (`tools/screenshot-metadata-manager/`)
 Vite + React UI (port 5174) for reviewing, filtering, and tagging captured screenshots.
 
-Run: `bun run --cwd tools/screenshot-metadata-manager dev`
+Run: `bun run cms`
 
 Features:
 - Minimap with interactive pins (select, drag-box-select, hover highlight)

@@ -63,8 +63,8 @@ function GuessLocation({actualLocation, guessLocation, mirrorLocation, usedMirro
                     x1={guess.x * imageSize} y1={guess.y * imageSize}
                     x2={scoreTo.x * imageSize} y2={scoreTo.y * imageSize}
                     stroke="yellow"
-                    strokeWidth="4"
-                    strokeDasharray="5,2"
+                    strokeWidth="2"
+                    strokeDasharray="2,0.5"
                 />
             </svg>
 
@@ -72,20 +72,20 @@ function GuessLocation({actualLocation, guessLocation, mirrorLocation, usedMirro
             {usedMirror && (
                 <div
                     className="pin pin--mirror"
-                    style={{ left: `${mirror.x * 100}%`, top: `${mirror.y * 100}%` }}
+                    style={{left: `${mirror.x * 100}%`, top: `${mirror.y * 100}%`}}
                 />
             )}
 
             {/* Actual location pin */}
             <div
                 className="pin pin--actual"
-                style={{ left: `${actual.x * 100}%`, top: `${actual.y * 100}%` }}
+                style={{left: `${actual.x * 100}%`, top: `${actual.y * 100}%`}}
             />
 
             {/* Guess pin */}
             <div
                 className="pin pin--guess"
-                style={{ left: `${guess.x * 100}%`, top: `${guess.y * 100}%` }}
+                style={{left: `${guess.x * 100}%`, top: `${guess.y * 100}%`}}
             />
         </>
     );

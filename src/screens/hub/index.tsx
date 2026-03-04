@@ -1,3 +1,5 @@
+import {makeDailyDate} from '../../utils/rng';
+
 type GameEntry = {
     id: string;
     title: string;
@@ -6,6 +8,7 @@ type GameEntry = {
     gradient: string;
     available: boolean;
     tags: string[];
+    dailyStorageKey?: string;
 };
 
 const games: GameEntry[] = [
@@ -17,6 +20,17 @@ const games: GameEntry[] = [
         gradient: "linear-gradient(135deg, #1a472a 0%, #2d6a4f 50%, #40916c 100%)",
         available: true,
         tags: ["Location", "5 Rounds"],
+        dailyStorageKey: 'dailyChallenge_completed',
+    },
+    {
+        id: "navigate",
+        title: "Dead Reckoning",
+        description: "You're shown a start and a destination. Give step-by-step directions — forward, left, turn around — to get there.",
+        icon: "🧭",
+        gradient: "linear-gradient(135deg, #3d2000 0%, #7a4500 50%, #b86800 100%)",
+        available: true,
+        tags: ["Navigation", "5 Rounds"],
+        dailyStorageKey: 'drDaily_completed',
     },
     {
         id: "nameit",
@@ -26,15 +40,6 @@ const games: GameEntry[] = [
         gradient: "linear-gradient(135deg, #1a1a4e 0%, #2d2d8f 50%, #4a4ac4 100%)",
         available: false,
         tags: ["Multiple Choice", "Coming Soon"],
-    },
-    {
-        id: "navigate",
-        title: "Dead Reckoning",
-        description: "You're shown a start and a destination. Give step-by-step directions — forward, left, turn around — to get there.",
-        icon: "🧭",
-        gradient: "linear-gradient(135deg, #3d2000 0%, #7a4500 50%, #b86800 100%)",
-        available: false,
-        tags: ["Navigation", "Coming Soon"],
     },
     {
         id: "aboutface",
@@ -47,10 +52,14 @@ const games: GameEntry[] = [
     },
 ];
 
-function GameCard({ game, onPlay }: { game: GameEntry; onPlay: () => void }) {
+function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void }) {
+    const dailyDone = game.dailyStorageKey
+        ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
+        : false;
+
     return (
         <div className={`hub-card${game.available ? '' : ' hub-card--disabled'}`}>
-            <div className="hub-card__art" style={{ background: game.gradient }}>
+            <div className="hub-card__art" style={{background: game.gradient}}>
                 <span className="hub-card__icon">{game.icon}</span>
             </div>
             <div className="hub-card__body">
@@ -60,9 +69,20 @@ function GameCard({ game, onPlay }: { game: GameEntry; onPlay: () => void }) {
                     {game.tags.map(t => <span key={t} className="hub-card__tag">{t}</span>)}
                 </div>
                 {game.available ? (
-                    <button className="hub-card__play-btn" onClick={onPlay}>
-                        Play Now
-                    </button>
+                    <div className="hub-card__btn-group">
+                        <button className="hub-card__play-btn" onClick={onPlay}>
+                            Play Now
+                        </button>
+                        {game.dailyStorageKey && (
+                            <button
+                                className="hub-card__daily-btn"
+                                onClick={onPlayDaily}
+                                disabled={dailyDone}
+                            >
+                                {dailyDone ? 'Daily Done ✓' : 'Daily Challenge'}
+                            </button>
+                        )}
+                    </div>
                 ) : (
                     <button className="hub-card__coming-soon-btn" disabled>
                         Coming Soon
@@ -73,7 +93,7 @@ function GameCard({ game, onPlay }: { game: GameEntry; onPlay: () => void }) {
     );
 }
 
-function HubScreen({ onSelectGame }: { onSelectGame: (id: string) => void }) {
+function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolean) => void }) {
     return (
         <div className="hub-page">
             <div className="hub-header">
@@ -84,7 +104,7 @@ function HubScreen({ onSelectGame }: { onSelectGame: (id: string) => void }) {
                 </p>
             </div>
 
-            <div className="hub-divider" />
+            <div className="hub-divider"/>
 
             <div className="hub-grid">
                 {games.map(game => (
@@ -92,6 +112,7 @@ function HubScreen({ onSelectGame }: { onSelectGame: (id: string) => void }) {
                         key={game.id}
                         game={game}
                         onPlay={() => onSelectGame(game.id)}
+                        onPlayDaily={() => onSelectGame(game.id, true)}
                     />
                 ))}
             </div>
