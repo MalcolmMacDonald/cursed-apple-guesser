@@ -1,11 +1,12 @@
 import {useState, useEffect, useCallback, useRef} from 'react'
 import type {MetadataEntry} from './types'
-import {fetchMetadata, saveMetadata, fetchTagDefs, saveTagDefs, deleteEntry} from './utils/api'
+import {fetchMetadata, saveMetadata, fetchTagDefs, saveTagDefs, deleteEntry, fetchProduction, promoteEntry, demoteEntry} from './utils/api'
 import MapView from './components/MapView'
 import ImagePanel from './components/ImagePanel'
 
 type SaveState = 'saved' | 'dirty' | 'saving' | 'error'
 type FilterMode = 'include' | 'exclude'
+type ProductionFilter = 'all' | 'production' | 'dev'
 
 const DEFAULT_MAP_PANEL_WIDTH = 1230
 const MIN_MAP_PANEL_WIDTH = 280
@@ -23,6 +24,8 @@ export default function App() {
     const [loadError, setLoadError] = useState<string | null>(null)
     const [mapPanelWidth, setMapPanelWidth] = useState(DEFAULT_MAP_PANEL_WIDTH)
     const [hoveredId, setHoveredId] = useState<string | null>(null)
+    const [productionFileNames, setProductionFileNames] = useState<Set<string>>(new Set())
+    const [productionFilter, setProductionFilter] = useState<ProductionFilter>('all')
 
     // Refs so event handlers always see latest values without re-registering
     const entriesRef = useRef(entries)
@@ -50,10 +53,11 @@ export default function App() {
 
     // ── Load on mount ─────────────────────────────────────────
     useEffect(() => {
-        Promise.all([fetchMetadata(), fetchTagDefs()])
-            .then(([meta, defs]) => {
+        Promise.all([fetchMetadata(), fetchTagDefs(), fetchProduction()])
+            .then(([meta, defs, production]) => {
                 setEntries(meta)
                 setTagDefs(defs.tags)
+                setProductionFileNames(new Set(production))
                 setLoading(false)
             })
             .catch((err) => {
@@ -99,15 +103,25 @@ export default function App() {
 
     // ── Derived state ─────────────────────────────────────────
     const filteredEntries = (() => {
-        if (!searchQuery.trim()) return entries
+        let result = entries
+
+        // Production/dev filter
+        if (productionFilter === 'production') {
+            result = result.filter((e) => productionFileNames.has(e.fileName))
+        } else if (productionFilter === 'dev') {
+            result = result.filter((e) => !productionFileNames.has(e.fileName))
+        }
+
+        // Tag filter
+        if (!searchQuery.trim()) return result
         try {
             const regex = new RegExp(searchQuery, 'i')
             const matches = (e: MetadataEntry) => e.tags.some((tag) => regex.test(tag))
             return filterMode === 'include'
-                ? entries.filter(matches)
-                : entries.filter((e) => !matches(e))
+                ? result.filter(matches)
+                : result.filter((e) => !matches(e))
         } catch {
-            return filterMode === 'include' ? [] : entries
+            return filterMode === 'include' ? [] : result
         }
     })()
 
@@ -228,6 +242,31 @@ export default function App() {
         }
     }, [])
 
+    // ── Production promote / demote ───────────────────────────
+    const handlePromote = useCallback(async (id: string) => {
+        const entry = entriesRef.current.find((e) => e.id === id)
+        if (!entry) return
+        try {
+            await promoteEntry(entry.sessionId, entry.fileName)
+            setProductionFileNames((prev) => new Set([...prev, entry.fileName]))
+        } catch (err) {
+            setSaveError(String(err))
+        }
+    }, [])
+
+    const handleDemote = useCallback(async (fileName: string) => {
+        try {
+            await demoteEntry(fileName)
+            setProductionFileNames((prev) => {
+                const next = new Set(prev)
+                next.delete(fileName)
+                return next
+            })
+        } catch (err) {
+            setSaveError(String(err))
+        }
+    }, [])
+
     // ── Tag definitions ───────────────────────────────────────
     const handleAddTagDef = useCallback(
         (tag: string) => {
@@ -294,6 +333,18 @@ export default function App() {
                 <span style={styles.title}>Screenshot Metadata Manager</span>
 
                 <div style={styles.searchWrap}>
+                    <button
+                        style={{
+                            ...styles.filterModeBtn,
+                            background: productionFilter === 'all' ? '#1a1a2e' : productionFilter === 'production' ? '#1e2e1e' : '#2e1e1e',
+                            border: productionFilter === 'all' ? '1px solid #33336a' : productionFilter === 'production' ? '1px solid #2a6040' : '1px solid #603030',
+                            color: productionFilter === 'all' ? '#8888cc' : productionFilter === 'production' ? '#88cc88' : '#cc8888',
+                        }}
+                        onClick={() => setProductionFilter((f) => f === 'all' ? 'production' : f === 'production' ? 'dev' : 'all')}
+                        title={productionFilter === 'all' ? 'Showing all — click to show production only' : productionFilter === 'production' ? 'Showing production only — click to show dev only' : 'Showing dev only — click to show all'}
+                    >
+                        {productionFilter === 'all' ? 'all' : productionFilter === 'production' ? 'prod' : 'dev'}
+                    </button>
                     <button
                         style={{
                             ...styles.filterModeBtn,
@@ -376,6 +427,9 @@ export default function App() {
                     onHoverEntry={setHoveredId}
                     onSelectSingle={handleSelectSingle}
                     selectedIds={ids}
+                    productionFileNames={productionFileNames}
+                    onPromote={handlePromote}
+                    onDemote={handleDemote}
                 />
             </main>
         </div>

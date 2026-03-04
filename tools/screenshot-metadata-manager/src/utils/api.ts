@@ -38,3 +38,27 @@ export async function deleteEntry(sessionId: string, fileName: string): Promise<
   })
   if (!res.ok) throw new Error(`Failed to delete entry: ${res.statusText}`)
 }
+
+export async function fetchProduction(): Promise<string[]> {
+  const res = await fetch('/api/production')
+  if (!res.ok) throw new Error(`Failed to fetch production: ${res.statusText}`)
+  return res.json()
+}
+
+export async function promoteEntry(sessionId: string, fileName: string): Promise<void> {
+  const res = await fetch('/api/promote', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sessionId, fileName }),
+  })
+  if (!res.ok) throw new Error(`Failed to promote entry: ${res.statusText}`)
+}
+
+export async function demoteEntry(fileName: string): Promise<void> {
+  const res = await fetch('/api/demote', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fileName }),
+  })
+  if (!res.ok) throw new Error(`Failed to demote entry: ${res.statusText}`)
+}

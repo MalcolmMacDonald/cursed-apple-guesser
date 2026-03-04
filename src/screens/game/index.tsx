@@ -16,8 +16,7 @@ function GameScreen({setState, gameData, setGameData}:
     const location: LocationData = gameData.locations[gameData.currentRound];
     return (
         <div className="game-screen" draggable={false}>
-            <img src={`locations/${location.fileName}`} alt="Location" className="game-bg" />
-            <div className="game-overlay" />
+            <img src={`locations/${location.fileName}`} alt="Location" className="game-bg"/>
             <MapSelection setState={setState} gameData={gameData} setGameData={setGameData}/>
         </div>
     );

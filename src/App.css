@@ -288,37 +288,6 @@
     line-height: 1.6;
 }
 
-.landing__settings {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    width: 280px;
-}
-
-.landing__setting-label {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.65);
-    font-weight: 600;
-    letter-spacing: 0.03em;
-}
-
-.landing__setting-value {
-    color: #6ee7b7;
-}
-
-.landing__slider {
-    width: 100%;
-    accent-color: #6ee7b7;
-}
-
-.landing__setting-hint {
-    margin: 0;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.3);
-    text-align: center;
-    line-height: 1.4;
-}
 
 .landing__start-btn {
     padding: 14px 48px;
@@ -357,16 +326,6 @@
     z-index: -1;
     user-select: none;
     pointer-events: none;
-}
-
-.game-overlay {
-    background-color: Background;
-    left: 0;
-    top: 19vh;
-    height: 14vh;
-    width: 30vw;
-    position: absolute;
-    border-radius: 10px;
 }
 
 /* ── Map Selection ───────────────────────────────────────── */
@@ -454,7 +413,7 @@
     opacity: 0.85;
     width: 10px;
     height: 10px;
-    border: 1.5px solid rgba(255,255,255,0.5);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
 }
 
 .pin-line {
@@ -467,7 +426,7 @@
 /* ── Intermediate Score ──────────────────────────────────── */
 
 .intermediate-score {
-    min-height: calc(100vh - var(--topbar-height));
+    height: calc(100vh - var(--topbar-height));
     width: 100%;
     background: linear-gradient(160deg, #0d0d1a 0%, #111122 50%, #0a0a16 100%);
     display: flex;

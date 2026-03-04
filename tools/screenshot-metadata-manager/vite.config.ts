@@ -12,6 +12,8 @@ const ROOT_DIR = path.resolve(__dirname, '../..')
 const SESSIONS_DIR = path.join(ROOT_DIR, 'tools', 'deadlock-capture', 'output', 'sessions')
 const TAGS_PATH = path.join(ROOT_DIR, 'tools', 'deadlock-capture', 'output', 'tag-definitions.json')
 const MAP_IMAGE_PATH = path.join(ROOT_DIR, 'src', 'assets', 'IMG_6117.png')
+const PRODUCTION_DIR = path.join(ROOT_DIR, 'public', 'locations')
+const PRODUCTION_METADATA_PATH = path.join(PRODUCTION_DIR, 'metadata.json')
 
 async function readBody(req: any): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -38,6 +40,18 @@ function serveFile(res: any, filePath: string, contentType: string) {
   const data = fs.readFileSync(filePath)
   res.setHeader('Content-Type', contentType)
   res.end(data)
+}
+
+/** Read production metadata.json, returns [] if missing. */
+function readProductionMetadata(): any[] {
+  if (!fs.existsSync(PRODUCTION_METADATA_PATH)) return []
+  return JSON.parse(fs.readFileSync(PRODUCTION_METADATA_PATH, 'utf-8'))
+}
+
+/** Write entries to production metadata.json (creates dir if needed). */
+function writeProductionMetadata(entries: any[]) {
+  fs.mkdirSync(PRODUCTION_DIR, { recursive: true })
+  fs.writeFileSync(PRODUCTION_METADATA_PATH, JSON.stringify(entries, null, 2))
 }
 
 /** Read all session manifests and return a flat array of MetadataEntry objects. */
@@ -99,6 +113,20 @@ function localFilesPlugin(): Plugin {
       // Serve the Deadlock minimap image
       server.middlewares.use('/map.png', (_req: any, res: any) => {
         serveFile(res, MAP_IMAGE_PATH, 'image/png')
+      })
+
+      // Serve production images
+      // URL pattern: /production/{fileName}
+      server.middlewares.use('/production', (req: any, res: any, next: any) => {
+        const url: string = req.url || ''
+        if (url === '/' || url === '') { next(); return }
+        const fileName = url.replace(/^\//, '')
+        const filePath = path.join(PRODUCTION_DIR, fileName)
+        if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+          serveFile(res, filePath, 'image/jpeg')
+        } else {
+          next()
+        }
       })
 
       // Serve session capture screenshots
@@ -168,6 +196,49 @@ function localFilesPlugin(): Plugin {
             }
             const imagePath = path.join(SESSIONS_DIR, sessionId, 'captures', fileName)
             if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath)
+            sendJson(res, { success: true })
+            return
+          }
+
+          // GET /api/production — list of filenames currently in production
+          if (url === '/production' && method === 'GET') {
+            const entries = readProductionMetadata()
+            sendJson(res, entries.map((e: any) => e.fileName))
+            return
+          }
+
+          // POST /api/promote — copy image to production and add to metadata.json
+          if (url === '/promote' && method === 'POST') {
+            const body = await readBody(req)
+            const { sessionId, fileName } = JSON.parse(body) as { sessionId: string; fileName: string }
+            const srcPath = path.join(SESSIONS_DIR, sessionId, 'captures', fileName)
+            const destPath = path.join(PRODUCTION_DIR, fileName)
+            fs.mkdirSync(PRODUCTION_DIR, { recursive: true })
+            fs.copyFileSync(srcPath, destPath)
+
+            // Find position from session manifest
+            const manifestPath = path.join(SESSIONS_DIR, sessionId, 'manifest.json')
+            const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
+            const capture = (manifest.captures ?? []).find((c: any) => c.fileName === fileName)
+            const location = capture?.position ?? { x: 0, y: 0, z: 0 }
+
+            const existing = readProductionMetadata()
+            if (!existing.some((e: any) => e.fileName === fileName)) {
+              existing.push({ fileName, location })
+              writeProductionMetadata(existing)
+            }
+            sendJson(res, { success: true })
+            return
+          }
+
+          // POST /api/demote — remove from production metadata and delete production image
+          if (url === '/demote' && method === 'POST') {
+            const body = await readBody(req)
+            const { fileName } = JSON.parse(body) as { fileName: string }
+            const existing = readProductionMetadata()
+            writeProductionMetadata(existing.filter((e: any) => e.fileName !== fileName))
+            const destPath = path.join(PRODUCTION_DIR, fileName)
+            if (fs.existsSync(destPath)) fs.unlinkSync(destPath)
             sendJson(res, { success: true })
             return
           }

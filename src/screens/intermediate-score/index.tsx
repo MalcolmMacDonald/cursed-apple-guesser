@@ -37,8 +37,8 @@ function IntermediateScore({setState, gameData, setGameData}:
     const score = Math.max(originalScore, mirrorScore);
     const effectiveDistance = usedMirror ? mirrorDistance : originalDistance;
 
-    // Responsive map size: large enough on mobile, capped on desktop
-    const imageSize = Math.min(window.innerWidth * 0.85, window.innerHeight * 0.55, 480);
+    const topbarHeight = 52;
+    const imageSize = Math.min(window.innerWidth * 0.80, (window.innerHeight - topbarHeight) * 0.62);
     const isLastRound = gameData.currentRound + 1 >= gameData.totalRounds;
 
     return (
