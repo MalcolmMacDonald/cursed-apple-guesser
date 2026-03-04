@@ -79,7 +79,7 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                                 onClick={onPlayDaily}
                                 disabled={dailyDone}
                             >
-                                {dailyDone ? 'Daily Done ✓' : 'Daily Challenge'}
+                                {dailyDone ? 'Daily Done ✓' : '🚧 (WIP) 🚧 Daily Challenge'}
                             </button>
                         )}
                     </div>
