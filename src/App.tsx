@@ -15,7 +15,7 @@ function App() {
     return (
         <>
             <TopBar
-                currentGame={screen === 'geoguesser' ? 'Cursed Apple Guesser' : undefined}
+                currentGame={screen === 'geoguesser' ? 'Location Guesser' : undefined}
                 onHome={() => setScreen('hub')}
             />
             <div className="app-content">

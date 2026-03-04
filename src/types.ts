@@ -20,5 +20,7 @@ export type GameData = {
     scores: number[],
     guesses: MapLocation[],
     seed: any,
-    mirrorMultiplier: number
+    mirrorMultiplier: number,
+    isDaily: boolean,
+    dailyDate?: string,
 }

@@ -11,7 +11,7 @@ type GameEntry = {
 const games: GameEntry[] = [
     {
         id: "geoguesser",
-        title: "Cursed Apple Guesser",
+        title: "Location Guesser",
         description: "Drop a pin on the map to guess where a screenshot was taken. The closer you are, the higher you score.",
         icon: "🗺️",
         gradient: "linear-gradient(135deg, #1a472a 0%, #2d6a4f 50%, #40916c 100%)",
@@ -78,9 +78,9 @@ function HubScreen({ onSelectGame }: { onSelectGame: (id: string) => void }) {
         <div className="hub-page">
             <div className="hub-header">
                 <div className="hub-badge">Game Hub</div>
-                <h1 className="hub-title">Pick Your Poison</h1>
+                <h1 className="hub-title">Deadlock Map Trainer</h1>
                 <p className="hub-subtitle">
-                    A growing collection of cursed little games. Choose wisely.
+                    Test your knowledge of the Deadlock map.
                 </p>
             </div>
 

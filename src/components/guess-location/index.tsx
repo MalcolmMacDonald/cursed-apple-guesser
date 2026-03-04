@@ -19,44 +19,45 @@ function GuessLocation({actualLocation, guessLocation, mirrorLocation, usedMirro
     const guess = toNormalized(guessLocation);
     const mirror = toNormalized(mirrorLocation);
 
-    // Center of map in normalized coords (always 0.5, 0.5)
-    const center = { x: 0.5, y: 0.5 };
-
     // Score line goes from guess to whichever location was used for scoring
     const scoreTo = usedMirror ? mirror : actual;
 
     return (
         <>
-            {/* Mirror illustration: dashed line connecting actual ↔ mirror through the center */}
             <svg className="pin-line" width={imageSize} height={imageSize}>
-                {/* Axis line between actual and mirror, showing 180° rotational symmetry */}
-                <line
-                    x1={actual.x * imageSize} y1={actual.y * imageSize}
-                    x2={mirror.x * imageSize} y2={mirror.y * imageSize}
-                    stroke="rgba(255,255,255,0.25)"
-                    strokeWidth="1.5"
-                    strokeDasharray="4,4"
-                />
-                {/* Small center-of-rotation marker */}
-                <circle
-                    cx={center.x * imageSize} cy={center.y * imageSize}
-                    r="4"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.35)"
-                    strokeWidth="1.5"
-                />
-                <line
-                    x1={center.x * imageSize - 6} y1={center.y * imageSize}
-                    x2={center.x * imageSize + 6} y2={center.y * imageSize}
-                    stroke="rgba(255,255,255,0.35)"
-                    strokeWidth="1.5"
-                />
-                <line
-                    x1={center.x * imageSize} y1={center.y * imageSize - 6}
-                    x2={center.x * imageSize} y2={center.y * imageSize + 6}
-                    stroke="rgba(255,255,255,0.35)"
-                    strokeWidth="1.5"
-                />
+                {/* Mirror illustration: only shown when mirror was closer */}
+                {usedMirror && (
+                    <>
+                        {/* Axis line between actual and mirror */}
+                        <line
+                            x1={actual.x * imageSize} y1={actual.y * imageSize}
+                            x2={mirror.x * imageSize} y2={mirror.y * imageSize}
+                            stroke="rgba(255,255,255,0.25)"
+                            strokeWidth="1.5"
+                            strokeDasharray="4,4"
+                        />
+                        {/* Small center-of-rotation marker */}
+                        <circle
+                            cx={0.5 * imageSize} cy={0.5 * imageSize}
+                            r="4"
+                            fill="none"
+                            stroke="rgba(255,255,255,0.35)"
+                            strokeWidth="1.5"
+                        />
+                        <line
+                            x1={0.5 * imageSize - 6} y1={0.5 * imageSize}
+                            x2={0.5 * imageSize + 6} y2={0.5 * imageSize}
+                            stroke="rgba(255,255,255,0.35)"
+                            strokeWidth="1.5"
+                        />
+                        <line
+                            x1={0.5 * imageSize} y1={0.5 * imageSize - 6}
+                            x2={0.5 * imageSize} y2={0.5 * imageSize + 6}
+                            stroke="rgba(255,255,255,0.35)"
+                            strokeWidth="1.5"
+                        />
+                    </>
+                )}
                 {/* Score line: guess → used target */}
                 <line
                     x1={guess.x * imageSize} y1={guess.y * imageSize}
@@ -67,11 +68,13 @@ function GuessLocation({actualLocation, guessLocation, mirrorLocation, usedMirro
                 />
             </svg>
 
-            {/* Mirrored location pin */}
-            <div
-                className="pin pin--mirror"
-                style={{ left: `${mirror.x * 100}%`, top: `${mirror.y * 100}%` }}
-            />
+            {/* Mirrored location pin — only shown when mirror was closer */}
+            {usedMirror && (
+                <div
+                    className="pin pin--mirror"
+                    style={{ left: `${mirror.x * 100}%`, top: `${mirror.y * 100}%` }}
+                />
+            )}
 
             {/* Actual location pin */}
             <div

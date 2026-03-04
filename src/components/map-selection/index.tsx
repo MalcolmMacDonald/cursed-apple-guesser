@@ -1,61 +1,110 @@
 //show map, with "Select location" button that becomes enabled when a location is selected
 
-import React, {useState} from "react";
-import type {GameData, GameScreenName} from "../../types.ts";
+import React, {useState, useRef} from "react";
+import type {MapLocation} from "../../types.ts";
 import MapDisplay from "../map-display";
 
-function MapSelection({setState, gameData, setGameData}:
-                      {
-                          setState: (gameState: GameScreenName) => void,
-                          gameData: GameData,
-                          setGameData: (gameData: GameData) => void
-                      }) {
+function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void }) {
     const [selectedLocation, setSelectedLocation] = useState<{ x: number, y: number } | null>(null);
+    const [animPhase, setAnimPhase] = useState<'idle' | 'fixed' | 'centering'>('idle');
+    const [fixedStyle, setFixedStyle] = useState<{ centerX: number, centerY: number, width: number } | null>(null);
+    const pendingLocationRef = useRef<MapLocation | null>(null);
+    const transitionFiredRef = useRef(false);
+    const divRef = useRef<HTMLDivElement>(null);
+
+    const mapSize = 10900 * 2;
+    const imageSize = 512;
 
     const handleMapClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (animPhase !== 'idle') return;
         const rect = event.currentTarget.getBoundingClientRect();
-
-        //get normalized coordinates
-        let x = (event.clientX - rect.left) / rect.width;
-        let y = (event.clientY - rect.top) / rect.height;
-        //clamp to circle
-        const centerX = 0.5;
-        const centerY = 0.5;
-        const dist = Math.sqrt((x - centerX) ** 2 + (y -
-            centerY) ** 2);
-        if (dist > 0.5) {
-            return;
-        }
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        const dist = Math.sqrt((x - 0.5) ** 2 + (y - 0.5) ** 2);
+        if (dist > 0.5) return;
         setSelectedLocation({x, y});
     };
-    const mapSize = 10900 * 2;
 
-    const handleSelectLocation = () => {
-        if (selectedLocation) {
-            selectedLocation.y = 1 - selectedLocation.y; // Invert Y axis
-            console.log("Selected location", selectedLocation);
-            selectedLocation.x = (selectedLocation.x - 0.5) * mapSize;
-            selectedLocation.y = (selectedLocation.y - 0.5) * mapSize;
+    const handleContinue = () => {
+        if (!selectedLocation || animPhase !== 'idle') return;
 
-            setGameData({
-                ...gameData,
-                guesses: [...gameData.guesses, selectedLocation]
+        const worldLoc: MapLocation = {
+            x: (selectedLocation.x - 0.5) * mapSize,
+            y: ((1 - selectedLocation.y) - 0.5) * mapSize,
+        };
+        pendingLocationRef.current = worldLoc;
+        transitionFiredRef.current = false;
+
+        const rect = divRef.current!.getBoundingClientRect();
+        setFixedStyle({
+            centerX: rect.left + rect.width / 2,
+            centerY: rect.top + rect.height / 2,
+            width: rect.width,
+        });
+        setAnimPhase('fixed');
+
+        // Two rAF: let the 'fixed' style paint, then start the transition
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                setAnimPhase('centering');
+                // Fallback if transitionEnd never fires
+                setTimeout(() => {
+                    if (!transitionFiredRef.current) {
+                        transitionFiredRef.current = true;
+                        onSubmit(pendingLocationRef.current!);
+                    }
+                }, 600);
             });
-            setState('intermediate_scoring');
+        });
+    };
 
+    const handleTransitionEnd = () => {
+        if (animPhase === 'centering' && !transitionFiredRef.current) {
+            transitionFiredRef.current = true;
+            onSubmit(pendingLocationRef.current!);
         }
     };
-    const pinSize = 10;
 
-
-    const imageSize = 512; // Assuming a square image for simplicity
+    let dynamicStyle: React.CSSProperties = {};
+    if (animPhase === 'fixed' && fixedStyle) {
+        dynamicStyle = {
+            position: 'fixed',
+            left: fixedStyle.centerX,
+            top: fixedStyle.centerY,
+            right: 'auto',
+            bottom: 'auto',
+            transform: 'translate(-50%, -50%)',
+            width: fixedStyle.width,
+            margin: 0,
+            zIndex: 100,
+            transition: 'none',
+        };
+    } else if (animPhase === 'centering' && fixedStyle) {
+        dynamicStyle = {
+            position: 'fixed',
+            left: '50%',
+            top: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            transform: 'translate(-50%, -50%)',
+            width: fixedStyle.width,
+            margin: 0,
+            zIndex: 100,
+            transition: 'left 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+        };
+    }
 
     return (
-        <div className="map-selection">
+        <div
+            className="map-selection"
+            ref={divRef}
+            style={dynamicStyle}
+            onTransitionEnd={handleTransitionEnd}
+        >
             <button
                 className="select-button"
-                onClick={handleSelectLocation}
-                disabled={!selectedLocation}
+                onClick={handleContinue}
+                disabled={!selectedLocation || animPhase !== 'idle'}
             >
                 {selectedLocation ? "Continue" : "Click on the map to select a location"}
             </button>
@@ -65,9 +114,7 @@ function MapSelection({setState, gameData, setGameData}:
                     imageSize={imageSize}
                     onClick={handleMapClick}
                     onMouseMove={(e) => {
-                        if (e.buttons === 1) {
-                            handleMapClick(e);
-                        }
+                        if (e.buttons === 1) handleMapClick(e);
                     }}
                 />
                 {selectedLocation && (
@@ -86,7 +133,6 @@ function MapSelection({setState, gameData, setGameData}:
             </div>
         </div>
     );
-
 }
 
 export default MapSelection;

@@ -54,10 +54,14 @@ function IntermediateScore({setState, gameData, setGameData}:
                     imageSize={imageSize}
                 />
             </div>
+            {usedMirror && (
+                <div className="intermediate-score__mirror-banner">
+                    Mirror scored — your guess was closer to the opposite side of the map
+                </div>
+            )}
             <div className="intermediate-score__info">
                 <p className="intermediate-score__distance">
                     Distance: {effectiveDistance.toFixed(0)} units
-                    {usedMirror && <span className="intermediate-score__mirror-tag"> (mirror)</span>}
                 </p>
                 <p className="intermediate-score__score">{score} <span className="intermediate-score__score-max">/ {maxScore}</span></p>
             </div>

@@ -307,6 +307,23 @@
     box-shadow: 0 12px 40px rgba(40, 145, 108, 0.55);
 }
 
+.landing__daily-btn {
+    padding: 12px 40px;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.45);
+    border-radius: 14px;
+    color: #a5b4fc;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.landing__daily-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(99, 102, 241, 0.3);
+}
+
 /* ── Game Screen ─────────────────────────────────────────── */
 
 .game-screen {
@@ -466,9 +483,15 @@
     color: rgba(255, 255, 255, 0.45);
 }
 
-.intermediate-score__mirror-tag {
+.intermediate-score__mirror-banner {
+    background: rgba(0, 255, 255, 0.08);
+    border: 1px solid rgba(0, 255, 255, 0.3);
     color: cyan;
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
     font-weight: 600;
+    text-align: center;
 }
 
 .intermediate-score__score {
@@ -555,6 +578,23 @@
     margin: 0;
     font-size: clamp(0.85rem, 2vw, 1rem);
     color: rgba(255, 255, 255, 0.4);
+}
+
+.final-score__copy-btn {
+    padding: 11px 32px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(99, 102, 241, 0.45);
+    border-radius: 12px;
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.final-score__copy-btn:hover {
+    background: rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
 }
 
 .final-score__play-again {
