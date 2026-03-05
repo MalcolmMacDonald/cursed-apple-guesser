@@ -35,10 +35,3 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           base_branch: dev
 
-      - name: Enable auto-merge on created PR
-        if: steps.claude.outputs.pull_request_number != ''
-        run: |
-          gh pr merge "${{ steps.claude.outputs.pull_request_number }}" \
-            --auto --squash --repo "${{ github.repository }}"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
