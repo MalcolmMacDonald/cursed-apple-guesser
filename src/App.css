@@ -754,6 +754,17 @@
     }
 }
 
+/* On portrait mobile, ensure landscape screenshots are fully visible */
+@media (orientation: portrait) and (max-width: 600px) {
+    .game-bg {
+        object-fit: contain;
+        background-color: #000;
+        top: 50%;
+        transform: translateY(-50%);
+        height: auto;
+    }
+}
+
 /* ── Dead Reckoning Score Legend ─────────────────────────── */
 
 .dr-score-legend {

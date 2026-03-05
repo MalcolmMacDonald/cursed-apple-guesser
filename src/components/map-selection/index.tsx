@@ -88,6 +88,12 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
         }
     };
 
+    // On mobile, scale the map up to fill the viewport width during the centering animation.
+    const isMobile = window.innerWidth <= 600;
+    const centeredScale = (isMobile && fixedStyle)
+        ? window.innerWidth / fixedStyle.width
+        : 1;
+
     let dynamicStyle: React.CSSProperties = {};
     if (animPhase === 'fixed' && fixedStyle) {
         dynamicStyle = {
@@ -96,7 +102,8 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
             top: fixedStyle.centerY,
             right: 'auto',
             bottom: 'auto',
-            transform: 'translate(-50%, -50%)',
+            transform: 'translate(-50%, -50%) scale(1)',
+            transformOrigin: 'center center',
             width: fixedStyle.width,
             margin: 0,
             zIndex: 100,
@@ -109,11 +116,12 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
             top: '50%',
             right: 'auto',
             bottom: 'auto',
-            transform: 'translate(-50%, -50%)',
+            transform: `translate(-50%, -50%) scale(${centeredScale})`,
+            transformOrigin: 'center center',
             width: fixedStyle.width,
             margin: 0,
             zIndex: 100,
-            transition: 'left 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: 'left 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
         };
     }
 
@@ -165,7 +173,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
                 >The Archmother</div>
 
             </div>
-            <div className="map-selection__controls">
+            <div className="map-selection__controls" style={animPhase !== 'idle' ? {visibility: 'hidden'} : undefined}>
                 <button
                     className="map-flip-btn"
                     onClick={() => setIsFlipped(f => !f)}

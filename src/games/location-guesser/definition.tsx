@@ -7,6 +7,7 @@ import LGScoring from './screens/Scoring';
 import type {GameDefinition, LandingProps, FinalProps, BaseGameState} from '../../game-engine/types';
 import type {LocationData, MapLocation} from '../../types';
 import {makeRandomSeed} from '../../utils/rng';
+import {getScoreEmoji} from '../../utils/scoring';
 
 const ROUND_COUNT = 5;
 const MIRROR_CREDIT = 0.5;
@@ -75,11 +76,13 @@ function LGFinal({state, onPlayAgain, onExit}: FinalProps<LGGameState>) {
             dailyDate={state.dailyDate}
             storageKey={LG_DAILY_KEY}
             seed={state.seed}
+            maxScorePerRound={5}
             formatShareText={(scores, totalScore, date, url) =>
                 [
-                    `Deadlock Map Trainer - Location Guesser - ${date} - ${url}`,
-                    ...scores.map((s, i) => `Round ${i + 1}: ${s} / 1000`),
-                    `Total: ${totalScore} / ${scores.length * 1000}`,
+                    `Deadlock Map Trainer - Location Guesser - ${date}`,
+                    scores.map(s => getScoreEmoji(s)).join(' '),
+                    `${totalScore}/${scores.length * 5}`,
+                    url,
                 ].join('\n')
             }
             onPlayAgain={onPlayAgain}

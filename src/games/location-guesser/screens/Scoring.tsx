@@ -1,7 +1,7 @@
 import MapDisplay from '../../../components/map-display';
 import GuessLocation from '../../../components/guess-location';
-import {calculateDistance, worldToNorm} from '../../../utils/coordinates';
-import {calculateScore} from '../../../utils/scoring';
+import {calculateDistance, worldToNorm, MAP_RADIUS, MAP_SIZE} from '../../../utils/coordinates';
+import {calculateTierScore, SCORE_TIERS} from '../../../utils/scoring';
 import type {ScoringProps} from '../../../game-engine/types';
 import type {LGGameState} from '../definition';
 import type {MapLocation} from '../../../types';
@@ -15,15 +15,14 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
     const originalDistance = calculateDistance(location, guessedLocation);
     const mirrorDistance = calculateDistance(mirroredLocation, guessedLocation);
 
-    const originalScore = calculateScore(originalDistance);
-    const mirrorScore = Math.max(
-        Math.round((1 - mirrorDistance / 10900) * 1000 * state.mirrorMultiplier),
-        0
-    );
+    const originalScore = calculateTierScore(originalDistance);
+    const mirrorScore = Math.floor(calculateTierScore(mirrorDistance) * state.mirrorMultiplier);
 
     const usedMirror = mirrorScore > originalScore;
     const score = Math.max(originalScore, mirrorScore);
     const effectiveDistance = usedMirror ? mirrorDistance : originalDistance;
+
+    const scoreColor = SCORE_TIERS.find(t => t.score === score)?.color ?? '#9E9E9E';
 
     const topbarHeight = 52;
     const imageSize = Math.min(window.innerWidth * 0.80, (window.innerHeight - topbarHeight) * 0.55);
@@ -50,6 +49,11 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
     const panX = (0.5 - cx) * imageSize;
     const panY = (0.5 - cy) * imageSize;
 
+    // Isoline circles centered on the scored target location
+    const isolineOriginNorm = scoredNorm;
+    const isolineOriginX = isolineOriginNorm.x * imageSize;
+    const isolineOriginY = isolineOriginNorm.y * imageSize;
+
     return (
         <div className="intermediate-score">
             <img
@@ -70,11 +74,10 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                         height: imageSize,
                         overflow: 'hidden',
                         clipPath: 'circle(50% at 50% 50%)',
-                        // Add a border to the map container
                         border: '4px solid rgba(255, 255, 255, 0.8)',
                         borderRadius: '50%',
                         boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
-                        backgroundColor: '#000', // Fallback background color
+                        backgroundColor: '#000',
                     }}
                 >
                     <div style={{
@@ -83,10 +86,38 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                         transform: `scale(${zoom}) translate(${panX}px, ${panY}px)`,
                         transformOrigin: 'center center',
                         position: 'relative',
-                        //clip with circle to avoid showing edges when zoomed in
-
                     }}>
                         <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined}/>
+                        {/* Isoline score circles */}
+                        <svg
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: imageSize,
+                                height: imageSize,
+                                pointerEvents: 'none',
+                                overflow: 'visible',
+                                zIndex: 2,
+                            }}
+                        >
+                            {[...SCORE_TIERS].reverse().map((tier) => {
+                                const r = (tier.maxDistance / MAP_SIZE) * imageSize;
+                                return (
+                                    <circle
+                                        key={tier.score}
+                                        cx={isolineOriginX}
+                                        cy={isolineOriginY}
+                                        r={r}
+                                        fill="none"
+                                        stroke={tier.color}
+                                        strokeWidth={1.5}
+                                        strokeDasharray="5 4"
+                                        opacity={0.65}
+                                    />
+                                );
+                            })}
+                        </svg>
                         <GuessLocation
                             actualLocation={location}
                             guessLocation={guessedLocation}
@@ -105,8 +136,8 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                     <p className="intermediate-score__distance">
                         Distance: {effectiveDistance.toFixed(0)} units
                     </p>
-                    <p className="intermediate-score__score">
-                        {score} <span className="intermediate-score__score-max">/ 1000</span>
+                    <p className="intermediate-score__score" style={{color: scoreColor}}>
+                        {score} <span className="intermediate-score__score-max">/ 5</span>
                     </p>
                 </div>
                 <button className="intermediate-score__btn" onClick={() => onContinue(score)}>

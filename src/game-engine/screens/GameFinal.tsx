@@ -8,6 +8,8 @@ interface GameFinalProps {
     dailyDate?: string;
     storageKey: string;
     seed?: string;
+    /** Max score per round for display. Defaults to 1000. */
+    maxScorePerRound?: number;
     formatShareText: (scores: number[], totalScore: number, date: string, url: string) => string;
     onPlayAgain: () => void;
     onExit?: () => void;
@@ -21,6 +23,7 @@ function GameFinal({
     dailyDate,
     storageKey,
     seed,
+    maxScorePerRound = 1000,
     formatShareText,
     onPlayAgain,
     onExit,
@@ -47,7 +50,7 @@ function GameFinal({
             <h2 className="final-score__title">Final Score</h2>
             <p className="final-score__subtitle">Your total score is:</p>
             <p className="final-score__total">{totalScore}</p>
-            <p className="final-score__total-max">out of a possible {totalRounds * 1000}</p>
+            <p className="final-score__total-max">out of a possible {totalRounds * maxScorePerRound}</p>
             {!isDaily && seed && (
                 <p className="final-score__seed">Seed: <code>{seed}</code></p>
             )}
