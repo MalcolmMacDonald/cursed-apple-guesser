@@ -16,10 +16,11 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
     const mirrorDistance = calculateDistance(mirroredLocation, guessedLocation);
 
     const originalScore = calculateTierScore(originalDistance);
-    const mirrorScore = Math.floor(calculateTierScore(mirrorDistance) * state.mirrorMultiplier);
+    const rawMirrorScore = calculateTierScore(mirrorDistance);
+    const mirrorScore = Math.max(rawMirrorScore - 2, 0);
 
-    const usedMirror = mirrorScore > originalScore;
-    const score = Math.max(originalScore, mirrorScore);
+    const usedMirror = rawMirrorScore > originalScore;
+    const score = usedMirror ? mirrorScore : originalScore;
     const effectiveDistance = usedMirror ? mirrorDistance : originalDistance;
 
     const scoreColor = SCORE_TIERS.find(t => t.score === score)?.color ?? '#9E9E9E';
@@ -150,9 +151,19 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                     <p className="intermediate-score__distance">
                         Distance: {effectiveDistance.toFixed(0)} units
                     </p>
-                    <p className="intermediate-score__score" style={{color: scoreColor}}>
-                        {score} <span className="intermediate-score__score-max">/ 5</span>
-                    </p>
+                    {usedMirror ? (
+                        <p className="intermediate-score__score" style={{color: scoreColor}}>
+                            <span style={{textDecoration: 'line-through', opacity: 0.6, color: '#fff'}}>
+                                {rawMirrorScore}
+                            </span>
+                            {' → '}
+                            {score} <span className="intermediate-score__score-max">/ 5</span>
+                        </p>
+                    ) : (
+                        <p className="intermediate-score__score" style={{color: scoreColor}}>
+                            {score} <span className="intermediate-score__score-max">/ 5</span>
+                        </p>
+                    )}
                 </div>
                 <button className="intermediate-score__btn" onClick={() => onContinue(score)}>
                     {isLastRound ? 'See Final Score' : 'Next Round'}
