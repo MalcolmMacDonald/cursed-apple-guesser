@@ -1,15 +1,15 @@
-name: Deploy to GitHub Pages (prod)
+name: Deploy to GitHub Pages (dev)
 
 on:
   push:
-    branches: ['main']
+    branches: ['dev']
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: 'pages-prod'
+  group: 'pages-dev'
   cancel-in-progress: true
 
 jobs:
@@ -24,14 +24,14 @@ jobs:
 
       - run: bun install
 
-      - run: bun run build
-
-      - run: echo "map-trainer.lloc.ca" > dist/CNAME
+      - name: Build (dev subpath)
+        run: bun run build
+        env:
+          VITE_BASE_PATH: /dev/
 
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: dist
+          target-folder: dev
           clean: true
-          clean-exclude: |
-            dev/

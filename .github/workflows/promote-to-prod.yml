@@ -1,0 +1,33 @@
+name: Promote dev → prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "yes" to create a dev → main promotion PR'
+        required: true
+        default: 'no'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  promote:
+    if: github.event.inputs.confirm == 'yes'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create PR dev → main
+        run: |
+          gh pr create \
+            --base main \
+            --head dev \
+            --title "Promote dev → main ($(date -u '+%Y-%m-%d'))" \
+            --body "Automated promotion of dev to production. Review and merge to deploy." \
+            --label "promotion"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
