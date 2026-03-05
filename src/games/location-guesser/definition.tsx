@@ -16,6 +16,7 @@ const LG_DAILY_KEY = 'dailyChallenge_completed';
 export interface LGGameState extends BaseGameState {
     locations: LocationData[];
     guesses: MapLocation[];
+    flips: boolean[];
     mirrorMultiplier: number;
 }
 
@@ -103,6 +104,7 @@ export const locationGuesserDefinition: GameDefinition<LGGameState> = {
         return {
             locations,
             guesses: [],
+            flips: [],
             scores: [],
             currentRound: 0,
             totalRounds: count,
