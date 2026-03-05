@@ -5,7 +5,7 @@ import {flushSync} from "react-dom";
 import type {MapLocation} from "../../types.ts";
 import MapDisplay from "../map-display";
 
-function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void }) {
+function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped: boolean) => void }) {
     const [selectedLocation, setSelectedLocation] = useState<{ x: number, y: number } | null>(null);
     const [animPhase, setAnimPhase] = useState<'idle' | 'fixed' | 'centering'>('idle');
     const [fixedStyle, setFixedStyle] = useState<{ centerX: number, centerY: number, width: number, imageSize: number } | null>(null);
@@ -64,7 +64,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
         const safetyId = setTimeout(() => {
             if (!transitionFiredRef.current) {
                 transitionFiredRef.current = true;
-                onSubmit(pendingLocationRef.current!);
+                onSubmit(pendingLocationRef.current!, isFlipped);
             }
         }, 700);
 
@@ -75,7 +75,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
             setTimeout(() => {
                 if (!transitionFiredRef.current) {
                     transitionFiredRef.current = true;
-                    onSubmit(pendingLocationRef.current!);
+                    onSubmit(pendingLocationRef.current!, isFlipped);
                 }
             }, 600);
         });
@@ -84,7 +84,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation) => void })
     const handleTransitionEnd = () => {
         if (animPhase === 'centering' && !transitionFiredRef.current) {
             transitionFiredRef.current = true;
-            onSubmit(pendingLocationRef.current!);
+            onSubmit(pendingLocationRef.current!, isFlipped);
         }
     };
 
