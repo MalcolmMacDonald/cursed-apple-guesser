@@ -13,7 +13,7 @@ export interface BaseGameState {
 export type GameFlowScreen = 'landing' | 'game' | 'intermediate_scoring' | 'final_scoring';
 
 export interface LandingProps {
-    onStart: (seed: string, isDaily: boolean) => void;
+    onStart: (seed: string, isDaily: boolean, roundCount?: number) => void;
     onExit?: () => void;
 }
 
@@ -30,6 +30,7 @@ export interface ScoringProps<TState extends BaseGameState> {
 export interface FinalProps<TState extends BaseGameState> {
     state: TState;
     onPlayAgain: () => void;
+    onExit?: () => void;
 }
 
 /**
@@ -40,7 +41,7 @@ export interface GameDefinition<TState extends BaseGameState> {
     name: string;
     dailyStorageKey: string;
     totalRounds: number;
-    initState: (seed: string, isDaily: boolean) => TState;
+    initState: (seed: string, isDaily: boolean, roundCount?: number) => TState;
     screens: {
         Landing: FC<LandingProps>;
         Round: FC<RoundProps<TState>>;

@@ -1,0 +1,3 @@
+delete hotkey for deleting screenshots
+ctrl a hotkey for selecting all
+maintain tags between dev and prod

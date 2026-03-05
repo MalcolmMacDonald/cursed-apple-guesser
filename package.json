@@ -5,9 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "bunx --bun vite",
-    "build": "bunx --bun vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
     "cms": "bunx --bun vite tools/screenshot-metadata-manager/ --port 5179",
     "capture": "bun run tools/deadlock-capture/src/main.ts",
     "capture:status": "bun run tools/deadlock-capture/src/main.ts status"

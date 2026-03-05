@@ -1,6 +1,6 @@
 import React from 'react';
 import seedRandom from 'seedrandom';
-import allLocations from '../../locations/metadata.json';
+import allLocations from '../../../public/locations/metadata.json';
 import GameLanding from '../../game-engine/screens/GameLanding';
 import GameFinal from '../../game-engine/screens/GameFinal';
 import DRRound from './screens/Round';
@@ -27,12 +27,11 @@ function DRLanding(props: LandingProps) {
             icon="🧭"
             title="Dead Reckoning"
             subtitle="5 rounds — navigate from start to destination"
-            storageKey={DR_DAILY_KEY}
         />
     );
 }
 
-function DRFinal({ state, onPlayAgain }: FinalProps<DRGameState>) {
+function DRFinal({ state, onPlayAgain, onExit }: FinalProps<DRGameState>) {
     return (
         <GameFinal
             gameName="Dead Reckoning"
@@ -49,6 +48,7 @@ function DRFinal({ state, onPlayAgain }: FinalProps<DRGameState>) {
                 ].join('\n')
             }
             onPlayAgain={onPlayAgain}
+            onExit={onExit}
         />
     );
 }

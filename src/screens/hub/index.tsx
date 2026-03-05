@@ -1,3 +1,4 @@
+import React from 'react';
 import {makeDailyDate} from '../../utils/rng';
 
 type GameEntry = {
@@ -52,10 +53,31 @@ const games: GameEntry[] = [
     },
 ];
 
+function useDailyCountdown(): string {
+    const [text, setText] = React.useState('');
+    React.useEffect(() => {
+        const update = () => {
+            const now = new Date();
+            const midnight = new Date(now);
+            midnight.setHours(24, 0, 0, 0);
+            const diff = midnight.getTime() - now.getTime();
+            const h = Math.floor(diff / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            setText(`${h}h ${m.toString().padStart(2, '0')}m ${s.toString().padStart(2, '0')}s`);
+        };
+        update();
+        const id = setInterval(update, 1000);
+        return () => clearInterval(id);
+    }, []);
+    return text;
+}
+
 function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void }) {
     const dailyDone = game.dailyStorageKey
         ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
         : false;
+    const countdown = useDailyCountdown();
 
     return (
         <div className={`hub-card${game.available ? '' : ' hub-card--disabled'}`}>
@@ -74,13 +96,18 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                             Play Now
                         </button>
                         {game.dailyStorageKey && (
-                            <button
-                                className="hub-card__daily-btn"
-                                onClick={onPlayDaily}
-                                disabled={dailyDone}
-                            >
-                                {dailyDone ? 'Daily Done ✓' : '🚧 (WIP) 🚧 Daily Challenge'}
-                            </button>
+                            <>
+                                <button
+                                    className="hub-card__daily-btn"
+                                    onClick={onPlayDaily}
+                                    disabled={dailyDone}
+                                >
+                                    {dailyDone ? 'Daily Done ✓' : '🚧 (WIP) 🚧 Daily Challenge'}
+                                </button>
+                                {dailyDone && (
+                                    <p className="hub-card__daily-timer">Next in {countdown}</p>
+                                )}
+                            </>
                         )}
                     </div>
                 ) : (

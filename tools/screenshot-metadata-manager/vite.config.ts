@@ -15,6 +15,18 @@ const MAP_IMAGE_PATH = path.join(ROOT_DIR, 'src', 'assets', 'IMG_6117.png')
 const PRODUCTION_DIR = path.join(ROOT_DIR, 'public', 'locations')
 const PRODUCTION_METADATA_PATH = path.join(PRODUCTION_DIR, 'metadata.json')
 
+// ── SSE: watch for new captures ──────────────────────────────────────────────
+const sseClients = new Set<import('http').ServerResponse>()
+let watchTimer: ReturnType<typeof setTimeout> | null = null
+function notifySseClients() {
+  if (watchTimer) clearTimeout(watchTimer)
+  watchTimer = setTimeout(() => {
+    for (const client of sseClients) {
+      client.write('event: reload\ndata: {}\n\n')
+    }
+  }, 500)
+}
+
 async function readBody(req: any): Promise<string> {
   return new Promise((resolve, reject) => {
     const chunks: Buffer[] = []
@@ -107,6 +119,15 @@ function writeEntries(entries: any[]) {
 }
 
 function localFilesPlugin(): Plugin {
+  // Start watching the sessions directory for new captures
+  if (fs.existsSync(SESSIONS_DIR)) {
+    fs.watch(SESSIONS_DIR, { recursive: true }, (_eventType, filename) => {
+      if (filename?.endsWith('manifest.json')) {
+        notifySseClients()
+      }
+    })
+  }
+
   return {
     name: 'local-files',
     configureServer(server) {
@@ -151,6 +172,20 @@ function localFilesPlugin(): Plugin {
         const method: string = req.method || 'GET'
 
         try {
+          // GET /api/watch — SSE stream; server pushes 'reload' events when new captures appear
+          if (url === '/watch' && method === 'GET') {
+            res.writeHead(200, {
+              'Content-Type': 'text/event-stream',
+              'Cache-Control': 'no-cache',
+              'Connection': 'keep-alive',
+              'Access-Control-Allow-Origin': '*',
+            })
+            res.write(':\n\n') // initial comment to establish connection
+            sseClients.add(res)
+            req.on('close', () => sseClients.delete(res))
+            return
+          }
+
           // GET /api/metadata — flat list of all captures across all sessions
           if (url === '/metadata' && method === 'GET') {
             sendJson(res, readAllEntries())
@@ -224,7 +259,7 @@ function localFilesPlugin(): Plugin {
 
             const existing = readProductionMetadata()
             if (!existing.some((e: any) => e.fileName === fileName)) {
-              existing.push({ fileName, location })
+              existing.push({ fileName, location, tags: capture?.tags ?? [] })
               writeProductionMetadata(existing)
             }
             sendJson(res, { success: true })

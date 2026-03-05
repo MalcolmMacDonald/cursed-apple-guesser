@@ -1,18 +1,15 @@
 import React from 'react';
-import { makeDailyDate, makeRandomSeed } from '../../utils/rng';
-import type { LandingProps } from '../types';
+import {makeRandomSeed} from '../../utils/rng';
+import type {LandingProps} from '../types';
 
 interface GameLandingProps extends LandingProps {
     icon: string;
     title: string;
     subtitle: string;
-    storageKey: string;
     children?: React.ReactNode;
 }
 
-function GameLanding({ icon, title, subtitle, storageKey, onStart, children }: GameLandingProps) {
-    const dailyDate = makeDailyDate();
-    const dailyPlayed = localStorage.getItem(storageKey) === dailyDate;
+function GameLanding({icon, title, subtitle, onStart, children}: GameLandingProps) {
 
     // Stable random seed for this mount — new seed each time the component remounts (Play Again)
     const randomSeed = React.useRef(makeRandomSeed()).current;
@@ -27,13 +24,6 @@ function GameLanding({ icon, title, subtitle, storageKey, onStart, children }: G
             {children}
             <button className="landing__start-btn" onClick={() => onStart(randomSeed, false)}>
                 Start Game
-            </button>
-            <button
-                className="landing__daily-btn"
-                onClick={() => onStart(dailyDate, true)}
-                disabled={dailyPlayed}
-            >
-                {dailyPlayed ? 'Daily Completed ✓' : 'Daily Challenge'}
             </button>
         </div>
     );

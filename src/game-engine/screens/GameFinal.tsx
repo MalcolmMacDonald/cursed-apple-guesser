@@ -7,8 +7,10 @@ interface GameFinalProps {
     isDaily: boolean;
     dailyDate?: string;
     storageKey: string;
+    seed?: string;
     formatShareText: (scores: number[], totalScore: number, date: string, url: string) => string;
     onPlayAgain: () => void;
+    onExit?: () => void;
 }
 
 function GameFinal({
@@ -18,8 +20,10 @@ function GameFinal({
     isDaily,
     dailyDate,
     storageKey,
+    seed,
     formatShareText,
     onPlayAgain,
+    onExit,
 }: GameFinalProps) {
     const [copied, setCopied] = React.useState(false);
     const totalScore = scores.reduce((a, b) => a + b, 0);
@@ -44,9 +48,17 @@ function GameFinal({
             <p className="final-score__subtitle">Your total score is:</p>
             <p className="final-score__total">{totalScore}</p>
             <p className="final-score__total-max">out of a possible {totalRounds * 1000}</p>
+            {!isDaily && seed && (
+                <p className="final-score__seed">Seed: <code>{seed}</code></p>
+            )}
             {isDaily && (
                 <button className="final-score__copy-btn" onClick={handleCopyResults}>
                     {copied ? 'Copied!' : 'Copy Results'}
+                </button>
+            )}
+            {onExit && (
+                <button className="final-score__menu-btn" onClick={onExit}>
+                    Return to Menu
                 </button>
             )}
             <button className="final-score__play-again" onClick={onPlayAgain}>

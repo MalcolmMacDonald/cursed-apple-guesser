@@ -1,5 +1,6 @@
 export type LocationData = {
     fileName: string;
+    tags: string[];
     location: MapLocation;
 };
 

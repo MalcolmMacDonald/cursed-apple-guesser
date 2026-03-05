@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "post-tool-use": [
+      {
+        "matcher": "Edit|Write",
+        "command": "bunx tsc --noEmit --pretty 2>&1 | head -20"
+      }
+    ]
+  }
+}

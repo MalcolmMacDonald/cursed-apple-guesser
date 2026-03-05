@@ -13,8 +13,8 @@ function GameFlow<TState extends BaseGameState>({ definition, onExit, initialSta
 
     const { Landing, Round, Scoring, Final } = definition.screens;
 
-    function handleStart(seed: string, isDaily: boolean) {
-        setState(definition.initState(seed, isDaily));
+    function handleStart(seed: string, isDaily: boolean, roundCount?: number) {
+        setState(definition.initState(seed, isDaily, roundCount));
         setScreen('game');
     }
 
@@ -58,7 +58,7 @@ function GameFlow<TState extends BaseGameState>({ definition, onExit, initialSta
                 <Scoring state={state} onContinue={handleScoringContinue} />
             )}
             {screen === 'final_scoring' && state !== null && (
-                <Final state={state} onPlayAgain={handlePlayAgain} />
+                <Final state={state} onPlayAgain={handlePlayAgain} onExit={onExit} />
             )}
         </>
     );

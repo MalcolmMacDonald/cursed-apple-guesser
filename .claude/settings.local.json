@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls -1 *.jpg)"
+      "Bash(ls -1 *.jpg)",
+      "Bash(bun run lint)",
+      "Bash(bun run build)",
+      "Bash(bun run tsc --noEmit)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }

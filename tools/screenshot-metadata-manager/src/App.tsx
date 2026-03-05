@@ -68,6 +68,20 @@ export default function App() {
             })
     }, [])
 
+    // ── Watch for new captures (SSE) ──────────────────────────
+    useEffect(() => {
+        const evtSource = new EventSource('/api/watch')
+        evtSource.addEventListener('reload', async () => {
+            const fresh = await fetchMetadata()
+            setEntries((prev) => {
+                const existingIds = new Set(prev.map((e) => e.id))
+                const newOnes = fresh.filter((e) => !existingIds.has(e.id))
+                return newOnes.length > 0 ? [...prev, ...newOnes] : prev
+            })
+        })
+        return () => evtSource.close()
+    }, [])
+
     // ── Keyboard shortcuts ────────────────────────────────────
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
