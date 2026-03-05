@@ -16,10 +16,12 @@ jobs:
   claude:
     # Trigger on 'claude' label added to an issue, or '@claude' mentioned in an issue comment
     if: |
-      (github.event.issue.author_association == 'OWNER'  && github.event_name == 'issues' && github.event.label.name == 'claude') ||
-      (github.event_name == 'issue_comment' &&
-       !github.event.issue.pull_request &&
-       contains(github.event.comment.body, '@claude'))
+      (github.event.issue.author_association == 'OWNER' && 
+      (
+        (github.event_name == 'issues' && github.event.label.name == 'claude') ||
+        (github.event_name == 'issue_comment' &&
+         !github.event.issue.pull_request &&
+         contains(github.event.comment.body, '@claude'))))
 
     runs-on: ubuntu-latest
     timeout-minutes: 360   # 6 hours — accommodates Claude Max ~5hr rate-limit reset cycle
