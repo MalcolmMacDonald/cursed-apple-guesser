@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "bunx --bun vite",
     "lint": "eslint .",
+    "build": "bunx --bun vite build",
     "cms": "bunx --bun vite tools/screenshot-metadata-manager/ --port 5179",
     "capture": "bun run tools/deadlock-capture/src/main.ts",
     "capture:status": "bun run tools/deadlock-capture/src/main.ts status"
