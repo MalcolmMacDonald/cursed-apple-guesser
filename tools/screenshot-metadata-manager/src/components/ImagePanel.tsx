@@ -12,6 +12,8 @@ interface Props {
     onRemoveTagDef: (tag: string) => void
     onApplyTagToSelected: (tag: string) => void
     onDeleteEntry: (id: string) => void
+    onDeleteSelected: () => void
+    onDemoteSelected: () => void
     onHoverEntry: (id: string | null) => void
     onSelectSingle: (id: string) => void
     productionFileNames: Set<string>
@@ -29,6 +31,8 @@ export default function ImagePanel({
                                        onRemoveTagDef,
                                        onApplyTagToSelected,
                                        onDeleteEntry,
+                                       onDeleteSelected,
+                                       onDemoteSelected,
                                        onHoverEntry,
                                        onSelectSingle,
                                        productionFileNames,
@@ -58,6 +62,8 @@ export default function ImagePanel({
                         onHoverEntry={onHoverEntry}
                         onSelectSingle={onSelectSingle}
                         onDeleteEntry={onDeleteEntry}
+                        onDeleteAll={onDeleteSelected}
+                        onDemoteAll={onDemoteSelected}
                         onPromote={onPromote}
                     />
                 )}
@@ -197,6 +203,8 @@ function MultiImageView({
                             onHoverEntry,
                             onSelectSingle,
                             onDeleteEntry,
+                            onDeleteAll,
+                            onDemoteAll,
                             onPromote,
                         }: {
     entries: MetadataEntry[]
@@ -204,9 +212,12 @@ function MultiImageView({
     onHoverEntry: (id: string | null) => void
     onSelectSingle: (id: string) => void
     onDeleteEntry: (id: string) => void
+    onDeleteAll: () => void
+    onDemoteAll: () => void
     onPromote: (id: string) => void
 }) {
     const nonproductionEntries = entries.filter((e) => !productionFileNames.has(e.fileName))
+    const productionEntries = entries.filter((e) => productionFileNames.has(e.fileName))
 
     const handleBulkPromote = () => {
         for (const entry of nonproductionEntries) {
@@ -218,15 +229,33 @@ function MultiImageView({
         <div style={styles.multiView}>
             <div style={styles.multiHeader}>
                 <span>{entries.length} images selected</span>
-                {nonproductionEntries.length > 0 && (
+                <div style={{display: 'flex', gap: 6}}>
+                    {nonproductionEntries.length > 0 && (
+                        <button
+                            style={styles.bulkPromoteBtn}
+                            onClick={handleBulkPromote}
+                            title={`Promote ${nonproductionEntries.length} non-production image${nonproductionEntries.length === 1 ? '' : 's'} to public/locations`}
+                        >
+                            Promote {nonproductionEntries.length} to Production
+                        </button>
+                    )}
+                    {productionEntries.length > 0 && (
+                        <button
+                            style={styles.bulkDemoteBtn}
+                            onClick={onDemoteAll}
+                            title={`Remove ${productionEntries.length} image${productionEntries.length === 1 ? '' : 's'} from public/locations`}
+                        >
+                            Demote {productionEntries.length} from Production
+                        </button>
+                    )}
                     <button
-                        style={styles.bulkPromoteBtn}
-                        onClick={handleBulkPromote}
-                        title={`Promote ${nonproductionEntries.length} non-production image${nonproductionEntries.length === 1 ? '' : 's'} to public/locations`}
+                        style={styles.bulkDeleteBtn}
+                        onClick={onDeleteAll}
+                        title={`Delete all ${entries.length} selected images (also demotes from production if needed)`}
                     >
-                        Promote {nonproductionEntries.length} to Production
+                        Delete {entries.length}
                     </button>
-                )}
+                </div>
             </div>
             <div style={styles.thumbnailGrid}>
                 {entries.map((entry) => (
@@ -482,6 +511,26 @@ const styles: Record<string, React.CSSProperties> = {
         border: '1px solid #2a5090',
         borderRadius: 4,
         color: '#6699dd',
+        cursor: 'pointer',
+        fontSize: 11,
+        padding: '3px 10px',
+        flexShrink: 0,
+    },
+    bulkDemoteBtn: {
+        background: '#1a2a1a',
+        border: '1px solid #2a5030',
+        borderRadius: 4,
+        color: '#669966',
+        cursor: 'pointer',
+        fontSize: 11,
+        padding: '3px 10px',
+        flexShrink: 0,
+    },
+    bulkDeleteBtn: {
+        background: '#2a1010',
+        border: '1px solid #552020',
+        borderRadius: 4,
+        color: '#cc6666',
         cursor: 'pointer',
         fontSize: 11,
         padding: '3px 10px',

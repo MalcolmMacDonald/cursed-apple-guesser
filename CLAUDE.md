@@ -1,6 +1,7 @@
 # Cursed Apple Guesser
 
-A GeoGuessr-style web game for learning the Deadlock map. Players are shown in-game screenshots and must guess the location on the minimap. Scores are based on proximity to the correct location.
+A GeoGuessr-style web game for learning the Deadlock map. Players are shown in-game screenshots and must guess the
+location on the minimap. Scores are based on proximity to the correct location.
 
 ## Tech Stack
 
@@ -10,13 +11,19 @@ A GeoGuessr-style web game for learning the Deadlock map. Players are shown in-g
 - `seedrandom` for reproducible random location selection per session
 - Deployed to **GitHub Pages** via GitHub Actions on push to `main`
 
+## Platform Notes
+
+- This project runs on Windows. Use forward slashes in paths and be aware of URL-encoded spaces in Windows paths.
+- When resolving relative paths, double-check parent directory traversal counts (`../`) — Windows path bugs have
+  occurred multiple times.
+
 ## Commands
 
 ```bash
 bun run dev       # Start dev server
-bun run build     # Production build (outputs to ./dist)
 bun run lint      # Run ESLint
-bun run preview   # Preview production build
+bun run cms       # Start screenshot metadata manager (port 5174)
+
 ```
 
 ## Project Structure
@@ -54,13 +61,15 @@ tools/
 
 State machine in `game-controller.tsx` manages four screens:
 
-1. **`landing`** — Player presses "Start Game". 5 locations are randomly selected using a seeded RNG (`seedrandom`). `GameData` is initialized.
-2. **`game`** — Full-screen screenshot is shown. Player clicks on the circular minimap to place a red pin, then presses "Continue".
+1. **`landing`** — Player presses "Start Game". 5 locations are randomly selected using a seeded RNG (`seedrandom`).
+   `GameData` is initialized.
+2. **`game`** — Full-screen screenshot is shown. Player clicks on the circular minimap to place a red pin, then
+   presses "Continue".
 3. **`intermediate_scoring`** — Shows the minimap with:
-   - White pin = actual location
-   - Red pin = player's guess
-   - Dashed yellow SVG line connecting them
-   - Distance in map units and score for the round (max 1000)
+    - White pin = actual location
+    - Red pin = player's guess
+    - Dashed yellow SVG line connecting them
+    - Distance in map units and score for the round (max 1000)
 4. **`final_scoring`** — Displays total score out of `totalRounds * 1000`. Player can restart.
 
 ## Key Data Types (`src/types.ts`)
@@ -89,29 +98,35 @@ GameScreenName = "landing" | "game" | "intermediate_scoring" | "final_scoring"
 ## Deployment
 
 - Deploys automatically to GitHub Pages on push to `main`
-- Vite base path is `/cursed-apple-guesser/`
-- Build output: `./dist`
+- Vite base path is `/`
 
 ## Notes
 
 - Scrolling and image dragging are globally disabled in `App.tsx`
-- The two in-game factions are labeled on the minimap: **Amber Hand** (bottom-left, orange) and **Sapphire Flame** (top-right, cadetblue)
+- The two in-game factions are labeled on the minimap: **Amber Hand** (bottom-left, orange) and **Sapphire Flame** (
+  top-right, cadetblue)
 - Round count is set in `landing-screen/index.tsx` (`roundCount = 5`)
-- Adding new locations: add `.jpg` files to `public/locations/` and add entries to `metadata.json` with the correct world coordinates
+- Adding new locations: add `.jpg` files to `public/locations/` and add entries to `metadata.json` with the correct
+  world coordinates
 
 ## Tools
 
 ### deadlock-capture (`tools/deadlock-capture/`)
-Automated Deadlock screenshot capture tool. Uses RCON to connect to a running Deadlock instance and captures screenshots at defined map positions with world coordinates and camera angles. Output sessions are stored in `tools/deadlock-capture/output/sessions/`.
 
-Run: `bun run --cwd tools/deadlock-capture start`
+Automated Deadlock screenshot capture tool. Uses RCON to connect to a running Deadlock instance and captures screenshots
+at defined map positions with world coordinates and camera angles. Output sessions are stored in
+`tools/deadlock-capture/output/sessions/`.
+
+Run: `bun run capture`
 
 ### screenshot-metadata-manager (`tools/screenshot-metadata-manager/`)
+
 Vite + React UI (port 5174) for reviewing, filtering, and tagging captured screenshots.
 
-Run: `bun run --cwd tools/screenshot-metadata-manager dev`
+Run: `bun run cms`
 
 Features:
+
 - Minimap with interactive pins (select, drag-box-select, hover highlight)
 - Single and multi-image views with tag editor
 - Defined tag vocabulary with one-click apply to selection

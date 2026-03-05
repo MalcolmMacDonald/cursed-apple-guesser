@@ -37,6 +37,8 @@ export default function App() {
     const selectedRef = useRef(selected)
     selectedRef.current = selected
     const filteredEntriesRef = useRef<MetadataEntry[]>([])
+    const productionFileNamesRef = useRef(productionFileNames)
+    productionFileNamesRef.current = productionFileNames
 
     // ── Persist (declared early so keyboard effect can reference it) ──
     const handleSave = useCallback(async () => {
@@ -64,6 +66,20 @@ export default function App() {
                 setLoadError(String(err))
                 setLoading(false)
             })
+    }, [])
+
+    // ── Watch for new captures (SSE) ──────────────────────────
+    useEffect(() => {
+        const evtSource = new EventSource('/api/watch')
+        evtSource.addEventListener('reload', async () => {
+            const fresh = await fetchMetadata()
+            setEntries((prev) => {
+                const existingIds = new Set(prev.map((e) => e.id))
+                const newOnes = fresh.filter((e) => !existingIds.has(e.id))
+                return newOnes.length > 0 ? [...prev, ...newOnes] : prev
+            })
+        })
+        return () => evtSource.close()
     }, [])
 
     // ── Keyboard shortcuts ────────────────────────────────────
@@ -230,6 +246,15 @@ export default function App() {
         const entry = entriesRef.current.find((e) => e.id === id)
         if (!entry) return
         try {
+            // If this image is in production, demote it first so it's removed from public/locations
+            if (productionFileNamesRef.current.has(entry.fileName)) {
+                await demoteEntry(entry.fileName)
+                setProductionFileNames((prev) => {
+                    const next = new Set(prev)
+                    next.delete(entry.fileName)
+                    return next
+                })
+            }
             await deleteEntry(entry.sessionId, entry.fileName)
             setEntries((prev) => prev.filter((e) => e.id !== id))
             setSelected((prev) => {
@@ -237,6 +262,51 @@ export default function App() {
                 next.delete(id)
                 return next
             })
+        } catch (err) {
+            setSaveError(String(err))
+        }
+    }, [])
+
+    // ── Bulk demote selected ──────────────────────────────────
+    const handleDemoteSelected = useCallback(async () => {
+        const ids = [...selectedRef.current]
+        const toDemote = entriesRef.current.filter(
+            (e) => ids.includes(e.id) && productionFileNamesRef.current.has(e.fileName)
+        )
+        try {
+            for (const entry of toDemote) {
+                await demoteEntry(entry.fileName)
+            }
+            setProductionFileNames((prev) => {
+                const next = new Set(prev)
+                for (const entry of toDemote) next.delete(entry.fileName)
+                return next
+            })
+        } catch (err) {
+            setSaveError(String(err))
+        }
+    }, [])
+
+    // ── Bulk delete selected ──────────────────────────────────
+    const handleDeleteSelected = useCallback(async () => {
+        const ids = [...selectedRef.current]
+        const toDelete = entriesRef.current.filter((e) => ids.includes(e.id))
+        try {
+            for (const entry of toDelete) {
+                if (productionFileNamesRef.current.has(entry.fileName)) {
+                    await demoteEntry(entry.fileName)
+                }
+                await deleteEntry(entry.sessionId, entry.fileName)
+            }
+            const deletedIds = new Set(ids)
+            const deletedFileNames = new Set(toDelete.map((e) => e.fileName))
+            setEntries((prev) => prev.filter((e) => !deletedIds.has(e.id)))
+            setProductionFileNames((prev) => {
+                const next = new Set(prev)
+                for (const fileName of deletedFileNames) next.delete(fileName)
+                return next
+            })
+            setSelected(new Set())
         } catch (err) {
             setSaveError(String(err))
         }
@@ -424,6 +494,8 @@ export default function App() {
                     onRemoveTagDef={handleRemoveTagDef}
                     onApplyTagToSelected={handleApplyTagToSelected}
                     onDeleteEntry={handleDeleteEntry}
+                    onDeleteSelected={handleDeleteSelected}
+                    onDemoteSelected={handleDemoteSelected}
                     onHoverEntry={setHoveredId}
                     onSelectSingle={handleSelectSingle}
                     selectedIds={ids}

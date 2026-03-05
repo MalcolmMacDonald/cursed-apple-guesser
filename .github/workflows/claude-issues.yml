@@ -1,0 +1,43 @@
+name: Claude — Auto PR from Issues
+
+on:
+  issues:
+    types: [labeled]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  claude:
+    # Trigger on 'claude' label added to an issue, or '@claude' mentioned in an issue comment
+    if: |
+      (github.event_name == 'issues' && github.event.label.name == 'claude') ||
+      (github.event_name == 'issue_comment' &&
+       !github.event.issue.pull_request &&
+       contains(github.event.comment.body, '@claude'))
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 360   # 6 hours — accommodates Claude Max ~5hr rate-limit reset cycle
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev   # always branch off dev, not main
+
+      - uses: anthropics/claude-code-action@v1
+        id: claude
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          base_branch: dev
+
+      - name: Enable auto-merge on created PR
+        if: steps.claude.outputs.pull_request_number != ''
+        run: |
+          gh pr merge "${{ steps.claude.outputs.pull_request_number }}" \
+            --auto --squash --repo "${{ github.repository }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

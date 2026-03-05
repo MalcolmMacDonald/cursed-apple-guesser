@@ -2,22 +2,16 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "cursed-apple-guesser (dev)",
+      "name": "deadlock-map-trainer (dev)",
       "runtimeExecutable": "bun",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": ["run", "dev", "--host"],
       "port": 5173
-    },
-    {
-      "name": "cursed-apple-guesser (preview)",
-      "runtimeExecutable": "bun",
-      "runtimeArgs": ["run", "preview"],
-      "port": 4173
     },
     {
       "name": "screenshot-metadata-manager",
       "runtimeExecutable": "bun",
-      "runtimeArgs": ["run", "--cwd", "tools/screenshot-metadata-manager", "dev"],
-      "port": 5174
+      "runtimeArgs": ["run", "cms"],
+      "port": 5179
     }
   ]
 }
