@@ -540,18 +540,18 @@
     position: relative;
     cursor: crosshair;
     transition: width 0.2s ease, height 0.2s ease;
+    overflow: hidden;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
-.marker {
-    width: 10px;
-    height: 10px;
-    background-color: red;
-    border-radius: 50%;
+.marker-emoji {
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -100%);
     pointer-events: none;
-    z-index: 1;
-    flex: 0 0 auto;
+    z-index: 2;
+    line-height: 1;
+    user-select: none;
 }
 
 .map-faction-label {
@@ -587,6 +587,29 @@
 
 /* ── Guess Location (pins + line) ────────────────────────── */
 
+.pin-emoji {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    pointer-events: none;
+    z-index: 2;
+    line-height: 1;
+    user-select: none;
+}
+
+.pin-emoji--actual {
+    /* 📌 pushpin — no extra style needed */
+}
+
+.pin-emoji--guess {
+    /* 📍 map pin — no extra style needed */
+}
+
+.pin-emoji--mirror {
+    filter: hue-rotate(150deg) saturate(1.5);
+    opacity: 0.85;
+}
+
+/* Legacy dot pins used by Dead Reckoning */
 .pin {
     width: 5px;
     height: 5px;

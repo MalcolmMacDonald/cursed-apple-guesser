@@ -138,6 +138,7 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                             mirrorLocation={mirroredLocation}
                             usedMirror={usedMirror}
                             imageSize={imageSize}
+                            zoom={zoom}
                         />
                         </div>
                     </div>
