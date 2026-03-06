@@ -36,4 +36,5 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           base_branch: dev
+          prompt: After you are done, always create a GitHub Pull Request with mcp__github__create_pull_request
 
