@@ -545,6 +545,14 @@
     flex-shrink: 0;
 }
 
+.map-faction-labels-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+
 .marker-emoji {
     position: absolute;
     transform: translate(-50%, -100%);
@@ -559,7 +567,7 @@
     position: absolute;
     text-shadow: 2px 2px 4px #000000;
     user-select: none;
-    z-index: 2;
+    z-index: 100;
     pointer-events: none;
 }
 

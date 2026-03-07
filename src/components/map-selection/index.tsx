@@ -32,7 +32,12 @@ function clampPan(px: number, py: number, z: number, size: number) {
 function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped: boolean) => void }) {
     const [selectedLocation, setSelectedLocation] = useState<{ x: number, y: number } | null>(null);
     const [animPhase, setAnimPhase] = useState<'idle' | 'fixed' | 'centering'>('idle');
-    const [fixedStyle, setFixedStyle] = useState<{ centerX: number, centerY: number, width: number, imageSize: number } | null>(null);
+    const [fixedStyle, setFixedStyle] = useState<{
+        centerX: number,
+        centerY: number,
+        width: number,
+        imageSize: number
+    } | null>(null);
     const [isHovered, setIsHovered] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
     const [zoom, setZoom] = useState(1);
@@ -324,15 +329,24 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                             </div>
                         )}
 
-                        <div
-                            className="map-faction-label map-faction-label--amber"
-                            style={isFlipped ? {transform: 'rotate(180deg)'} : undefined}
-                        >The Hidden King</div>
-                        <div
-                            className="map-faction-label map-faction-label--sapphire"
-                            style={isFlipped ? {transform: 'rotate(180deg)'} : undefined}
-                        >The Archmother</div>
+
                     </div>
+                </div>
+            </div>
+            {/* Faction label overlay — outside the circular clip, unaffected by zoom/pan */}
+            <div
+                className="map-faction-labels-overlay"
+                style={{width: imageSize, height: imageSize}}
+            >
+                <div
+                    className="map-faction-label map-faction-label--amber"
+                    style={isFlipped ? {transform: 'rotate(180deg)'} : undefined}
+                >The Hidden King
+                </div>
+                <div
+                    className="map-faction-label map-faction-label--sapphire"
+                    style={isFlipped ? {transform: 'rotate(180deg)'} : undefined}
+                >The Archmother
                 </div>
             </div>
             <div className="map-selection__controls" style={animPhase !== 'idle' ? {visibility: 'hidden'} : undefined}>

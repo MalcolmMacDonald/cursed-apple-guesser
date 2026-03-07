@@ -21,11 +21,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Create PR dev → main
+      - name: Create promotion branch and PR
         run: |
+          BRANCH="promote/$(date -u '+%Y-%m-%d')"
+          git checkout -b "$BRANCH" origin/dev
+          git push origin "$BRANCH"
           gh pr create \
             --base main \
-            --head dev \
+            --head "$BRANCH" \
             --title "Promote dev → main ($(date -u '+%Y-%m-%d'))" \
             --body "Automated promotion of dev to production. Review and merge to deploy." \
             --label "promotion"
