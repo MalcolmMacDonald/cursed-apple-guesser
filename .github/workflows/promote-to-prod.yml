@@ -1,36 +1,29 @@
-name: Promote dev → prod
+name: Merge dev to main
 
 on:
   workflow_dispatch:
-    inputs:
-      confirm:
-        description: 'Type "yes" to create a dev → main promotion PR'
-        required: true
-        default: 'no'
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
-  promote:
-    if: github.event.inputs.confirm == 'yes'
+  merge-dev-to-main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout main and dev
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
-      - name: Create promotion branch and PR
+      - name: Set up Git user
         run: |
-          BRANCH="promote/$(date -u '+%Y-%m-%d')"
-          git checkout -b "$BRANCH" origin/dev
-          git push origin "$BRANCH"
-          gh pr create \
-            --base main \
-            --head "$BRANCH" \
-            --title "Promote dev → main ($(date -u '+%Y-%m-%d'))" \
-            --body "Automated promotion of dev to production. Review and merge to deploy." \
-            --label "promotion"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Merge dev into main
+        run: |
+          git fetch origin dev:dev
+          git checkout main
+          git merge --no-ff dev -m "Automated merge of dev into main"
+          git push origin main
