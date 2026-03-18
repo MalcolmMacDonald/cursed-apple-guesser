@@ -315,38 +315,39 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                             onClick={undefined}
                             onMouseMove={undefined}
                         />
-                        {selectedLocation && (
-                            <div
-                                className="marker-emoji"
-                                style={{
-                                    left: `${selectedLocation.x * 100}%`,
-                                    top: `${selectedLocation.y * 100}%`,
-                                    fontSize: emojiSize,
-                                }}
-                                draggable={false}
-                            >
-                                {'\uD83D\uDCCD' /* 📍 */}
-                            </div>
-                        )}
-
-
                     </div>
+                    {/* Marker emoji - outside flip layer to maintain upright rotation */}
+                    {selectedLocation && (
+                        <div
+                            className="marker-emoji"
+                            style={{
+                                left: `${(isFlipped ? 1 - selectedLocation.x : selectedLocation.x) * 100}%`,
+                                top: `${(isFlipped ? 1 - selectedLocation.y : selectedLocation.y) * 100}%`,
+                                fontSize: emojiSize,
+                                position: 'absolute',
+                            }}
+                            draggable={false}
+                        >
+                            {'\uD83D\uDCCD' /* 📍 */}
+                        </div>
+                    )}
                 </div>
             </div>
             {/* Faction label overlay — outside the circular clip, unaffected by zoom/pan */}
             <div
                 className="map-faction-labels-overlay"
-                style={{width: imageSize, height: imageSize}}
+                style={{
+                    width: imageSize, 
+                    height: imageSize,
+                    transform: isFlipped ? 'rotate(180deg)' : undefined,
+                    transformOrigin: 'center center',
+                }}
             >
-                <div
-                    className="map-faction-label map-faction-label--amber"
-                    style={isFlipped ? {transform: 'rotate(180deg)'} : undefined}
-                >The Hidden King
+                <div className="map-faction-label map-faction-label--amber">
+                    The Hidden King
                 </div>
-                <div
-                    className="map-faction-label map-faction-label--sapphire"
-                    style={isFlipped ? {transform: 'rotate(180deg)'} : undefined}
-                >The Archmother
+                <div className="map-faction-label map-faction-label--sapphire">
+                    The Archmother
                 </div>
             </div>
             <div className="map-selection__controls" style={animPhase !== 'idle' ? {visibility: 'hidden'} : undefined}>
