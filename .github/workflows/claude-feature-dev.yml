@@ -23,7 +23,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          claude_args: "--debug"
+          claude_args: "--dangerouslySkipPermissions"
           prompt: |
             You are implementing a feature for the cursed-apple-guesser project. Read CLAUDE.md for full project context.
 
