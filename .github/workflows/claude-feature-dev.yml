@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
           ref: dev
 
-      - uses: anthropics/claude-code-action@beta
+      - uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -36,3 +36,4 @@ jobs:
             3. Commit your changes with a clear, descriptive message referencing the issue.
             4. Push the branch and open a pull request targeting the `dev` branch. Title the PR "${{ github.event.issue.title }}" and include "Closes #${{ github.event.issue.number }}" in the body.
             5. After the PR is created, post a comment on issue #${{ github.event.issue.number }} with the PR URL so it can be tracked.
+	    6. Merge the PR
