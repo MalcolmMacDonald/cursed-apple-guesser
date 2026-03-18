@@ -2,7 +2,10 @@ name: Deploy to GitHub Pages (dev)
 
 on:
   push:
-    branches: ['dev']
+    branches: [ 'dev' ]
+  workflow_run:
+    workflows: [ 'Claude Feature Development' ]
+    types: [ completed ]
   workflow_dispatch:
 
 permissions:
