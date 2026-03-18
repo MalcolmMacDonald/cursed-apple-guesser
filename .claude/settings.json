@@ -1,9 +1,12 @@
 {
   "hooks": {
-    "post-tool-use": [
+    "PostToolUse": [
       {
         "matcher": "Edit|Write",
+	"hooks":[{
+	"type":"command",
         "command": "bunx tsc --noEmit --pretty 2>&1 | head -20"
+	}]
       }
     ]
   }

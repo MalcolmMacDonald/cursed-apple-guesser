@@ -1,0 +1,38 @@
+name: Claude Feature Development
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  develop-feature:
+    if: github.event.label.name == 'claude'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: dev
+
+      - uses: anthropics/claude-code-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            You are implementing a feature for the cursed-apple-guesser project. Read CLAUDE.md for full project context.
+
+            Issue #${{ github.event.issue.number }}: ${{ github.event.issue.title }}
+
+            ${{ github.event.issue.body }}
+
+            Steps to follow:
+            1. Create and switch to a new branch named `feature/issue-${{ github.event.issue.number }}` from the current dev branch.
+            2. Implement the feature described by the issue title (and body if present). Follow existing conventions: React 19 + TypeScript, inline styles, bun as package manager.
+            3. Commit your changes with a clear, descriptive message referencing the issue.
+            4. Push the branch and open a pull request targeting the `dev` branch. Title the PR "${{ github.event.issue.title }}" and include "Closes #${{ github.event.issue.number }}" in the body.
+            5. After the PR is created, post a comment on issue #${{ github.event.issue.number }} with the PR URL so it can be tracked.
