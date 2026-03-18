@@ -337,16 +337,24 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
             <div
                 className="map-faction-labels-overlay"
                 style={{
-                    width: imageSize, 
+                    width: imageSize,
                     height: imageSize,
                     transform: isFlipped ? 'rotate(180deg)' : undefined,
                     transformOrigin: 'center center',
                 }}
             >
-                <div className="map-faction-label map-faction-label--amber">
+                <div className="map-faction-label map-faction-label--amber"
+                     style={{
+                         transform: isFlipped ? 'rotate(180deg)' : undefined,
+                     }}
+                >
                     The Hidden King
                 </div>
-                <div className="map-faction-label map-faction-label--sapphire">
+                <div className="map-faction-label map-faction-label--sapphire"
+                     style={{
+                         transform: isFlipped ? 'rotate(180deg)' : undefined,
+                     }}
+                >
                     The Archmother
                 </div>
             </div>
