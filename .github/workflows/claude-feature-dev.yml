@@ -2,7 +2,7 @@ name: Claude Feature Development
 
 on:
   issues:
-    types: [labeled]
+    types: [ labeled ]
 
 permissions:
   contents: write
@@ -36,4 +36,4 @@ jobs:
             3. Commit your changes with a clear, descriptive message referencing the issue.
             4. Push the branch and open a pull request targeting the `dev` branch. Title the PR "${{ github.event.issue.title }}" and include "Closes #${{ github.event.issue.number }}" in the body.
             5. After the PR is created, post a comment on issue #${{ github.event.issue.number }} with the PR URL so it can be tracked.
-	    6. Merge the PR
+            6. Merge the PR immediately, as this workflow is designed for rapid development and deployment of features. Do not wait for reviews or checks to complete.
