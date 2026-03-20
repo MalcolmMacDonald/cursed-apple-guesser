@@ -8,6 +8,7 @@ import HubScreen from './screens/hub/index.tsx';
 import TopBar from './components/top-bar/index.tsx';
 import { makeDailyDate } from './utils/rng';
 import KanbanScreen from './screens/kanban/index.tsx';
+import BuildBadge from './components/build-badge/index.tsx';
 
 type TopLevelScreen = 'hub' | 'geoguesser' | 'dead-reckoning' | 'kanban';
 
@@ -56,6 +57,7 @@ function App() {
 
     return (
         <>
+            <BuildBadge />
             <TopBar
                 currentGame={currentGame}
                 onHome={() => setScreen('hub')}

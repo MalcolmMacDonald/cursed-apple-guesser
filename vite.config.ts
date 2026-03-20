@@ -6,7 +6,10 @@ export default defineConfig(() => ({
     plugins: [react()],
     base: process.env.VITE_BASE_PATH ?? '/',
     publicDir: 'public',
-    assetsInclude: ['**/*.png']
+    assetsInclude: ['**/*.png'],
+    define: {
+        __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+    },
 }))
 
 
