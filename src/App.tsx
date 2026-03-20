@@ -13,11 +13,32 @@ type TopLevelScreen = 'hub' | 'geoguesser' | 'dead-reckoning' | 'kanban';
 
 type InitialStart = { seed: string; isDaily: boolean };
 
+const KANBAN_PATH = '/dev/issue-tracker';
+
 function App() {
     document.body.style.userSelect = 'none';
 
-    const [screen, setScreen] = React.useState<TopLevelScreen>('hub');
+    const [screen, setScreen] = React.useState<TopLevelScreen>(() =>
+        window.location.pathname === KANBAN_PATH ? 'kanban' : 'hub'
+    );
     const [initialStart, setInitialStart] = React.useState<InitialStart | undefined>(undefined);
+
+    React.useEffect(() => {
+        function handlePopState() {
+            setScreen(window.location.pathname === KANBAN_PATH ? 'kanban' : 'hub');
+        }
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, []);
+
+    React.useEffect(() => {
+        if (screen === 'kanban') {
+            if (window.location.pathname !== KANBAN_PATH)
+                window.history.pushState({}, '', KANBAN_PATH);
+        } else if (window.location.pathname === KANBAN_PATH) {
+            window.history.pushState({}, '', '/');
+        }
+    }, [screen]);
 
     const currentGame =
         screen === 'geoguesser' ? 'Location Guesser' :
