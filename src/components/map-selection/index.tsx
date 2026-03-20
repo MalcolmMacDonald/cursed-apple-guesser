@@ -58,8 +58,8 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
     const imageSizeRef = useRef(0);
     const setLocationRef = useRef(setSelectedLocation);
 
-    zoomRef.current = zoom;
-    panRef.current = {x: panX, y: panY};
+    zoomRef.current = isHovered ? zoom : 1;
+    panRef.current = isHovered ? {x: panX, y: panY} : {x: 0, y: 0};
     isFlippedRef.current = isFlipped;
     animPhaseRef.current = animPhase;
     setLocationRef.current = setSelectedLocation;
@@ -178,7 +178,13 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
         const rawX = (e.clientX - rect.left) / rect.width;
         const rawY = (e.clientY - rect.top) / rect.height;
         const inCircle = Math.sqrt((rawX - 0.5) ** 2 + (rawY - 0.5) ** 2) <= 0.5;
-        setIsHovered(inCircle);
+        //set cursor style if in circle
+        if (inCircle) {
+            e.currentTarget.style.cursor = 'crosshair';
+        } else {
+            e.currentTarget.style.cursor = 'default';
+        }
+        setIsHovered(true);
         if (e.buttons === 1 && inCircle) {
             placePin(e.clientX, e.clientY, rect);
         }
@@ -205,6 +211,9 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                 imageSize: currentImageSize,
             });
             setAnimPhase('fixed');
+            setPanX(0);
+            setPanY(0);
+            setZoom(1);
             setIsHovered(false);
         });
 
@@ -242,12 +251,12 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
     let dynamicStyle: React.CSSProperties = {};
     if (animPhase === 'fixed' && fixedStyle) {
         dynamicStyle = {
-            position: 'fixed',
+            position: 'relative',
             left: fixedStyle.centerX,
             top: fixedStyle.centerY,
             right: 'auto',
             bottom: 'auto',
-            transform: 'translate(-50%, -50%) scale(1)',
+            transform: isFlipped ? 'translate(-50%, -50%) rotate(180deg) scale(1)' : 'translate(-50%, -50%) scale(1)',
             transformOrigin: 'center center',
             width: fixedStyle.width,
             margin: 0,
@@ -288,6 +297,8 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                     width: imageSize,
                     height: imageSize,
                     overflow: 'hidden',
+                    position: 'relative',
+                    transformOrigin: 'center center',
                 }}
                 onClick={handleMapClick}
                 onMouseMove={handleMouseMove}
@@ -296,26 +307,19 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
             >
                 {/* Zoom + pan layer */}
                 <div style={{
-                    width: imageSize,
-                    height: imageSize,
+                    width: `100%`,
+                    height: `100%`,
                     transform: `translate(${panX}px, ${panY}px) scale(${zoom})`,
                     transformOrigin: 'center center',
-                    position: 'relative',
+                    position: 'inherit',
                 }}>
-                    {/* Flip layer */}
-                    <div style={{
-                        width: imageSize,
-                        height: imageSize,
-                        transform: isFlipped ? 'rotate(180deg)' : undefined,
-                        transformOrigin: 'center center',
-                        position: 'relative',
-                    }}>
-                        <MapDisplay
-                            imageSize={imageSize}
-                            onClick={undefined}
-                            onMouseMove={undefined}
-                        />
-                    </div>
+                    <MapDisplay
+                        imageSize={imageSize}
+                        onClick={undefined}
+                        onMouseMove={undefined}
+                        isFlipped={isFlipped}
+                        showUnderground={false}
+                    />
                     {/* Marker emoji - outside flip layer to maintain upright rotation */}
                     {selectedLocation && (
                         <div
@@ -325,38 +329,16 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                                 top: `${(isFlipped ? 1 - selectedLocation.y : selectedLocation.y) * 100}%`,
                                 fontSize: emojiSize,
                                 position: 'absolute',
+                                zIndex: 10,
                             }}
                             draggable={false}
                         >
                             {'\uD83D\uDCCD' /* 📍 */}
                         </div>
                     )}
+
                 </div>
-            </div>
-            {/* Faction label overlay — outside the circular clip, unaffected by zoom/pan */}
-            <div
-                className="map-faction-labels-overlay"
-                style={{
-                    width: imageSize,
-                    height: imageSize,
-                    transform: isFlipped ? 'rotate(180deg)' : undefined,
-                    transformOrigin: 'center center',
-                }}
-            >
-                <div className="map-faction-label map-faction-label--amber"
-                     style={{
-                         transform: isFlipped ? 'rotate(180deg)' : undefined,
-                     }}
-                >
-                    The Hidden King
-                </div>
-                <div className="map-faction-label map-faction-label--sapphire"
-                     style={{
-                         transform: isFlipped ? 'rotate(180deg)' : undefined,
-                     }}
-                >
-                    The Archmother
-                </div>
+
             </div>
             <div className="map-selection__controls" style={animPhase !== 'idle' ? {visibility: 'hidden'} : undefined}>
                 <button
@@ -374,6 +356,33 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                 >
                     {selectedLocation ? "Continue" : "Select a location"}
                 </button>
+            </div>
+            {/* Faction label overlay — outside the circular clip, unaffected by zoom/pan */}
+            <div
+                className="map-faction-labels-overlay"
+                style={{
+                    width: imageSize,
+                    height: imageSize,
+                    transform: isFlipped ? 'rotate(180deg)' : undefined,
+                    transformOrigin: 'center center',
+                }}
+            >
+                <div className="map-faction-label map-faction-label--amber"
+                     style={{
+                         transform: isFlipped ? 'rotate(180deg)' : undefined,
+                         textAlign: isFlipped ? 'right' : 'left',
+                     }}
+                >
+                    The Hidden King
+                </div>
+                <div className="map-faction-label map-faction-label--sapphire"
+                     style={{
+                         transform: isFlipped ? 'rotate(180deg)' : undefined,
+                         textAlign: isFlipped ? 'left' : 'right',
+                     }}
+                >
+                    The Archmother
+                </div>
             </div>
         </div>
     );
