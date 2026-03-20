@@ -121,11 +121,30 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
 }
 
 function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolean) => void }) {
+    const isDev = import.meta.env.DEV;
+
+    React.useEffect(() => {
+        document.title = isDev ? 'Deadlock Map Trainer (DEV)' : 'Deadlock Map Trainer';
+        return () => { document.title = 'Deadlock Map Trainer'; };
+    }, [isDev]);
+
     return (
-        <div className="hub-page">
+        <div className="hub-page" style={isDev ? {
+            background: 'linear-gradient(160deg, #1a0d0d 0%, #221111 50%, #160a0a 100%)',
+            outline: '2px solid rgba(249, 226, 175, 0.2)',
+            outlineOffset: -2,
+        } : undefined}>
             <div className="hub-header">
-                <div className="hub-badge">Game Hub</div>
-                <h1 className="hub-title">Deadlock Map Trainer</h1>
+                <div className="hub-badge" style={isDev ? {
+                    background: 'rgba(249, 226, 175, 0.1)',
+                    border: '1px solid rgba(249, 226, 175, 0.5)',
+                    color: '#f9e2af',
+                } : undefined}>Game Hub{isDev ? ' — DEV' : ''}</div>
+                <h1 className="hub-title" style={isDev ? {
+                    background: 'linear-gradient(135deg, #ffffff 30%, #f9e2af 100%)',
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                } : undefined}>Deadlock Map Trainer</h1>
                 <p className="hub-subtitle">
                     Test your knowledge of the Deadlock map.
                 </p>
