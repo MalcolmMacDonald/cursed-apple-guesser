@@ -14,25 +14,54 @@ type Issue = {
     user: { login: string } | null;
 };
 
-type Column = 'backlog' | 'in_progress' | 'done';
+type Column = 'backlog' | 'in_progress' | 'done' | 'reverted';
 
-function getColumn(issue: Issue): Column {
-    if (issue.state === 'closed') return 'done';
+function getColumn(issue: Issue, inProgressNumbers: Set<number>): Column {
+    if (issue.state === 'closed') {
+        if (issue.labels.some(l => l.name.toLowerCase() === 'reverted')) return 'reverted';
+        return 'done';
+    }
+    if (inProgressNumbers.has(issue.number)) return 'in_progress';
     if (issue.labels.some(l => l.name.toLowerCase() === 'in progress')) return 'in_progress';
     return 'backlog';
 }
+
+const HIDDEN_LABELS = new Set(['in progress', 'claude']);
 
 function IssueCard({
     issue,
     token,
     onRefresh,
+    inProgressNumbers,
 }: {
     issue: Issue;
     token: string;
     onRefresh: () => void;
+    inProgressNumbers: Set<number>;
 }) {
     const [expanded, setExpanded] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
+    const [claudeTokens, setClaudeTokens] = React.useState<number | null>(null);
+
+    const col = getColumn(issue, inProgressNumbers);
+
+    React.useEffect(() => {
+        if (col !== 'done') return;
+        const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
+        if (token) headers.Authorization = `Bearer ${token}`;
+        fetch(`${API}/repos/${REPO}/issues/${issue.number}/comments`, { headers })
+            .then(r => r.ok ? r.json() : [])
+            .then((comments: { body?: string }[]) => {
+                for (const c of comments) {
+                    const match = c.body?.match(/(\d[\d,]*)\s*tokens?/i);
+                    if (match) {
+                        setClaudeTokens(parseInt(match[1].replace(/,/g, '')));
+                        return;
+                    }
+                }
+            })
+            .catch(() => {});
+    }, [issue.number, col, token]);
 
     async function moveToInProgress() {
         setLoading(true);
@@ -77,7 +106,18 @@ function IssueCard({
         onRefresh();
     }
 
-    const col = getColumn(issue);
+    async function revertIssue() {
+        setLoading(true);
+        await fetch(`${API}/repos/${REPO}/issues/${issue.number}/labels`, {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ labels: ['reverted'] }),
+        });
+        setLoading(false);
+        onRefresh();
+    }
+
+    const visibleLabels = issue.labels.filter(l => !HIDDEN_LABELS.has(l.name.toLowerCase()));
 
     return (
         <div
@@ -100,25 +140,37 @@ function IssueCard({
                     {issue.title}
                 </span>
             </div>
-            {issue.labels.filter(l => l.name.toLowerCase() !== 'in progress').length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 6 }}>
-                    {issue.labels
-                        .filter(l => l.name.toLowerCase() !== 'in progress')
-                        .map(l => (
-                            <span
-                                key={l.name}
-                                style={{
-                                    background: `#${l.color}33`,
-                                    border: `1px solid #${l.color}88`,
-                                    color: `#${l.color}`,
-                                    borderRadius: 4,
-                                    fontSize: 10,
-                                    padding: '1px 6px',
-                                }}
-                            >
-                                {l.name}
-                            </span>
-                        ))}
+            {(visibleLabels.length > 0 || (col === 'done' && claudeTokens !== null)) && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 6, alignItems: 'center' }}>
+                    {visibleLabels.map(l => (
+                        <span
+                            key={l.name}
+                            style={{
+                                background: `#${l.color}33`,
+                                border: `1px solid #${l.color}88`,
+                                color: `#${l.color}`,
+                                borderRadius: 4,
+                                fontSize: 10,
+                                padding: '1px 6px',
+                            }}
+                        >
+                            {l.name}
+                        </span>
+                    ))}
+                    {col === 'done' && claudeTokens !== null && (
+                        <span
+                            style={{
+                                background: '#cba6f733',
+                                border: '1px solid #cba6f788',
+                                color: '#cba6f7',
+                                borderRadius: 4,
+                                fontSize: 10,
+                                padding: '1px 6px',
+                            }}
+                        >
+                            {claudeTokens.toLocaleString()} tokens
+                        </span>
+                    )}
                 </div>
             )}
             {expanded && (
@@ -150,7 +202,7 @@ function IssueCard({
                                 ← Backlog
                             </button>
                         )}
-                        {col !== 'done' && token && (
+                        {col !== 'done' && col !== 'reverted' && token && (
                             <button
                                 style={btnStyle('#a6e3a1')}
                                 onClick={closeIssue}
@@ -160,6 +212,24 @@ function IssueCard({
                             </button>
                         )}
                         {col === 'done' && token && (
+                            <>
+                                <button
+                                    style={btnStyle('#f38ba8')}
+                                    onClick={reopenIssue}
+                                    disabled={loading}
+                                >
+                                    Reopen
+                                </button>
+                                <button
+                                    style={btnStyle('#fab387')}
+                                    onClick={revertIssue}
+                                    disabled={loading}
+                                >
+                                    Revert PR
+                                </button>
+                            </>
+                        )}
+                        {col === 'reverted' && token && (
                             <button
                                 style={btnStyle('#f38ba8')}
                                 onClick={reopenIssue}
@@ -201,12 +271,14 @@ function KanbanColumn({
     issues,
     token,
     onRefresh,
+    inProgressNumbers,
 }: {
     title: string;
     color: string;
     issues: Issue[];
     token: string;
     onRefresh: () => void;
+    inProgressNumbers: Set<number>;
 }) {
     return (
         <div
@@ -256,6 +328,7 @@ function KanbanColumn({
                             issue={issue}
                             token={token}
                             onRefresh={onRefresh}
+                            inProgressNumbers={inProgressNumbers}
                         />
                     ))
                 )}
@@ -379,6 +452,26 @@ const inputStyle: React.CSSProperties = {
     boxSizing: 'border-box',
 };
 
+async function fetchInProgressWorkflowIssues(headers: Record<string, string>): Promise<Set<number>> {
+    try {
+        const res = await fetch(
+            `${API}/repos/${REPO}/actions/runs?status=in_progress&per_page=30`,
+            { headers }
+        );
+        if (!res.ok) return new Set();
+        const data = await res.json();
+        const issueNumbers = new Set<number>();
+        for (const run of data.workflow_runs ?? []) {
+            const branch: string = run.head_branch ?? '';
+            const match = branch.match(/issue[- _](\d+)/i);
+            if (match) issueNumbers.add(parseInt(match[1]));
+        }
+        return issueNumbers;
+    } catch {
+        return new Set();
+    }
+}
+
 export default function KanbanScreen({ onBack }: { onBack: () => void }) {
     const [issues, setIssues] = React.useState<Issue[]>([]);
     const [loading, setLoading] = React.useState(true);
@@ -387,6 +480,7 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
         () => import.meta.env.VITE_GITHUB_TOKEN ?? ''
     );
     const [tokenInput, setTokenInput] = React.useState(token);
+    const [inProgressNumbers, setInProgressNumbers] = React.useState<Set<number>>(new Set());
 
     async function fetchIssues() {
         setLoading(true);
@@ -395,15 +489,17 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
             const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
             if (token) headers.Authorization = `Bearer ${token}`;
 
-            const [openRes, closedRes] = await Promise.all([
+            const [openRes, closedRes, workflowNumbers] = await Promise.all([
                 fetch(`${API}/repos/${REPO}/issues?state=open&per_page=100`, { headers }),
                 fetch(`${API}/repos/${REPO}/issues?state=closed&per_page=50`, { headers }),
+                fetchInProgressWorkflowIssues(headers),
             ]);
 
             if (!openRes.ok) throw new Error(`GitHub API error: ${openRes.status}`);
             const open: Issue[] = await openRes.json();
             const closed: Issue[] = closedRes.ok ? await closedRes.json() : [];
 
+            setInProgressNumbers(workflowNumbers);
             // Filter out pull requests
             setIssues([...open, ...closed].filter((i: any) => !i.pull_request));
         } catch (e: any) {
@@ -414,9 +510,10 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
 
     React.useEffect(() => { fetchIssues(); }, [token]);
 
-    const backlog = issues.filter(i => getColumn(i) === 'backlog');
-    const inProgress = issues.filter(i => getColumn(i) === 'in_progress');
-    const done = issues.filter(i => getColumn(i) === 'done');
+    const backlog = issues.filter(i => getColumn(i, inProgressNumbers) === 'backlog');
+    const inProgress = issues.filter(i => getColumn(i, inProgressNumbers) === 'in_progress');
+    const done = issues.filter(i => getColumn(i, inProgressNumbers) === 'done');
+    const reverted = issues.filter(i => getColumn(i, inProgressNumbers) === 'reverted');
 
     return (
         <div
@@ -561,6 +658,7 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
                     issues={backlog}
                     token={token}
                     onRefresh={fetchIssues}
+                    inProgressNumbers={inProgressNumbers}
                 />
                 <KanbanColumn
                     title="In Progress"
@@ -568,6 +666,7 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
                     issues={inProgress}
                     token={token}
                     onRefresh={fetchIssues}
+                    inProgressNumbers={inProgressNumbers}
                 />
                 <KanbanColumn
                     title="Done"
@@ -575,6 +674,15 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
                     issues={done}
                     token={token}
                     onRefresh={fetchIssues}
+                    inProgressNumbers={inProgressNumbers}
+                />
+                <KanbanColumn
+                    title="Reverted"
+                    color="#fab387"
+                    issues={reverted}
+                    token={token}
+                    onRefresh={fetchIssues}
+                    inProgressNumbers={inProgressNumbers}
                 />
             </div>
         </div>
