@@ -54,11 +54,9 @@ function GameFinal({
             {!isDaily && seed && (
                 <p className="final-score__seed">Seed: <code>{seed}</code></p>
             )}
-            {isDaily && (
-                <button className="final-score__copy-btn" onClick={handleCopyResults}>
-                    {copied ? 'Copied!' : 'Copy Results'}
-                </button>
-            )}
+            <button className="final-score__copy-btn" onClick={handleCopyResults}>
+                {copied ? 'Copied!' : 'Copy Score'}
+            </button>
             {onExit && (
                 <button className="final-score__menu-btn" onClick={onExit}>
                     Return to Menu
