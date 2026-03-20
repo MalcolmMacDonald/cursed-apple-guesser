@@ -279,7 +279,7 @@ function CreateIssueForm({ token, onCreated }: { token: string; onCreated: () =>
         const res = await fetch(`${API}/repos/${REPO}/issues`, {
             method: 'POST',
             headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: title.trim(), body: body.trim() || undefined }),
+            body: JSON.stringify({ title: title.trim(), body: body.trim() || undefined, labels: ['claude'] }),
         });
         setLoading(false);
         if (res.ok) {
