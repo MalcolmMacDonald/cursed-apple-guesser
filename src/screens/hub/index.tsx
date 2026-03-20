@@ -143,6 +143,44 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
                     />
                 ))}
             </div>
+
+            {import.meta.env.DEV && (
+                <div style={{ marginTop: 24 }}>
+                    <div className="hub-divider"/>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '12px 0 16px' }}>
+                        <span style={{
+                            background: '#f9e2af33',
+                            border: '1px solid #f9e2af',
+                            color: '#f9e2af',
+                            borderRadius: 6,
+                            padding: '2px 8px',
+                            fontSize: 11,
+                            fontWeight: 600,
+                        }}>DEV</span>
+                        <span style={{ color: '#6c7086', fontSize: 13 }}>Developer Tools</span>
+                    </div>
+                    <div className="hub-grid">
+                        <div className="hub-card" onClick={() => onSelectGame('kanban')} style={{ cursor: 'pointer' }}>
+                            <div className="hub-card__art" style={{ background: 'linear-gradient(135deg, #1e1e2e 0%, #313244 50%, #45475a 100%)' }}>
+                                <span className="hub-card__icon">📋</span>
+                            </div>
+                            <div className="hub-card__body">
+                                <p className="hub-card__title">Issue Tracker</p>
+                                <p className="hub-card__desc">View, create, and manage GitHub issues for this repo in a kanban board.</p>
+                                <div className="hub-card__tags">
+                                    <span className="hub-card__tag">Dev Only</span>
+                                    <span className="hub-card__tag">GitHub</span>
+                                </div>
+                                <div className="hub-card__btn-group">
+                                    <button className="hub-card__play-btn" onClick={() => onSelectGame('kanban')}>
+                                        Open Board
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

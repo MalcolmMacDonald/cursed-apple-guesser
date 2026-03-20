@@ -7,8 +7,9 @@ import { deadReckoningDefinition } from './games/dead-reckoning/definition';
 import HubScreen from './screens/hub/index.tsx';
 import TopBar from './components/top-bar/index.tsx';
 import { makeDailyDate } from './utils/rng';
+import KanbanScreen from './screens/kanban/index.tsx';
 
-type TopLevelScreen = 'hub' | 'geoguesser' | 'dead-reckoning';
+type TopLevelScreen = 'hub' | 'geoguesser' | 'dead-reckoning' | 'kanban';
 
 type InitialStart = { seed: string; isDaily: boolean };
 
@@ -21,6 +22,7 @@ function App() {
     const currentGame =
         screen === 'geoguesser' ? 'Location Guesser' :
         screen === 'dead-reckoning' ? 'Dead Reckoning' :
+        screen === 'kanban' ? 'Issue Tracker' :
         undefined;
 
     function handleSelectGame(id: string, isDaily?: boolean) {
@@ -28,6 +30,7 @@ function App() {
         setInitialStart(start);
         if (id === 'geoguesser') setScreen('geoguesser');
         if (id === 'navigate') setScreen('dead-reckoning');
+        if (id === 'kanban') setScreen('kanban');
     }
 
     return (
@@ -53,6 +56,9 @@ function App() {
                         initialStart={initialStart}
                         onExit={() => setScreen('hub')}
                     />
+                )}
+                {screen === 'kanban' && import.meta.env.DEV && (
+                    <KanbanScreen onBack={() => setScreen('hub')} />
                 )}
             </div>
         </>
