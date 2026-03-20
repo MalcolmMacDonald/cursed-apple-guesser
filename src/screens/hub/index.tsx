@@ -145,7 +145,7 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
             </div>
 
             {import.meta.env.DEV && (
-                <div style={{ marginTop: 24, width: '100%' }}>
+                <div style={{ marginTop: 24 }}>
                     <div className="hub-divider"/>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '12px 0 16px' }}>
                         <span style={{
