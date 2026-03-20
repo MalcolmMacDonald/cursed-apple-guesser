@@ -1,9 +1,18 @@
+import React from 'react';
 import MapSelection from '../../../components/map-selection';
 import type { RoundProps } from '../../../game-engine/types';
 import type { LGGameState } from '../definition';
 
 function LGRound({ state, onSubmit }: RoundProps<LGGameState>) {
     const location = state.locations[state.currentRound];
+
+    React.useEffect(() => {
+        state.locations.forEach(loc => {
+            const img = new Image();
+            img.src = `locations/${loc.fileName}`;
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div className="game-screen" draggable={false}>
