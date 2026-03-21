@@ -40,6 +40,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
     } | null>(null);
     const [isHovered, setIsHovered] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
+    const [showUnderground, setShowUnderground] = useState(false);
     const [zoom, setZoom] = useState(1);
     const [panX, setPanX] = useState(0);
     const [panY, setPanY] = useState(0);
@@ -288,7 +289,12 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
             ref={divRef}
             style={dynamicStyle}
             onTransitionEnd={handleTransitionEnd}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseLeave={() => {
+                setIsHovered(false);
+                setZoom(1);
+                setPanX(0);
+                setPanY(0);
+            }}
         >
             <div
                 className="map"
@@ -318,7 +324,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                         onClick={undefined}
                         onMouseMove={undefined}
                         isFlipped={isFlipped}
-                        showUnderground={false}
+                        showUnderground={showUnderground}
                     />
                     {/* Marker emoji - outside flip layer to maintain upright rotation */}
                     {selectedLocation && (
@@ -348,6 +354,14 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                     title="View from opposing team's perspective"
                 >
                     {isFlipped ? '\u21BA Normal' : '\u21BA Flip'}
+                </button>
+                <button
+                    className="map-flip-btn"
+                    onClick={() => setShowUnderground(u => !u)}
+                    disabled={animPhase !== 'idle'}
+                    title="Toggle underground view"
+                >
+                    {showUnderground ? '\u2191 Above Ground' : '\u2193 Underground'}
                 </button>
                 <button
                     className="select-button"
