@@ -7,6 +7,7 @@
       "z": 2326.4375
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -18,6 +19,7 @@
       "z": 2178.4375
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -29,6 +31,7 @@
       "z": 1824.1875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -40,6 +43,7 @@
       "z": 1494.96875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -51,6 +55,7 @@
       "z": 1144.8125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -62,6 +67,7 @@
       "z": 786.90625
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -73,6 +79,7 @@
       "z": 754.21875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -84,6 +91,7 @@
       "z": 753.90625
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -94,7 +102,9 @@
       "y": 5890.90625,
       "z": 844.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x-2470_y5366_z624.jpg",
@@ -103,7 +113,9 @@
       "y": 5365.59375,
       "z": 623.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x-2520_y4829_z504.jpg",
@@ -112,7 +124,9 @@
       "y": 4828.84375,
       "z": 503.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x-2633_y4424_z432.jpg",
@@ -121,7 +135,9 @@
       "y": 4423.625,
       "z": 431.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x-3186_y4485_z442.jpg",
@@ -131,6 +147,7 @@
       "z": 441.9375
     },
     "tags": [
+      "Area/AboveGround",
       "Difficulty/Easy"
     ]
   },
@@ -141,7 +158,9 @@
       "y": 4368.8125,
       "z": 528.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x-4261_y4149_z530.jpg",
@@ -150,7 +169,9 @@
       "y": 4148.6875,
       "z": 529.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x-4530_y3661_z530.jpg",
@@ -159,7 +180,9 @@
       "y": 3660.625,
       "z": 529.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_019_x-4376_y3135_z441.jpg",
@@ -168,7 +191,9 @@
       "y": 3134.78125,
       "z": 440.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_020_x-4504_y2741_z387.jpg",
@@ -177,7 +202,9 @@
       "y": 2740.875,
       "z": 387.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_021_x-5076_y2703_z387.jpg",
@@ -186,7 +213,9 @@
       "y": 2702.5,
       "z": 386.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_022_x-5589_y2652_z599.jpg",
@@ -195,7 +224,9 @@
       "y": 2651.96875,
       "z": 598.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_023_x-6151_y2743_z616.jpg",
@@ -204,7 +235,9 @@
       "y": 2742.9375,
       "z": 616.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_024_x-6439_y3196_z480.jpg",
@@ -213,7 +246,9 @@
       "y": 3195.75,
       "z": 479.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_025_x-6755_y3658_z475.jpg",
@@ -222,7 +257,9 @@
       "y": 3657.5,
       "z": 475
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_026_x-7218_y3971_z475.jpg",
@@ -231,7 +268,9 @@
       "y": 3971.125,
       "z": 475
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_027_x-7429_y4503_z475.jpg",
@@ -240,7 +279,9 @@
       "y": 4503.09375,
       "z": 475
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_028_x-7243_y4772_z475.jpg",
@@ -249,7 +290,9 @@
       "y": 4771.53125,
       "z": 475
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_029_x-7007_y5086_z475.jpg",
@@ -258,7 +301,9 @@
       "y": 5086.21875,
       "z": 475
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_030_x-6443_y5133_z475.jpg",
@@ -267,7 +312,9 @@
       "y": 5132.96875,
       "z": 475
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_031_x-6184_y4664_z475.jpg",
@@ -276,7 +323,9 @@
       "y": 4663.5,
       "z": 475
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_032_x-5884_y4187_z475.jpg",
@@ -285,7 +334,9 @@
       "y": 4187.125,
       "z": 475
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_033_x-5514_y3746_z475.jpg",
@@ -294,7 +345,9 @@
       "y": 3746.0625,
       "z": 475
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_034_x-5365_y3199_z437.jpg",
@@ -303,7 +356,9 @@
       "y": 3199.125,
       "z": 436.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_035_x-5612_y2756_z390.jpg",
@@ -312,7 +367,9 @@
       "y": 2756.40625,
       "z": 390.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_036_x-5852_y2318_z390.jpg",
@@ -321,7 +378,9 @@
       "y": 2318,
       "z": 389.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_037_x-5328_y2152_z308.jpg",
@@ -330,7 +389,9 @@
       "y": 2151.78125,
       "z": 308.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_038_x-4754_y2151_z304.jpg",
@@ -339,7 +400,9 @@
       "y": 2151.21875,
       "z": 304.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_039_x-4425_y1699_z304.jpg",
@@ -348,7 +411,9 @@
       "y": 1698.8125,
       "z": 304.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_040_x-4468_y1123_z304.jpg",
@@ -357,7 +422,9 @@
       "y": 1122.71875,
       "z": 304.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_041_x-4598_y598_z450.jpg",
@@ -366,7 +433,9 @@
       "y": 598.21875,
       "z": 449.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_042_x-4848_y112_z493.jpg",
@@ -375,7 +444,9 @@
       "y": 111.6875,
       "z": 492.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_043_x-5321_y105_z364.jpg",
@@ -384,7 +455,9 @@
       "y": 105.4375,
       "z": 364.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_044_x-5442_y599_z204.jpg",
@@ -393,7 +466,9 @@
       "y": 599.03125,
       "z": 204.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_045_x-5501_y1139_z334.jpg",
@@ -402,7 +477,9 @@
       "y": 1139.28125,
       "z": 334.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_046_x-5748_y1521_z337.jpg",
@@ -411,7 +488,9 @@
       "y": 1521.46875,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_047_x-5909_y1817_z337.jpg",
@@ -420,7 +499,9 @@
       "y": 1816.8125,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_048_x-5916_y1760_z337.jpg",
@@ -429,7 +510,9 @@
       "y": 1760.25,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_049_x-6079_y1245_z337.jpg",
@@ -438,7 +521,9 @@
       "y": 1244.75,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_050_x-6291_y1342_z337.jpg",
@@ -447,7 +532,9 @@
       "y": 1342.15625,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_051_x-6690_y1447_z337.jpg",
@@ -456,7 +543,9 @@
       "y": 1447.375,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_052_x-7253_y1383_z337.jpg",
@@ -465,7 +554,9 @@
       "y": 1383.1875,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_053_x-7832_y1401_z337.jpg",
@@ -474,7 +565,9 @@
       "y": 1400.78125,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_054_x-7939_y1914_z337.jpg",
@@ -483,7 +576,9 @@
       "y": 1913.71875,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_055_x-8024_y2357_z337.jpg",
@@ -492,7 +587,9 @@
       "y": 2356.90625,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_056_x-8124_y2897_z337.jpg",
@@ -501,7 +598,9 @@
       "y": 2897.4375,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_057_x-8472_y2725_z337.jpg",
@@ -510,7 +609,9 @@
       "y": 2725.46875,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_058_x-8611_y2162_z337.jpg",
@@ -519,7 +620,9 @@
       "y": 2161.65625,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_059_x-8648_y1585_z337.jpg",
@@ -528,7 +631,9 @@
       "y": 1584.65625,
       "z": 337.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_060_x-8726_y1048_z416.jpg",
@@ -537,7 +642,9 @@
       "y": 1048.46875,
       "z": 415.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_061_x-8890_y587_z467.jpg",
@@ -546,7 +653,9 @@
       "y": 586.90625,
       "z": 466.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_062_x-9192_y468_z467.jpg",
@@ -555,7 +664,9 @@
       "y": 467.84375,
       "z": 467.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_063_x-8928_y72_z467.jpg",
@@ -564,7 +675,9 @@
       "y": 71.53125,
       "z": 467.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_064_x-9063_y-443_z467.jpg",
@@ -573,7 +686,9 @@
       "y": -443,
       "z": 467.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_065_x-8621_y-755_z467.jpg",
@@ -582,7 +697,9 @@
       "y": -755.03125,
       "z": 467.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_066_x-8212_y-1102_z361.jpg",
@@ -591,7 +708,9 @@
       "y": -1102,
       "z": 361.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_067_x-8313_y-1581_z345.jpg",
@@ -600,7 +719,9 @@
       "y": -1580.8125,
       "z": 345.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_068_x-8813_y-1548_z345.jpg",
@@ -609,7 +730,9 @@
       "y": -1547.78125,
       "z": 345.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_069_x-9130_y-1634_z345.jpg",
@@ -618,7 +741,9 @@
       "y": -1634.0625,
       "z": 345.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_070_x-9000_y-2111_z345.jpg",
@@ -627,7 +752,9 @@
       "y": -2110.78125,
       "z": 345.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_071_x-8465_y-2271_z345.jpg",
@@ -636,7 +763,9 @@
       "y": -2270.71875,
       "z": 345.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_072_x-8390_y-2768_z345.jpg",
@@ -645,7 +774,9 @@
       "y": -2767.5625,
       "z": 345.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_073_x-8391_y-3340_z345.jpg",
@@ -654,7 +785,9 @@
       "y": -3339.625,
       "z": 345.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_074_x-8126_y-3613_z345.jpg",
@@ -663,7 +796,9 @@
       "y": -3613.46875,
       "z": 345.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_075_x-7568_y-3667_z467.jpg",
@@ -672,7 +807,9 @@
       "y": -3666.78125,
       "z": 467.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_076_x-7022_y-3491_z488.jpg",
@@ -681,7 +818,9 @@
       "y": -3491.25,
       "z": 488
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_077_x-6870_y-2996_z342.jpg",
@@ -690,7 +829,9 @@
       "y": -2995.625,
       "z": 341.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_078_x-6436_y-2767_z331.jpg",
@@ -699,7 +840,9 @@
       "y": -2767.4375,
       "z": 331.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_079_x-6261_y-2686_z331.jpg",
@@ -708,7 +851,9 @@
       "y": -2685.78125,
       "z": 331.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_080_x-6379_y-2147_z331.jpg",
@@ -717,7 +862,9 @@
       "y": -2147.375,
       "z": 331.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_081_x-6354_y-1693_z331.jpg",
@@ -726,7 +873,9 @@
       "y": -1693.375,
       "z": 331.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_082_x-5842_y-1698_z331.jpg",
@@ -735,7 +884,9 @@
       "y": -1697.6875,
       "z": 331.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_083_x-5524_y-2058_z331.jpg",
@@ -744,7 +895,9 @@
       "y": -2057.53125,
       "z": 331.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_084_x-5006_y-2240_z410.jpg",
@@ -753,7 +906,9 @@
       "y": -2239.78125,
       "z": 410.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_085_x-4913_y-2706_z455.jpg",
@@ -762,7 +917,9 @@
       "y": -2705.65625,
       "z": 454.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_086_x-4882_y-3257_z455.jpg",
@@ -771,7 +928,9 @@
       "y": -3256.96875,
       "z": 455.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_087_x-4520_y-3435_z455.jpg",
@@ -780,7 +939,9 @@
       "y": -3435.5,
       "z": 455.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_088_x-4025_y-3216_z455.jpg",
@@ -789,7 +950,9 @@
       "y": -3215.8125,
       "z": 455.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_089_x-3930_y-2654_z375.jpg",
@@ -798,7 +961,9 @@
       "y": -2654.5,
       "z": 375.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_090_x-4116_y-2116_z356.jpg",
@@ -807,7 +972,9 @@
       "y": -2116.34375,
       "z": 355.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_091_x-3872_y-1712_z356.jpg",
@@ -816,7 +983,9 @@
       "y": -1711.6875,
       "z": 355.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_092_x-3893_y-1283_z356.jpg",
@@ -825,7 +994,9 @@
       "y": -1282.9375,
       "z": 355.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_093_x-4216_y-950_z356.jpg",
@@ -834,7 +1005,9 @@
       "y": -950.34375,
       "z": 355.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_094_x-4482_y-448_z376.jpg",
@@ -843,7 +1016,9 @@
       "y": -448.21875,
       "z": 376.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_095_x-4383_y72_z514.jpg",
@@ -852,7 +1027,9 @@
       "y": 71.875,
       "z": 514.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_096_x-3946_y275_z565.jpg",
@@ -861,7 +1038,9 @@
       "y": 274.8125,
       "z": 565.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_097_x-3491_y482_z554.jpg",
@@ -870,16 +1049,9 @@
       "y": 482.15625,
       "z": 554.4375
     },
-    "tags": []
-  },
-  {
-    "fileName": "cap_098_x-3210_y770_z224.jpg",
-    "location": {
-      "x": -3209.96875,
-      "y": 770.46875,
-      "z": 224.1875
-    },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_005_x-264_y-7544_z2024.jpg",
@@ -889,6 +1061,7 @@
       "z": 2023.65625
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -900,6 +1073,7 @@
       "z": 1209.78125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -911,6 +1085,7 @@
       "z": 934.8125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -922,6 +1097,7 @@
       "z": 847.28125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -932,7 +1108,9 @@
       "y": -6322.5,
       "z": 673.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x-2694_y-6049_z717.jpg",
@@ -941,7 +1119,9 @@
       "y": -6049.34375,
       "z": 716.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x-3175_y-5764_z719.jpg",
@@ -950,7 +1130,9 @@
       "y": -5763.8125,
       "z": 719.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x-3635_y-5522_z584.jpg",
@@ -959,7 +1141,9 @@
       "y": -5522.0625,
       "z": 583.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x-3917_y-5029_z587.jpg",
@@ -968,7 +1152,9 @@
       "y": -5028.71875,
       "z": 586.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x-3991_y-4481_z477.jpg",
@@ -977,7 +1163,9 @@
       "y": -4481.1875,
       "z": 477
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_016_x-3980_y-3929_z472.jpg",
@@ -986,7 +1174,9 @@
       "y": -3928.84375,
       "z": 472.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x-3520_y-3923_z472.jpg",
@@ -995,7 +1185,9 @@
       "y": -3922.71875,
       "z": 472.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x-2994_y-4149_z472.jpg",
@@ -1004,7 +1196,9 @@
       "y": -4149.0625,
       "z": 472.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_019_x-2425_y-4142_z472.jpg",
@@ -1013,7 +1207,9 @@
       "y": -4141.90625,
       "z": 472.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_020_x-1972_y-3807_z472.jpg",
@@ -1022,7 +1218,9 @@
       "y": -3806.59375,
       "z": 472.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_021_x-2022_y-3309_z472.jpg",
@@ -1031,7 +1229,9 @@
       "y": -3309.1875,
       "z": 472.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_022_x-2316_y-3132_z807.jpg",
@@ -1040,7 +1240,9 @@
       "y": -3132.1875,
       "z": 806.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_023_x-2735_y-3165_z1155.jpg",
@@ -1049,7 +1251,9 @@
       "y": -3165.3125,
       "z": 1155.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_024_x-3069_y-2734_z1171.jpg",
@@ -1058,7 +1262,9 @@
       "y": -2733.78125,
       "z": 1170.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_025_x-3485_y-2370_z1194.jpg",
@@ -1067,7 +1273,9 @@
       "y": -2370.5,
       "z": 1193.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_026_x-3840_y-2634_z1476.jpg",
@@ -1076,7 +1284,9 @@
       "y": -2633.6875,
       "z": 1475.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_027_x-4025_y-3131_z1426.jpg",
@@ -1085,7 +1295,9 @@
       "y": -3131.46875,
       "z": 1425.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_028_x-4218_y-3384_z1012.jpg",
@@ -1094,7 +1306,9 @@
       "y": -3383.59375,
       "z": 1011.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_029_x-4397_y-3241_z691.jpg",
@@ -1103,7 +1317,9 @@
       "y": -3240.59375,
       "z": 690.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_030_x-4422_y-2833_z285.jpg",
@@ -1112,7 +1328,9 @@
       "y": -2833.4375,
       "z": 284.53125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_031_x-4411_y-2350_z50.jpg",
@@ -1121,7 +1339,9 @@
       "y": -2350.40625,
       "z": 50.46875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_032_x-4138_y-1979_z-72.jpg",
@@ -1130,7 +1350,9 @@
       "y": -1978.9375,
       "z": -72.25
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_033_x-4292_y-1651_z-82.jpg",
@@ -1139,7 +1361,9 @@
       "y": -1650.75,
       "z": -82.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_034_x-4457_y-1569_z-117.jpg",
@@ -1148,7 +1372,9 @@
       "y": -1569.1875,
       "z": -117.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_035_x-4749_y-1583_z23.jpg",
@@ -1157,7 +1383,9 @@
       "y": -1582.90625,
       "z": 22.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_036_x-5107_y-1954_z115.jpg",
@@ -1166,7 +1394,9 @@
       "y": -1953.84375,
       "z": 115.375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_037_x-5210_y-1816_z219.jpg",
@@ -1175,7 +1405,9 @@
       "y": -1815.9375,
       "z": 218.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_038_x-4984_y-1566_z378.jpg",
@@ -1184,7 +1416,9 @@
       "y": -1565.9375,
       "z": 378.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_039_x-4945_y-1327_z356.jpg",
@@ -1193,7 +1427,9 @@
       "y": -1327.03125,
       "z": 356
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_040_x-5382_y-1114_z384.jpg",
@@ -1202,7 +1438,9 @@
       "y": -1114.46875,
       "z": 384.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_041_x-5730_y-1112_z564.jpg",
@@ -1211,7 +1449,9 @@
       "y": -1111.96875,
       "z": 563.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_042_x-5912_y-631_z553.jpg",
@@ -1220,7 +1460,9 @@
       "y": -631.03125,
       "z": 552.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_043_x-5991_y-266_z529.jpg",
@@ -1229,7 +1471,9 @@
       "y": -266,
       "z": 529.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_044_x-5637_y54_z259.jpg",
@@ -1238,7 +1482,9 @@
       "y": 54.28125,
       "z": 259.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_045_x-5105_y-45_z116.jpg",
@@ -1247,7 +1493,9 @@
       "y": -44.65625,
       "z": 115.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_046_x-4592_y114_z113.jpg",
@@ -1256,7 +1504,9 @@
       "y": 114.1875,
       "z": 113.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_047_x-4460_y649_z38.jpg",
@@ -1265,7 +1515,9 @@
       "y": 649.4375,
       "z": 38.125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_048_x-4413_y1174_z-59.jpg",
@@ -1274,7 +1526,9 @@
       "y": 1173.9375,
       "z": -59.46875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_049_x-3872_y1354_z-61.jpg",
@@ -1283,7 +1537,9 @@
       "y": 1354.40625,
       "z": -60.90625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_050_x-3325_y1284_z-61.jpg",
@@ -1292,7 +1548,9 @@
       "y": 1284.0625,
       "z": -60.90625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_051_x-3201_y753_z95.jpg",
@@ -1301,7 +1559,9 @@
       "y": 752.65625,
       "z": 95.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_052_x-3117_y189_z191.jpg",
@@ -1310,7 +1570,9 @@
       "y": 189.09375,
       "z": 191.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_053_x-2604_y10_z193.jpg",
@@ -1319,7 +1581,9 @@
       "y": 10.28125,
       "z": 192.75
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_054_x-2092_y-2_z51.jpg",
@@ -1328,7 +1592,9 @@
       "y": -1.90625,
       "z": 51
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_055_x-1579_y-9_z-200.jpg",
@@ -1337,7 +1603,9 @@
       "y": -8.6875,
       "z": -199.75
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_056_x-1049_y-15_z-425.jpg",
@@ -1346,7 +1614,9 @@
       "y": -15.3125,
       "z": -424.75
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_057_x-644_y-313_z-513.jpg",
@@ -1355,7 +1625,9 @@
       "y": -312.65625,
       "z": -513.21875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_058_x-301_y-666_z-546.jpg",
@@ -1364,7 +1636,9 @@
       "y": -665.96875,
       "z": -545.84375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_059_x253_y-797_z-563.jpg",
@@ -1373,7 +1647,9 @@
       "y": -796.6875,
       "z": -563.3125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_060_x741_y-495_z-563.jpg",
@@ -1382,7 +1658,9 @@
       "y": -494.9375,
       "z": -563.375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_061_x581_y-10_z-563.jpg",
@@ -1391,7 +1669,9 @@
       "y": -10.4375,
       "z": -563.375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_062_x564_y531_z-563.jpg",
@@ -1400,7 +1680,9 @@
       "y": 531.4375,
       "z": -563.375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_063_x104_y794_z-563.jpg",
@@ -1409,7 +1691,9 @@
       "y": 793.96875,
       "z": -563.375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_064_x-361_y910_z-563.jpg",
@@ -1418,7 +1702,9 @@
       "y": 910.09375,
       "z": -563.375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_065_x-436_y1169_z-563.jpg",
@@ -1427,7 +1713,9 @@
       "y": 1169.21875,
       "z": -563.375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_066_x21_y1134_z-395.jpg",
@@ -1436,7 +1724,9 @@
       "y": 1134.09375,
       "z": -394.6875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_067_x525_y1138_z-111.jpg",
@@ -1445,7 +1735,9 @@
       "y": 1137.5,
       "z": -110.5625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_068_x604_y1023_z73.jpg",
@@ -1454,7 +1746,9 @@
       "y": 1022.78125,
       "z": 73.40625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_069_x396_y598_z-10.jpg",
@@ -1463,7 +1757,9 @@
       "y": 597.5625,
       "z": -9.96875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_070_x321_y54_z-13.jpg",
@@ -1472,7 +1768,9 @@
       "y": 53.78125,
       "z": -12.90625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_071_x-229_y-29_z-13.jpg",
@@ -1481,7 +1779,9 @@
       "y": -29.4375,
       "z": -12.90625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_072_x-392_y-555_z-13.jpg",
@@ -1490,7 +1790,9 @@
       "y": -555.21875,
       "z": -12.90625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_079_x-143_y-7040_z1500.jpg",
@@ -1500,6 +1802,7 @@
       "z": 1499.71875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -1511,6 +1814,7 @@
       "z": 1120.96875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -1522,6 +1826,7 @@
       "z": 915.8125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -1533,6 +1838,7 @@
       "z": 894.65625
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -1544,6 +1850,7 @@
       "z": 906.78125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -1555,6 +1862,7 @@
       "z": 1207.3125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -1566,6 +1874,7 @@
       "z": 1431.125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -1577,6 +1886,7 @@
       "z": 1316.34375
     },
     "tags": [
+      "Area/AboveGround",
       "Base/HiddenKing"
     ]
   },
@@ -1587,7 +1897,9 @@
       "y": -6392.84375,
       "z": 917.625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_088_x2373_y-5991_z648.jpg",
@@ -1596,7 +1908,9 @@
       "y": -5990.875,
       "z": 647.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_089_x2450_y-5414_z637.jpg",
@@ -1605,7 +1919,9 @@
       "y": -5413.875,
       "z": 637
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_090_x2487_y-5213_z637.jpg",
@@ -1614,7 +1930,9 @@
       "y": -5212.84375,
       "z": 637
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_091_x2462_y-4856_z480.jpg",
@@ -1623,7 +1941,9 @@
       "y": -4856.5,
       "z": 480.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_092_x2573_y-4475_z454.jpg",
@@ -1632,7 +1952,9 @@
       "y": -4475.25,
       "z": 454
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_093_x3100_y-4521_z454.jpg",
@@ -1641,7 +1963,9 @@
       "y": -4521.4375,
       "z": 453.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_094_x3480_y-4577_z454.jpg",
@@ -1650,7 +1974,9 @@
       "y": -4577.34375,
       "z": 453.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_095_x3802_y-4231_z454.jpg",
@@ -1659,7 +1985,9 @@
       "y": -4231.25,
       "z": 453.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_096_x4000_y-3767_z454.jpg",
@@ -1668,7 +1996,9 @@
       "y": -3766.6875,
       "z": 453.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_097_x4253_y-3244_z454.jpg",
@@ -1677,7 +2007,9 @@
       "y": -3244.15625,
       "z": 453.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_098_x3986_y-2750_z338.jpg",
@@ -1686,7 +2018,9 @@
       "y": -2750.03125,
       "z": 338.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_099_x3460_y-2661_z327.jpg",
@@ -1695,7 +2029,9 @@
       "y": -2661.375,
       "z": 326.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_100_x2948_y-2769_z496.jpg",
@@ -1704,7 +2040,9 @@
       "y": -2768.5625,
       "z": 495.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_101_x2419_y-2959_z542.jpg",
@@ -1713,7 +2051,9 @@
       "y": -2958.96875,
       "z": 542.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_102_x1860_y-3067_z543.jpg",
@@ -1722,7 +2062,9 @@
       "y": -3067.03125,
       "z": 542.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_103_x1575_y-2789_z673.jpg",
@@ -1731,7 +2073,9 @@
       "y": -2789.25,
       "z": 672.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_104_x1628_y-2380_z862.jpg",
@@ -1740,7 +2084,9 @@
       "y": -2380.03125,
       "z": 862.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_105_x1366_y-2002_z867.jpg",
@@ -1749,7 +2095,9 @@
       "y": -2002.15625,
       "z": 866.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_106_x854_y-2069_z663.jpg",
@@ -1758,7 +2106,9 @@
       "y": -2068.84375,
       "z": 662.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_107_x468_y-1751_z480.jpg",
@@ -1767,7 +2117,9 @@
       "y": -1750.84375,
       "z": 480.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_108_x568_y-1194_z477.jpg",
@@ -1776,7 +2128,9 @@
       "y": -1194.15625,
       "z": 476.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_109_x781_y-670_z477.jpg",
@@ -1785,7 +2139,9 @@
       "y": -670.1875,
       "z": 476.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_110_x983_y-158_z477.jpg",
@@ -1794,7 +2150,9 @@
       "y": -157.65625,
       "z": 476.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_111_x824_y357_z477.jpg",
@@ -1803,7 +2161,9 @@
       "y": 357.15625,
       "z": 476.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_112_x275_y492_z586.jpg",
@@ -1812,7 +2172,9 @@
       "y": 491.84375,
       "z": 585.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_113_x-256_y464_z461.jpg",
@@ -1821,7 +2183,9 @@
       "y": 464.40625,
       "z": 461.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_114_x-828_y387_z445.jpg",
@@ -1830,7 +2194,9 @@
       "y": 386.5625,
       "z": 445.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_115_x-1390_y441_z445.jpg",
@@ -1839,7 +2205,9 @@
       "y": 440.59375,
       "z": 445.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_116_x-1955_y409_z445.jpg",
@@ -1848,7 +2216,9 @@
       "y": 408.78125,
       "z": 445.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_117_x-2251_y806_z445.jpg",
@@ -1857,7 +2227,9 @@
       "y": 805.96875,
       "z": 445.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_118_x-2105_y1368_z445.jpg",
@@ -1866,7 +2238,9 @@
       "y": 1367.6875,
       "z": 445.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_119_x-2222_y1872_z616.jpg",
@@ -1875,7 +2249,9 @@
       "y": 1872.25,
       "z": 615.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_120_x-2307_y2306_z990.jpg",
@@ -1884,7 +2260,9 @@
       "y": 2305.78125,
       "z": 989.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_121_x-2682_y2649_z1050.jpg",
@@ -1893,7 +2271,9 @@
       "y": 2649.1875,
       "z": 1049.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_122_x-3257_y2680_z1051.jpg",
@@ -1902,7 +2282,9 @@
       "y": 2679.59375,
       "z": 1050.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_123_x-3695_y2485_z946.jpg",
@@ -1911,7 +2293,9 @@
       "y": 2484.78125,
       "z": 946.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_124_x-3806_y1986_z753.jpg",
@@ -1920,7 +2304,9 @@
       "y": 1985.84375,
       "z": 753.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_125_x-4303_y1781_z850.jpg",
@@ -1929,7 +2315,9 @@
       "y": 1780.5625,
       "z": 849.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_126_x-4782_y1788_z1128.jpg",
@@ -1938,7 +2326,9 @@
       "y": 1788.28125,
       "z": 1128.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_127_x-5340_y1652_z1141.jpg",
@@ -1947,7 +2337,9 @@
       "y": 1651.5,
       "z": 1140.625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_128_x-5871_y1849_z1141.jpg",
@@ -1956,7 +2348,9 @@
       "y": 1848.59375,
       "z": 1140.625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_129_x-6422_y1858_z1141.jpg",
@@ -1965,7 +2359,9 @@
       "y": 1857.90625,
       "z": 1140.625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_130_x-6920_y1798_z978.jpg",
@@ -1974,7 +2370,9 @@
       "y": 1798.375,
       "z": 977.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_131_x-7266_y1506_z641.jpg",
@@ -1983,7 +2381,9 @@
       "y": 1506.1875,
       "z": 640.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_132_x-7727_y1378_z328.jpg",
@@ -1992,7 +2392,9 @@
       "y": 1377.78125,
       "z": 327.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_133_x-7963_y1799_z294.jpg",
@@ -2001,7 +2403,9 @@
       "y": 1798.59375,
       "z": 293.625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_134_x-8029_y2352_z293.jpg",
@@ -2010,7 +2414,9 @@
       "y": 2352.1875,
       "z": 293.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_135_x-8018_y2857_z447.jpg",
@@ -2019,7 +2425,9 @@
       "y": 2856.5625,
       "z": 447.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_136_x-7529_y2890_z714.jpg",
@@ -2028,7 +2436,9 @@
       "y": 2889.65625,
       "z": 714.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_137_x-6961_y2860_z724.jpg",
@@ -2037,7 +2447,9 @@
       "y": 2859.625,
       "z": 724
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_138_x-6488_y3173_z724.jpg",
@@ -2046,7 +2458,9 @@
       "y": 3173.46875,
       "z": 724
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_139_x-6386_y3629_z724.jpg",
@@ -2055,7 +2469,9 @@
       "y": 3628.75,
       "z": 724
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_140_x-5826_y3669_z724.jpg",
@@ -2064,7 +2480,9 @@
       "y": 3668.6875,
       "z": 724
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_141_x-5263_y3711_z783.jpg",
@@ -2073,7 +2491,9 @@
       "y": 3710.59375,
       "z": 782.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_142_x-4720_y3650_z642.jpg",
@@ -2082,7 +2502,9 @@
       "y": 3649.84375,
       "z": 641.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_143_x-4292_y3341_z493.jpg",
@@ -2091,7 +2513,9 @@
       "y": 3340.96875,
       "z": 493.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_144_x-4081_y2809_z389.jpg",
@@ -2100,7 +2524,9 @@
       "y": 2809.25,
       "z": 388.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_145_x-3572_y2600_z387.jpg",
@@ -2109,7 +2535,9 @@
       "y": 2600.15625,
       "z": 387.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_146_x-2998_y2543_z388.jpg",
@@ -2118,7 +2546,9 @@
       "y": 2543.125,
       "z": 388.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_147_x-2433_y2522_z478.jpg",
@@ -2127,7 +2557,9 @@
       "y": 2522.3125,
       "z": 478.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_148_x-1866_y2494_z480.jpg",
@@ -2136,7 +2568,9 @@
       "y": 2494.25,
       "z": 480.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_149_x-1375_y2344_z551.jpg",
@@ -2145,7 +2579,9 @@
       "y": 2344.25,
       "z": 550.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_150_x-935_y2026_z580.jpg",
@@ -2154,7 +2590,9 @@
       "y": 2026.34375,
       "z": 580.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_151_x-502_y1671_z466.jpg",
@@ -2163,7 +2601,9 @@
       "y": 1671.40625,
       "z": 466.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_152_x22_y1439_z455.jpg",
@@ -2172,7 +2612,9 @@
       "y": 1439.1875,
       "z": 454.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_153_x582_y1380_z455.jpg",
@@ -2181,7 +2623,9 @@
       "y": 1379.5,
       "z": 454.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_154_x1160_y1369_z455.jpg",
@@ -2190,7 +2634,9 @@
       "y": 1369.09375,
       "z": 454.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_155_x1721_y1335_z455.jpg",
@@ -2199,7 +2645,9 @@
       "y": 1335.15625,
       "z": 454.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_156_x2290_y1278_z455.jpg",
@@ -2208,7 +2656,9 @@
       "y": 1278.25,
       "z": 454.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_157_x2760_y969_z455.jpg",
@@ -2217,7 +2667,9 @@
       "y": 968.6875,
       "z": 454.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_158_x2908_y425_z419.jpg",
@@ -2226,7 +2678,9 @@
       "y": 424.96875,
       "z": 418.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_159_x3170_y-76_z356.jpg",
@@ -2235,7 +2689,9 @@
       "y": -76.09375,
       "z": 356.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_160_x3668_y-132_z140.jpg",
@@ -2244,7 +2700,9 @@
       "y": -132.40625,
       "z": 140.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_161_x4232_y-170_z71.jpg",
@@ -2253,7 +2711,9 @@
       "y": -170.5,
       "z": 70.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_162_x4790_y-291_z115.jpg",
@@ -2262,7 +2722,9 @@
       "y": -290.96875,
       "z": 114.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_163_x5361_y-296_z124.jpg",
@@ -2271,7 +2733,9 @@
       "y": -296.4375,
       "z": 123.59375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_164_x5930_y-248_z124.jpg",
@@ -2280,7 +2744,9 @@
       "y": -247.96875,
       "z": 123.59375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_165_x6476_y-337_z133.jpg",
@@ -2289,7 +2755,9 @@
       "y": -337.1875,
       "z": 132.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_166_x6936_y-673_z228.jpg",
@@ -2298,7 +2766,9 @@
       "y": -673.46875,
       "z": 227.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_167_x7257_y-1114_z297.jpg",
@@ -2307,7 +2777,9 @@
       "y": -1114.28125,
       "z": 297.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_168_x7671_y-1378_z335.jpg",
@@ -2316,7 +2788,9 @@
       "y": -1378.125,
       "z": 334.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_169_x7929_y-1694_z335.jpg",
@@ -2325,7 +2799,9 @@
       "y": -1694.0625,
       "z": 335
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_170_x7956_y-2267_z335.jpg",
@@ -2334,7 +2810,9 @@
       "y": -2266.6875,
       "z": 335
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_171_x8098_y-2817_z335.jpg",
@@ -2343,7 +2821,9 @@
       "y": -2816.84375,
       "z": 335
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_172_x8478_y-2911_z578.jpg",
@@ -2352,7 +2832,9 @@
       "y": -2911.5,
       "z": 577.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_173_x8842_y-3243_z688.jpg",
@@ -2361,7 +2843,9 @@
       "y": -3242.625,
       "z": 687.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_174_x8745_y-3754_z692.jpg",
@@ -2370,7 +2854,9 @@
       "y": -3753.53125,
       "z": 691.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_175_x8217_y-3724_z782.jpg",
@@ -2379,7 +2865,9 @@
       "y": -3723.875,
       "z": 782.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_176_x8103_y-4239_z728.jpg",
@@ -2388,7 +2876,9 @@
       "y": -4239.34375,
       "z": 727.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_177_x7806_y-4654_z727.jpg",
@@ -2397,7 +2887,9 @@
       "y": -4653.9375,
       "z": 727.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_178_x7355_y-4922_z571.jpg",
@@ -2406,7 +2898,9 @@
       "y": -4922.34375,
       "z": 571.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_179_x7312_y-4510_z449.jpg",
@@ -2415,7 +2909,9 @@
       "y": -4509.53125,
       "z": 449.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_180_x7367_y-4039_z447.jpg",
@@ -2424,7 +2920,9 @@
       "y": -4038.9375,
       "z": 447.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_181_x6890_y-3779_z447.jpg",
@@ -2433,7 +2931,9 @@
       "y": -3778.59375,
       "z": 447.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_182_x6513_y-3426_z447.jpg",
@@ -2442,7 +2942,9 @@
       "y": -3426.03125,
       "z": 447.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_183_x6756_y-2930_z341.jpg",
@@ -2451,7 +2953,9 @@
       "y": -2930.5,
       "z": 341
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_184_x7177_y-2553_z322.jpg",
@@ -2460,7 +2964,9 @@
       "y": -2552.875,
       "z": 322.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_185_x7292_y-1979_z322.jpg",
@@ -2469,7 +2975,9 @@
       "y": -1978.75,
       "z": 321.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_186_x7320_y-1411_z322.jpg",
@@ -2478,7 +2986,9 @@
       "y": -1410.78125,
       "z": 321.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_187_x7502_y-891_z215.jpg",
@@ -2487,7 +2997,9 @@
       "y": -890.96875,
       "z": 214.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_188_x7954_y-552_z189.jpg",
@@ -2496,7 +3008,9 @@
       "y": -552.03125,
       "z": 189.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_189_x8421_y-224_z189.jpg",
@@ -2505,7 +3019,9 @@
       "y": -223.96875,
       "z": 189.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_190_x8816_y-43_z189.jpg",
@@ -2515,6 +3031,7 @@
       "z": 189.125
     },
     "tags": [
+      "Area/AboveGround",
       "Difficulty/Hard"
     ]
   },
@@ -2525,7 +3042,9 @@
       "y": 225.78125,
       "z": 179.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_193_x-119_y7957_z2283.jpg",
@@ -2535,6 +3054,7 @@
       "z": 2283.1875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2546,6 +3066,7 @@
       "z": 1893.03125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2557,6 +3078,7 @@
       "z": 1495.1875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2568,6 +3090,7 @@
       "z": 1146.8125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2579,6 +3102,7 @@
       "z": 826.875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2590,6 +3114,7 @@
       "z": 806.34375
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2601,6 +3126,7 @@
       "z": 806.21875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2612,6 +3138,7 @@
       "z": 806.21875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2623,6 +3150,7 @@
       "z": 806.21875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2634,6 +3162,7 @@
       "z": 806.21875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2645,6 +3174,7 @@
       "z": 806.21875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2656,6 +3186,7 @@
       "z": 806.21875
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2667,6 +3198,7 @@
       "z": 857.15625
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2678,6 +3210,7 @@
       "z": 891.125
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2689,6 +3222,7 @@
       "z": 803.375
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2700,6 +3234,7 @@
       "z": 798.75
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2711,6 +3246,7 @@
       "z": 798.75
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2722,6 +3258,7 @@
       "z": 798.75
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2733,6 +3270,7 @@
       "z": 798.75
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2744,6 +3282,7 @@
       "z": 798.75
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2755,6 +3294,7 @@
       "z": 877.375
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2766,6 +3306,7 @@
       "z": 841.25
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2777,6 +3318,7 @@
       "z": 781.75
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2788,6 +3330,7 @@
       "z": 780.9375
     },
     "tags": [
+      "Area/AboveGround",
       "Base/Archmother"
     ]
   },
@@ -2798,7 +3341,9 @@
       "y": 5121.46875,
       "z": 780.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_218_x678_y5027_z686.jpg",
@@ -2807,7 +3352,9 @@
       "y": 5027,
       "z": 686.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_219_x1109_y4696_z675.jpg",
@@ -2816,7 +3363,9 @@
       "y": 4696.3125,
       "z": 674.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_220_x1622_y4452_z675.jpg",
@@ -2825,7 +3374,9 @@
       "y": 4452.28125,
       "z": 674.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_221_x2190_y4461_z616.jpg",
@@ -2834,7 +3385,9 @@
       "y": 4460.6875,
       "z": 616.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_222_x2684_y4252_z641.jpg",
@@ -2844,6 +3397,7 @@
       "z": 641.21875
     },
     "tags": [
+      "Area/AboveGround",
       "Difficulty/Medium"
     ]
   },
@@ -2854,7 +3408,9 @@
       "y": 3999.46875,
       "z": 521.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_224_x3691_y3864_z516.jpg",
@@ -2864,6 +3420,7 @@
       "z": 516.15625
     },
     "tags": [
+      "Area/AboveGround",
       "Tier 3 camp"
     ]
   },
@@ -2874,7 +3431,9 @@
       "y": 4164.34375,
       "z": 516.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_226_x4154_y4667_z516.jpg",
@@ -2883,7 +3442,9 @@
       "y": 4666.71875,
       "z": 516.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_227_x4706_y4787_z516.jpg",
@@ -2892,7 +3453,9 @@
       "y": 4787.1875,
       "z": 516.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_228_x5198_y4910_z748.jpg",
@@ -2901,7 +3464,9 @@
       "y": 4910.03125,
       "z": 748.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_229_x5739_y5122_z864.jpg",
@@ -2910,7 +3475,9 @@
       "y": 5122.03125,
       "z": 863.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_230_x6054_y5524_z711.jpg",
@@ -2919,7 +3486,9 @@
       "y": 5524.34375,
       "z": 710.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_231_x6247_y6021_z577.jpg",
@@ -2928,7 +3497,9 @@
       "y": 6021.21875,
       "z": 576.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_232_x6779_y6115_z709.jpg",
@@ -2937,7 +3508,9 @@
       "y": 6115.40625,
       "z": 709.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_233_x7031_y5821_z726.jpg",
@@ -2946,7 +3519,9 @@
       "y": 5821.21875,
       "z": 726.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_234_x7093_y5258_z726.jpg",
@@ -2955,7 +3530,9 @@
       "y": 5258.46875,
       "z": 726.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_235_x7071_y4683_z726.jpg",
@@ -2964,7 +3541,9 @@
       "y": 4683,
       "z": 726.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_236_x6936_y4132_z796.jpg",
@@ -2973,7 +3552,9 @@
       "y": 4131.875,
       "z": 795.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_237_x7075_y3700_z829.jpg",
@@ -2982,7 +3563,9 @@
       "y": 3700.28125,
       "z": 829.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_238_x7547_y3655_z532.jpg",
@@ -2991,7 +3574,9 @@
       "y": 3655.4375,
       "z": 532.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_239_x8051_y3729_z317.jpg",
@@ -3000,7 +3585,9 @@
       "y": 3728.75,
       "z": 316.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_240_x8402_y3496_z355.jpg",
@@ -3009,7 +3596,9 @@
       "y": 3495.5,
       "z": 354.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_241_x8269_y2958_z356.jpg",
@@ -3018,7 +3607,9 @@
       "y": 2957.59375,
       "z": 355.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_242_x7788_y2641_z356.jpg",
@@ -3027,7 +3618,9 @@
       "y": 2641.34375,
       "z": 355.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_243_x7404_y2237_z356.jpg",
@@ -3036,7 +3629,9 @@
       "y": 2236.65625,
       "z": 355.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_244_x7210_y1740_z356.jpg",
@@ -3046,6 +3641,7 @@
       "z": 355.5
     },
     "tags": [
+      "Area/AboveGround",
       "Truck"
     ]
   },
@@ -3056,7 +3652,9 @@
       "y": 1476.5,
       "z": 355.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_246_x6552_y932_z356.jpg",
@@ -3065,7 +3663,9 @@
       "y": 932.3125,
       "z": 355.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_247_x6099_y605_z356.jpg",
@@ -3074,7 +3674,9 @@
       "y": 605.03125,
       "z": 355.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_248_x5562_y444_z374.jpg",
@@ -3083,7 +3685,9 @@
       "y": 443.96875,
       "z": 373.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_249_x5097_y245_z476.jpg",
@@ -3092,7 +3696,9 @@
       "y": 244.84375,
       "z": 476.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_250_x4560_y220_z494.jpg",
@@ -3101,7 +3707,9 @@
       "y": 219.90625,
       "z": 493.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_251_x4280_y-31_z292.jpg",
@@ -3110,7 +3718,9 @@
       "y": -31.0625,
       "z": 291.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_252_x4475_y-509_z97.jpg",
@@ -3119,7 +3729,9 @@
       "y": -509.3125,
       "z": 97
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_253_x4420_y-1051_z-14.jpg",
@@ -3129,6 +3741,7 @@
       "z": -13.8125
     },
     "tags": [
+      "Area/Underground",
       "Shop"
     ]
   },
@@ -3140,6 +3753,7 @@
       "z": -17.625
     },
     "tags": [
+      "Area/Underground",
       "Shop"
     ]
   },
@@ -3151,6 +3765,7 @@
       "z": -17.625
     },
     "tags": [
+      "Area/Underground",
       "Shop"
     ]
   },
@@ -3161,7 +3776,9 @@
       "y": -722.6875,
       "z": 175.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_257_x2977_y-187_z196.jpg",
@@ -3170,7 +3787,9 @@
       "y": -187.46875,
       "z": 195.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_258_x2497_y12_z196.jpg",
@@ -3180,6 +3799,7 @@
       "z": 195.9375
     },
     "tags": [
+      "Area/AboveGround",
       "Graffiti"
     ]
   },
@@ -3190,7 +3810,9 @@
       "y": 144.53125,
       "z": 273.625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_260_x2860_y619_z331.jpg",
@@ -3199,7 +3821,9 @@
       "y": 619.3125,
       "z": 331.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_261_x2654_y1122_z297.jpg",
@@ -3208,7 +3832,9 @@
       "y": 1122.40625,
       "z": 296.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_262_x2132_y1378_z296.jpg",
@@ -3217,7 +3843,9 @@
       "y": 1377.5,
       "z": 296.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_263_x1867_y1080_z206.jpg",
@@ -3226,7 +3854,9 @@
       "y": 1079.71875,
       "z": 206.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_264_x1653_y1196_z211.jpg",
@@ -3235,7 +3865,9 @@
       "y": 1195.75,
       "z": 210.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_265_x1392_y926_z562.jpg",
@@ -3244,7 +3876,9 @@
       "y": 925.875,
       "z": 561.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_266_x941_y560_z580.jpg",
@@ -3253,7 +3887,9 @@
       "y": 560.46875,
       "z": 579.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_267_x433_y288_z606.jpg",
@@ -3262,7 +3898,9 @@
       "y": 288.1875,
       "z": 606.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_268_x-105_y123_z649.jpg",
@@ -3271,7 +3909,9 @@
       "y": 123.25,
       "z": 649.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_269_x-669_y48_z581.jpg",
@@ -3280,7 +3920,9 @@
       "y": 47.75,
       "z": 581.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_270_x-1227_y34_z565.jpg",
@@ -3289,7 +3931,9 @@
       "y": 33.59375,
       "z": 564.59375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_271_x-1774_y-81_z635.jpg",
@@ -3298,7 +3942,9 @@
       "y": -80.90625,
       "z": 635.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_272_x-2307_y-221_z520.jpg",
@@ -3307,7 +3953,9 @@
       "y": -221.25,
       "z": 519.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_273_x-2806_y-479_z416.jpg",
@@ -3316,7 +3964,9 @@
       "y": -478.71875,
       "z": 415.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_274_x-3235_y-831_z414.jpg",
@@ -3325,7 +3975,9 @@
       "y": -831.3125,
       "z": 414.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_275_x-3788_y-869_z414.jpg",
@@ -3334,7 +3986,9 @@
       "y": -869.21875,
       "z": 414.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_276_x-4198_y-1103_z414.jpg",
@@ -3343,7 +3997,9 @@
       "y": -1102.9375,
       "z": 414.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_277_x-3894_y-1218_z414.jpg",
@@ -3352,7 +4008,9 @@
       "y": -1218.34375,
       "z": 414.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_278_x-3838_y-1527_z317.jpg",
@@ -3361,7 +4019,9 @@
       "y": -1527.1875,
       "z": 316.59375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_279_x-3675_y-1842_z472.jpg",
@@ -3370,7 +4030,9 @@
       "y": -1842.1875,
       "z": 472.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_280_x-3746_y-2006_z578.jpg",
@@ -3379,7 +4041,9 @@
       "y": -2006.25,
       "z": 578.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_281_x-3856_y-1741_z628.jpg",
@@ -3388,7 +4052,9 @@
       "y": -1740.875,
       "z": 627.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_282_x-3897_y-1523_z795.jpg",
@@ -3397,7 +4063,9 @@
       "y": -1523.125,
       "z": 794.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_283_x-3999_y-1475_z1061.jpg",
@@ -3406,7 +4074,9 @@
       "y": -1475.34375,
       "z": 1061.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_284_x-4345_y-1179_z1231.jpg",
@@ -3415,7 +4085,9 @@
       "y": -1179.15625,
       "z": 1230.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_285_x-4819_y-1095_z973.jpg",
@@ -3424,7 +4096,9 @@
       "y": -1094.9375,
       "z": 972.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_286_x-5235_y-1111_z572.jpg",
@@ -3433,7 +4107,9 @@
       "y": -1110.78125,
       "z": 572.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_287_x-5654_y-1442_z402.jpg",
@@ -3442,7 +4118,9 @@
       "y": -1441.59375,
       "z": 401.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_288_x-6178_y-1625_z399.jpg",
@@ -3451,7 +4129,9 @@
       "y": -1625.40625,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_289_x-6636_y-1379_z399.jpg",
@@ -3460,7 +4140,9 @@
       "y": -1379.4375,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_290_x-6962_y-1067_z399.jpg",
@@ -3469,7 +4151,9 @@
       "y": -1066.9375,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_291_x-7537_y-1136_z399.jpg",
@@ -3478,7 +4162,9 @@
       "y": -1135.5625,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_292_x-8107_y-1201_z399.jpg",
@@ -3487,7 +4173,9 @@
       "y": -1201.125,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_293_x-8447_y-1625_z399.jpg",
@@ -3496,7 +4184,9 @@
       "y": -1625.5,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_294_x-8763_y-2053_z399.jpg",
@@ -3505,7 +4195,9 @@
       "y": -2052.65625,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_295_x-8472_y-2008_z399.jpg",
@@ -3514,7 +4206,9 @@
       "y": -2008.4375,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_296_x-8122_y-2404_z399.jpg",
@@ -3523,7 +4217,9 @@
       "y": -2403.625,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_297_x-7560_y-2518_z399.jpg",
@@ -3532,7 +4228,9 @@
       "y": -2518.5,
       "z": 398.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_298_x-7057_y-2685_z525.jpg",
@@ -3541,7 +4239,9 @@
       "y": -2685.5,
       "z": 524.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_299_x-6633_y-2861_z749.jpg",
@@ -3550,7 +4250,9 @@
       "y": -2861.25,
       "z": 748.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_300_x-6181_y-2999_z491.jpg",
@@ -3559,7 +4261,9 @@
       "y": -2998.8125,
       "z": 491.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_301_x-6119_y-3139_z443.jpg",
@@ -3568,7 +4272,9 @@
       "y": -3139.15625,
       "z": 442.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_302_x-5995_y-3062_z431.jpg",
@@ -3577,7 +4283,9 @@
       "y": -3062.03125,
       "z": 431.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_303_x-5522_y-3087_z431.jpg",
@@ -3586,7 +4294,9 @@
       "y": -3086.875,
       "z": 431.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_304_x-4969_y-3189_z431.jpg",
@@ -3595,7 +4305,9 @@
       "y": -3189.40625,
       "z": 431.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_305_x-4943_y-3645_z480.jpg",
@@ -3604,7 +4316,9 @@
       "y": -3644.6875,
       "z": 479.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_306_x-5120_y-4179_z501.jpg",
@@ -3613,7 +4327,9 @@
       "y": -4179.15625,
       "z": 500.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_307_x-4945_y-4585_z501.jpg",
@@ -3622,7 +4338,9 @@
       "y": -4584.96875,
       "z": 501.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_308_x-4671_y-4612_z501.jpg",
@@ -3631,7 +4349,9 @@
       "y": -4611.65625,
       "z": 501.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_309_x-4134_y-4778_z501.jpg",
@@ -3640,7 +4360,9 @@
       "y": -4778.03125,
       "z": 501.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_310_x-3827_y-5094_z501.jpg",
@@ -3649,7 +4371,9 @@
       "y": -5093.53125,
       "z": 501.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_311_x-3637_y-5351_z501.jpg",
@@ -3658,7 +4382,9 @@
       "y": -5350.59375,
       "z": 501.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_312_x-3447_y-5858_z658.jpg",
@@ -3667,7 +4393,9 @@
       "y": -5857.65625,
       "z": 658.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_313_x-3314_y-6417_z665.jpg",
@@ -3676,7 +4404,9 @@
       "y": -6417.0625,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_314_x-3285_y-6988_z665.jpg",
@@ -3685,7 +4415,9 @@
       "y": -6987.59375,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_315_x-3274_y-7414_z665.jpg",
@@ -3694,7 +4426,9 @@
       "y": -7414.4375,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_316_x-3081_y-7483_z665.jpg",
@@ -3703,7 +4437,9 @@
       "y": -7482.9375,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_317_x-2884_y-7498_z665.jpg",
@@ -3712,7 +4448,9 @@
       "y": -7497.53125,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_318_x-2647_y-7414_z665.jpg",
@@ -3721,7 +4459,9 @@
       "y": -7413.71875,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_319_x-2357_y-7369_z665.jpg",
@@ -3730,7 +4470,9 @@
       "y": -7369.28125,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_320_x-2240_y-7424_z665.jpg",
@@ -3739,7 +4481,9 @@
       "y": -7423.625,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_321_x-2361_y-7162_z665.jpg",
@@ -3748,7 +4492,9 @@
       "y": -7162.1875,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_322_x-2315_y-6685_z665.jpg",
@@ -3757,7 +4503,9 @@
       "y": -6684.875,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_323_x-2400_y-6118_z665.jpg",
@@ -3766,7 +4514,9 @@
       "y": -6117.53125,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_324_x-2846_y-5749_z665.jpg",
@@ -3775,7 +4525,9 @@
       "y": -5748.59375,
       "z": 664.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_325_x-2832_y-5226_z624.jpg",
@@ -3784,7 +4536,9 @@
       "y": -5226.46875,
       "z": 624.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_326_x-2845_y-4757_z511.jpg",
@@ -3793,7 +4547,9 @@
       "y": -4756.8125,
       "z": 511.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_327_x-2863_y-4188_z454.jpg",
@@ -3802,7 +4558,9 @@
       "y": -4188.375,
       "z": 453.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_328_x-3306_y-3835_z453.jpg",
@@ -3811,7 +4569,9 @@
       "y": -3834.84375,
       "z": 453.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_329_x-3682_y-3407_z453.jpg",
@@ -3820,7 +4580,9 @@
       "y": -3407.09375,
       "z": 453.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_330_x-3959_y-2917_z448.jpg",
@@ -3829,7 +4591,9 @@
       "y": -2916.625,
       "z": 447.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_331_x-4076_y-2387_z353.jpg",
@@ -3838,7 +4602,9 @@
       "y": -2387,
       "z": 353.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_332_x-4447_y-2007_z568.jpg",
@@ -3847,7 +4613,9 @@
       "y": -2007.1875,
       "z": 567.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_333_x-4277_y-1724_z989.jpg",
@@ -3856,7 +4624,9 @@
       "y": -1724.3125,
       "z": 988.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_334_x-3951_y-1678_z1093.jpg",
@@ -3865,7 +4635,9 @@
       "y": -1677.625,
       "z": 1093.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_335_x-3990_y-1333_z1165.jpg",
@@ -3874,7 +4646,9 @@
       "y": -1333.15625,
       "z": 1164.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_336_x-3870_y-824_z1356.jpg",
@@ -3883,7 +4657,9 @@
       "y": -824.375,
       "z": 1356.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_337_x-3810_y-345_z1360.jpg",
@@ -3892,7 +4668,9 @@
       "y": -345.125,
       "z": 1360.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_338_x-3804_y61_z1587.jpg",
@@ -3901,7 +4679,9 @@
       "y": 60.5625,
       "z": 1587.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_339_x-3861_y602_z1534.jpg",
@@ -3910,7 +4690,9 @@
       "y": 602.15625,
       "z": 1533.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_340_x-3926_y870_z1272.jpg",
@@ -3919,7 +4701,9 @@
       "y": 870.4375,
       "z": 1271.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_341_x-3872_y842_z1259.jpg",
@@ -3928,7 +4712,9 @@
       "y": 841.71875,
       "z": 1258.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_010_x-193_y-6973_z1174.jpg",
@@ -3937,7 +4723,9 @@
       "y": -6973.375,
       "z": 1173.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x-101_y-6407_z1169.jpg",
@@ -3946,7 +4734,9 @@
       "y": -6407.40625,
       "z": 1169.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x2_y-5897_z1064.jpg",
@@ -3955,7 +4745,9 @@
       "y": -5896.5625,
       "z": 1063.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x184_y-5361_z1009.jpg",
@@ -3964,7 +4756,9 @@
       "y": -5361.15625,
       "z": 1008.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x600_y-4973_z966.jpg",
@@ -3973,7 +4767,9 @@
       "y": -4973.3125,
       "z": 966.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x1041_y-4628_z859.jpg",
@@ -3982,7 +4778,9 @@
       "y": -4627.96875,
       "z": 859.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_016_x1542_y-4354_z858.jpg",
@@ -3991,7 +4789,9 @@
       "y": -4354.34375,
       "z": 857.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x1934_y-4021_z670.jpg",
@@ -4000,7 +4800,9 @@
       "y": -4020.75,
       "z": 669.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x2263_y-3581_z606.jpg",
@@ -4009,7 +4811,9 @@
       "y": -3581.375,
       "z": 605.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_001_x-318_y-4842_z789.jpg",
@@ -4018,7 +4822,9 @@
       "y": -4842.4375,
       "z": 788.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_002_x-318_y-4842_z789.jpg",
@@ -4027,7 +4833,9 @@
       "y": -4842.4375,
       "z": 788.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_003_x-659_y-4718_z789.jpg",
@@ -4036,7 +4844,9 @@
       "y": -4718.15625,
       "z": 788.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_004_x-1103_y-4664_z764.jpg",
@@ -4045,7 +4855,9 @@
       "y": -4663.65625,
       "z": 764.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_005_x-1486_y-4436_z669.jpg",
@@ -4054,7 +4866,9 @@
       "y": -4436.125,
       "z": 668.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_006_x-1499_y-3946_z609.jpg",
@@ -4063,7 +4877,9 @@
       "y": -3946.28125,
       "z": 609.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_007_x-1637_y-3637_z543.jpg",
@@ -4072,7 +4888,9 @@
       "y": -3637.375,
       "z": 543.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_008_x-1223_y-3376_z542.jpg",
@@ -4081,7 +4899,9 @@
       "y": -3376.25,
       "z": 542.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_009_x-710_y-3215_z490.jpg",
@@ -4090,7 +4910,9 @@
       "y": -3215.28125,
       "z": 490
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_010_x-262_y-2998_z473.jpg",
@@ -4099,7 +4921,9 @@
       "y": -2997.90625,
       "z": 472.59375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x-47_y-2614_z456.jpg",
@@ -4108,7 +4932,9 @@
       "y": -2614.46875,
       "z": 456.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x-12_y-2178_z434.jpg",
@@ -4117,7 +4943,9 @@
       "y": -2178,
       "z": 433.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x15_y-1867_z474.jpg",
@@ -4126,7 +4954,9 @@
       "y": -1867.375,
       "z": 474.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x-87_y-1461_z544.jpg",
@@ -4135,7 +4965,9 @@
       "y": -1460.90625,
       "z": 543.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x-518_y-1398_z545.jpg",
@@ -4144,7 +4976,9 @@
       "y": -1397.90625,
       "z": 545.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_016_x-960_y-1406_z597.jpg",
@@ -4153,7 +4987,9 @@
       "y": -1406.375,
       "z": 596.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x-1409_y-1229_z523.jpg",
@@ -4162,7 +4998,9 @@
       "y": -1229.21875,
       "z": 523.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x-1580_y-1342_z319.jpg",
@@ -4171,7 +5009,9 @@
       "y": -1342.09375,
       "z": 319.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_019_x-1533_y-1767_z263.jpg",
@@ -4180,7 +5020,9 @@
       "y": -1767.4375,
       "z": 262.71875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_020_x-1737_y-1981_z262.jpg",
@@ -4189,7 +5031,9 @@
       "y": -1980.53125,
       "z": 261.96875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_021_x-2162_y-1954_z178.jpg",
@@ -4198,7 +5042,9 @@
       "y": -1953.84375,
       "z": 177.625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_022_x-2643_y-2254_z113.jpg",
@@ -4207,7 +5053,9 @@
       "y": -2254.4375,
       "z": 113.1875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_023_x-3188_y-2275_z42.jpg",
@@ -4216,7 +5064,9 @@
       "y": -2275.15625,
       "z": 41.90625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_024_x-3552_y-2178_z40.jpg",
@@ -4225,7 +5075,9 @@
       "y": -2177.65625,
       "z": 39.5
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_025_x-3945_y-2069_z-9.jpg",
@@ -4234,7 +5086,9 @@
       "y": -2068.65625,
       "z": -9
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_026_x-4144_y-1791_z-15.jpg",
@@ -4243,7 +5097,9 @@
       "y": -1791.5,
       "z": -14.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_027_x-4223_y-1674_z-15.jpg",
@@ -4252,7 +5108,9 @@
       "y": -1674.5,
       "z": -14.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_028_x-4524_y-1520_z2.jpg",
@@ -4261,7 +5119,9 @@
       "y": -1520.09375,
       "z": 1.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_029_x-4809_y-1728_z47.jpg",
@@ -4270,7 +5130,9 @@
       "y": -1728.0625,
       "z": 46.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_030_x-5000_y-1944_z100.jpg",
@@ -4279,7 +5141,9 @@
       "y": -1943.84375,
       "z": 100.125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_031_x-5219_y-1947_z138.jpg",
@@ -4288,7 +5152,9 @@
       "y": -1947.375,
       "z": 138.3125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_032_x-5219_y-1713_z291.jpg",
@@ -4297,7 +5163,9 @@
       "y": -1712.6875,
       "z": 290.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_033_x-5157_y-1467_z391.jpg",
@@ -4306,7 +5174,9 @@
       "y": -1466.5625,
       "z": 390.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_034_x-5085_y-1500_z391.jpg",
@@ -4315,7 +5185,9 @@
       "y": -1500.4375,
       "z": 391.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_035_x-4879_y-1529_z391.jpg",
@@ -4324,7 +5196,9 @@
       "y": -1529.125,
       "z": 391.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_036_x-4897_y-1997_z391.jpg",
@@ -4333,7 +5207,9 @@
       "y": -1997.21875,
       "z": 391.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_037_x-5151_y-2118_z391.jpg",
@@ -4342,7 +5218,9 @@
       "y": -2117.90625,
       "z": 391.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_038_x-5519_y-2144_z391.jpg",
@@ -4351,7 +5229,9 @@
       "y": -2144,
       "z": 391.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_039_x-5488_y-2045_z391.jpg",
@@ -4360,7 +5240,9 @@
       "y": -2045.1875,
       "z": 391.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_040_x-5735_y-1548_z391.jpg",
@@ -4369,7 +5251,9 @@
       "y": -1548.0625,
       "z": 391.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_041_x-5866_y-989_z433.jpg",
@@ -4378,7 +5262,9 @@
       "y": -989.09375,
       "z": 433
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_042_x-5850_y-600_z446.jpg",
@@ -4387,7 +5273,9 @@
       "y": -599.625,
       "z": 445.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_043_x-5509_y-207_z446.jpg",
@@ -4396,7 +5284,9 @@
       "y": -207,
       "z": 445.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_044_x-5087_y114_z446.jpg",
@@ -4405,7 +5295,9 @@
       "y": 113.6875,
       "z": 445.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_045_x-4679_y496_z446.jpg",
@@ -4414,7 +5306,9 @@
       "y": 495.78125,
       "z": 445.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_046_x-4378_y864_z446.jpg",
@@ -4423,7 +5317,9 @@
       "y": 864.03125,
       "z": 445.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_047_x-4460_y1360_z368.jpg",
@@ -4432,7 +5328,9 @@
       "y": 1360.1875,
       "z": 368.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_048_x-4388_y1885_z365.jpg",
@@ -4441,7 +5339,9 @@
       "y": 1885.3125,
       "z": 364.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_049_x-4321_y2439_z296.jpg",
@@ -4450,7 +5350,9 @@
       "y": 2439.09375,
       "z": 296.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_050_x-4278_y2945_z346.jpg",
@@ -4459,7 +5361,9 @@
       "y": 2944.78125,
       "z": 345.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_051_x-4214_y3372_z453.jpg",
@@ -4468,7 +5372,9 @@
       "y": 3371.59375,
       "z": 453.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_052_x-3987_y3709_z457.jpg",
@@ -4477,7 +5383,9 @@
       "y": 3708.53125,
       "z": 457.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_053_x-3540_y3840_z458.jpg",
@@ -4486,7 +5394,9 @@
       "y": 3840.40625,
       "z": 457.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_054_x-3096_y3860_z564.jpg",
@@ -4495,7 +5405,9 @@
       "y": 3859.6875,
       "z": 563.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_055_x-2709_y3875_z480.jpg",
@@ -4504,7 +5416,9 @@
       "y": 3874.53125,
       "z": 479.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_056_x-2399_y3595_z479.jpg",
@@ -4513,7 +5427,9 @@
       "y": 3595.0625,
       "z": 478.625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_057_x-2101_y3436_z541.jpg",
@@ -4522,7 +5438,9 @@
       "y": 3435.59375,
       "z": 541.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_058_x-1662_y3412_z587.jpg",
@@ -4531,7 +5449,9 @@
       "y": 3411.75,
       "z": 586.625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_059_x-1289_y3782_z606.jpg",
@@ -4540,7 +5460,9 @@
       "y": 3781.78125,
       "z": 605.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_060_x-1008_y4254_z606.jpg",
@@ -4549,7 +5471,9 @@
       "y": 4253.6875,
       "z": 605.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_061_x-720_y4529_z606.jpg",
@@ -4558,7 +5482,9 @@
       "y": 4529,
       "z": 605.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_062_x-170_y4598_z606.jpg",
@@ -4567,7 +5493,9 @@
       "y": 4597.59375,
       "z": 605.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_063_x387_y4639_z606.jpg",
@@ -4576,7 +5504,9 @@
       "y": 4638.8125,
       "z": 605.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_064_x948_y4595_z606.jpg",
@@ -4585,7 +5515,9 @@
       "y": 4594.84375,
       "z": 605.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_065_x1421_y4326_z606.jpg",
@@ -4594,7 +5526,9 @@
       "y": 4326.09375,
       "z": 605.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_066_x1489_y3898_z606.jpg",
@@ -4603,7 +5537,9 @@
       "y": 3898.15625,
       "z": 605.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_067_x1357_y3436_z560.jpg",
@@ -4612,7 +5548,9 @@
       "y": 3436,
       "z": 560.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_068_x865_y3173_z529.jpg",
@@ -4621,7 +5559,9 @@
       "y": 3173.4375,
       "z": 528.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_069_x305_y3010_z529.jpg",
@@ -4630,7 +5570,9 @@
       "y": 3009.96875,
       "z": 528.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_070_x5_y2553_z529.jpg",
@@ -4639,7 +5581,9 @@
       "y": 2553.46875,
       "z": 528.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_071_x-4_y1997_z529.jpg",
@@ -4648,7 +5592,9 @@
       "y": 1996.71875,
       "z": 528.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_072_x31_y1455_z529.jpg",
@@ -4657,7 +5603,9 @@
       "y": 1454.8125,
       "z": 528.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_073_x591_y1405_z529.jpg",
@@ -4666,7 +5614,9 @@
       "y": 1405.28125,
       "z": 528.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_074_x1030_y1403_z529.jpg",
@@ -4675,7 +5625,9 @@
       "y": 1403.28125,
       "z": 528.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_075_x1541_y1323_z451.jpg",
@@ -4684,7 +5636,9 @@
       "y": 1323.0625,
       "z": 451.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_076_x1878_y1223_z283.jpg",
@@ -4693,7 +5647,9 @@
       "y": 1222.5,
       "z": 283.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_077_x2127_y1245_z433.jpg",
@@ -4702,7 +5658,9 @@
       "y": 1245.375,
       "z": 433.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_078_x2659_y1157_z393.jpg",
@@ -4711,7 +5669,9 @@
       "y": 1156.96875,
       "z": 393.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_079_x3101_y1243_z386.jpg",
@@ -4720,7 +5680,9 @@
       "y": 1242.75,
       "z": 386.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_080_x3364_y1679_z388.jpg",
@@ -4729,7 +5691,9 @@
       "y": 1678.65625,
       "z": 388.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_081_x3206_y2086_z590.jpg",
@@ -4738,7 +5702,9 @@
       "y": 2086.40625,
       "z": 589.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_082_x2936_y2457_z687.jpg",
@@ -4747,7 +5713,9 @@
       "y": 2456.75,
       "z": 687.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_083_x2735_y2712_z810.jpg",
@@ -4756,7 +5724,9 @@
       "y": 2711.5,
       "z": 810.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_084_x2867_y3125_z797.jpg",
@@ -4765,7 +5735,9 @@
       "y": 3124.9375,
       "z": 797.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_085_x2915_y3635_z744.jpg",
@@ -4774,7 +5746,9 @@
       "y": 3635.25,
       "z": 743.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_086_x2629_y3738_z649.jpg",
@@ -4783,7 +5757,9 @@
       "y": 3738.3125,
       "z": 648.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_087_x2256_y3878_z521.jpg",
@@ -4792,7 +5768,9 @@
       "y": 3877.9375,
       "z": 521.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_088_x2764_y4056_z508.jpg",
@@ -4801,7 +5779,9 @@
       "y": 4056.25,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_089_x3341_y4086_z508.jpg",
@@ -4810,7 +5790,9 @@
       "y": 4086.4375,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_090_x3701_y3949_z508.jpg",
@@ -4819,7 +5801,9 @@
       "y": 3949.4375,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_091_x4100_y3548_z508.jpg",
@@ -4828,7 +5812,9 @@
       "y": 3548.03125,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_092_x4649_y3432_z508.jpg",
@@ -4837,7 +5823,9 @@
       "y": 3431.65625,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_093_x5044_y3759_z508.jpg",
@@ -4846,7 +5834,9 @@
       "y": 3758.5,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_094_x5084_y4326_z508.jpg",
@@ -4855,7 +5845,9 @@
       "y": 4325.59375,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_095_x5506_y4642_z508.jpg",
@@ -4864,7 +5856,9 @@
       "y": 4642.125,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_096_x5903_y4593_z508.jpg",
@@ -4873,7 +5867,9 @@
       "y": 4592.75,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_097_x5855_y4475_z508.jpg",
@@ -4882,7 +5878,9 @@
       "y": 4475.0625,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_098_x5635_y4093_z508.jpg",
@@ -4891,7 +5889,9 @@
       "y": 4093.25,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_099_x5541_y3734_z508.jpg",
@@ -4900,7 +5900,9 @@
       "y": 3733.8125,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_100_x5963_y3614_z508.jpg",
@@ -4909,7 +5911,9 @@
       "y": 3614.28125,
       "z": 507.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_101_x6221_y3312_z485.jpg",
@@ -4918,7 +5922,9 @@
       "y": 3311.625,
       "z": 484.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_102_x6344_y2767_z346.jpg",
@@ -4927,7 +5933,9 @@
       "y": 2767,
       "z": 345.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_103_x6325_y2237_z357.jpg",
@@ -4936,7 +5944,9 @@
       "y": 2236.75,
       "z": 356.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_104_x6364_y1748_z376.jpg",
@@ -4945,7 +5955,9 @@
       "y": 1748,
       "z": 375.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_109_x5018_y1054_z376.jpg",
@@ -4954,7 +5966,9 @@
       "y": 1054.09375,
       "z": 375.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_110_x4807_y649_z376.jpg",
@@ -4963,7 +5977,9 @@
       "y": 649.09375,
       "z": 375.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_111_x4468_y337_z376.jpg",
@@ -4972,7 +5988,9 @@
       "y": 336.78125,
       "z": 375.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_112_x4441_y177_z376.jpg",
@@ -4981,7 +5999,9 @@
       "y": 177.25,
       "z": 375.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_113_x4441_y177_z376.jpg",
@@ -4990,7 +6010,9 @@
       "y": 177.25,
       "z": 375.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_001_x4383_y122_z376.jpg",
@@ -4999,7 +6021,9 @@
       "y": 121.5,
       "z": 375.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_002_x3819_y10_z376.jpg",
@@ -5008,7 +6032,9 @@
       "y": 10.4375,
       "z": 375.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_003_x3350_y-221_z479.jpg",
@@ -5017,7 +6043,9 @@
       "y": -221.3125,
       "z": 478.59375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_004_x3278_y-751_z559.jpg",
@@ -5026,7 +6054,9 @@
       "y": -750.6875,
       "z": 559.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_005_x2848_y-1112_z560.jpg",
@@ -5035,7 +6065,9 @@
       "y": -1111.71875,
       "z": 560.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_006_x2427_y-1473_z560.jpg",
@@ -5044,7 +6076,9 @@
       "y": -1473.125,
       "z": 560.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_007_x1898_y-1409_z520.jpg",
@@ -5053,7 +6087,9 @@
       "y": -1408.9375,
       "z": 519.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_008_x1414_y-1381_z470.jpg",
@@ -5062,7 +6098,9 @@
       "y": -1380.5625,
       "z": 469.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_009_x851_y-1355_z469.jpg",
@@ -5071,7 +6109,9 @@
       "y": -1354.875,
       "z": 468.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_010_x403_y-997_z464.jpg",
@@ -5080,7 +6120,9 @@
       "y": -997.21875,
       "z": 464.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x170_y-621_z394.jpg",
@@ -5089,7 +6131,9 @@
       "y": -620.5625,
       "z": 394
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x7_y-183_z281.jpg",
@@ -5098,16 +6142,9 @@
       "y": -183.34375,
       "z": 281.28125
     },
-    "tags": []
-  },
-  {
-    "fileName": "cap_013_x-373_y167_z279.jpg",
-    "location": {
-      "x": -373.5,
-      "y": 167.1875,
-      "z": 279.0625
-    },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x-369_y-23_z342.jpg",
@@ -5116,7 +6153,9 @@
       "y": -22.875,
       "z": 342.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_001_x3088_y-2811_z412.jpg",
@@ -5125,7 +6164,9 @@
       "y": -2811.1875,
       "z": 412.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_002_x3539_y-2693_z412.jpg",
@@ -5134,7 +6175,9 @@
       "y": -2692.96875,
       "z": 412.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_003_x3603_y-2380_z412.jpg",
@@ -5143,7 +6186,9 @@
       "y": -2380.3125,
       "z": 412.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_004_x3709_y-2091_z412.jpg",
@@ -5152,7 +6197,9 @@
       "y": -2091.21875,
       "z": 412.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_005_x3730_y-1573_z412.jpg",
@@ -5161,7 +6208,9 @@
       "y": -1572.75,
       "z": 412.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_006_x4180_y-1391_z369.jpg",
@@ -5170,7 +6219,9 @@
       "y": -1391.5,
       "z": 368.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_007_x4605_y-1444_z358.jpg",
@@ -5179,7 +6230,9 @@
       "y": -1444.0625,
       "z": 358.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_008_x5017_y-1450_z358.jpg",
@@ -5188,7 +6241,9 @@
       "y": -1449.5625,
       "z": 358.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_009_x5277_y-1529_z358.jpg",
@@ -5197,7 +6252,9 @@
       "y": -1529.21875,
       "z": 358.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_010_x5436_y-1615_z358.jpg",
@@ -5206,7 +6263,9 @@
       "y": -1614.9375,
       "z": 358.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x5724_y-1766_z358.jpg",
@@ -5215,7 +6274,9 @@
       "y": -1766,
       "z": 358.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x6061_y-1627_z358.jpg",
@@ -5224,7 +6285,9 @@
       "y": -1626.625,
       "z": 358.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x6319_y-1471_z358.jpg",
@@ -5233,7 +6296,9 @@
       "y": -1470.8125,
       "z": 358.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x6859_y-1609_z403.jpg",
@@ -5242,7 +6307,9 @@
       "y": -1608.53125,
       "z": 402.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x6853_y-2054_z424.jpg",
@@ -5251,7 +6318,9 @@
       "y": -2053.625,
       "z": 424.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_016_x6583_y-2430_z424.jpg",
@@ -5260,7 +6329,9 @@
       "y": -2430.15625,
       "z": 424.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x6184_y-2371_z424.jpg",
@@ -5269,7 +6340,9 @@
       "y": -2371.28125,
       "z": 424.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x5778_y-2510_z462.jpg",
@@ -5278,7 +6351,9 @@
       "y": -2510,
       "z": 461.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_019_x5437_y-2637_z385.jpg",
@@ -5287,7 +6362,9 @@
       "y": -2637.46875,
       "z": 385
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_020_x5343_y-3058_z406.jpg",
@@ -5296,7 +6373,9 @@
       "y": -3058.0625,
       "z": 406.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_021_x5337_y-3545_z514.jpg",
@@ -5305,7 +6384,9 @@
       "y": -3545.34375,
       "z": 513.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_022_x4968_y-3775_z482.jpg",
@@ -5314,7 +6395,9 @@
       "y": -3774.90625,
       "z": 482.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_023_x4480_y-3827_z441.jpg",
@@ -5323,7 +6406,9 @@
       "y": -3826.78125,
       "z": 440.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_024_x3951_y-3985_z440.jpg",
@@ -5332,7 +6417,9 @@
       "y": -3985.03125,
       "z": 440.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_025_x3550_y-4404_z503.jpg",
@@ -5341,7 +6428,9 @@
       "y": -4403.625,
       "z": 502.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_026_x2986_y-4480_z506.jpg",
@@ -5350,7 +6439,9 @@
       "y": -4479.875,
       "z": 506.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_027_x2462_y-4342_z506.jpg",
@@ -5359,7 +6450,9 @@
       "y": -4342.28125,
       "z": 506.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_028_x2003_y-4019_z506.jpg",
@@ -5368,7 +6461,9 @@
       "y": -4019.09375,
       "z": 506.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_029_x1509_y-3878_z506.jpg",
@@ -5377,7 +6472,9 @@
       "y": -3878.21875,
       "z": 506.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_030_x1551_y-3598_z506.jpg",
@@ -5386,7 +6483,9 @@
       "y": -3597.65625,
       "z": 506.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_031_x1848_y-3308_z506.jpg",
@@ -5395,7 +6494,9 @@
       "y": -3307.65625,
       "z": 506.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_032_x1609_y-2837_z604.jpg",
@@ -5404,7 +6505,9 @@
       "y": -2837.4375,
       "z": 603.59375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_033_x1533_y-2295_z682.jpg",
@@ -5413,7 +6516,9 @@
       "y": -2295.03125,
       "z": 682.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_034_x1378_y-1891_z683.jpg",
@@ -5422,7 +6527,9 @@
       "y": -1890.59375,
       "z": 683.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_035_x1773_y-1854_z960.jpg",
@@ -5431,7 +6538,9 @@
       "y": -1853.65625,
       "z": 959.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_036_x2044_y-2321_z1014.jpg",
@@ -5440,7 +6549,9 @@
       "y": -2321.0625,
       "z": 1014.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_001_x3591_y-992_z362.jpg",
@@ -5449,7 +6560,9 @@
       "y": -992.40625,
       "z": 362.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_002_x3857_y-872_z327.jpg",
@@ -5458,7 +6571,9 @@
       "y": -872.4375,
       "z": 327.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_003_x3933_y-829_z569.jpg",
@@ -5467,7 +6582,9 @@
       "y": -828.53125,
       "z": 569.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_004_x3900_y-825_z794.jpg",
@@ -5476,7 +6593,9 @@
       "y": -825.28125,
       "z": 793.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_005_x3902_y-825_z897.jpg",
@@ -5485,7 +6604,9 @@
       "y": -825.46875,
       "z": 896.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_006_x3953_y-589_z1022.jpg",
@@ -5494,7 +6615,9 @@
       "y": -588.5625,
       "z": 1022.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_007_x4169_y-483_z947.jpg",
@@ -5503,7 +6626,9 @@
       "y": -482.96875,
       "z": 947.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_008_x4490_y-412_z883.jpg",
@@ -5512,7 +6637,9 @@
       "y": -411.84375,
       "z": 883.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_009_x4907_y-308_z581.jpg",
@@ -5521,7 +6648,9 @@
       "y": -307.8125,
       "z": 581.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_010_x5266_y-282_z140.jpg",
@@ -5530,7 +6659,9 @@
       "y": -282.125,
       "z": 140.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x5556_y-211_z59.jpg",
@@ -5539,7 +6670,9 @@
       "y": -210.90625,
       "z": 59.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x5839_y176_z69.jpg",
@@ -5548,7 +6681,9 @@
       "y": 175.5,
       "z": 69.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x6183_y169_z131.jpg",
@@ -5557,7 +6692,9 @@
       "y": 169.3125,
       "z": 131.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x6529_y213_z354.jpg",
@@ -5566,7 +6703,9 @@
       "y": 213,
       "z": 353.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x7055_y360_z418.jpg",
@@ -5575,7 +6714,9 @@
       "y": 359.6875,
       "z": 418.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_016_x7437_y451_z409.jpg",
@@ -5584,7 +6725,9 @@
       "y": 451.125,
       "z": 409.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x7575_y795_z409.jpg",
@@ -5593,7 +6736,9 @@
       "y": 794.625,
       "z": 409.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x7846_y1042_z409.jpg",
@@ -5602,7 +6747,9 @@
       "y": 1041.5625,
       "z": 409.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_019_x8333_y1232_z409.jpg",
@@ -5611,7 +6758,9 @@
       "y": 1231.9375,
       "z": 409.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_020_x8450_y1694_z409.jpg",
@@ -5620,7 +6769,9 @@
       "y": 1694.1875,
       "z": 409.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_021_x8187_y2166_z409.jpg",
@@ -5629,7 +6780,9 @@
       "y": 2166.3125,
       "z": 409.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_022_x7779_y2530_z409.jpg",
@@ -5638,7 +6791,9 @@
       "y": 2529.8125,
       "z": 409.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_023_x7343_y2692_z409.jpg",
@@ -5647,7 +6802,9 @@
       "y": 2691.5,
       "z": 409.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_024_x6987_y2957_z409.jpg",
@@ -5656,7 +6813,9 @@
       "y": 2957.0625,
       "z": 409.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_025_x6935_y3373_z477.jpg",
@@ -5665,7 +6824,9 @@
       "y": 3373.25,
       "z": 476.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_026_x6996_y3614_z479.jpg",
@@ -5674,7 +6835,9 @@
       "y": 3613.5,
       "z": 478.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_027_x6697_y3706_z479.jpg",
@@ -5683,7 +6846,9 @@
       "y": 3705.96875,
       "z": 478.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_028_x6353_y3631_z665.jpg",
@@ -5692,7 +6857,9 @@
       "y": 3631,
       "z": 664.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_029_x6141_y3624_z880.jpg",
@@ -5701,7 +6868,9 @@
       "y": 3623.75,
       "z": 880.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_030_x5841_y3595_z1048.jpg",
@@ -5710,7 +6879,9 @@
       "y": 3594.65625,
       "z": 1047.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_031_x5555_y3592_z972.jpg",
@@ -5719,7 +6890,9 @@
       "y": 3591.84375,
       "z": 972.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_032_x5532_y3907_z831.jpg",
@@ -5728,7 +6901,9 @@
       "y": 3906.90625,
       "z": 831.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_033_x5531_y4287_z812.jpg",
@@ -5737,7 +6912,9 @@
       "y": 4287.125,
       "z": 811.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_034_x5293_y4547_z812.jpg",
@@ -5746,7 +6923,9 @@
       "y": 4546.65625,
       "z": 811.625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_035_x5118_y4335_z601.jpg",
@@ -5755,7 +6934,9 @@
       "y": 4334.53125,
       "z": 600.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_036_x5047_y3946_z512.jpg",
@@ -5764,7 +6945,9 @@
       "y": 3945.875,
       "z": 512.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_037_x4858_y3481_z511.jpg",
@@ -5773,7 +6956,9 @@
       "y": 3480.84375,
       "z": 510.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_038_x5060_y3087_z511.jpg",
@@ -5782,7 +6967,9 @@
       "y": 3087.15625,
       "z": 510.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_039_x5555_y3035_z437.jpg",
@@ -5791,7 +6978,9 @@
       "y": 3034.65625,
       "z": 436.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_040_x6029_y3042_z426.jpg",
@@ -5800,7 +6989,9 @@
       "y": 3041.90625,
       "z": 425.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_041_x6195_y2807_z509.jpg",
@@ -5809,7 +7000,9 @@
       "y": 2807.21875,
       "z": 508.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_042_x6531_y2662_z673.jpg",
@@ -5818,7 +7011,9 @@
       "y": 2661.5,
       "z": 672.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_043_x6653_y2358_z614.jpg",
@@ -5827,7 +7022,9 @@
       "y": 2358.09375,
       "z": 613.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_044_x6657_y2101_z613.jpg",
@@ -5836,7 +7033,9 @@
       "y": 2101.4375,
       "z": 612.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_045_x6596_y1916_z613.jpg",
@@ -5845,7 +7044,9 @@
       "y": 1916.125,
       "z": 612.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_046_x6613_y1616_z613.jpg",
@@ -5854,7 +7055,9 @@
       "y": 1616.40625,
       "z": 612.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_047_x7122_y1675_z591.jpg",
@@ -5863,7 +7066,9 @@
       "y": 1675.28125,
       "z": 590.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_048_x7599_y1457_z552.jpg",
@@ -5872,7 +7077,9 @@
       "y": 1457.0625,
       "z": 551.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_001_x4949_y3870_z457.jpg",
@@ -5881,7 +7088,9 @@
       "y": 3869.53125,
       "z": 457.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_002_x4859_y3587_z457.jpg",
@@ -5890,7 +7099,9 @@
       "y": 3586.78125,
       "z": 457.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_003_x4906_y3223_z457.jpg",
@@ -5899,7 +7110,9 @@
       "y": 3222.5,
       "z": 457.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_004_x4943_y2864_z457.jpg",
@@ -5908,7 +7121,9 @@
       "y": 2863.6875,
       "z": 457.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_005_x4792_y2525_z398.jpg",
@@ -5917,7 +7132,9 @@
       "y": 2524.5625,
       "z": 398.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_006_x4542_y2268_z355.jpg",
@@ -5926,7 +7143,9 @@
       "y": 2268,
       "z": 355.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_007_x4481_y1864_z355.jpg",
@@ -5935,7 +7154,9 @@
       "y": 1863.84375,
       "z": 354.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_008_x4543_y1519_z355.jpg",
@@ -5944,7 +7165,9 @@
       "y": 1518.6875,
       "z": 354.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_009_x4397_y1065_z355.jpg",
@@ -5953,7 +7176,9 @@
       "y": 1064.65625,
       "z": 354.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_010_x3940_y905_z355.jpg",
@@ -5962,7 +7187,9 @@
       "y": 905,
       "z": 354.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x3356_y936_z355.jpg",
@@ -5971,7 +7198,9 @@
       "y": 935.625,
       "z": 354.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x2859_y1119_z355.jpg",
@@ -5980,7 +7209,9 @@
       "y": 1118.75,
       "z": 354.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x2384_y1423_z355.jpg",
@@ -5989,7 +7220,9 @@
       "y": 1423.40625,
       "z": 354.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x1933_y1371_z261.jpg",
@@ -5998,7 +7231,9 @@
       "y": 1370.5625,
       "z": 261.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x1878_y1141_z239.jpg",
@@ -6007,7 +7242,9 @@
       "y": 1140.59375,
       "z": 238.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_016_x1711_y1325_z239.jpg",
@@ -6016,7 +7253,9 @@
       "y": 1325.4375,
       "z": 238.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x1582_y1348_z362.jpg",
@@ -6025,7 +7264,9 @@
       "y": 1347.625,
       "z": 361.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x1185_y1377_z604.jpg",
@@ -6034,7 +7275,9 @@
       "y": 1376.90625,
       "z": 604.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_019_x607_y1337_z608.jpg",
@@ -6043,7 +7286,9 @@
       "y": 1336.75,
       "z": 608.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_020_x232_y1153_z575.jpg",
@@ -6052,7 +7297,9 @@
       "y": 1153.3125,
       "z": 574.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_021_x256_y706_z435.jpg",
@@ -6061,7 +7308,9 @@
       "y": 705.625,
       "z": 435.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_022_x7_y263_z425.jpg",
@@ -6070,7 +7319,9 @@
       "y": 263.21875,
       "z": 425.28125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_023_x-289_y32_z353.jpg",
@@ -6079,7 +7330,9 @@
       "y": 31.75,
       "z": 353.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_024_x-737_y43_z280.jpg",
@@ -6088,7 +7341,9 @@
       "y": 42.90625,
       "z": 279.90625
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_025_x-1102_y-179_z211.jpg",
@@ -6097,7 +7352,9 @@
       "y": -178.6875,
       "z": 210.875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_026_x-845_y-406_z80.jpg",
@@ -6106,7 +7363,9 @@
       "y": -406,
       "z": 80.03125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_027_x-393_y-473_z46.jpg",
@@ -6115,7 +7374,9 @@
       "y": -473.15625,
       "z": 46.375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_028_x74_y-467_z-30.jpg",
@@ -6124,7 +7385,9 @@
       "y": -466.96875,
       "z": -30.09375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_029_x326_y-142_z6.jpg",
@@ -6133,7 +7396,9 @@
       "y": -142.25,
       "z": 6.375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_030_x581_y344_z7.jpg",
@@ -6142,7 +7407,9 @@
       "y": 343.96875,
       "z": 6.84375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_031_x1008_y381_z91.jpg",
@@ -6151,7 +7418,9 @@
       "y": 381.25,
       "z": 90.75
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_032_x910_y-6_z134.jpg",
@@ -6160,7 +7429,9 @@
       "y": -5.78125,
       "z": 133.78125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_033_x541_y-105_z399.jpg",
@@ -6169,7 +7440,9 @@
       "y": -105.28125,
       "z": 398.96875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_034_x288_y-607_z493.jpg",
@@ -6178,7 +7451,9 @@
       "y": -607.15625,
       "z": 493.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_035_x218_y-1101_z637.jpg",
@@ -6187,7 +7462,9 @@
       "y": -1100.5625,
       "z": 637.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_001_x-2745_y1269_z275.jpg",
@@ -6197,7 +7474,7 @@
       "z": 275
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6209,7 +7486,7 @@
       "z": 275
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6221,7 +7498,7 @@
       "z": 275
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6233,7 +7510,7 @@
       "z": 275
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6245,7 +7522,7 @@
       "z": 250.5625
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6257,7 +7534,7 @@
       "z": 168.71875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6269,7 +7546,7 @@
       "z": 165.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6281,7 +7558,7 @@
       "z": 165.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6293,7 +7570,7 @@
       "z": 165.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6305,7 +7582,7 @@
       "z": 165.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6317,7 +7594,7 @@
       "z": 165.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6329,7 +7606,7 @@
       "z": 165.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6341,7 +7618,7 @@
       "z": 165.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6353,7 +7630,7 @@
       "z": 165.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6365,7 +7642,7 @@
       "z": 165.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6377,7 +7654,7 @@
       "z": 162.125
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6389,7 +7666,7 @@
       "z": 159.6875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6401,7 +7678,7 @@
       "z": 159.6875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6413,7 +7690,7 @@
       "z": 197.625
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6425,7 +7702,7 @@
       "z": 223.4375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6437,7 +7714,7 @@
       "z": 223.6875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6449,7 +7726,7 @@
       "z": 223.6875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6461,7 +7738,7 @@
       "z": 252.71875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6473,7 +7750,7 @@
       "z": 294.9375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6485,7 +7762,7 @@
       "z": 421.5
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6497,7 +7774,7 @@
       "z": 412.46875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6509,7 +7786,7 @@
       "z": 216.6875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6521,7 +7798,7 @@
       "z": 216.6875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6533,7 +7810,7 @@
       "z": 216.6875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6545,7 +7822,7 @@
       "z": 172.53125
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6557,7 +7834,7 @@
       "z": 90.53125
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6569,7 +7846,7 @@
       "z": 87.125
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6581,7 +7858,7 @@
       "z": 87.125
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6593,7 +7870,7 @@
       "z": 87.125
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6605,7 +7882,7 @@
       "z": 87.125
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6617,7 +7894,7 @@
       "z": 164.875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6629,7 +7906,7 @@
       "z": 237.25
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6641,7 +7918,7 @@
       "z": 290.0625
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6653,7 +7930,7 @@
       "z": 299.125
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6665,7 +7942,7 @@
       "z": 412
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6677,7 +7954,7 @@
       "z": 422.96875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6688,7 +7965,9 @@
       "y": 3582.375,
       "z": 412.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_001_x1471_y1405_z154.jpg",
@@ -6697,7 +7976,9 @@
       "y": 1404.6875,
       "z": 153.96875
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_002_x1188_y1404_z154.jpg",
@@ -6706,7 +7987,9 @@
       "y": 1403.9375,
       "z": 153.96875
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_003_x899_y1426_z154.jpg",
@@ -6715,7 +7998,9 @@
       "y": 1426.4375,
       "z": 153.96875
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_004_x657_y1554_z154.jpg",
@@ -6724,7 +8009,9 @@
       "y": 1554,
       "z": 153.96875
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_005_x403_y1598_z190.jpg",
@@ -6733,7 +8020,9 @@
       "y": 1598.03125,
       "z": 190.03125
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_006_x43_y1601_z200.jpg",
@@ -6742,7 +8031,9 @@
       "y": 1601.125,
       "z": 200.4375
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_007_x-315_y1603_z200.jpg",
@@ -6751,7 +8042,9 @@
       "y": 1603.25,
       "z": 200.4375
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_008_x-669_y1619_z200.jpg",
@@ -6760,7 +8053,9 @@
       "y": 1619.0625,
       "z": 200.4375
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_009_x-978_y1570_z200.jpg",
@@ -6769,7 +8064,9 @@
       "y": 1569.9375,
       "z": 200.4375
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_010_x-1273_y1346_z200.jpg",
@@ -6778,7 +8075,9 @@
       "y": 1346.28125,
       "z": 200.4375
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_011_x-1566_y1278_z200.jpg",
@@ -6787,7 +8086,9 @@
       "y": 1278.34375,
       "z": 200.4375
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_012_x-1812_y1278_z241.jpg",
@@ -6796,7 +8097,9 @@
       "y": 1277.78125,
       "z": 240.8125
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_013_x-2167_y1285_z265.jpg",
@@ -6805,7 +8108,9 @@
       "y": 1284.875,
       "z": 264.53125
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_014_x-2443_y1284_z266.jpg",
@@ -6814,7 +8119,9 @@
       "y": 1284.09375,
       "z": 265.875
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_015_x-2613_y1285_z298.jpg",
@@ -6823,7 +8130,9 @@
       "y": 1285.28125,
       "z": 298.25
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_017_x-2908_y1287_z286.jpg",
@@ -6832,7 +8141,9 @@
       "y": 1286.9375,
       "z": 285.53125
     },
-    "tags": []
+    "tags": [
+      "Area/Tunnels"
+    ]
   },
   {
     "fileName": "cap_001_x-5075_y3037_z288.jpg",
@@ -6842,7 +8153,7 @@
       "z": 288.0625
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6854,7 +8165,7 @@
       "z": 288.0625
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6866,7 +8177,7 @@
       "z": 155.40625
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6878,7 +8189,7 @@
       "z": 23.09375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6890,7 +8201,7 @@
       "z": 43.59375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6902,7 +8213,7 @@
       "z": 43.71875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6914,7 +8225,7 @@
       "z": -25.6875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6926,7 +8237,7 @@
       "z": -106.59375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6938,7 +8249,7 @@
       "z": -133.84375
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6950,7 +8261,7 @@
       "z": -108.15625
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6962,7 +8273,7 @@
       "z": -107.46875
     },
     "tags": [
-      "Area/Underground",
+      "Area/Tunnels",
       "Difficulty/Hard"
     ]
   },
@@ -6973,7 +8284,9 @@
       "y": -5383.53125,
       "z": 709.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_002_x-5768_y-5373_z709.jpg",
@@ -6982,7 +8295,9 @@
       "y": -5372.9375,
       "z": 709.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_003_x-6053_y-5573_z661.jpg",
@@ -6991,7 +8306,9 @@
       "y": -5573.28125,
       "z": 661.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_004_x-6141_y-5904_z486.jpg",
@@ -7000,7 +8317,9 @@
       "y": -5904.03125,
       "z": 485.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_005_x-6316_y-6028_z520.jpg",
@@ -7009,7 +8328,9 @@
       "y": -6028.34375,
       "z": 519.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_006_x-6590_y-6014_z661.jpg",
@@ -7018,7 +8339,9 @@
       "y": -6013.875,
       "z": 661.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_007_x-6808_y-6019_z759.jpg",
@@ -7027,7 +8350,9 @@
       "y": -6018.8125,
       "z": 758.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_008_x-6957_y-5860_z766.jpg",
@@ -7036,7 +8361,9 @@
       "y": -5860.28125,
       "z": 766.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_009_x-6992_y-5555_z766.jpg",
@@ -7045,7 +8372,9 @@
       "y": -5555,
       "z": 766.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_010_x-7016_y-5252_z766.jpg",
@@ -7054,7 +8383,9 @@
       "y": -5251.5625,
       "z": 766.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x-7076_y-4936_z766.jpg",
@@ -7063,7 +8394,9 @@
       "y": -4936,
       "z": 766.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x-7043_y-4604_z825.jpg",
@@ -7072,7 +8405,9 @@
       "y": -4604.4375,
       "z": 824.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x-6937_y-4276_z743.jpg",
@@ -7081,7 +8416,9 @@
       "y": -4275.90625,
       "z": 742.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x-7023_y-3793_z642.jpg",
@@ -7090,7 +8427,9 @@
       "y": -3792.8125,
       "z": 642.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x-7263_y-3779_z608.jpg",
@@ -7099,7 +8438,9 @@
       "y": -3779.0625,
       "z": 608.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_016_x-7715_y-3724_z493.jpg",
@@ -7108,7 +8449,9 @@
       "y": -3724.1875,
       "z": 492.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x-8095_y-3724_z415.jpg",
@@ -7117,7 +8460,9 @@
       "y": -3724.09375,
       "z": 414.5625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x-8353_y-3561_z413.jpg",
@@ -7126,7 +8471,9 @@
       "y": -3561.4375,
       "z": 413.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_019_x-8375_y-3086_z413.jpg",
@@ -7135,7 +8482,9 @@
       "y": -3086.5,
       "z": 413.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_020_x-7973_y-2816_z481.jpg",
@@ -7144,7 +8493,9 @@
       "y": -2816,
       "z": 480.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_021_x-7431_y-2861_z586.jpg",
@@ -7153,7 +8504,9 @@
       "y": -2861.03125,
       "z": 585.65625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_022_x-7134_y-3322_z589.jpg",
@@ -7162,7 +8515,9 @@
       "y": -3321.9375,
       "z": 589.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_023_x-6838_y-3799_z562.jpg",
@@ -7171,7 +8526,9 @@
       "y": -3799.0625,
       "z": 561.84375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_024_x-6431_y-4212_z562.jpg",
@@ -7180,7 +8537,9 @@
       "y": -4211.9375,
       "z": 561.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_025_x-6066_y-4641_z562.jpg",
@@ -7189,7 +8548,9 @@
       "y": -4641.3125,
       "z": 561.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_026_x-6134_y-5203_z562.jpg",
@@ -7198,7 +8559,9 @@
       "y": -5203.375,
       "z": 561.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_027_x-6281_y-5740_z532.jpg",
@@ -7207,7 +8570,9 @@
       "y": -5739.96875,
       "z": 531.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_028_x-6085_y-6069_z436.jpg",
@@ -7216,7 +8581,9 @@
       "y": -6069.125,
       "z": 435.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_029_x-5629_y-6048_z458.jpg",
@@ -7225,7 +8592,9 @@
       "y": -6047.8125,
       "z": 457.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_030_x-5237_y-6060_z459.jpg",
@@ -7234,7 +8603,9 @@
       "y": -6059.96875,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_031_x-4926_y-5959_z459.jpg",
@@ -7243,7 +8614,9 @@
       "y": -5958.78125,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_032_x-4608_y-5612_z459.jpg",
@@ -7252,7 +8625,9 @@
       "y": -5611.625,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_033_x-4158_y-5381_z459.jpg",
@@ -7261,7 +8636,9 @@
       "y": -5381.46875,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_034_x-4026_y-5410_z459.jpg",
@@ -7270,7 +8647,9 @@
       "y": -5409.6875,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_035_x-4078_y-5146_z459.jpg",
@@ -7279,7 +8658,9 @@
       "y": -5145.84375,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_036_x-4174_y-4708_z459.jpg",
@@ -7288,7 +8669,9 @@
       "y": -4707.625,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_037_x-4690_y-4544_z459.jpg",
@@ -7297,7 +8680,9 @@
       "y": -4544.0625,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_038_x-5151_y-4505_z459.jpg",
@@ -7306,7 +8691,9 @@
       "y": -4505,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_039_x-5529_y-4433_z459.jpg",
@@ -7315,7 +8702,9 @@
       "y": -4432.625,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_040_x-5695_y-4190_z459.jpg",
@@ -7324,7 +8713,9 @@
       "y": -4189.5625,
       "z": 458.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_041_x-5454_y-3903_z444.jpg",
@@ -7333,7 +8724,9 @@
       "y": -3902.875,
       "z": 443.8125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_042_x-5408_y-3716_z515.jpg",
@@ -7342,7 +8735,9 @@
       "y": -3716.03125,
       "z": 514.6875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_043_x-5458_y-3776_z723.jpg",
@@ -7351,7 +8746,9 @@
       "y": -3776.375,
       "z": 722.875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_044_x-5390_y-3888_z891.jpg",
@@ -7360,7 +8757,9 @@
       "y": -3887.8125,
       "z": 890.5
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_045_x-5297_y-3798_z912.jpg",
@@ -7369,7 +8768,9 @@
       "y": -3798.5,
       "z": 911.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_046_x-5338_y-3535_z963.jpg",
@@ -7378,7 +8779,9 @@
       "y": -3535.40625,
       "z": 963.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_047_x-5685_y-3498_z988.jpg",
@@ -7387,7 +8790,9 @@
       "y": -3497.5625,
       "z": 988.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_048_x-5988_y-3594_z988.jpg",
@@ -7396,7 +8801,9 @@
       "y": -3594.0625,
       "z": 988.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_001_x2836_y-6276_z637.jpg",
@@ -7405,7 +8812,9 @@
       "y": -6275.75,
       "z": 637.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_002_x3219_y-6007_z637.jpg",
@@ -7414,7 +8823,9 @@
       "y": -6006.84375,
       "z": 637.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_003_x3428_y-5697_z637.jpg",
@@ -7423,7 +8834,9 @@
       "y": -5697.15625,
       "z": 637.0625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_004_x3683_y-5474_z565.jpg",
@@ -7432,7 +8845,9 @@
       "y": -5474.28125,
       "z": 565.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_005_x4054_y-5198_z522.jpg",
@@ -7441,7 +8856,9 @@
       "y": -5198.40625,
       "z": 522
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_006_x4551_y-5124_z498.jpg",
@@ -7450,7 +8867,9 @@
       "y": -5124.09375,
       "z": 498.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_007_x4877_y-5303_z516.jpg",
@@ -7459,7 +8878,9 @@
       "y": -5303.375,
       "z": 515.71875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_008_x4977_y-5572_z780.jpg",
@@ -7468,7 +8889,9 @@
       "y": -5572.15625,
       "z": 780.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_009_x5181_y-5719_z807.jpg",
@@ -7477,7 +8900,9 @@
       "y": -5718.78125,
       "z": 806.78125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_010_x5519_y-5814_z794.jpg",
@@ -7486,7 +8911,9 @@
       "y": -5813.71875,
       "z": 793.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x6027_y-5821_z640.jpg",
@@ -7495,7 +8922,9 @@
       "y": -5821.125,
       "z": 640.46875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x6358_y-5745_z506.jpg",
@@ -7504,7 +8933,9 @@
       "y": -5745.375,
       "z": 505.59375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x6569_y-5398_z499.jpg",
@@ -7513,7 +8944,9 @@
       "y": -5398.09375,
       "z": 498.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x6461_y-5136_z499.jpg",
@@ -7522,7 +8955,9 @@
       "y": -5136.5,
       "z": 498.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x6303_y-4788_z499.jpg",
@@ -7531,7 +8966,9 @@
       "y": -4787.78125,
       "z": 498.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_016_x5955_y-4522_z499.jpg",
@@ -7540,7 +8977,9 @@
       "y": -4521.875,
       "z": 498.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x5763_y-4142_z499.jpg",
@@ -7549,7 +8988,9 @@
       "y": -4142.5,
       "z": 498.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x5981_y-3797_z499.jpg",
@@ -7558,7 +8999,9 @@
       "y": -3796.53125,
       "z": 498.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_019_x6398_y-3695_z499.jpg",
@@ -7567,7 +9010,9 @@
       "y": -3694.65625,
       "z": 498.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_020_x6646_y-3754_z638.jpg",
@@ -7576,7 +9021,9 @@
       "y": -3753.625,
       "z": 638.15625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_021_x6450_y-3663_z662.jpg",
@@ -7585,7 +9032,9 @@
       "y": -3663.40625,
       "z": 662.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_022_x6163_y-3787_z662.jpg",
@@ -7594,7 +9043,9 @@
       "y": -3787.4375,
       "z": 662.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_023_x5870_y-3965_z663.jpg",
@@ -7603,7 +9054,9 @@
       "y": -3964.78125,
       "z": 662.9375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_024_x5803_y-4328_z774.jpg",
@@ -7612,7 +9065,9 @@
       "y": -4327.75,
       "z": 774.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_025_x6058_y-4803_z671.jpg",
@@ -7621,7 +9076,9 @@
       "y": -4803.5,
       "z": 671.4375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_026_x6487_y-5107_z529.jpg",
@@ -7630,7 +9087,9 @@
       "y": -5106.875,
       "z": 529.1875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_027_x7028_y-5093_z468.jpg",
@@ -7639,7 +9098,9 @@
       "y": -5093.15625,
       "z": 468.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_028_x7315_y-4832_z439.jpg",
@@ -7648,7 +9109,9 @@
       "y": -4832.34375,
       "z": 438.53125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_029_x7450_y-4617_z438.jpg",
@@ -7657,7 +9120,9 @@
       "y": -4617.4375,
       "z": 438.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_030_x7374_y-4121_z438.jpg",
@@ -7666,7 +9131,9 @@
       "y": -4120.75,
       "z": 438.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_031_x7361_y-4059_z438.jpg",
@@ -7675,7 +9142,9 @@
       "y": -4059.21875,
       "z": 438.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_001_x762_y-3927_z537.jpg",
@@ -7684,7 +9153,9 @@
       "y": -3926.59375,
       "z": 537.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_002_x538_y-3878_z497.jpg",
@@ -7693,7 +9164,9 @@
       "y": -3878.34375,
       "z": 497.375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_003_x246_y-3942_z477.jpg",
@@ -7702,7 +9175,9 @@
       "y": -3941.71875,
       "z": 477.25
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_004_x-2_y-3806_z477.jpg",
@@ -7711,7 +9186,9 @@
       "y": -3806.375,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_005_x-36_y-3529_z477.jpg",
@@ -7720,7 +9197,9 @@
       "y": -3529.1875,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_006_x25_y-3120_z477.jpg",
@@ -7729,7 +9208,9 @@
       "y": -3120.46875,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_007_x160_y-2776_z477.jpg",
@@ -7738,7 +9219,9 @@
       "y": -2776.28125,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_008_x326_y-2623_z477.jpg",
@@ -7747,7 +9230,9 @@
       "y": -2623.25,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_009_x337_y-2604_z477.jpg",
@@ -7756,7 +9241,9 @@
       "y": -2604.4375,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_010_x435_y-2158_z477.jpg",
@@ -7765,7 +9252,9 @@
       "y": -2158.25,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_011_x416_y-1824_z477.jpg",
@@ -7774,7 +9263,9 @@
       "y": -1823.59375,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_012_x695_y-1594_z477.jpg",
@@ -7783,7 +9274,9 @@
       "y": -1594.5,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_013_x1092_y-1430_z477.jpg",
@@ -7792,7 +9285,9 @@
       "y": -1430.34375,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_014_x1433_y-1221_z477.jpg",
@@ -7801,7 +9296,9 @@
       "y": -1221.5,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_015_x1594_y-1394_z477.jpg",
@@ -7810,7 +9307,9 @@
       "y": -1394.3125,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_016_x1770_y-1399_z477.jpg",
@@ -7819,7 +9318,9 @@
       "y": -1398.90625,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_017_x2110_y-1652_z477.jpg",
@@ -7828,7 +9329,9 @@
       "y": -1652.25,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_018_x2497_y-1455_z477.jpg",
@@ -7837,7 +9340,9 @@
       "y": -1454.59375,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_019_x2593_y-1099_z477.jpg",
@@ -7846,7 +9351,9 @@
       "y": -1099.25,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_020_x2732_y-656_z477.jpg",
@@ -7855,7 +9362,9 @@
       "y": -656.125,
       "z": 477.125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_021_x2826_y-311_z335.jpg",
@@ -7864,7 +9373,9 @@
       "y": -311.09375,
       "z": 334.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_022_x2763_y-62_z288.jpg",
@@ -7873,7 +9384,9 @@
       "y": -62.28125,
       "z": 288.09375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_023_x2819_y128_z407.jpg",
@@ -7882,7 +9395,9 @@
       "y": 128.21875,
       "z": 407.03125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_024_x2896_y526_z472.jpg",
@@ -7891,7 +9406,9 @@
       "y": 525.9375,
       "z": 472.21875
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_025_x2856_y833_z370.jpg",
@@ -7900,7 +9417,9 @@
       "y": 832.9375,
       "z": 369.90625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_026_x2664_y1151_z366.jpg",
@@ -7909,7 +9428,9 @@
       "y": 1150.96875,
       "z": 366.34375
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_027_x2184_y1385_z352.jpg",
@@ -7918,7 +9439,9 @@
       "y": 1385.28125,
       "z": 352.3125
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_028_x1812_y1315_z267.jpg",
@@ -7927,7 +9450,9 @@
       "y": 1315.21875,
       "z": 267.40625
     },
-    "tags": []
+    "tags": [
+      "Area/AboveGround"
+    ]
   },
   {
     "fileName": "cap_029_x1552_y1476_z257.jpg",
@@ -7936,7 +9461,9 @@
       "y": 1475.53125,
       "z": 256.78125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_030_x1588_y1823_z257.jpg",
@@ -7945,7 +9472,9 @@
       "y": 1822.6875,
       "z": 256.78125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_031_x1700_y1933_z257.jpg",
@@ -7954,7 +9483,9 @@
       "y": 1933.09375,
       "z": 256.78125
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_032_x1995_y1913_z205.jpg",
@@ -7963,7 +9494,9 @@
       "y": 1912.78125,
       "z": 205.1875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_033_x2316_y1968_z100.jpg",
@@ -7972,7 +9505,9 @@
       "y": 1967.75,
       "z": 99.71875
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_034_x2446_y2167_z97.jpg",
@@ -7981,7 +9516,9 @@
       "y": 2167.09375,
       "z": 97.25
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_035_x2686_y2244_z21.jpg",
@@ -7990,7 +9527,9 @@
       "y": 2243.78125,
       "z": 20.9375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_036_x2988_y2271_z-29.jpg",
@@ -7999,7 +9538,9 @@
       "y": 2271.28125,
       "z": -28.9375
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_037_x3375_y2235_z-29.jpg",
@@ -8008,7 +9549,9 @@
       "y": 2234.9375,
       "z": -29.5
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_038_x3684_y2063_z-29.jpg",
@@ -8017,7 +9560,9 @@
       "y": 2063.1875,
       "z": -29.5
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_039_x3992_y2044_z-29.jpg",
@@ -8026,7 +9571,9 @@
       "y": 2044.25,
       "z": -29.5
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_040_x4248_y2084_z-29.jpg",
@@ -8035,7 +9582,9 @@
       "y": 2083.90625,
       "z": -29.5
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_041_x4050_y2249_z-29.jpg",
@@ -8044,7 +9593,9 @@
       "y": 2249.1875,
       "z": -29.5
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   },
   {
     "fileName": "cap_042_x4052_y2615_z-144.jpg",
@@ -8053,6 +9604,8 @@
       "y": 2614.75,
       "z": -144.25
     },
-    "tags": []
+    "tags": [
+      "Area/Underground"
+    ]
   }
 ]

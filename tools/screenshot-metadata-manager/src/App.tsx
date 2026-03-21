@@ -1,4 +1,4 @@
-import {useState, useEffect, useCallback, useRef} from 'react'
+import {useState, useEffect, useCallback, useRef, useMemo} from 'react'
 import type {MetadataEntry} from './types'
 import {fetchMetadata, saveMetadata, fetchTagDefs, saveTagDefs, deleteEntry, fetchProduction, promoteEntry, demoteEntry} from './utils/api'
 import MapView from './components/MapView'
@@ -39,6 +39,7 @@ export default function App() {
     const filteredEntriesRef = useRef<MetadataEntry[]>([])
     const productionFileNamesRef = useRef(productionFileNames)
     productionFileNamesRef.current = productionFileNames
+    const prevFilteredRef = useRef<MetadataEntry[]>([])
 
     // ── Persist (declared early so keyboard effect can reference it) ──
     const handleSave = useCallback(async () => {
@@ -99,18 +100,38 @@ export default function App() {
                 return
             }
             // Arrow key navigation — step through filtered entries when 1 is selected
+            // Shift+Arrow extends the selection to include the next/prev entry
             if (!inInput && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
                 const sel = selectedRef.current
-                if (sel.size !== 1) return
                 const filtered = filteredEntriesRef.current
-                const currentId = [...sel][0]
-                const idx = filtered.findIndex((e) => e.id === currentId)
-                if (idx === -1) return
-                let nextIdx = e.key === 'ArrowRight' ? idx + 1 : idx - 1
-                if (nextIdx < 0) nextIdx = filtered.length - 1
-                if (nextIdx >= filtered.length) nextIdx = 0
-                const nextId = filtered[nextIdx]?.id
-                if (nextId) setSelected(new Set([nextId]))
+                if (sel.size === 0 || filtered.length === 0) return
+
+                if (e.shiftKey && sel.size >= 1) {
+                    e.preventDefault()
+                    const selectedIndices = [...sel]
+                        .map((id) => filtered.findIndex((entry) => entry.id === id))
+                        .filter((i) => i >= 0)
+                    if (selectedIndices.length === 0) return
+                    let nextIdx: number
+                    if (e.key === 'ArrowRight') {
+                        const maxIdx = Math.max(...selectedIndices)
+                        nextIdx = maxIdx + 1 >= filtered.length ? 0 : maxIdx + 1
+                    } else {
+                        const minIdx = Math.min(...selectedIndices)
+                        nextIdx = minIdx - 1 < 0 ? filtered.length - 1 : minIdx - 1
+                    }
+                    const nextId = filtered[nextIdx]?.id
+                    if (nextId) setSelected((prev) => new Set([...prev, nextId]))
+                } else if (!e.shiftKey && sel.size === 1) {
+                    const currentId = [...sel][0]
+                    const idx = filtered.findIndex((e) => e.id === currentId)
+                    if (idx === -1) return
+                    let nextIdx = e.key === 'ArrowRight' ? idx + 1 : idx - 1
+                    if (nextIdx < 0) nextIdx = filtered.length - 1
+                    if (nextIdx >= filtered.length) nextIdx = 0
+                    const nextId = filtered[nextIdx]?.id
+                    if (nextId) setSelected(new Set([nextId]))
+                }
             }
         }
         window.addEventListener('keydown', handler)
@@ -118,7 +139,7 @@ export default function App() {
     }, [handleSave])
 
     // ── Derived state ─────────────────────────────────────────
-    const filteredEntries = (() => {
+    const filteredEntries = useMemo(() => {
         let result = entries
 
         // Production/dev filter
@@ -128,21 +149,59 @@ export default function App() {
             result = result.filter((e) => !productionFileNames.has(e.fileName))
         }
 
-        // Tag filter
+        // Tag + filename filter
         if (!searchQuery.trim()) return result
         try {
             const regex = new RegExp(searchQuery, 'i')
-            const matches = (e: MetadataEntry) => e.tags.some((tag) => regex.test(tag))
+            const matches = (e: MetadataEntry) =>
+                e.tags.some((tag) => regex.test(tag)) || regex.test(e.fileName)
             return filterMode === 'include'
                 ? result.filter(matches)
                 : result.filter((e) => !matches(e))
         } catch {
             return filterMode === 'include' ? [] : result
         }
-    })()
+    }, [entries, productionFilter, productionFileNames, searchQuery, filterMode])
 
     // Keep ref in sync so arrow key handler can access it
     filteredEntriesRef.current = filteredEntries
+
+    // ── Deselect entries filtered out by tag operations ────────
+    useEffect(() => {
+        const prev = prevFilteredRef.current
+        prevFilteredRef.current = filteredEntries
+
+        if (!searchQuery.trim() || prev.length === 0) return
+
+        const newFilteredIds = new Set(filteredEntries.map((e) => e.id))
+        const sel = selectedRef.current
+        if (sel.size === 0) return
+
+        const removedSelected = [...sel].filter((id) => !newFilteredIds.has(id))
+        if (removedSelected.length === 0) return
+
+        const removedIndices = removedSelected
+            .map((id) => prev.findIndex((e) => e.id === id))
+            .filter((i) => i >= 0)
+        if (removedIndices.length === 0) return
+
+        const firstIdx = Math.min(...removedIndices)
+
+        setSelected((prevSel) => {
+            const next = new Set(prevSel)
+            for (const id of removedSelected) next.delete(id)
+
+            if (next.size === 0 && filteredEntries.length > 0) {
+                if (firstIdx > 0 && newFilteredIds.has(prev[firstIdx - 1]?.id)) {
+                    next.add(prev[firstIdx - 1].id)
+                } else if (filteredEntries.length > 0) {
+                    next.add(filteredEntries[Math.min(firstIdx, filteredEntries.length - 1)].id)
+                }
+            }
+
+            return next
+        })
+    }, [filteredEntries, searchQuery])
 
     const selectedEntries = entries.filter((e) => selected.has(e.id))
 
@@ -429,7 +488,7 @@ export default function App() {
                     </button>
                     <input
                         style={{...styles.searchInput, border: regexInvalid ? '1px solid #aa3333' : '1px solid #2e2e66'}}
-                        placeholder="Filter by tag (regex)…"
+                        placeholder="Filter by tag or filename (regex)…"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         spellCheck={false}
@@ -497,6 +556,7 @@ export default function App() {
                     onDeleteSelected={handleDeleteSelected}
                     onDemoteSelected={handleDemoteSelected}
                     onHoverEntry={setHoveredId}
+                    onSelect={handleSelect}
                     onSelectSingle={handleSelectSingle}
                     selectedIds={ids}
                     productionFileNames={productionFileNames}

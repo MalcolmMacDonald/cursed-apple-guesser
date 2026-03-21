@@ -15,6 +15,7 @@ interface Props {
     onDeleteSelected: () => void
     onDemoteSelected: () => void
     onHoverEntry: (id: string | null) => void
+    onSelect: (id: string, multi: boolean) => void
     onSelectSingle: (id: string) => void
     productionFileNames: Set<string>
     onPromote: (id: string) => void
@@ -34,6 +35,7 @@ export default function ImagePanel({
                                        onDeleteSelected,
                                        onDemoteSelected,
                                        onHoverEntry,
+                                       onSelect,
                                        onSelectSingle,
                                        productionFileNames,
                                        onPromote,
@@ -60,6 +62,7 @@ export default function ImagePanel({
                         entries={selectedEntries}
                         productionFileNames={productionFileNames}
                         onHoverEntry={onHoverEntry}
+                        onSelect={onSelect}
                         onSelectSingle={onSelectSingle}
                         onDeleteEntry={onDeleteEntry}
                         onDeleteAll={onDeleteSelected}
@@ -201,6 +204,7 @@ function MultiImageView({
                             entries,
                             productionFileNames,
                             onHoverEntry,
+                            onSelect,
                             onSelectSingle,
                             onDeleteEntry,
                             onDeleteAll,
@@ -210,6 +214,7 @@ function MultiImageView({
     entries: MetadataEntry[]
     productionFileNames: Set<string>
     onHoverEntry: (id: string | null) => void
+    onSelect: (id: string, multi: boolean) => void
     onSelectSingle: (id: string) => void
     onDeleteEntry: (id: string) => void
     onDeleteAll: () => void
@@ -265,8 +270,11 @@ function MultiImageView({
                         style={styles.thumbItem}
                         onMouseEnter={() => onHoverEntry(entry.id)}
                         onMouseLeave={() => onHoverEntry(null)}
-                        onClick={() => onSelectSingle(entry.id)}
-                        title={`${entry.sessionId}/${entry.fileName}\nClick to view solo`}
+                        onClick={(e) => {
+                            if (e.shiftKey) onSelect(entry.id, true)
+                            else onSelectSingle(entry.id)
+                        }}
+                        title={`${entry.sessionId}/${entry.fileName}\nClick to view solo · Shift+Click to remove from selection`}
                     >
                         <div style={styles.thumbImgWrap}>
                             <img

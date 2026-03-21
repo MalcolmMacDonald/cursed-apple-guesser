@@ -96,7 +96,7 @@ function readAllEntries(): any[] {
   return result
 }
 
-/** Write updated tags back into the appropriate session manifests. */
+/** Write updated tags back into the appropriate session manifests and production metadata. */
 function writeEntries(entries: any[]) {
   // Group by sessionId → fileName → tags
   const bySession = new Map<string, Map<string, string[]>>()
@@ -115,6 +115,16 @@ function writeEntries(entries: any[]) {
       tags: tagsMap.has(capture.fileName) ? tagsMap.get(capture.fileName) : (capture.tags ?? []),
     }))
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2))
+  }
+
+  // Also sync tags to production metadata.json for any promoted images
+  const productionMeta = readProductionMetadata()
+  if (productionMeta.length > 0) {
+    const tagsByFileName = new Map(entries.map((e) => [e.fileName, e.tags ?? []]))
+    const updated = productionMeta.map((p: any) =>
+      tagsByFileName.has(p.fileName) ? { ...p, tags: tagsByFileName.get(p.fileName) } : p
+    )
+    writeProductionMetadata(updated)
   }
 }
 

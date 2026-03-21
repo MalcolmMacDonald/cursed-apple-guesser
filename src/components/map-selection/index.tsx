@@ -40,6 +40,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
     } | null>(null);
     const [isHovered, setIsHovered] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
+    const [showUnderground, setShowUnderground] = useState(false);
     const [zoom, setZoom] = useState(1);
     const [panX, setPanX] = useState(0);
     const [panY, setPanY] = useState(0);
@@ -58,8 +59,8 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
     const imageSizeRef = useRef(0);
     const setLocationRef = useRef(setSelectedLocation);
 
-    zoomRef.current = zoom;
-    panRef.current = {x: panX, y: panY};
+    zoomRef.current = isHovered ? zoom : 1;
+    panRef.current = isHovered ? {x: panX, y: panY} : {x: 0, y: 0};
     isFlippedRef.current = isFlipped;
     animPhaseRef.current = animPhase;
     setLocationRef.current = setSelectedLocation;
@@ -178,7 +179,13 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
         const rawX = (e.clientX - rect.left) / rect.width;
         const rawY = (e.clientY - rect.top) / rect.height;
         const inCircle = Math.sqrt((rawX - 0.5) ** 2 + (rawY - 0.5) ** 2) <= 0.5;
-        setIsHovered(inCircle);
+        //set cursor style if in circle
+        if (inCircle) {
+            e.currentTarget.style.cursor = 'crosshair';
+        } else {
+            e.currentTarget.style.cursor = 'default';
+        }
+        setIsHovered(true);
         if (e.buttons === 1 && inCircle) {
             placePin(e.clientX, e.clientY, rect);
         }
@@ -205,6 +212,9 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                 imageSize: currentImageSize,
             });
             setAnimPhase('fixed');
+            setPanX(0);
+            setPanY(0);
+            setZoom(1);
             setIsHovered(false);
         });
 
@@ -242,12 +252,12 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
     let dynamicStyle: React.CSSProperties = {};
     if (animPhase === 'fixed' && fixedStyle) {
         dynamicStyle = {
-            position: 'fixed',
+            position: 'relative',
             left: fixedStyle.centerX,
             top: fixedStyle.centerY,
             right: 'auto',
             bottom: 'auto',
-            transform: 'translate(-50%, -50%) scale(1)',
+            transform: isFlipped ? 'translate(-50%, -50%) rotate(180deg) scale(1)' : 'translate(-50%, -50%) scale(1)',
             transformOrigin: 'center center',
             width: fixedStyle.width,
             margin: 0,
@@ -279,7 +289,12 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
             ref={divRef}
             style={dynamicStyle}
             onTransitionEnd={handleTransitionEnd}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseLeave={() => {
+                setIsHovered(false);
+                setZoom(1);
+                setPanX(0);
+                setPanY(0);
+            }}
         >
             <div
                 className="map"
@@ -288,6 +303,8 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                     width: imageSize,
                     height: imageSize,
                     overflow: 'hidden',
+                    position: 'relative',
+                    transformOrigin: 'center center',
                 }}
                 onClick={handleMapClick}
                 onMouseMove={handleMouseMove}
@@ -296,26 +313,19 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
             >
                 {/* Zoom + pan layer */}
                 <div style={{
-                    width: imageSize,
-                    height: imageSize,
+                    width: `100%`,
+                    height: `100%`,
                     transform: `translate(${panX}px, ${panY}px) scale(${zoom})`,
                     transformOrigin: 'center center',
-                    position: 'relative',
+                    position: 'inherit',
                 }}>
-                    {/* Flip layer */}
-                    <div style={{
-                        width: imageSize,
-                        height: imageSize,
-                        transform: isFlipped ? 'rotate(180deg)' : undefined,
-                        transformOrigin: 'center center',
-                        position: 'relative',
-                    }}>
-                        <MapDisplay
-                            imageSize={imageSize}
-                            onClick={undefined}
-                            onMouseMove={undefined}
-                        />
-                    </div>
+                    <MapDisplay
+                        imageSize={imageSize}
+                        onClick={undefined}
+                        onMouseMove={undefined}
+                        isFlipped={isFlipped}
+                        showUnderground={showUnderground}
+                    />
                     {/* Marker emoji - outside flip layer to maintain upright rotation */}
                     {selectedLocation && (
                         <div
@@ -325,13 +335,41 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                                 top: `${(isFlipped ? 1 - selectedLocation.y : selectedLocation.y) * 100}%`,
                                 fontSize: emojiSize,
                                 position: 'absolute',
+                                zIndex: 10,
                             }}
                             draggable={false}
                         >
                             {'\uD83D\uDCCD' /* 📍 */}
                         </div>
                     )}
+
                 </div>
+
+            </div>
+            <div className="map-selection__controls" style={animPhase !== 'idle' ? {visibility: 'hidden'} : undefined}>
+                <button
+                    className="map-flip-btn"
+                    onClick={() => setIsFlipped(f => !f)}
+                    disabled={animPhase !== 'idle'}
+                    title="View from opposing team's perspective"
+                >
+                    {isFlipped ? '\u21BA Normal' : '\u21BA Flip'}
+                </button>
+                <button
+                    className="map-flip-btn"
+                    onClick={() => setShowUnderground(u => !u)}
+                    disabled={animPhase !== 'idle'}
+                    title="Toggle underground view"
+                >
+                    {showUnderground ? '\u2191 Above Ground' : '\u2193 Underground'}
+                </button>
+                <button
+                    className="select-button"
+                    onClick={handleContinue}
+                    disabled={!selectedLocation || animPhase !== 'idle'}
+                >
+                    {selectedLocation ? "Continue" : "Select a location"}
+                </button>
             </div>
             {/* Faction label overlay — outside the circular clip, unaffected by zoom/pan */}
             <div
@@ -346,6 +384,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                 <div className="map-faction-label map-faction-label--amber"
                      style={{
                          transform: isFlipped ? 'rotate(180deg)' : undefined,
+                         textAlign: isFlipped ? 'right' : 'left',
                      }}
                 >
                     The Hidden King
@@ -353,27 +392,11 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
                 <div className="map-faction-label map-faction-label--sapphire"
                      style={{
                          transform: isFlipped ? 'rotate(180deg)' : undefined,
+                         textAlign: isFlipped ? 'left' : 'right',
                      }}
                 >
                     The Archmother
                 </div>
-            </div>
-            <div className="map-selection__controls" style={animPhase !== 'idle' ? {visibility: 'hidden'} : undefined}>
-                <button
-                    className="map-flip-btn"
-                    onClick={() => setIsFlipped(f => !f)}
-                    disabled={animPhase !== 'idle'}
-                    title="View from opposing team's perspective"
-                >
-                    {isFlipped ? '\u21BA Normal' : '\u21BA Flip'}
-                </button>
-                <button
-                    className="select-button"
-                    onClick={handleContinue}
-                    disabled={!selectedLocation || animPhase !== 'idle'}
-                >
-                    {selectedLocation ? "Continue" : "Select a location"}
-                </button>
             </div>
         </div>
     );
