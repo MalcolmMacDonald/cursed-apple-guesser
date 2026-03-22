@@ -51,7 +51,7 @@ function MapSelection({onSubmit}: {
     const transitionFiredRef = useRef(false);
     const divRef = useRef<HTMLDivElement>(null);
     const mapDivRef = useRef<HTMLDivElement>(null);
-    const pinchStartRef = useRef<{ dist: number; zoom: number } | null>(null);
+    const pinchStartRef = useRef<{ dist: number; zoom: number; midX: number; midY: number; panX: number; panY: number } | null>(null);
 
     // Refs so event handlers always see current values without stale closures
     const zoomRef = useRef(1);
@@ -132,14 +132,26 @@ function MapSelection({onSubmit}: {
                 if (dist <= 0.5) setLocationRef.current({x, y});
             } else if (e.touches.length === 2 && pinchStartRef.current) {
                 e.preventDefault();
+                const rect = el.getBoundingClientRect();
+                const size = imageSizeRef.current;
                 const dx = e.touches[0].clientX - e.touches[1].clientX;
                 const dy = e.touches[0].clientY - e.touches[1].clientY;
                 const newDist = Math.sqrt(dx * dx + dy * dy);
                 const newZoom = Math.max(1, Math.min(MAX_ZOOM,
                     pinchStartRef.current.zoom * newDist / pinchStartRef.current.dist
                 ));
-                const size = imageSizeRef.current;
-                const clamped = clampPan(panRef.current.x, panRef.current.y, newZoom, size);
+                // Current midpoint relative to map center
+                const curMidX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left - size / 2;
+                const curMidY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top - size / 2;
+                // Initial midpoint and pan at pinch start
+                const {midX: initMidX, midY: initMidY, panX: startPanX, panY: startPanY, zoom: startZoom} = pinchStartRef.current;
+                // Zoom around the initial pinch midpoint
+                const zoomedPanX = initMidX - (initMidX - startPanX) * (newZoom / startZoom);
+                const zoomedPanY = initMidY - (initMidY - startPanY) * (newZoom / startZoom);
+                // Add translation from midpoint movement
+                const newPanX = zoomedPanX + (curMidX - initMidX);
+                const newPanY = zoomedPanY + (curMidY - initMidY);
+                const clamped = clampPan(newPanX, newPanY, newZoom, size);
                 zoomRef.current = newZoom;
                 panRef.current = clamped;
                 setZoom(newZoom);
@@ -156,7 +168,18 @@ function MapSelection({onSubmit}: {
         if (e.touches.length === 2) {
             const dx = e.touches[0].clientX - e.touches[1].clientX;
             const dy = e.touches[0].clientY - e.touches[1].clientY;
-            pinchStartRef.current = {dist: Math.sqrt(dx * dx + dy * dy), zoom};
+            const rect = e.currentTarget.getBoundingClientRect();
+            const size = imageSizeRef.current;
+            const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left - size / 2;
+            const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top - size / 2;
+            pinchStartRef.current = {
+                dist: Math.sqrt(dx * dx + dy * dy),
+                zoom,
+                midX,
+                midY,
+                panX,
+                panY,
+            };
         }
     };
 
