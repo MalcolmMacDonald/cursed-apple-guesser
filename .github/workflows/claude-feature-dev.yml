@@ -4,11 +4,7 @@ on:
   issues:
     types: [ labeled ]
 
-permissions:
-  contents: write
-  pull-requests: write
-  issues: write
-  workflows: write
+permissions: write-all
 
 jobs:
   develop-feature:
