@@ -32,11 +32,12 @@ function LGRound({state, onSubmit}: RoundProps<LGGameState>) {
                 </div>
             )}
             <MapSelection
-                onSubmit={(guessLocation, isFlipped) => {
+                onSubmit={(guessLocation, isFlipped, showUnderground) => {
                     onSubmit({
                         ...state,
                         guesses: [...state.guesses, guessLocation],
-                        flips: [...state.flips, isFlipped]
+                        flips: [...state.flips, isFlipped],
+                        undergrounds: [...state.undergrounds, showUnderground],
                     });
                 }}
             />
