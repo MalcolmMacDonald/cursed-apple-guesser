@@ -1,8 +1,9 @@
 import React from 'react';
+import type {RoundScore} from "../types.ts";
 
 interface GameFinalProps {
     gameName: string;
-    scores: number[];
+    scores: RoundScore[];
     totalRounds: number;
     isDaily: boolean;
     dailyDate?: string;
@@ -10,10 +11,11 @@ interface GameFinalProps {
     seed?: string;
     /** Max score per round for display. Defaults to 1000. */
     maxScorePerRound?: number;
-    formatShareText: (scores: number[], totalScore: number, date: string, url: string) => string;
+    formatShareText: (scores: RoundScore[], totalScore: number, date: string, url: string) => string;
     onPlayAgain: () => void;
     onExit?: () => void;
 }
+
 
 function GameFinal({
                        gameName: _gameName,
@@ -29,7 +31,7 @@ function GameFinal({
                        onExit,
                    }: GameFinalProps) {
     const [copied, setCopied] = React.useState(false);
-    const totalScore = scores.reduce((a, b) => a + b, 0);
+    const totalScore = scores.reduce((a, b) => a + b.score, 0);
 
     React.useEffect(() => {
         if (isDaily && dailyDate) {
@@ -38,7 +40,7 @@ function GameFinal({
     }, [isDaily, dailyDate, storageKey]);
 
     const handleCopyResults = () => {
-        const date = dailyDate ?? new Date().toLocaleString("%D-%B-%Y");
+        const date = dailyDate ?? new Date().toISOString().split('T')[0];
         const url = window.location.href;
         navigator.clipboard.writeText(formatShareText(scores, totalScore, date, url));
         setCopied(true);
@@ -52,8 +54,8 @@ function GameFinal({
                 {scores.map((score, i) => (
                     <div key={i} className="final-score__round-row">
                         <span className="final-score__round-label">Round {i + 1}</span>
-                        <span className="final-score__round-score">{score}</span>
-                        <span className="final-score__round-max">/ {maxScorePerRound}</span>
+                        <span className="final-score__round-score">{score.score}</span>
+                        <span className="final-score__round-max">/ {score.maxScore}</span>
                     </div>
                 ))}
             </div>

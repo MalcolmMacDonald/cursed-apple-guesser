@@ -1,13 +1,18 @@
-import type { FC } from 'react';
+import type {FC} from 'react';
 
 /** Every game's state must include these base fields. GameFlow reads them to drive routing. */
 export interface BaseGameState {
     currentRound: number;
     totalRounds: number;
-    scores: number[];
+    scores: RoundScore[];
     seed: string;
     isDaily: boolean;
     dailyDate?: string;
+}
+
+export interface RoundScore {
+    score: number;
+    maxScore: number;
 }
 
 export type GameFlowScreen = 'landing' | 'game' | 'intermediate_scoring' | 'final_scoring';
@@ -24,7 +29,7 @@ export interface RoundProps<TState extends BaseGameState> {
 
 export interface ScoringProps<TState extends BaseGameState> {
     state: TState;
-    onContinue: (score: number) => void;
+    onContinue: (score: RoundScore) => void;
 }
 
 export interface FinalProps<TState extends BaseGameState> {

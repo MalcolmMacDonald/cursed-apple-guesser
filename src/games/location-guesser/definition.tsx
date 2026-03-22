@@ -80,7 +80,7 @@ function LGFinal({state, onPlayAgain, onExit}: FinalProps<LGGameState>) {
             formatShareText={(scores, totalScore, date, url) =>
                 [
                     `Deadlock Map Trainer - Location Guesser - ${date}`,
-                    scores.map(s => getScoreEmoji(s)).join(' '),
+                    scores.map(s => getScoreEmoji(s.score)).join(' '),
                     `${totalScore}/${scores.length * 5}`,
                     url,
                 ].join('\n')
