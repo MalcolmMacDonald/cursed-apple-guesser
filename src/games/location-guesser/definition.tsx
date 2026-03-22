@@ -16,6 +16,7 @@ export interface LGGameState extends BaseGameState {
     locations: LocationData[];
     guesses: MapLocation[];
     flips: boolean[];
+    undergrounds: boolean[];
 }
 
 function LGLanding({onStart}: LandingProps) {
@@ -103,6 +104,7 @@ export const locationGuesserDefinition: GameDefinition<LGGameState> = {
             locations,
             guesses: [],
             flips: [],
+            undergrounds: [],
             scores: [],
             currentRound: 0,
             totalRounds: count,

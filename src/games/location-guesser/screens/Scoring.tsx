@@ -26,6 +26,7 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
     const scoreColor = SCORE_TIERS.find(t => t.score === score)?.color ?? '#9E9E9E';
 
     const wasFlipped = state.flips[state.currentRound] ?? false;
+    const wasUnderground = state.undergrounds[state.currentRound] ?? false;
 
     const topbarHeight = 52;
     const imageSize = Math.min(window.innerWidth * 0.80, (window.innerHeight - topbarHeight) * 0.55);
@@ -101,7 +102,7 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                             transformOrigin: 'center center',
                             position: 'relative',
                         }}>
-                        <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined}/>
+                        <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined} showUnderground={wasUnderground}/>
                         {/* Isoline score circles */}
                         <svg
                             style={{
