@@ -21,6 +21,7 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
 
     const usedMirror = rawMirrorScore > originalScore;
     const score = usedMirror ? mirrorScore : originalScore;
+    const maxScore = usedMirror ? 3 : 5;
     const effectiveDistance = usedMirror ? mirrorDistance : originalDistance;
 
     const scoreColor = SCORE_TIERS.find(t => t.score === score)?.color ?? '#9E9E9E';
@@ -153,15 +154,15 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                                 {rawMirrorScore}
                             </span>
                             {' → '}
-                            {score} <span className="intermediate-score__score-max">/ 3</span>
+                            {score} <span className="intermediate-score__score-max">/{maxScore}</span>
                         </p>
                     ) : (
                         <p className="intermediate-score__score" style={{color: scoreColor}}>
-                            {score} <span className="intermediate-score__score-max">/ 5</span>
+                            {score} <span className="intermediate-score__score-max">/{maxScore}</span>
                         </p>
                     )}
                 </div>
-                <button className="intermediate-score__btn" onClick={() => onContinue(score)}>
+                <button className="intermediate-score__btn" onClick={() => onContinue({score, maxScore})}>
                     {isLastRound ? 'See Final Score' : 'Next Round'}
                 </button>
             </div>
