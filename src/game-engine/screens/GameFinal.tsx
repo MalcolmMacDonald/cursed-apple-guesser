@@ -11,7 +11,7 @@ interface GameFinalProps {
     seed?: string;
     /** Max score per round for display. Defaults to 1000. */
     maxScorePerRound?: number;
-    formatShareText: (scores: RoundScore[], totalScore: number, date: string, url: string) => string;
+    formatShareText: (isDaily: boolean, scores: RoundScore[], totalScore: number, seed: string, date: string, url: string) => string;
     onPlayAgain: () => void;
     onExit?: () => void;
 }
@@ -42,7 +42,7 @@ function GameFinal({
     const handleCopyResults = () => {
         const date = dailyDate ?? new Date().toISOString().split('T')[0];
         const url = window.location.href;
-        navigator.clipboard.writeText(formatShareText(scores, totalScore, date, url));
+        navigator.clipboard.writeText(formatShareText(isDaily, scores, totalScore, seed ??= "", date, url));
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };

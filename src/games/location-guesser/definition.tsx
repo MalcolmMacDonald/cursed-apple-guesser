@@ -77,9 +77,9 @@ function LGFinal({state, onPlayAgain, onExit}: FinalProps<LGGameState>) {
             storageKey={LG_DAILY_KEY}
             seed={state.seed}
             maxScorePerRound={5}
-            formatShareText={(scores, totalScore, date, url) =>
+            formatShareText={(isDaily, scores, totalScore, seed, date, url) =>
                 [
-                    `Deadlock Map Trainer - Location Guesser - ${date}`,
+                    isDaily ? `Deadlock Map Trainer - Location Guesser - ${date}` : `Deadlock Map Trainer - Location Guesser - Seed ${seed}`,
                     scores.map(s => getScoreEmoji(s.score)).join(' '),
                     `${totalScore}/${scores.length * 5}`,
                     url,

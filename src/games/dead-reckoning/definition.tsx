@@ -5,8 +5,8 @@ import GameLanding from '../../game-engine/screens/GameLanding';
 import GameFinal from '../../game-engine/screens/GameFinal';
 import DRRound from './screens/Round';
 import DRScoring from './screens/Scoring';
-import type { GameDefinition, LandingProps, FinalProps, BaseGameState } from '../../game-engine/types';
-import type { LocationData, NavigationStep } from '../../types';
+import type {GameDefinition, LandingProps, FinalProps, BaseGameState} from '../../game-engine/types';
+import type {LocationData, NavigationStep} from '../../types';
 
 const ROUND_COUNT = 5;
 const CARDINALS = [0, 90, 180, 270] as const;
@@ -31,7 +31,7 @@ function DRLanding(props: LandingProps) {
     );
 }
 
-function DRFinal({ state, onPlayAgain, onExit }: FinalProps<DRGameState>) {
+function DRFinal({state, onPlayAgain, onExit}: FinalProps<DRGameState>) {
     return (
         <GameFinal
             gameName="Dead Reckoning"
@@ -40,9 +40,9 @@ function DRFinal({ state, onPlayAgain, onExit }: FinalProps<DRGameState>) {
             isDaily={state.isDaily}
             dailyDate={state.dailyDate}
             storageKey={DR_DAILY_KEY}
-            formatShareText={(scores, totalScore, date, url) =>
+            formatShareText={(isDaily, scores, totalScore, seed, date, url) =>
                 [
-                    `Deadlock Map Trainer - Dead Reckoning - ${date} - ${url}`,
+                    isDaily ? `Deadlock Map Trainer - Dead Reckoning - ${date} - ${url}` : `Deadlock Map Trainer - Dead Reckoning - Seed ${seed}- ${url}`,
                     ...scores.map((s, i) => `Round ${i + 1}: ${s} / 1000`),
                     `Total: ${totalScore} / ${scores.length * 1000}`,
                 ].join('\n')
@@ -57,13 +57,13 @@ function pickPairsAndFacings(rng: () => number): { pairs: LocationPair[]; facing
     const shuffled = ([...allLocations] as LocationData[]).sort(() => 0.5 - rng());
     const pairs: LocationPair[] = [];
     for (let i = 0; i < ROUND_COUNT; i++) {
-        pairs.push({ start: shuffled[i], end: shuffled[i + ROUND_COUNT] });
+        pairs.push({start: shuffled[i], end: shuffled[i + ROUND_COUNT]});
     }
     const facings = Array.from(
-        { length: ROUND_COUNT },
+        {length: ROUND_COUNT},
         () => CARDINALS[Math.floor(rng() * 4)]
     );
-    return { pairs, facings };
+    return {pairs, facings};
 }
 
 export const deadReckoningDefinition: GameDefinition<DRGameState> = {
@@ -73,7 +73,7 @@ export const deadReckoningDefinition: GameDefinition<DRGameState> = {
 
     initState(seed, isDaily) {
         const rng = seedRandom(seed);
-        const { pairs, facings } = pickPairsAndFacings(rng);
+        const {pairs, facings} = pickPairsAndFacings(rng);
         return {
             pairs,
             allSteps: [],
