@@ -10,7 +10,7 @@ import {formatCoord, generateSessionId} from "./utils.ts";
 import type {CaptureConfig} from "./types.ts";
 
 const USAGE = `
-deadlock-capture — Automated screenshot capture for Cursed Apple Guesser
+deadlock-capture — Automated screenshot capture for Map Trainer
 
 USAGE
   bun run capture <command> [options]
