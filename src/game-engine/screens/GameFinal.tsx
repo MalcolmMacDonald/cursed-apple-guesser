@@ -48,7 +48,16 @@ function GameFinal({
     return (
         <div className="final-score">
             <h2 className="final-score__title">Final Score</h2>
-            <p className="final-score__subtitle">Your total score is:</p>
+            <div className="final-score__rounds">
+                {scores.map((score, i) => (
+                    <div key={i} className="final-score__round-row">
+                        <span className="final-score__round-label">Round {i + 1}</span>
+                        <span className="final-score__round-score">{score}</span>
+                        <span className="final-score__round-max">/ {maxScorePerRound}</span>
+                    </div>
+                ))}
+            </div>
+            <p className="final-score__subtitle">Total score</p>
             <p className="final-score__total">{totalScore}</p>
             <p className="final-score__total-max">out of a possible {totalRounds * maxScorePerRound}</p>
             {!isDaily && seed && (
