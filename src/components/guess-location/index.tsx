@@ -8,17 +8,23 @@ function toNormalized(loc: MapLocation) {
     };
 }
 
-function GuessLocation({actualLocation, guessLocation, mirrorLocation, usedMirror, imageSize, zoom = 1}: {
+function GuessLocation({actualLocation, guessLocation, mirrorLocation, usedMirror, imageSize, zoom = 1, isFlipped = false}: {
     actualLocation: MapLocation,
     guessLocation: MapLocation,
     mirrorLocation: MapLocation,
     usedMirror: boolean,
     imageSize: number,
     zoom?: number,
+    isFlipped?: boolean,
 }) {
-    const actual = toNormalized(actualLocation);
-    const guess = toNormalized(guessLocation);
-    const mirror = toNormalized(mirrorLocation);
+    const actualRaw = toNormalized(actualLocation);
+    const guessRaw = toNormalized(guessLocation);
+    const mirrorRaw = toNormalized(mirrorLocation);
+
+    const f = (n: {x: number, y: number}) => isFlipped ? {x: 1 - n.x, y: 1 - n.y} : n;
+    const actual = f(actualRaw);
+    const guess = f(guessRaw);
+    const mirror = f(mirrorRaw);
 
     // Score line goes from guess to whichever location was used for scoring
     const scoreTo = usedMirror ? mirror : actual;

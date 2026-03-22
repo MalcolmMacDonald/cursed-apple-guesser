@@ -44,7 +44,7 @@ src/
     map-selection/        # Interactive minimap for clicking a guess; shows red pin
     guess-location/       # Overlays actual (white) and guessed (red) pins + SVG line
   types.ts                # Shared TypeScript types
-  App.tsx                 # Root; hub/game router ('hub' | 'geoguesser'); renders TopBar
+  App.tsx                 # Root; hub/game router ('hub' | 'location-guesser'); renders TopBar
 
 public/
   locations/

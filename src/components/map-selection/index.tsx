@@ -29,7 +29,9 @@ function clampPan(px: number, py: number, z: number, size: number) {
     };
 }
 
-function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped: boolean, showUnderground: boolean) => void }) {
+function MapSelection({onSubmit}: {
+    onSubmit: (location: MapLocation, isFlipped: boolean, showUnderground: boolean) => void
+}) {
     const [selectedLocation, setSelectedLocation] = useState<{ x: number, y: number } | null>(null);
     const [animPhase, setAnimPhase] = useState<'idle' | 'fixed' | 'centering'>('idle');
     const [fixedStyle, setFixedStyle] = useState<{
@@ -271,7 +273,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
             top: '50%',
             right: 'auto',
             bottom: 'auto',
-            transform: `translate(-50%, -50%) scale(${centeredScale})`,
+            transform: isFlipped ? `translate(-50%, -50%) rotate(180deg) scale(${centeredScale})` : `translate(-50%, -50%) scale(${centeredScale})`,
             transformOrigin: 'center center',
             width: fixedStyle.width,
             margin: 0,
