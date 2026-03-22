@@ -29,7 +29,7 @@ function clampPan(px: number, py: number, z: number, size: number) {
     };
 }
 
-function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped: boolean) => void }) {
+function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped: boolean, showUnderground: boolean) => void }) {
     const [selectedLocation, setSelectedLocation] = useState<{ x: number, y: number } | null>(null);
     const [animPhase, setAnimPhase] = useState<'idle' | 'fixed' | 'centering'>('idle');
     const [fixedStyle, setFixedStyle] = useState<{
@@ -221,7 +221,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
         const safetyId = setTimeout(() => {
             if (!transitionFiredRef.current) {
                 transitionFiredRef.current = true;
-                onSubmit(pendingLocationRef.current!, isFlipped);
+                onSubmit(pendingLocationRef.current!, isFlipped, showUnderground);
             }
         }, 700);
 
@@ -231,7 +231,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
             setTimeout(() => {
                 if (!transitionFiredRef.current) {
                     transitionFiredRef.current = true;
-                    onSubmit(pendingLocationRef.current!, isFlipped);
+                    onSubmit(pendingLocationRef.current!, isFlipped, showUnderground);
                 }
             }, 600);
         });
@@ -242,7 +242,7 @@ function MapSelection({onSubmit}: { onSubmit: (location: MapLocation, isFlipped:
         if (e.propertyName !== 'left') return;
         if (animPhase === 'centering' && !transitionFiredRef.current) {
             transitionFiredRef.current = true;
-            onSubmit(pendingLocationRef.current!, isFlipped);
+            onSubmit(pendingLocationRef.current!, isFlipped, showUnderground);
         }
     };
 
