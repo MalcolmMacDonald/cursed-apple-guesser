@@ -39,4 +39,4 @@ jobs:
           branch: gh-pages
           folder: dist
           target-folder: dev
-          clean: false
+          clean: true
