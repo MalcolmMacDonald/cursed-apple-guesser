@@ -1,0 +1,11 @@
+name: Feature Request or Bug Report
+description: Report a bug or request a new feature
+labels: ["claude"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the feature you'd like or the bug you encountered
+    validations:
+      required: true
