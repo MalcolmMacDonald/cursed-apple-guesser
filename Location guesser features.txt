@@ -1,7 +1,0 @@
-Location guesser features
-Change score to discrete distances, visible as multicoloured isoline circles in the scoring screen
-Score players 1-5 based on the distance category they fall into
-distances should be configurable easily in the source code
-Copying your score should give you emoji outputs for each round score, instead of numbers, emojis should also be easily configurable in source code
-Final score should be X/(rounds * 5)
-On mobile portait mode, the screenshot shown should be fully visible, not cut off. Scale down the screenshot if you have to, since its in landscape

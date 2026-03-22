@@ -1,4 +1,0 @@
-
-
-start the "name that spot" mode
-    only use locations with tags "Location/*" 

@@ -3443,7 +3443,8 @@
       "z": 516.15625
     },
     "tags": [
-      "Area/AboveGround"
+      "Area/AboveGround",
+      "Difficulty/Easy"
     ]
   },
   {
@@ -4438,7 +4439,8 @@
       "z": 664.8125
     },
     "tags": [
-      "Area/AboveGround"
+      "Area/AboveGround",
+      "Difficulty/Hard"
     ]
   },
   {

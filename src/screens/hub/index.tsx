@@ -14,7 +14,7 @@ type GameEntry = {
 
 const games: GameEntry[] = [
     {
-        id: "geoguesser",
+        id: "location-guesser",
         title: "Location Guesser",
         description: "Drop a pin on the map to guess where a screenshot was taken. The closer you are, the higher you score.",
         icon: "🗺️",
@@ -29,7 +29,7 @@ const games: GameEntry[] = [
         description: "You're shown a start and a destination. Give step-by-step directions — forward, left, turn around — to get there.",
         icon: "🧭",
         gradient: "linear-gradient(135deg, #3d2000 0%, #7a4500 50%, #b86800 100%)",
-        available: true,
+        available: false,
         tags: ["Navigation", "5 Rounds"],
         dailyStorageKey: 'drDaily_completed',
     },
@@ -74,9 +74,13 @@ function useDailyCountdown(): string {
 }
 
 function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void }) {
-    const dailyDone = game.dailyStorageKey
+    let dailyDone = game.dailyStorageKey
         ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
         : false;
+    //if in dev mode, always set daily done to false
+    if (import.meta.env.DEV) {
+        dailyDone = false;
+    }
     const countdown = useDailyCountdown();
 
     return (
@@ -102,7 +106,7 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                                     onClick={onPlayDaily}
                                     disabled={dailyDone}
                                 >
-                                    {dailyDone ? 'Daily Done ✓' : '🚧 (WIP) 🚧 Daily Challenge'}
+                                    {dailyDone ? 'Daily Done ✓' : 'Daily Challenge'}
                                 </button>
                                 {dailyDone && (
                                     <p className="hub-card__daily-timer">Next in {countdown}</p>
@@ -125,7 +129,9 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
 
     React.useEffect(() => {
         document.title = isDev ? 'Deadlock Map Trainer (DEV)' : 'Deadlock Map Trainer';
-        return () => { document.title = 'Deadlock Map Trainer'; };
+        return () => {
+            document.title = 'Deadlock Map Trainer';
+        };
     }, [isDev]);
 
     return (
@@ -164,9 +170,9 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
             </div>
 
             {import.meta.env.DEV && (
-                <div style={{ marginTop: 24 }}>
+                <div style={{marginTop: 24}}>
                     <div className="hub-divider"/>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '12px 0 16px' }}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: 10, margin: '12px 0 16px'}}>
                         <span style={{
                             background: '#f9e2af33',
                             border: '1px solid #f9e2af',
@@ -176,16 +182,18 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
                             fontSize: 11,
                             fontWeight: 600,
                         }}>DEV</span>
-                        <span style={{ color: '#6c7086', fontSize: 13 }}>Developer Tools</span>
+                        <span style={{color: '#6c7086', fontSize: 13}}>Developer Tools</span>
                     </div>
                     <div className="hub-grid">
-                        <div className="hub-card" onClick={() => onSelectGame('kanban')} style={{ cursor: 'pointer' }}>
-                            <div className="hub-card__art" style={{ background: 'linear-gradient(135deg, #1e1e2e 0%, #313244 50%, #45475a 100%)' }}>
+                        <div className="hub-card" onClick={() => onSelectGame('kanban')} style={{cursor: 'pointer'}}>
+                            <div className="hub-card__art"
+                                 style={{background: 'linear-gradient(135deg, #1e1e2e 0%, #313244 50%, #45475a 100%)'}}>
                                 <span className="hub-card__icon">📋</span>
                             </div>
                             <div className="hub-card__body">
                                 <p className="hub-card__title">Issue Tracker</p>
-                                <p className="hub-card__desc">View, create, and manage GitHub issues for this repo in a kanban board.</p>
+                                <p className="hub-card__desc">View, create, and manage GitHub issues for this repo in a
+                                    kanban board.</p>
                                 <div className="hub-card__tags">
                                     <span className="hub-card__tag">Dev Only</span>
                                     <span className="hub-card__tag">GitHub</span>

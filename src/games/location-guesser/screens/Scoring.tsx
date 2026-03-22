@@ -34,7 +34,7 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
 
     // Zoom calculation: frame the two scored points with padding
     // When the map is flipped, visual positions are (1-x, 1-y) so use those for pan/zoom framing
-    const flip = (n: {x: number, y: number}) => wasFlipped ? {x: 1 - n.x, y: 1 - n.y} : n;
+    const flip = (n: { x: number, y: number }) => wasFlipped ? {x: 1 - n.x, y: 1 - n.y} : n;
     // Raw (pre-flip) normalized coords — used for positions inside the rotated content div
     const rawScoredNorm = worldToNorm(usedMirror ? mirroredLocation : location);
     // Visual (post-flip) normalized coords — used for zoom/pan framing outside the rotated div
@@ -58,9 +58,9 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
     const panX = (0.5 - cx) * imageSize;
     const panY = (0.5 - cy) * imageSize;
 
-    // Isoline circles: positioned inside the rotated div using raw (pre-flip) coordinates
-    const isolineOriginX = rawScoredNorm.x * imageSize;
-    const isolineOriginY = rawScoredNorm.y * imageSize;
+    // Isoline circles: positioned in visual (post-flip) coordinate space
+    const isolineOriginX = scoredNorm.x * imageSize;
+    const isolineOriginY = scoredNorm.y * imageSize;
 
     return (
         <div className="intermediate-score">
@@ -95,14 +95,8 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                         transformOrigin: 'center center',
                         position: 'relative',
                     }}>
-                        <div style={{
-                            width: imageSize,
-                            height: imageSize,
-                            transform: wasFlipped ? 'rotate(180deg)' : undefined,
-                            transformOrigin: 'center center',
-                            position: 'relative',
-                        }}>
-                        <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined} showUnderground={wasUnderground}/>
+                        <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined}
+                                    isFlipped={wasFlipped} showUnderground={wasUnderground}/>
                         {/* Isoline score circles */}
                         <svg
                             style={{
@@ -140,8 +134,8 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                             usedMirror={usedMirror}
                             imageSize={imageSize}
                             zoom={zoom}
+                            isFlipped={wasFlipped}
                         />
-                        </div>
                     </div>
                 </div>
                 {usedMirror && (
@@ -159,7 +153,7 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                                 {rawMirrorScore}
                             </span>
                             {' → '}
-                            {score} <span className="intermediate-score__score-max">/ 5</span>
+                            {score} <span className="intermediate-score__score-max">/ 3</span>
                         </p>
                     ) : (
                         <p className="intermediate-score__score" style={{color: scoreColor}}>

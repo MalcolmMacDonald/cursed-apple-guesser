@@ -16,18 +16,18 @@ interface GameFinalProps {
 }
 
 function GameFinal({
-    gameName: _gameName,
-    scores,
-    totalRounds,
-    isDaily,
-    dailyDate,
-    storageKey,
-    seed,
-    maxScorePerRound = 1000,
-    formatShareText,
-    onPlayAgain,
-    onExit,
-}: GameFinalProps) {
+                       gameName: _gameName,
+                       scores,
+                       totalRounds,
+                       isDaily,
+                       dailyDate,
+                       storageKey,
+                       seed,
+                       maxScorePerRound = 1000,
+                       formatShareText,
+                       onPlayAgain,
+                       onExit,
+                   }: GameFinalProps) {
     const [copied, setCopied] = React.useState(false);
     const totalScore = scores.reduce((a, b) => a + b, 0);
 
@@ -38,7 +38,7 @@ function GameFinal({
     }, [isDaily, dailyDate, storageKey]);
 
     const handleCopyResults = () => {
-        const date = dailyDate ?? new Date().toISOString().split('T')[0];
+        const date = dailyDate ?? new Date().toLocaleString("%D-%B-%Y");
         const url = window.location.href;
         navigator.clipboard.writeText(formatShareText(scores, totalScore, date, url));
         setCopied(true);

@@ -2,15 +2,15 @@ import './App.css';
 
 import React from 'react';
 import GameFlow from './game-engine/GameFlow';
-import { locationGuesserDefinition } from './games/location-guesser/definition';
-import { deadReckoningDefinition } from './games/dead-reckoning/definition';
+import {locationGuesserDefinition} from './games/location-guesser/definition';
+import {deadReckoningDefinition} from './games/dead-reckoning/definition';
 import HubScreen from './screens/hub/index.tsx';
 import TopBar from './components/top-bar/index.tsx';
-import { makeDailyDate } from './utils/rng';
+import {makeDailyDate} from './utils/rng';
 import KanbanScreen from './screens/kanban/index.tsx';
 import BuildBadge from './components/build-badge/index.tsx';
 
-type TopLevelScreen = 'hub' | 'geoguesser' | 'dead-reckoning' | 'kanban';
+type TopLevelScreen = 'hub' | 'location-guesser' | 'dead-reckoning' | 'kanban';
 
 type InitialStart = { seed: string; isDaily: boolean };
 
@@ -28,6 +28,7 @@ function App() {
         function handlePopState() {
             setScreen(window.location.pathname === KANBAN_PATH ? 'kanban' : 'hub');
         }
+
         window.addEventListener('popstate', handlePopState);
         return () => window.removeEventListener('popstate', handlePopState);
     }, []);
@@ -42,31 +43,31 @@ function App() {
     }, [screen]);
 
     const currentGame =
-        screen === 'geoguesser' ? 'Location Guesser' :
-        screen === 'dead-reckoning' ? 'Dead Reckoning' :
-        screen === 'kanban' ? 'Issue Tracker' :
-        undefined;
+        screen === 'location-guesser' ? 'Location Guesser' :
+            screen === 'dead-reckoning' ? 'Dead Reckoning' :
+                screen === 'kanban' ? 'Issue Tracker' :
+                    undefined;
 
     function handleSelectGame(id: string, isDaily?: boolean) {
-        const start = isDaily ? { seed: makeDailyDate(), isDaily: true } : undefined;
+        const start = isDaily ? {seed: makeDailyDate(), isDaily: true} : undefined;
         setInitialStart(start);
-        if (id === 'geoguesser') setScreen('geoguesser');
+        if (id === 'location-guesser') setScreen('location-guesser');
         if (id === 'navigate') setScreen('dead-reckoning');
         if (id === 'kanban') setScreen('kanban');
     }
 
     return (
         <>
-            <BuildBadge />
+            <BuildBadge/>
             <TopBar
                 currentGame={currentGame}
                 onHome={() => setScreen('hub')}
             />
             <div className="app-content">
                 {screen === 'hub' && (
-                    <HubScreen onSelectGame={handleSelectGame} />
+                    <HubScreen onSelectGame={handleSelectGame}/>
                 )}
-                {screen === 'geoguesser' && (
+                {screen === 'location-guesser' && (
                     <GameFlow
                         definition={locationGuesserDefinition}
                         initialStart={initialStart}
@@ -81,7 +82,7 @@ function App() {
                     />
                 )}
                 {screen === 'kanban' && import.meta.env.DEV && (
-                    <KanbanScreen onBack={() => setScreen('hub')} />
+                    <KanbanScreen onBack={() => setScreen('hub')}/>
                 )}
             </div>
         </>
