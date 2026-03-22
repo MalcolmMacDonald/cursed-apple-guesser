@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages (prod)
 
 on:
   push:
-    branches: ['main']
+    branches: [ 'main' ]
   workflow_dispatch:
 
 permissions:
@@ -32,6 +32,6 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
-          clean: true
+          clean: false
           clean-exclude: |
             dev/
