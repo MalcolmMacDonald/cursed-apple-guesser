@@ -4,10 +4,7 @@ on:
   issues:
     types: [ labeled ]
 
-permissions:
-  contents: write
-  pull-requests: write
-  issues: write
+permissions: write-all
 
 jobs:
   develop-feature:
@@ -23,6 +20,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: "--dangerously-skip-permissions"
           prompt: |
             You are implementing a feature for the cursed-apple-guesser project. Read CLAUDE.md for full project context.
 
@@ -35,5 +33,5 @@ jobs:
             2. Implement the feature described by the issue title (and body if present). Follow existing conventions: React 19 + TypeScript, inline styles, bun as package manager.
             3. Commit your changes with a clear, descriptive message referencing the issue.
             4. Push the branch and open a pull request targeting the `dev` branch. Title the PR "${{ github.event.issue.title }}" and include "Closes #${{ github.event.issue.number }}" in the body.
-            5. After the PR is created, post a comment on issue #${{ github.event.issue.number }} with the PR URL so it can be tracked.
-            6. Merge the PR immediately, as this workflow is designed for rapid development and deployment of features. Do not wait for reviews or checks to complete.
+            5. Merge the PR immediately, as this workflow is designed for rapid development and deployment of features. Do not wait for reviews or checks to complete.
+            6. After merging, post a comment on issue #${{ github.event.issue.number }} confirming that the feature has been merged and is now in the dev branch. Then close the issue.
