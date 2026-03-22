@@ -2,21 +2,20 @@ name: Deploy to GitHub Pages (dev)
 
 on:
   push:
-    branches: [ 'dev' ]
-  workflow_run:
-    workflows: [ 'Claude Feature Development' ]
-    types: [ completed ]
+    branches: ['dev']
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: 'pages-dev'
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,13 +27,20 @@ jobs:
       - run: bun install
 
       - name: Build (dev subpath)
-        run: NODE_ENV=development bun run build
+        run: bun run build
         env:
           VITE_BASE_PATH: /dev/
 
-      - uses: JamesIves/github-pages-deploy-action@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: dist
-          target-folder: dev
-          clean: true
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pages-build-development
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
