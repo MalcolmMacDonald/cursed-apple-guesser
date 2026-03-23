@@ -98,9 +98,6 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                 </div>
                 {game.available ? (
                     <div className="hub-card__btn-group">
-                        <button className="hub-card__play-btn" onClick={onPlay}>
-                            Play Now
-                        </button>
                         {game.dailyStorageKey && (
                             <>
                                 <button
@@ -115,6 +112,9 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                                 )}
                             </>
                         )}
+                        <button className="hub-card__play-btn" onClick={onPlay}>
+                            Play Now
+                        </button>
                     </div>
                 ) : (
                     <button className="hub-card__coming-soon-btn" disabled>
@@ -143,11 +143,6 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
             outlineOffset: -2,
         } : undefined}>
             <div className="hub-header">
-                <div className="hub-badge" style={isDev ? {
-                    background: 'rgba(249, 226, 175, 0.1)',
-                    border: '1px solid rgba(249, 226, 175, 0.5)',
-                    color: '#f9e2af',
-                } : undefined}>Game Hub{isDev ? ' — DEV' : ''}</div>
                 <h1 className="hub-title" style={isDev ? {
                     background: 'linear-gradient(135deg, #ffffff 30%, #f9e2af 100%)',
                     WebkitBackgroundClip: 'text',
@@ -159,9 +154,8 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
             </div>
 
             <div className="hub-divider"/>
-
             <div className="hub-grid">
-                {games.map(game => (
+                {games.filter(game => game.available).map(game => (
                     <GameCard
                         key={game.id}
                         game={game}
@@ -170,6 +164,20 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
                     />
                 ))}
             </div>
+
+
+            <div className="hub-divider"/>
+            <div className="hub-grid">
+                {games.filter(game => !game.available).map(game => (
+                    <GameCard
+                        key={game.id}
+                        game={game}
+                        onPlay={() => onSelectGame(game.id)}
+                        onPlayDaily={() => onSelectGame(game.id, true)}
+                    />
+                ))}
+            </div>
+
 
             {import.meta.env.DEV && (
                 <div style={{marginTop: 24}}>
