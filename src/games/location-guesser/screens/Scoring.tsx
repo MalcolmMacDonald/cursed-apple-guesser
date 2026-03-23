@@ -1,6 +1,7 @@
 import MapDisplay from '../../../components/map-display';
 import GuessLocation from '../../../components/guess-location';
 import {calculateDistance, worldToNorm, MAP_RADIUS, MAP_SIZE} from '../../../utils/coordinates';
+import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 import {calculateTierScore, SCORE_TIERS} from '../../../utils/scoring';
 import type {ScoringProps} from '../../../game-engine/types';
 import type {LGGameState} from '../definition';
@@ -29,8 +30,7 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
     const wasFlipped = state.flips[state.currentRound] ?? false;
     const wasUnderground = state.undergrounds[state.currentRound] ?? false;
 
-    const topbarHeight = 52;
-    const imageSize = Math.min(window.innerWidth * 0.80, (window.innerHeight - topbarHeight) * 0.55);
+    const imageSize = Math.min(window.innerWidth * 0.80, (window.innerHeight - TOPBAR_HEIGHT) * 0.55);
     const isLastRound = state.currentRound + 1 >= state.totalRounds;
 
     // Zoom calculation: frame the two scored points with padding
@@ -96,8 +96,7 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                         transformOrigin: 'center center',
                         position: 'relative',
                     }}>
-                        <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined}
-                                    isFlipped={wasFlipped} showUnderground={wasUnderground}/>
+                        <MapDisplay imageSize={imageSize} isFlipped={wasFlipped} showUnderground={wasUnderground}/>
                         {/* Isoline score circles */}
                         <svg
                             style={{

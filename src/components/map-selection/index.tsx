@@ -4,8 +4,9 @@ import React, {useState, useRef, useEffect, useCallback} from "react";
 import {flushSync} from "react-dom";
 import type {MapLocation} from "../../types.ts";
 import MapDisplay from "../map-display";
+import {TOPBAR_HEIGHT} from "../top-bar";
+import {MAP_SIZE} from "../../utils/coordinates";
 
-const TOPBAR_HEIGHT = 52;
 const MAX_ZOOM = 4;
 
 function getMapCoordsRaw(clientX: number, clientY: number, rect: DOMRect, z: number, px: number, py: number, size: number, flipped: boolean) {
@@ -67,7 +68,6 @@ function MapSelection({onSubmit}: {
     animPhaseRef.current = animPhase;
     setLocationRef.current = setSelectedLocation;
 
-    const mapSize = 10900 * 2;
     const maxMapSize = Math.min(window.innerWidth, window.innerHeight - TOPBAR_HEIGHT);
     const baseSize = Math.min(window.innerWidth * 0.45, 512);
     const expandedSize = Math.min(maxMapSize * 0.90, 900);
@@ -220,8 +220,8 @@ function MapSelection({onSubmit}: {
         if (!selectedLocation || animPhase !== 'idle') return;
 
         const worldLoc: MapLocation = {
-            x: (selectedLocation.x - 0.5) * mapSize,
-            y: ((1 - selectedLocation.y) - 0.5) * mapSize,
+            x: (selectedLocation.x - 0.5) * MAP_SIZE,
+            y: ((1 - selectedLocation.y) - 0.5) * MAP_SIZE,
         };
         pendingLocationRef.current = worldLoc;
         transitionFiredRef.current = false;
@@ -346,8 +346,6 @@ function MapSelection({onSubmit}: {
                 }}>
                     <MapDisplay
                         imageSize={imageSize}
-                        onClick={undefined}
-                        onMouseMove={undefined}
                         isFlipped={isFlipped}
                         showUnderground={showUnderground}
                     />

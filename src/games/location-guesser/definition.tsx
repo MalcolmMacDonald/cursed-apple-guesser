@@ -10,7 +10,7 @@ import {makeRandomSeed} from '../../utils/rng';
 import {getScoreEmoji} from '../../utils/scoring';
 
 const ROUND_COUNT = 5;
-const LG_DAILY_KEY = 'dailyChallenge_completed';
+export const LG_DAILY_KEY = 'dailyChallenge_completed';
 
 export interface LGGameState extends BaseGameState {
     locations: LocationData[];

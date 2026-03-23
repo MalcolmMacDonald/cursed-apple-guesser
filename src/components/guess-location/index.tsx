@@ -1,12 +1,5 @@
 import type {MapLocation} from "../../types.ts";
-
-function toNormalized(loc: MapLocation) {
-    const mapSize = 10900 * 2;
-    return {
-        x: (loc.x + mapSize / 2) / mapSize,
-        y: 1 - (loc.y + mapSize / 2) / mapSize, // Invert Y axis
-    };
-}
+import {worldToNorm} from "../../utils/coordinates";
 
 function GuessLocation({actualLocation, guessLocation, mirrorLocation, usedMirror, imageSize, zoom = 1, isFlipped = false}: {
     actualLocation: MapLocation,
@@ -17,9 +10,9 @@ function GuessLocation({actualLocation, guessLocation, mirrorLocation, usedMirro
     zoom?: number,
     isFlipped?: boolean,
 }) {
-    const actualRaw = toNormalized(actualLocation);
-    const guessRaw = toNormalized(guessLocation);
-    const mirrorRaw = toNormalized(mirrorLocation);
+    const actualRaw = worldToNorm(actualLocation);
+    const guessRaw = worldToNorm(guessLocation);
+    const mirrorRaw = worldToNorm(mirrorLocation);
 
     const f = (n: {x: number, y: number}) => isFlipped ? {x: 1 - n.x, y: 1 - n.y} : n;
     const actual = f(actualRaw);
