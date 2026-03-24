@@ -1,5 +1,5 @@
 import React from 'react';
-import type { GameDefinition, BaseGameState, GameFlowScreen } from './types';
+import type { GameDefinition, BaseGameState, GameFlowScreen, RoundScore } from './types';
 
 interface GameFlowProps<TState extends BaseGameState> {
     definition: GameDefinition<TState>;
@@ -13,8 +13,8 @@ function GameFlow<TState extends BaseGameState>({ definition, onExit, initialSta
 
     const { Landing, Round, Scoring, Final } = definition.screens;
 
-    function handleStart(seed: string, isDaily: boolean, roundCount?: number) {
-        setState(definition.initState(seed, isDaily, roundCount));
+    function handleStart(seed: string, isDaily: boolean, roundCount?: number, minRadius?: number) {
+        setState(definition.initState(seed, isDaily, roundCount, minRadius));
         setScreen('game');
     }
 
@@ -31,7 +31,7 @@ function GameFlow<TState extends BaseGameState>({ definition, onExit, initialSta
         setScreen('intermediate_scoring');
     }
 
-    function handleScoringContinue(score: number) {
+    function handleScoringContinue(score: RoundScore) {
         const newState = {
             ...state!,
             scores: [...state!.scores, score],

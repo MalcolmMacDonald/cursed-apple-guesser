@@ -7,7 +7,7 @@ import LGScoring from './screens/Scoring';
 import type {GameDefinition, LandingProps, FinalProps, BaseGameState} from '../../game-engine/types';
 import type {LocationData, MapLocation} from '../../types';
 import {makeRandomSeed} from '../../utils/rng';
-import {getScoreEmoji} from '../../utils/scoring';
+import {getGolfScoreEmoji, DEFAULT_SCORING_RADIUS} from '../../utils/scoring';
 
 const ROUND_COUNT = 5;
 export const LG_DAILY_KEY = 'dailyChallenge_completed';
@@ -17,6 +17,7 @@ export interface LGGameState extends BaseGameState {
     guesses: MapLocation[];
     flips: boolean[];
     undergrounds: boolean[];
+    minRadius: number;
 }
 
 function LGLanding({onStart}: LandingProps) {
@@ -24,6 +25,7 @@ function LGLanding({onStart}: LandingProps) {
     const [showAdvanced, setShowAdvanced] = React.useState(false);
     const [customSeed, setCustomSeed] = React.useState(defaultSeed);
     const [rounds, setRounds] = React.useState(ROUND_COUNT);
+    const [minRadius, setMinRadius] = React.useState(DEFAULT_SCORING_RADIUS);
 
     return (
         <div className="landing">
@@ -57,9 +59,19 @@ function LGLanding({onStart}: LandingProps) {
                             <button onClick={() => setRounds(r => Math.min(10, r + 1))}>+</button>
                         </div>
                     </label>
+                    {import.meta.env.DEV && (
+                        <label className="landing__adv-label">
+                            Scoring Radius
+                            <div className="landing__adv-stepper">
+                                <button onClick={() => setMinRadius(r => Math.max(100, r - 100))}>−</button>
+                                <span>{minRadius}</span>
+                                <button onClick={() => setMinRadius(r => Math.min(10900, r + 100))}>+</button>
+                            </div>
+                        </label>
+                    )}
                 </div>
             )}
-            <button className="landing__start-btn" onClick={() => onStart(customSeed || defaultSeed, false, rounds)}>
+            <button className="landing__start-btn" onClick={() => onStart(customSeed || defaultSeed, false, rounds, minRadius)}>
                 Start Game
             </button>
         </div>
@@ -76,12 +88,12 @@ function LGFinal({state, onPlayAgain, onExit}: FinalProps<LGGameState>) {
             dailyDate={state.dailyDate}
             storageKey={LG_DAILY_KEY}
             seed={state.seed}
-            maxScorePerRound={5}
+            maxScorePerRound={3}
             formatShareText={(isDaily, scores, totalScore, seed, date, url) =>
                 [
                     isDaily ? `Deadlock Location Guesser Daily - ${date}` : `Deadlock Location Guesser - Seed ${seed}`,
-                    scores.map(s => getScoreEmoji(s.score)).join(' '),
-                    `${totalScore}/${scores.length * 5}`,
+                    scores.map(s => getGolfScoreEmoji(s.score)).join(' '),
+                    `${totalScore}/${scores.length * 3} (lower is better)`,
                     url,
                 ].join('\n')
             }
@@ -96,8 +108,9 @@ export const locationGuesserDefinition: GameDefinition<LGGameState> = {
     dailyStorageKey: LG_DAILY_KEY,
     totalRounds: ROUND_COUNT,
 
-    initState(seed, isDaily, roundCount) {
+    initState(seed, isDaily, roundCount, minRadius) {
         const count = roundCount ?? ROUND_COUNT;
+        const radius = minRadius ?? DEFAULT_SCORING_RADIUS;
         const rng = seedRandom(seed);
         const locations = ([...allLocations] as LocationData[]).filter(location => !location.tags.includes("Difficulty/Hard")).sort(() => 0.5 - rng()).slice(0, count);
         return {
@@ -111,6 +124,7 @@ export const locationGuesserDefinition: GameDefinition<LGGameState> = {
             seed,
             isDaily,
             dailyDate: isDaily ? seed : undefined,
+            minRadius: radius,
         };
     },
 
