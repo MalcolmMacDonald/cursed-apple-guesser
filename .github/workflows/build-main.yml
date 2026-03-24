@@ -3,6 +3,9 @@
 on:
   push:
     branches: [main]
+  workflow_run:
+    workflows: ["Merge dev to main"]
+    types: [completed]
   workflow_dispatch:
 
 jobs:
