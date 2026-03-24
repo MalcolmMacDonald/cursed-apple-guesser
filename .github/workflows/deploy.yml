@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main, dev]
+  workflow_run:
+    types: 
+      - completed
+    workflows:
+      - "Merge dev to main"
   workflow_dispatch:
 
 permissions:
@@ -21,7 +26,6 @@ jobs:
           bun-version: 1.2.21
 
       - run: bun install
-        
         
       - name: Set build mode + base path
         id: vars
@@ -55,6 +59,12 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
+          
+      - name: Cache bun deps
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
 
   deploy:
     needs: build
