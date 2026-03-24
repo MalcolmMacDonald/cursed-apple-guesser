@@ -38,10 +38,7 @@ jobs:
 
       - name: Build
         run: |
-          bun run build
-        env:
-          VITE_BASE_PATH: $BASE_PATH
-          NODE_ENV: $MODE
+          VITE_BASE_PATH=$BASE_PATH NODE_ENV=$MODE bun run build
           
       - name: Prepare Pages artifact
         run: |
