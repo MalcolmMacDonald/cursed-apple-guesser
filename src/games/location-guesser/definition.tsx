@@ -91,11 +91,13 @@ function LGFinal({state, onPlayAgain, onExit}: FinalProps<LGGameState>) {
             maxScorePerRound={3}
             formatShareText={(isDaily, scores, totalScore, seed, date, url) =>
                 [
-                    isDaily ? `Deadlock Location Guesser Daily - ${date}` : `Deadlock Location Guesser - Seed ${seed}`,
+                    isDaily ? `Deadlock Location Guesser Daily - ${date}` : `Deadlock Location Guesser`,
                     scores.map(s => getGolfScoreEmoji(s.score)).join(' '),
-                    `${totalScore}/${scores.length * 3} (lower is better)`,
+                    totalScore == scores.length ? `Perfect score!` :`${totalScore}/${scores.length * 3} (lower is better)`,
+                    !isDaily ? `Seed: ${seed}` : "",
                     url,
-                ].join('\n')
+                ].filter(line  => line.length > 0)
+                    .join('\n')
             }
             onPlayAgain={onPlayAgain}
             onExit={onExit}

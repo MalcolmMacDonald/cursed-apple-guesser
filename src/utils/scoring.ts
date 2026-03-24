@@ -8,7 +8,7 @@ export function calculateScore(distance: number): number {
 // ── Location Guesser golf-style scoring ───────────────────────────────────────
 
 /** Default scoring radius for Location Guesser (world units). ~25% of map radius. */
-export const DEFAULT_SCORING_RADIUS = Math.round(MAP_RADIUS / 4); // 2725
+export const DEFAULT_SCORING_RADIUS = 750; // 2725
 
 /** Golf-style scores: 1 = best (direct hit), 2 = mirror hit, 3 = miss. */
 export const GOLF_SCORE_INFO = {
