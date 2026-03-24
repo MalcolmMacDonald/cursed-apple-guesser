@@ -59,9 +59,19 @@ function GameFinal({
                     </div>
                 ))}
             </div>
-            <p className="final-score__subtitle">Total score</p>
-            <p className="final-score__total">{totalScore}</p>
-            <p className="final-score__total-max">out of a possible {totalRounds * maxScorePerRound}</p>
+                
+            {(totalScore == totalRounds) ? (
+                <p className="final-score__total">PERFECT</p>) : 
+                (
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                        
+                <p className="final-score__subtitle">Total score (lower is better)</p>
+                <p className="final-score__total">{totalScore}</p>
+                <p className="final-score__total-max">with a maximum of {totalRounds * maxScorePerRound} points</p>
+                    </div>
+                )
+            }
+            
             {!isDaily && seed && (
                 <p className="final-score__seed">Seed: <code>{seed}</code></p>
             )}

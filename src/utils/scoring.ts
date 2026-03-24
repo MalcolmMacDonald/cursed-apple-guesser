@@ -5,40 +5,35 @@ export function calculateScore(distance: number): number {
     return Math.max(Math.round((1 - distance / MAP_RADIUS) * 1000), 0);
 }
 
-// ── Location Guesser discrete tier scoring ────────────────────────────────────
+// ── Location Guesser golf-style scoring ───────────────────────────────────────
+
+/** Default scoring radius for Location Guesser (world units). ~25% of map radius. */
+export const DEFAULT_SCORING_RADIUS = 750; // 2725
+
+/** Golf-style scores: 1 = best (direct hit), 2 = mirror hit, 3 = miss. */
+export const GOLF_SCORE_INFO = {
+    1: {emoji: '🥇', color: '#e4b937', label: 'Direct hit!'},
+    2: {emoji: '🪞', color: '#41c1c4', label: 'Mirror scored'},
+    3: {emoji: '❌', color: '#f44336', label: 'Miss'},
+} as const;
+
+export type GolfScore = 1 | 2 | 3;
 
 /**
- * Configurable distance tiers for Location Guesser.
- * Each tier covers distances UP TO maxDistance (world units).
- * Ordered closest → farthest (highest score first).
+ * Calculates a golf-style score (1–3) for Location Guesser.
+ * 1 = direct guess within radius, 2 = mirrored location within radius, 3 = miss.
  */
-const divisions = 18;
-export const SCORE_TIERS = [
-    {maxDistance: MAP_RADIUS / divisions, score: 5, color: '#41c1c4', emoji: '💎'},
-    {maxDistance: 4 * (MAP_RADIUS / divisions), score: 4, color: '#e4b937', emoji: '🥇'},
-    {maxDistance: 7 * (MAP_RADIUS / divisions), score: 3, color: '#979490', emoji: '🥈'},
-    {maxDistance: 10 * (MAP_RADIUS / divisions), score: 2, color: '#98612e', emoji: '🥉'},
-    {maxDistance: 13 * (MAP_RADIUS / divisions), score: 1, color: '#6e5494', emoji: '🔮'},
-    {maxDistance: MAP_RADIUS, score: 0, color: '#f44336', emoji: '🔴'}
-] as const;
-
-/** Emoji used when score is 0 (beyond the map). */
-export const SCORE_ZERO_EMOJI = '⚫';
-
-/** Converts a world-space distance into a 1–5 score (0 if beyond MAP_RADIUS). */
-export function calculateTierScore(distance: number): number {
-    for (const tier of SCORE_TIERS) {
-        if (distance <= tier.maxDistance) return tier.score;
-    }
-    return 0;
+export function calculateGolfScore(
+    originalDistance: number,
+    mirrorDistance: number,
+    minRadius: number
+): {score: GolfScore; usedMirror: boolean} {
+    if (originalDistance <= minRadius) return {score: 1, usedMirror: false};
+    if (mirrorDistance <= minRadius) return {score: 2, usedMirror: true};
+    return {score: 3, usedMirror: false};
 }
 
-/** Returns the matching SCORE_TIER for a distance, or null if score is 0. */
-export function getScoreTier(distance: number) {
-    return SCORE_TIERS.find(t => distance <= t.maxDistance) ?? null;
-}
-
-/** Returns the display emoji for a score value. Falls back to SCORE_ZERO_EMOJI if no tier matches. */
-export function getScoreEmoji(score: number): string {
-    return SCORE_TIERS.find(t => t.score === score)?.emoji ?? SCORE_ZERO_EMOJI;
+/** Returns the display emoji for a golf score. */
+export function getGolfScoreEmoji(score: number): string {
+    return GOLF_SCORE_INFO[score as GolfScore]?.emoji ?? '❓';
 }
