@@ -2,7 +2,7 @@ name: Deploy Pages
 
 on:
   workflow_run:
-    workflows: ["Build Main", "Build Dev"]
+    workflows: ["Build Main", "Build Dev", "Merge dev to main"]
     types: [completed]
   workflow_dispatch:
 
