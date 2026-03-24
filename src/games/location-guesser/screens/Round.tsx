@@ -22,7 +22,7 @@ function LGRound({state, onSubmit}: RoundProps<LGGameState>) {
                     position: 'absolute', top: 8, left: 8, zIndex: 100,
                     background: 'rgba(0,0,0,0.65)', color: '#fff',
                     padding: '3px 8px', borderRadius: 6, fontSize: 11, fontFamily: 'monospace',
-                    userSelect: 'all'
+                    userSelect: 'text'
                 }}>
                     <div
                     >{location.fileName}</div>
