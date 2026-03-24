@@ -1,5 +1,7 @@
 import React from 'react';
 import {makeDailyDate} from '../../utils/rng';
+import {LG_DAILY_KEY} from '../../games/location-guesser/definition';
+import {DR_DAILY_KEY} from '../../games/dead-reckoning/definition';
 
 type GameEntry = {
     id: string;
@@ -21,7 +23,7 @@ const games: GameEntry[] = [
         gradient: "linear-gradient(135deg, #1a472a 0%, #2d6a4f 50%, #40916c 100%)",
         available: true,
         tags: ["Location", "5 Rounds"],
-        dailyStorageKey: 'dailyChallenge_completed',
+        dailyStorageKey: LG_DAILY_KEY,
     },
     {
         id: "navigate",
@@ -31,7 +33,7 @@ const games: GameEntry[] = [
         gradient: "linear-gradient(135deg, #3d2000 0%, #7a4500 50%, #b86800 100%)",
         available: false,
         tags: ["Navigation", "5 Rounds"],
-        dailyStorageKey: 'drDaily_completed',
+        dailyStorageKey: DR_DAILY_KEY,
     },
     {
         id: "nameit",
@@ -96,9 +98,6 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                 </div>
                 {game.available ? (
                     <div className="hub-card__btn-group">
-                        <button className="hub-card__play-btn" onClick={onPlay}>
-                            Play Now
-                        </button>
                         {game.dailyStorageKey && (
                             <>
                                 <button
@@ -113,6 +112,9 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                                 )}
                             </>
                         )}
+                        <button className="hub-card__play-btn" onClick={onPlay}>
+                            Play Now
+                        </button>
                     </div>
                 ) : (
                     <button className="hub-card__coming-soon-btn" disabled>
@@ -141,11 +143,6 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
             outlineOffset: -2,
         } : undefined}>
             <div className="hub-header">
-                <div className="hub-badge" style={isDev ? {
-                    background: 'rgba(249, 226, 175, 0.1)',
-                    border: '1px solid rgba(249, 226, 175, 0.5)',
-                    color: '#f9e2af',
-                } : undefined}>Game Hub{isDev ? ' — DEV' : ''}</div>
                 <h1 className="hub-title" style={isDev ? {
                     background: 'linear-gradient(135deg, #ffffff 30%, #f9e2af 100%)',
                     WebkitBackgroundClip: 'text',
@@ -157,9 +154,8 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
             </div>
 
             <div className="hub-divider"/>
-
             <div className="hub-grid">
-                {games.map(game => (
+                {games.filter(game => game.available).map(game => (
                     <GameCard
                         key={game.id}
                         game={game}
@@ -168,6 +164,20 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
                     />
                 ))}
             </div>
+
+
+            <div className="hub-divider"/>
+            <div className="hub-grid">
+                {games.filter(game => !game.available).map(game => (
+                    <GameCard
+                        key={game.id}
+                        game={game}
+                        onPlay={() => onSelectGame(game.id)}
+                        onPlayDaily={() => onSelectGame(game.id, true)}
+                    />
+                ))}
+            </div>
+
 
             {import.meta.env.DEV && (
                 <div style={{marginTop: 24}}>

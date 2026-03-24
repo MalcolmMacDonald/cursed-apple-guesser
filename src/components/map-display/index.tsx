@@ -4,7 +4,7 @@ import GameplayElements from "../../assets/Map_Overlay_GameplayElements.png";
 import UndergroundOverlay from "../../assets/Map_Overlay_Underground.png";
 import LinesOverlay from "../../assets/Map_Overlay_Lines.png";
 
-function MapDisplay({imageSize, onClick, onMouseMove, isFlipped, showUnderground}) {
+function MapDisplay({imageSize, isFlipped, showUnderground}) {
     return (
         <div
             style={{
@@ -19,8 +19,6 @@ function MapDisplay({imageSize, onClick, onMouseMove, isFlipped, showUnderground
                 alt="World Map"
                 className="map-image"
                 draggable={false}
-                onClick={onClick}
-                onMouseMove={onMouseMove}
                 style={{
                     transform: isFlipped ? 'rotate(180deg)' : undefined,
                 }}

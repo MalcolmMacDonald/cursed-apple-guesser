@@ -43,7 +43,7 @@ function DRScoring({ state, onContinue }: ScoringProps<DRGameState>) {
             </p>
 
             <div className="intermediate-map-wrapper">
-                <MapDisplay imageSize={imageSize} onClick={undefined} onMouseMove={undefined} />
+                <MapDisplay imageSize={imageSize} />
 
                 <svg
                     className="pin-line"
@@ -101,7 +101,7 @@ function DRScoring({ state, onContinue }: ScoringProps<DRGameState>) {
                 </p>
             </div>
 
-            <button className="intermediate-score__btn" onClick={() => onContinue(score)}>
+            <button className="intermediate-score__btn" onClick={() => onContinue({ score, maxScore: 1000 })}>
                 {isLastRound ? 'See Final Score' : 'Next Round'}
             </button>
         </div>

@@ -10,7 +10,7 @@ import type {LocationData, NavigationStep} from '../../types';
 
 const ROUND_COUNT = 5;
 const CARDINALS = [0, 90, 180, 270] as const;
-const DR_DAILY_KEY = 'drDaily_completed';
+export const DR_DAILY_KEY = 'drDaily_completed';
 
 export type LocationPair = { start: LocationData; end: LocationData };
 
