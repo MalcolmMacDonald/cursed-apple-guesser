@@ -352,7 +352,7 @@ function CreateIssueForm({ token, onCreated }: { token: string; onCreated: () =>
         const res = await fetch(`${API}/repos/${REPO}/issues`, {
             method: 'POST',
             headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: title.trim(), body: body.trim() || undefined }),
+            body: JSON.stringify({ title: title.trim(), body: body.trim() || undefined, labels: ['Claude'] }),
         });
         setLoading(false);
         if (res.ok) {
@@ -481,6 +481,31 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
     );
     const [tokenInput, setTokenInput] = React.useState(token);
     const [inProgressNumbers, setInProgressNumbers] = React.useState<Set<number>>(new Set());
+    const [promoting, setPromoting] = React.useState(false);
+    const [promoteStatus, setPromoteStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
+
+    async function promoteToProd() {
+        setPromoting(true);
+        setPromoteStatus('idle');
+        try {
+            const res = await fetch(
+                `${API}/repos/${REPO}/actions/workflows/promote-to-prod.yml/dispatches`,
+                {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        Accept: 'application/vnd.github+json',
+                    },
+                    body: JSON.stringify({ ref: 'dev' }),
+                }
+            );
+            setPromoteStatus(res.ok || res.status === 204 ? 'success' : 'error');
+        } catch {
+            setPromoteStatus('error');
+        }
+        setPromoting(false);
+    }
 
     async function fetchIssues() {
         setLoading(true);
@@ -581,6 +606,24 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
                     >
                         {loading ? '...' : '↻ Refresh'}
                     </button>
+                    {token && (
+                        <button
+                            onClick={promoteToProd}
+                            disabled={promoting}
+                            style={{
+                                background: promoteStatus === 'success' ? '#a6e3a133' : promoteStatus === 'error' ? '#f38ba833' : 'transparent',
+                                border: `1px solid ${promoteStatus === 'success' ? '#a6e3a1' : promoteStatus === 'error' ? '#f38ba8' : '#a6e3a1'}`,
+                                color: promoteStatus === 'success' ? '#a6e3a1' : promoteStatus === 'error' ? '#f38ba8' : '#a6e3a1',
+                                borderRadius: 6,
+                                padding: '4px 12px',
+                                fontSize: 12,
+                                cursor: promoting ? 'not-allowed' : 'pointer',
+                                fontWeight: 600,
+                            }}
+                        >
+                            {promoting ? 'Promoting...' : promoteStatus === 'success' ? '✓ Promoted!' : promoteStatus === 'error' ? '✗ Failed' : '⬆ Promote to Prod'}
+                        </button>
+                    )}
                 </div>
             </div>
 

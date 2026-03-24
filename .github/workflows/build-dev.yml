@@ -1,8 +1,11 @@
-﻿name: Build Dev
+name: Build Dev
 
 on:
   push:
     branches: [dev]
+  workflow_run:
+    workflows: ["Claude Feature Development"]
+    types: [completed]
   workflow_dispatch:
 
 jobs:
