@@ -1,13 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy Pages
 
 on:
-  push:
-    branches: [main, dev]
   workflow_run:
-    types: 
-      - completed
-    workflows:
-      - "Merge dev to main"
+    workflows: ["Build Main", "Build Dev"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -15,66 +11,48 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  build:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: oven-sh/setup-bun@v2
+      - name: Download main artifact
+        uses: dawidd6/action-download-artifact@v3
         with:
-          bun-version: 1.2.21
+          workflow: build-main.yml
+          name: site-main
+          path: main
+          branch: main
 
-      - run: bun install
-        
-      - name: Set build mode + base path
-        id: vars
-        run: |
-          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            echo "MODE=production" >> $GITHUB_ENV
-            echo "BASE_PATH=/" >> $GITHUB_ENV
-            echo "OUTPUT_SUBDIR=" >> $GITHUB_ENV
-          else
-            echo "MODE=development" >> $GITHUB_ENV
-            echo "BASE_PATH=/dev/" >> $GITHUB_ENV
-            echo "OUTPUT_SUBDIR=dev" >> $GITHUB_ENV
-          fi
+      - name: Download dev artifact
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: build-dev.yml
+          name: site-dev
+          path: dev
+          branch: dev
 
-      - name: Build
-        run: |
-          VITE_BASE_PATH=$BASE_PATH NODE_ENV=$MODE bun run build
-          
-      - name: Prepare Pages artifact
+      - name: Combine
         run: |
           mkdir -p public
 
-          if [ -z "$OUTPUT_SUBDIR" ]; then
-            cp -r dist/* public/
-          else
-            mkdir -p public/$OUTPUT_SUBDIR
-            cp -r dist/* public/$OUTPUT_SUBDIR/
-          fi
-          
+          # Root (main)
+          cp -r main/* public/
+
+          # Dev
+          mkdir -p public/dev
+          cp -r dev/* public/dev/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
-          
-      - name: Cache bun deps
-        uses: actions/cache@v4
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-  
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-  
-    steps:
       - name: Deploy
         id: deploy
         uses: actions/deploy-pages@v4
