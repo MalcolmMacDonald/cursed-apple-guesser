@@ -34,13 +34,17 @@ function Final({state, onPlayAgain, onExit}: FinalProps) {
     React.useEffect(() => {
         if (!isDaily || !dailyDate) return;
         const date = dailyDate.replace('-daily', '');
+        const submittedKey = `dailyScore_submitted_${date}`;
         const submitAndFetch = async () => {
             try {
-                await fetch(`${API_URL}/scores`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({score: totalScore}),
-                });
+                if (!localStorage.getItem(submittedKey)) {
+                    localStorage.setItem(submittedKey, '1');
+                    await fetch(`${API_URL}/scores`, {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({score: totalScore}),
+                    });
+                }
                 const res = await fetch(`${API_URL}/scores?date=${date}`);
                 const data: HistogramData = await res.json();
                 setHistogram(data);

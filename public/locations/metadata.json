@@ -6574,7 +6574,8 @@
       "z": 327.375
     },
     "tags": [
-      "Area/AboveGround"
+      "Area/AboveGround",
+      "Difficulty/Hard"
     ]
   },
   {
@@ -6585,7 +6586,8 @@
       "z": 569.375
     },
     "tags": [
-      "Area/AboveGround"
+      "Area/AboveGround",
+      "Difficulty/Hard"
     ]
   },
   {
@@ -6596,7 +6598,8 @@
       "z": 793.65625
     },
     "tags": [
-      "Area/AboveGround"
+      "Area/AboveGround",
+      "Difficulty/Hard"
     ]
   },
   {
