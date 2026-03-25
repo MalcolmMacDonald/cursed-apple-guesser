@@ -1,7 +1,6 @@
 import React from 'react';
 import {makeDailyDate} from '../../utils/rng';
 import {LG_DAILY_KEY} from '../../games/location-guesser/definition';
-import {DR_DAILY_KEY} from '../../games/dead-reckoning/definition';
 
 type GameEntry = {
     id: string;
@@ -33,7 +32,6 @@ const games: GameEntry[] = [
         gradient: "linear-gradient(135deg, #3d2000 0%, #7a4500 50%, #b86800 100%)",
         available: false,
         tags: ["Navigation", "5 Rounds"],
-        dailyStorageKey: DR_DAILY_KEY,
     },
     {
         id: "nameit",

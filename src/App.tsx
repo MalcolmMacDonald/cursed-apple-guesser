@@ -3,14 +3,13 @@ import './App.css';
 import React from 'react';
 import GameFlow from './game-engine/GameFlow';
 import {locationGuesserDefinition} from './games/location-guesser/definition';
-import {deadReckoningDefinition} from './games/dead-reckoning/definition';
 import HubScreen from './screens/hub/index.tsx';
 import TopBar from './components/top-bar/index.tsx';
 import {makeDailyDate} from './utils/rng';
 import KanbanScreen from './screens/kanban/index.tsx';
 import BuildBadge from './components/build-badge/index.tsx';
 
-type TopLevelScreen = 'hub' | 'location-guesser' | 'dead-reckoning' | 'kanban';
+type TopLevelScreen = 'hub' | 'location-guesser' | 'kanban';
 
 type InitialStart = { seed: string; isDaily: boolean };
 
@@ -44,15 +43,13 @@ function App() {
 
     const currentGame =
         screen === 'location-guesser' ? 'Location Guesser' :
-            screen === 'dead-reckoning' ? 'Dead Reckoning' :
-                screen === 'kanban' ? 'Issue Tracker' :
-                    undefined;
+            screen === 'kanban' ? 'Issue Tracker' :
+                undefined;
 
     function handleSelectGame(id: string, isDaily?: boolean) {
         const start = isDaily ? {seed: makeDailyDate(), isDaily: true} : undefined;
         setInitialStart(start);
         if (id === 'location-guesser') setScreen('location-guesser');
-        if (id === 'navigate') setScreen('dead-reckoning');
         if (id === 'kanban') setScreen('kanban');
     }
 
@@ -70,13 +67,6 @@ function App() {
                 {screen === 'location-guesser' && (
                     <GameFlow
                         definition={locationGuesserDefinition}
-                        initialStart={initialStart}
-                        onExit={() => setScreen('hub')}
-                    />
-                )}
-                {screen === 'dead-reckoning' && (
-                    <GameFlow
-                        definition={deadReckoningDefinition}
                         initialStart={initialStart}
                         onExit={() => setScreen('hub')}
                     />
