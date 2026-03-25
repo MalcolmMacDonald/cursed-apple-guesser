@@ -9,6 +9,7 @@ export type MapLocation = {
     y: number;
 };
 
-export type NavigationStep =
-    | { type: 'move'; distance: 'short' | 'medium' | 'long' }
-    | { type: 'turn'; direction: 'left' | 'right' | 'uturn' };
+export type RoundScore = {
+    score: number;
+    maxScore: number;
+};

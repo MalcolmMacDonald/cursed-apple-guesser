@@ -1,6 +1,7 @@
+import './hub.css';
 import React from 'react';
 import {makeDailyDate} from '../../utils/rng';
-import {LG_DAILY_KEY} from '../../games/location-guesser/definition';
+import {LG_DAILY_KEY} from '../../games/location-guesser/LocationGuesserFlow';
 
 type GameEntry = {
     id: string;
@@ -21,7 +22,7 @@ const games: GameEntry[] = [
         icon: "🗺️",
         gradient: "linear-gradient(135deg, #1a472a 0%, #2d6a4f 50%, #40916c 100%)",
         available: true,
-        tags: ["Location", "5 Rounds"],
+        tags: ["Location"],
         dailyStorageKey: LG_DAILY_KEY,
     },
     {
@@ -31,16 +32,16 @@ const games: GameEntry[] = [
         icon: "🧭",
         gradient: "linear-gradient(135deg, #3d2000 0%, #7a4500 50%, #b86800 100%)",
         available: false,
-        tags: ["Navigation", "5 Rounds"],
+        tags: ["Navigation"],
     },
     {
         id: "nameit",
         title: "Name That Spot",
-        description: "Recognise the location — but can you name it? Pick the correct spot name from four choices before time's up.",
+        description: "Recognise the location — but can you name it? Pick the correct name from a list of options.",
         icon: "📍",
         gradient: "linear-gradient(135deg, #1a1a4e 0%, #2d2d8f 50%, #4a4ac4 100%)",
         available: false,
-        tags: ["Multiple Choice", "Coming Soon"],
+        tags: ["Multiple Choice"],
     },
     {
         id: "aboutface",
@@ -49,7 +50,7 @@ const games: GameEntry[] = [
         icon: "🔄",
         gradient: "linear-gradient(135deg, #3d001a 0%, #7a0035 50%, #b80050 100%)",
         available: false,
-        tags: ["Orientation", "Coming Soon"],
+        tags: ["Orientation"],
     },
 ];
 
@@ -91,9 +92,7 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
             <div className="hub-card__body">
                 <p className="hub-card__title">{game.title}</p>
                 <p className="hub-card__desc">{game.description}</p>
-                <div className="hub-card__tags">
-                    {game.tags.map(t => <span key={t} className="hub-card__tag">{t}</span>)}
-                </div>
+
                 {game.available ? (
                     <div className="hub-card__btn-group">
                         {game.dailyStorageKey && (
@@ -135,17 +134,9 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
     }, [isDev]);
 
     return (
-        <div className="hub-page" style={isDev ? {
-            background: 'linear-gradient(160deg, #1a0d0d 0%, #221111 50%, #160a0a 100%)',
-            outline: '2px solid rgba(249, 226, 175, 0.2)',
-            outlineOffset: -2,
-        } : undefined}>
+        <div className={`hub-page${isDev ? ' hub-page--dev' : ''}`}>
             <div className="hub-header">
-                <h1 className="hub-title" style={isDev ? {
-                    background: 'linear-gradient(135deg, #ffffff 30%, #f9e2af 100%)',
-                    WebkitBackgroundClip: 'text',
-                    backgroundClip: 'text',
-                } : undefined}>Deadlock Map Trainer</h1>
+                <h1 className={`hub-title${isDev ? ' hub-title--dev' : ''}`}>Deadlock Map Trainer</h1>
                 <p className="hub-subtitle">
                     Test your knowledge of the Deadlock map.
                 </p>
@@ -178,22 +169,14 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
 
 
             {import.meta.env.DEV && (
-                <div style={{marginTop: 24}}>
+                <div className="hub-dev-section">
                     <div className="hub-divider"/>
-                    <div style={{display: 'flex', alignItems: 'center', gap: 10, margin: '12px 0 16px'}}>
-                        <span style={{
-                            background: '#f9e2af33',
-                            border: '1px solid #f9e2af',
-                            color: '#f9e2af',
-                            borderRadius: 6,
-                            padding: '2px 8px',
-                            fontSize: 11,
-                            fontWeight: 600,
-                        }}>DEV</span>
-                        <span style={{color: '#6c7086', fontSize: 13}}>Developer Tools</span>
+                    <div className="hub-dev-header">
+                        <span className="hub-dev-badge">DEV</span>
+                        <span className="hub-dev-label">Developer Tools</span>
                     </div>
                     <div className="hub-grid">
-                        <div className="hub-card" onClick={() => onSelectGame('kanban')} style={{cursor: 'pointer'}}>
+                        <div className="hub-card" onClick={() => onSelectGame('kanban')}>
                             <div className="hub-card__art"
                                  style={{background: 'linear-gradient(135deg, #1e1e2e 0%, #313244 50%, #45475a 100%)'}}>
                                 <span className="hub-card__icon">📋</span>
@@ -202,10 +185,6 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
                                 <p className="hub-card__title">Issue Tracker</p>
                                 <p className="hub-card__desc">View, create, and manage GitHub issues for this repo in a
                                     kanban board.</p>
-                                <div className="hub-card__tags">
-                                    <span className="hub-card__tag">Dev Only</span>
-                                    <span className="hub-card__tag">GitHub</span>
-                                </div>
                                 <div className="hub-card__btn-group">
                                     <button className="hub-card__play-btn" onClick={() => onSelectGame('kanban')}>
                                         Open Board

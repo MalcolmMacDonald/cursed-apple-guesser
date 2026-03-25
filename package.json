@@ -15,7 +15,8 @@
     "@types/seedrandom": "^3.0.8",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "seedrandom": "^3.0.5"
+    "seedrandom": "^3.0.5",
+    "wouter": "^3.9.0"
   },
   "devDependencies": {
     "@types/bun": "latest",

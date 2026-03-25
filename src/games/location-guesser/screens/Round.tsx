@@ -1,9 +1,9 @@
+import './round.css';
 import React from 'react';
 import MapSelection from '../../../components/map-selection';
-import type {RoundProps} from '../../../game-engine/types';
-import type {LGGameState} from '../definition';
+import type {LGGameState} from '../LocationGuesserFlow';
 
-function LGRound({state, onSubmit}: RoundProps<LGGameState>) {
+function Round({state, onSubmit}: { state: LGGameState; onSubmit: (state: LGGameState) => void }) {
     const location = state.locations[state.currentRound];
 
     React.useEffect(() => {
@@ -11,23 +11,16 @@ function LGRound({state, onSubmit}: RoundProps<LGGameState>) {
             const img = new Image();
             img.src = `locations/${loc.fileName}`;
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div className="game-screen" draggable={false}>
-            <img src={`locations/${location.fileName}`} alt="Location" className="game-bg"/>
-            {(import.meta.env.DEV || import.meta.env.BASE_URL !== '/') && (
-                <div style={{
-                    position: 'absolute', top: 8, left: 8, zIndex: 100,
-                    background: 'rgba(0,0,0,0.65)', color: '#fff',
-                    padding: '3px 8px', borderRadius: 6, fontSize: 11, fontFamily: 'monospace',
-                    userSelect: 'text'
-                }}>
-                    <div
-                    >{location.fileName}</div>
+            <img src={`/locations/${location.fileName}`} alt="Location" className="game-bg"/>
+            {(import.meta.env.DEV) && (
+                <div className="round-dev-overlay">
+                    <div>{location.fileName}</div>
                     {location.tags && location.tags.length > 0 && (
-                        <div style={{marginTop: 2, color: '#adf'}}>{location.tags.join(', ')}</div>
+                        <div className="round-dev-overlay__tags">{location.tags.join(', ')}</div>
                     )}
                 </div>
             )}
@@ -45,4 +38,4 @@ function LGRound({state, onSubmit}: RoundProps<LGGameState>) {
     );
 }
 
-export default LGRound;
+export default Round;

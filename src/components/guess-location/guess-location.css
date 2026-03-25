@@ -1,0 +1,24 @@
+.pin-emoji {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    pointer-events: none;
+    z-index: 2;
+    line-height: 1;
+    user-select: none;
+}
+
+.pin-emoji--actual {
+    transform: translate(-15%, -100%);
+}
+
+.pin-emoji--mirror {
+    filter: hue-rotate(150deg) saturate(1.5);
+    opacity: 0.85;
+}
+
+.pin-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
