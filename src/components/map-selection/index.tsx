@@ -1,5 +1,6 @@
 // show map, with "Select location" button that becomes enabled when a location is selected
 
+import './map-selection.css';
 import React, {useState, useRef, useEffect, useCallback} from "react";
 import {flushSync} from "react-dom";
 import type {MapLocation} from "../../types.ts";
@@ -324,26 +325,17 @@ function MapSelection({onSubmit}: {
             <div
                 className="map"
                 ref={mapDivRef}
-                style={{
-                    width: imageSize,
-                    height: imageSize,
-                    overflow: 'hidden',
-                    position: 'relative',
-                    transformOrigin: 'center center',
-                }}
+                style={{width: imageSize, height: imageSize}}
                 onClick={handleMapClick}
                 onMouseMove={handleMouseMove}
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
             >
                 {/* Zoom + pan layer */}
-                <div style={{
-                    width: `100%`,
-                    height: `100%`,
-                    transform: `translate(${panX}px, ${panY}px) scale(${zoom})`,
-                    transformOrigin: 'center center',
-                    position: 'inherit',
-                }}>
+                <div
+                    className="map-zoom-pan"
+                    style={{transform: `translate(${panX}px, ${panY}px) scale(${zoom})`}}
+                >
                     <MapDisplay
                         imageSize={imageSize}
                         isFlipped={isFlipped}
@@ -357,8 +349,6 @@ function MapSelection({onSubmit}: {
                                 left: `${(isFlipped ? 1 - selectedLocation.x : selectedLocation.x) * 100}%`,
                                 top: `${(isFlipped ? 1 - selectedLocation.y : selectedLocation.y) * 100}%`,
                                 fontSize: emojiSize,
-                                position: 'absolute',
-                                zIndex: 10,
                             }}
                             draggable={false}
                         >
@@ -369,7 +359,7 @@ function MapSelection({onSubmit}: {
                 </div>
 
             </div>
-            <div className="map-selection__controls" style={animPhase !== 'idle' ? {visibility: 'hidden'} : undefined}>
+            <div className={`map-selection__controls${animPhase !== 'idle' ? ' map-selection__controls--hidden' : ''}`}>
                 <button
                     className="map-flip-btn"
                     onClick={() => setIsFlipped(f => !f)}
@@ -401,7 +391,6 @@ function MapSelection({onSubmit}: {
                     width: imageSize,
                     height: imageSize,
                     transform: isFlipped ? 'rotate(180deg)' : undefined,
-                    transformOrigin: 'center center',
                 }}
             >
                 <div className="map-faction-label map-faction-label--amber"

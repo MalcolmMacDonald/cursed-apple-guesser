@@ -1,10 +1,3 @@
-import {MAP_RADIUS} from './coordinates';
-
-/** Converts a world-space distance into a 0–1000 score. Used by Dead Reckoning. */
-export function calculateScore(distance: number): number {
-    return Math.max(Math.round((1 - distance / MAP_RADIUS) * 1000), 0);
-}
-
 // ── Location Guesser golf-style scoring ───────────────────────────────────────
 
 /** Default scoring radius for Location Guesser (world units). ~25% of map radius. */
@@ -27,7 +20,7 @@ export function calculateGolfScore(
     originalDistance: number,
     mirrorDistance: number,
     minRadius: number
-): {score: GolfScore; usedMirror: boolean} {
+): { score: GolfScore; usedMirror: boolean } {
     if (originalDistance <= minRadius) return {score: 1, usedMirror: false};
     if (mirrorDistance <= minRadius) return {score: 2, usedMirror: true};
     return {score: 3, usedMirror: false};

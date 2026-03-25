@@ -43,10 +43,6 @@ tools/
 - `location-guesser/definition.tsx` — exports `locationGuesserDefinition` and `LG_DAILY_KEY`
 - `location-guesser/screens/Round.tsx` — screenshot + MapSelection gameplay
 - `location-guesser/screens/Scoring.tsx` — pins + distance + mirror mechanic
-- `dead-reckoning/definition.tsx` — exports `deadReckoningDefinition` and `DR_DAILY_KEY`
-- `dead-reckoning/screens/Round.tsx` — dual screenshots + turn/move controls
-- `dead-reckoning/screens/Scoring.tsx` — path simulation + polyline
-- `dead-reckoning/utils.ts` — `applyTurn`, `simulatePath`, `getStepLabel`, `STEP_DISTANCES`, `FACING_INFO`
 
 ## Utils (`src/utils/`)
 
@@ -58,8 +54,10 @@ tools/
 
 State machine in `game-engine/GameFlow.tsx` manages four screens:
 
-1. **`landing`** — Player presses "Start Game". Locations are randomly selected using seeded RNG (`seedrandom`). `GameData` is initialized.
-2. **`game`** — Full-screen screenshot is shown. Player clicks on the circular minimap to place a pin, then presses "Continue".
+1. **`landing`** — Player presses "Start Game". Locations are randomly selected using seeded RNG (`seedrandom`).
+   `GameData` is initialized.
+2. **`game`** — Full-screen screenshot is shown. Player clicks on the circular minimap to place a pin, then presses "
+   Continue".
 3. **`intermediate_scoring`** — Shows the minimap with actual/guessed pins, dashed line, distance, and score.
 4. **`final_scoring`** — Displays total score. Player can restart or exit.
 
@@ -81,14 +79,15 @@ MapLocation   = { x: number, y: number }
 ## Assets
 
 - `src/assets/Map_Base_HiddenKing.png` — Base minimap layer
-- `src/assets/Map_Overlay_Lines.png`, `Map_Overlay_GameplayElements.png`, `Map_Overlay_Underground.png` — Map overlay layers
+- `src/assets/Map_Overlay_Lines.png`, `Map_Overlay_GameplayElements.png`, `Map_Overlay_Underground.png` — Map overlay
+  layers
 - `public/locations/*.jpg` — 70+ in-game screenshots with metadata in `metadata.json`
 
 ## Planned Games
 
-| ID | Name | Status |
-|----|------|--------|
-| `location-guesser` | Location Guesser | Done |
-| `navigate` | Dead Reckoning | Done |
-| `nameit` | Name That Spot | TODO |
-| `aboutface` | About Face | TODO |
+| ID                 | Name             | Status |
+|--------------------|------------------|--------|
+| `location-guesser` | Location Guesser | Done   |
+| `navigate`         | Dead Reckoning   | TODO   |
+| `nameit`           | Name That Spot   | TODO   |
+| `aboutface`        | About Face       | TODO   |

@@ -1,3 +1,4 @@
+import './guess-location.css';
 import type {MapLocation} from "../../types.ts";
 import {worldToNorm} from "../../utils/coordinates";
 

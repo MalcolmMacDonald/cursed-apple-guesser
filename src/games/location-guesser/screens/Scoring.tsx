@@ -1,13 +1,13 @@
+import './scoring.css';
 import MapDisplay from '../../../components/map-display';
 import GuessLocation from '../../../components/guess-location';
 import {calculateDistance, worldToNorm, MAP_SIZE} from '../../../utils/coordinates';
 import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 import {calculateGolfScore, GOLF_SCORE_INFO} from '../../../utils/scoring';
-import type {ScoringProps} from '../../../game-engine/types';
-import type {LGGameState} from '../definition';
-import type {MapLocation} from '../../../types';
+import type {LGGameState} from '../LocationGuesserFlow';
+import type {MapLocation, RoundScore} from '../../../types';
 
-function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
+function Scoring({state, onContinue}: {state: LGGameState; onContinue: (score: RoundScore) => void}) {
     const locationData = state.locations[state.currentRound];
     const location = locationData.location;
     const guessedLocation = state.guesses[state.currentRound];
@@ -68,37 +68,22 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
                 </p>
                 <div
                     className="intermediate-map-wrapper"
-                    style={{
-                        width: imageSize,
-                        height: imageSize,
-                        overflow: 'hidden',
-                        clipPath: 'circle(50% at 50% 50%)',
-                        border: '4px solid rgba(255, 255, 255, 0.8)',
-                        borderRadius: '50%',
-                        boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
-                        backgroundColor: '#000',
-                    }}
+                    style={{width: imageSize, height: imageSize}}
                 >
-                    <div style={{
-                        width: imageSize,
-                        height: imageSize,
-                        transform: `scale(${zoom}) translate(${panX}px, ${panY}px)`,
-                        transformOrigin: 'center center',
-                        position: 'relative',
-                    }}>
+                    <div
+                        className="intermediate-map-zoom"
+                        style={{
+                            width: imageSize,
+                            height: imageSize,
+                            transform: `scale(${zoom}) translate(${panX}px, ${panY}px)`,
+                        }}
+                    >
                         <MapDisplay imageSize={imageSize} isFlipped={wasFlipped} showUnderground={wasUnderground}/>
                         {/* Scoring radius circles around actual and mirrored locations */}
                         <svg
-                            style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: imageSize,
-                                height: imageSize,
-                                pointerEvents: 'none',
-                                overflow: 'visible',
-                                zIndex: 2,
-                            }}
+                            className="intermediate-map-svg"
+                            width={imageSize}
+                            height={imageSize}
                         >
                             <circle
                                 cx={actualOriginX}
@@ -155,4 +140,4 @@ function LGScoring({state, onContinue}: ScoringProps<LGGameState>) {
     );
 }
 
-export default LGScoring;
+export default Scoring;

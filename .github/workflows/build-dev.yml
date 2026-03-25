@@ -2,10 +2,10 @@ name: Build Dev
 
 on:
   push:
-    branches: [dev]
+    branches: [ dev ]
   workflow_run:
-    workflows: ["Claude Feature Development"]
-    types: [completed]
+    workflows: [ "Claude Feature Development" ]
+    types: [ completed ]
   workflow_dispatch:
 
 jobs:
@@ -18,12 +18,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.2.21
-
-      - uses: actions/cache@v4
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
-
+          
       - run: bun install
 
       - name: Build (development)
