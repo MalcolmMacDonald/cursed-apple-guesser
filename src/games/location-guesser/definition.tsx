@@ -71,7 +71,8 @@ function LGLanding({onStart}: LandingProps) {
                     )}
                 </div>
             )}
-            <button className="landing__start-btn" onClick={() => onStart(customSeed || defaultSeed, false, rounds, minRadius)}>
+            <button className="landing__start-btn"
+                    onClick={() => onStart(customSeed || defaultSeed, false, rounds, minRadius)}>
                 Start Game
             </button>
         </div>
@@ -93,10 +94,10 @@ function LGFinal({state, onPlayAgain, onExit}: FinalProps<LGGameState>) {
                 [
                     isDaily ? `Deadlock Location Guesser Daily - ${date}` : `Deadlock Location Guesser`,
                     scores.map(s => getGolfScoreEmoji(s.score)).join(' '),
-                    totalScore == scores.length ? `Perfect score!` :`${totalScore}/${scores.length * 3} (lower is better)`,
+                    totalScore == scores.length ? `Perfect score!` : `${totalScore}/${scores.length * 3} (lower is better)`,
                     !isDaily ? `Seed: ${seed}` : "",
                     url,
-                ].filter(line  => line.length > 0)
+                ].filter(line => line.length > 0)
                     .join('\n')
             }
             onPlayAgain={onPlayAgain}
@@ -114,7 +115,18 @@ export const locationGuesserDefinition: GameDefinition<LGGameState> = {
         const count = roundCount ?? ROUND_COUNT;
         const radius = minRadius ?? DEFAULT_SCORING_RADIUS;
         const rng = seedRandom(seed);
-        const locations = ([...allLocations] as LocationData[]).filter(location => !location.tags.includes("Difficulty/Hard")).sort(() => 0.5 - rng()).slice(0, count);
+        const availableLocations = ([...allLocations] as LocationData[]).filter(location => !location.tags.includes("Difficulty/Hard"));
+        const availableIndices = availableLocations.map((_, i) => i);
+        const locationIndices = [];
+        for (let i = 0; i < count; i++) {
+            const indexInArray = Math.floor(rng() * availableLocations.length);
+            const index = availableIndices[indexInArray];
+            locationIndices.push(index);
+            availableIndices.splice(indexInArray, 1);
+        }
+        console.log(locationIndices);
+
+        const locations = locationIndices.map(i => availableLocations[i]);
         return {
             locations,
             guesses: [],
