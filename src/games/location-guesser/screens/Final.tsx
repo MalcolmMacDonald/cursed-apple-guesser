@@ -1,7 +1,7 @@
 import './final.css';
 import React from 'react';
 import type {LGGameState} from '../LocationGuesserFlow';
-import {LG_DAILY_KEY} from '../LocationGuesserFlow';
+import {LG_DAILY_KEY, LG_DAILY_SCORE_KEY} from '../LocationGuesserFlow';
 import {getGolfScoreEmoji} from '../../../utils/scoring';
 import type {RoundScore} from '../../../types';
 
@@ -28,8 +28,9 @@ function Final({state, onPlayAgain, onExit}: FinalProps) {
     React.useEffect(() => {
         if (isDaily && dailyDate) {
             localStorage.setItem(LG_DAILY_KEY, dailyDate);
+            localStorage.setItem(LG_DAILY_SCORE_KEY, String(totalScore));
         }
-    }, [isDaily, dailyDate]);
+    }, [isDaily, dailyDate, totalScore]);
 
     React.useEffect(() => {
         if (!isDaily || !dailyDate) return;
