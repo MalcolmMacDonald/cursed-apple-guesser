@@ -1,7 +1,60 @@
 import './hub.css';
 import React from 'react';
 import {makeDailyDate} from '../../utils/rng';
-import {LG_DAILY_KEY} from '../../games/location-guesser/LocationGuesserFlow';
+import {LG_DAILY_KEY, LG_DAILY_SCORE_KEY, LG_ROUND_COUNT} from '../../games/location-guesser/LocationGuesserFlow';
+
+const LG_API_URL = 'https://malloc--b83909f4289a11f1b97142dde27851f2.web.val.run';
+
+interface HistogramData {
+    date: string;
+    totalCount: number;
+    scores: { score: number; count: number }[];
+}
+
+function DailyHistogram({playerScore, totalRounds}: { playerScore: number; totalRounds: number }) {
+    const [histogram, setHistogram] = React.useState<HistogramData | null>(null);
+
+    React.useEffect(() => {
+        const date = new Date().toISOString().split('T')[0];
+        fetch(`${LG_API_URL}/scores?date=${date}`)
+            .then(r => r.json())
+            .then((data: HistogramData) => setHistogram(data))
+            .catch(() => {/* silently fail */});
+    }, []);
+
+    if (!histogram) return null;
+
+    const countByScore = Object.fromEntries(histogram.scores.map(s => [s.score, s.count]));
+    const allScores = Array.from({length: totalRounds * 3 - totalRounds + 1}, (_, i) => i + totalRounds);
+    const maxCount = Math.max(...allScores.map(s => countByScore[s] ?? 0), 1);
+
+    return (
+        <div className="hub-card__histogram">
+            <p className="hub-card__histogram-title">
+                Today — {histogram.totalCount} {histogram.totalCount === 1 ? 'player' : 'players'}
+            </p>
+            <div className="hub-card__histogram-bars">
+                {allScores.map(score => {
+                    const count = countByScore[score] ?? 0;
+                    const isPlayer = score === playerScore;
+                    const barHeight = Math.max(4, Math.round((count / maxCount) * 60));
+                    return (
+                        <div key={score} className="hub-card__histogram-bar-col">
+                            <div
+                                className={`hub-card__histogram-bar${isPlayer ? ' hub-card__histogram-bar--player' : ''}`}
+                                style={{height: barHeight}}
+                                title={`${count} player${count !== 1 ? 's' : ''}`}
+                            />
+                            <span className={`hub-card__histogram-label${isPlayer ? ' hub-card__histogram-label--player' : ''}`}>
+                                {score}
+                            </span>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
 
 type GameEntry = {
     id: string;
@@ -75,14 +128,16 @@ function useDailyCountdown(): string {
 }
 
 function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void }) {
-    let dailyDone = game.dailyStorageKey
+    const actuallyDone = game.dailyStorageKey
         ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
         : false;
-    //if in dev mode, always set daily done to false
-    if (import.meta.env.DEV) {
-        dailyDone = false;
-    }
+    //if in dev mode, always set daily done to false so the daily can always be replayed
+    const dailyDone = import.meta.env.DEV ? false : actuallyDone;
     const countdown = useDailyCountdown();
+    // In dev mode, always show the histogram regardless of completion state
+    const dailyScore = (actuallyDone || import.meta.env.DEV) && game.dailyStorageKey === LG_DAILY_KEY
+        ? Number(localStorage.getItem(LG_DAILY_SCORE_KEY) ?? 0)
+        : null;
 
     return (
         <div className={`hub-card${game.available ? '' : ' hub-card--disabled'}`}>
@@ -106,6 +161,9 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                                 </button>
                                 {dailyDone && (
                                     <p className="hub-card__daily-timer">Next in {countdown}</p>
+                                )}
+                                {dailyScore !== null && (
+                                    <DailyHistogram playerScore={dailyScore} totalRounds={LG_ROUND_COUNT}/>
                                 )}
                             </>
                         )}

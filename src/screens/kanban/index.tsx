@@ -452,24 +452,163 @@ const inputStyle: React.CSSProperties = {
     boxSizing: 'border-box',
 };
 
-async function fetchInProgressWorkflowIssues(headers: Record<string, string>): Promise<Set<number>> {
+type WorkflowRun = {
+    id: number;
+    name: string;
+    head_branch: string;
+    status: string;
+    conclusion: string | null;
+    html_url: string;
+    created_at: string;
+    updated_at: string;
+    workflow_id: number;
+};
+
+async function fetchActiveWorkflowRuns(headers: Record<string, string>): Promise<{ runs: WorkflowRun[]; inProgressNumbers: Set<number> }> {
     try {
-        const res = await fetch(
-            `${API}/repos/${REPO}/actions/runs?status=in_progress&per_page=30`,
-            { headers }
-        );
-        if (!res.ok) return new Set();
-        const data = await res.json();
+        const [inProgressRes, queuedRes] = await Promise.all([
+            fetch(`${API}/repos/${REPO}/actions/runs?status=in_progress&per_page=30`, { headers }),
+            fetch(`${API}/repos/${REPO}/actions/runs?status=queued&per_page=10`, { headers }),
+        ]);
+        const inProgressData = inProgressRes.ok ? await inProgressRes.json() : { workflow_runs: [] };
+        const queuedData = queuedRes.ok ? await queuedRes.json() : { workflow_runs: [] };
+        const allRuns: WorkflowRun[] = [
+            ...(inProgressData.workflow_runs ?? []),
+            ...(queuedData.workflow_runs ?? []),
+        ];
         const issueNumbers = new Set<number>();
-        for (const run of data.workflow_runs ?? []) {
+        for (const run of allRuns) {
             const branch: string = run.head_branch ?? '';
             const match = branch.match(/issue[- _](\d+)/i);
             if (match) issueNumbers.add(parseInt(match[1]));
         }
-        return issueNumbers;
+        return { runs: allRuns, inProgressNumbers: issueNumbers };
     } catch {
-        return new Set();
+        return { runs: [], inProgressNumbers: new Set() };
     }
+}
+
+function timeAgo(dateStr: string): string {
+    const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000);
+    if (diff < 60) return `${diff}s ago`;
+    if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+    return `${Math.floor(diff / 3600)}h ago`;
+}
+
+function WorkflowRunsPanel({ runs }: { runs: WorkflowRun[] }) {
+    if (runs.length === 0) return null;
+
+    return (
+        <div
+            style={{
+                background: '#1e1e2e',
+                border: '1px solid #313244',
+                borderRadius: 8,
+                padding: '10px 14px',
+                marginBottom: 16,
+            }}
+        >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <span
+                    style={{
+                        width: 8,
+                        height: 8,
+                        borderRadius: '50%',
+                        background: '#f9e2af',
+                        flexShrink: 0,
+                        boxShadow: '0 0 6px #f9e2af',
+                    }}
+                />
+                <span style={{ fontSize: 12, fontWeight: 600, color: '#f9e2af', letterSpacing: 0.5 }}>
+                    LIVE CI STATUS
+                </span>
+                <span
+                    style={{
+                        background: '#f9e2af33',
+                        color: '#f9e2af',
+                        borderRadius: 10,
+                        fontSize: 11,
+                        padding: '1px 7px',
+                        fontWeight: 600,
+                    }}
+                >
+                    {runs.length}
+                </span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {runs.map(run => {
+                    const isQueued = run.status === 'queued';
+                    const statusColor = isQueued ? '#89b4fa' : '#f9e2af';
+                    const issueMatch = run.head_branch?.match(/issue[- _](\d+)/i);
+                    return (
+                        <a
+                            key={run.id}
+                            href={run.html_url}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 10,
+                                background: '#181825',
+                                border: `1px solid ${statusColor}44`,
+                                borderRadius: 6,
+                                padding: '6px 10px',
+                                textDecoration: 'none',
+                                color: 'inherit',
+                            }}
+                        >
+                            <span
+                                style={{
+                                    fontSize: 10,
+                                    fontWeight: 700,
+                                    color: statusColor,
+                                    background: `${statusColor}22`,
+                                    border: `1px solid ${statusColor}66`,
+                                    borderRadius: 4,
+                                    padding: '1px 6px',
+                                    flexShrink: 0,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: 0.5,
+                                }}
+                            >
+                                {isQueued ? 'queued' : 'running'}
+                            </span>
+                            <span style={{ fontSize: 12, color: '#cdd6f4', flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                {run.name}
+                            </span>
+                            <span style={{ fontSize: 11, color: '#6c7086', flexShrink: 0 }}>
+                                {run.head_branch}
+                            </span>
+                            {issueMatch && (
+                                <span
+                                    style={{
+                                        fontSize: 10,
+                                        color: '#cba6f7',
+                                        background: '#cba6f722',
+                                        border: '1px solid #cba6f766',
+                                        borderRadius: 4,
+                                        padding: '1px 6px',
+                                        flexShrink: 0,
+                                    }}
+                                >
+                                    #{issueMatch[1]}
+                                </span>
+                            )}
+                            <span style={{ fontSize: 11, color: '#45475a', flexShrink: 0 }}>
+                                {timeAgo(run.created_at)}
+                            </span>
+                        </a>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+
+async function fetchInProgressWorkflowIssues(headers: Record<string, string>): Promise<Set<number>> {
+    const { inProgressNumbers } = await fetchActiveWorkflowRuns(headers);
+    return inProgressNumbers;
 }
 
 export default function KanbanScreen({ onBack }: { onBack: () => void }) {
@@ -481,6 +620,7 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
     );
     const [tokenInput, setTokenInput] = React.useState(token);
     const [inProgressNumbers, setInProgressNumbers] = React.useState<Set<number>>(new Set());
+    const [activeRuns, setActiveRuns] = React.useState<WorkflowRun[]>([]);
     const [promoting, setPromoting] = React.useState(false);
     const [promoteStatus, setPromoteStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
 
@@ -514,17 +654,18 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
             const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
             if (token) headers.Authorization = `Bearer ${token}`;
 
-            const [openRes, closedRes, workflowNumbers] = await Promise.all([
+            const [openRes, closedRes, workflowData] = await Promise.all([
                 fetch(`${API}/repos/${REPO}/issues?state=open&per_page=100`, { headers }),
                 fetch(`${API}/repos/${REPO}/issues?state=closed&per_page=50`, { headers }),
-                fetchInProgressWorkflowIssues(headers),
+                fetchActiveWorkflowRuns(headers),
             ]);
 
             if (!openRes.ok) throw new Error(`GitHub API error: ${openRes.status}`);
             const open: Issue[] = await openRes.json();
             const closed: Issue[] = closedRes.ok ? await closedRes.json() : [];
 
-            setInProgressNumbers(workflowNumbers);
+            setInProgressNumbers(workflowData.inProgressNumbers);
+            setActiveRuns(workflowData.runs);
             // Filter out pull requests
             setIssues([...open, ...closed].filter((i: any) => !i.pull_request));
         } catch (e: any) {
@@ -534,6 +675,17 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
     }
 
     React.useEffect(() => { fetchIssues(); }, [token]);
+
+    React.useEffect(() => {
+        const interval = setInterval(async () => {
+            const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
+            if (token) headers.Authorization = `Bearer ${token}`;
+            const workflowData = await fetchActiveWorkflowRuns(headers);
+            setActiveRuns(workflowData.runs);
+            setInProgressNumbers(workflowData.inProgressNumbers);
+        }, 30000);
+        return () => clearInterval(interval);
+    }, [token]);
 
     const backlog = issues.filter(i => getColumn(i, inProgressNumbers) === 'backlog');
     const inProgress = issues.filter(i => getColumn(i, inProgressNumbers) === 'in_progress');
@@ -684,6 +836,9 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
                     {error}
                 </div>
             )}
+
+            {/* Live CI Status */}
+            <WorkflowRunsPanel runs={activeRuns} />
 
             {/* Board */}
             <div
