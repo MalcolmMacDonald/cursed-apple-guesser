@@ -10,7 +10,7 @@ const API_URL = 'https://malloc--b83909f4289a11f1b97142dde27851f2.web.val.run';
 interface HistogramData {
     date: string;
     totalCount: number;
-    scores: {score: number; count: number}[];
+    scores: { score: number; count: number }[];
 }
 
 interface FinalProps {
@@ -37,7 +37,7 @@ function Final({state, onPlayAgain, onExit}: FinalProps) {
         const submittedKey = `dailyScore_submitted_${date}`;
         const submitAndFetch = async () => {
             try {
-                if (!localStorage.getItem(submittedKey)) {
+                if (!localStorage.getItem(submittedKey) && !(import.meta.env.DEV)) {
                     localStorage.setItem(submittedKey, '1');
                     await fetch(`${API_URL}/scores`, {
                         method: 'POST',
@@ -53,12 +53,12 @@ function Final({state, onPlayAgain, onExit}: FinalProps) {
             }
         };
         submitAndFetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleCopyResults = () => {
         const date = dailyDate ?? new Date().toISOString().split('T')[0];
-        const url = window.location.href;
+        const url = window.location.origin;
         const text = [
             isDaily ? `Deadlock Location Guesser Daily - ${date}` : `Deadlock Location Guesser`,
             scores.map((s: RoundScore) => getGolfScoreEmoji(s.score)).join(' '),
@@ -113,7 +113,8 @@ function Final({state, onPlayAgain, onExit}: FinalProps) {
                                             style={{height: barHeight}}
                                             title={`${count} player${count !== 1 ? 's' : ''}`}
                                         />
-                                        <span className={`final-score__histogram-label${isPlayer ? ' final-score__histogram-label--player' : ''}`}>
+                                        <span
+                                            className={`final-score__histogram-label${isPlayer ? ' final-score__histogram-label--player' : ''}`}>
                                             {score}
                                         </span>
                                     </div>

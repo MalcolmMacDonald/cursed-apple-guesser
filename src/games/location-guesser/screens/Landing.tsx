@@ -6,7 +6,7 @@ import {DEFAULT_SCORING_RADIUS} from '../../../utils/scoring';
 const ROUND_COUNT = 5;
 
 interface LandingProps {
-    onStart: (seed: string, isDaily: boolean, roundCount?: number, minRadius?: number) => void;
+    onStart: (seed: string, isDaily: boolean, dailyDate: string, roundCount?: number, minRadius?: number) => void;
     onExit?: () => void;
 }
 
@@ -22,7 +22,8 @@ function Landing({onStart}: LandingProps) {
             <div className="landing__icon">🗺️</div>
             <div className="landing__text">
                 <h1 className="landing__title">Location Guesser</h1>
-                <p className="landing__subtitle">{rounds} round{rounds !== 1 ? 's' : ''} — guess the location on the map</p>
+                <p className="landing__subtitle">{rounds} round{rounds !== 1 ? 's' : ''} — guess the location on the
+                    map</p>
             </div>
             <button
                 className="landing__advanced-toggle"
@@ -62,7 +63,7 @@ function Landing({onStart}: LandingProps) {
             )}
             <button
                 className="landing__start-btn"
-                onClick={() => onStart(customSeed || defaultSeed, false, rounds, minRadius)}
+                onClick={() => onStart(customSeed || defaultSeed, false, '', rounds, minRadius)}
             >
                 Start Game
             </button>
