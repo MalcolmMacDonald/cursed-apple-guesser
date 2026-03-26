@@ -26,9 +26,12 @@ export interface LGGameState {
     dailyDate?: string;
 }
 
-function initState(seed: string, isDaily: boolean, roundCount?: number, minRadius?: number): LGGameState {
+function initState(seed: string, isDaily: boolean, dailyDate: string, roundCount?: number, minRadius?: number): LGGameState {
     const count = roundCount ?? ROUND_COUNT;
     const radius = minRadius ?? DEFAULT_SCORING_RADIUS;
+    if (isDaily) {
+        seed = dailyDate + "-daily";
+    }
     const rng = seedRandom(seed);
     const availableLocations = ([...allLocations] as LocationData[]).filter(
         location => !location.tags.includes('Difficulty/Hard')
@@ -53,7 +56,7 @@ function initState(seed: string, isDaily: boolean, roundCount?: number, minRadiu
         totalRounds: count,
         seed,
         isDaily,
-        dailyDate: isDaily ? seed : undefined,
+        dailyDate: isDaily ? dailyDate : undefined,
         minRadius: radius,
     };
 }
@@ -68,10 +71,10 @@ function LocationGuesserFlow() {
         const seed = params.get('seed');
         const isDaily = params.get('daily') === 'true';
         if (seed) {
-            setState(initState(seed, isDaily));
+            setState(initState(seed, isDaily, isDaily ? new Date().toISOString().split('T')[0] : ''));
             navigate('/play/round');
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Guard: redirect to landing if at a sub-route without state
@@ -81,8 +84,8 @@ function LocationGuesserFlow() {
         }
     }, [location, state, navigate]);
 
-    function handleStart(seed: string, isDaily: boolean, roundCount?: number, minRadius?: number) {
-        setState(initState(seed, isDaily, roundCount, minRadius));
+    function handleStart(seed: string, isDaily: boolean, dailyDate: string, roundCount?: number, minRadius?: number) {
+        setState(initState(seed, isDaily, dailyDate, roundCount, minRadius));
         navigate('/play/round');
     }
 
