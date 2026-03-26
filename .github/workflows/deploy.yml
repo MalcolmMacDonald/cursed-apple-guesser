@@ -25,14 +25,14 @@ jobs:
         uses: dawidd6/action-download-artifact@v8
         with:
           name: site-main
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github_token: ${{secrets.GITHUB_TOKEN}}
           repository: MalcolmMacDonald/cursed-apple-guesser
 
       - name: Download dev artifact
         uses: dawidd6/action-download-artifact@v8
         with:
           name: site-dev
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github_token: ${{secrets.GITHUB_TOKEN}}
           repository: MalcolmMacDonald/cursed-apple-guesser
 
       - name: Combine
