@@ -25,12 +25,13 @@ jobs:
         uses: dawidd6/action-download-artifact@v8
         with:
           name: site-main
+          github-token: ${{secrets.GITHUB_TOKEN}}
 
       - name: Download dev artifact
         uses: dawidd6/action-download-artifact@v8
         with:
-          workflow: build-dev.yml
           name: site-dev
+          github-token: ${{secrets.GITHUB_TOKEN}}
 
       - name: Combine
         run: |
