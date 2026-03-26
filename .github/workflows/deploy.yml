@@ -38,6 +38,7 @@ jobs:
           github_token: ${{github.token}}
           repo: MalcolmMacDonald/cursed-apple-guesser
           run_id: ${{ steps.get-run-id-main.outputs.run-id }}
+          path: main
       - name: Get run ID of "Dev" workflow
         id: get-run-id-dev
         run: |
@@ -54,6 +55,7 @@ jobs:
           github_token: ${{secrets.GITHUB_TOKEN}}
           repo: MalcolmMacDonald/cursed-apple-guesser
           run_id: ${{ steps.get-run-id-dev.outputs.run-id }}
+          path: dev
 
       - name: Combine
         run: |
