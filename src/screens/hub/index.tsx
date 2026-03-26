@@ -128,16 +128,15 @@ function useDailyCountdown(): string {
 }
 
 function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void }) {
-    let dailyDone = game.dailyStorageKey
+    const actuallyDone = game.dailyStorageKey
         ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
         : false;
-    //if in dev mode, always set daily done to false
-    if (import.meta.env.DEV) {
-        dailyDone = false;
-    }
+    //if in dev mode, always set daily done to false so the daily can always be replayed
+    const dailyDone = import.meta.env.DEV ? false : actuallyDone;
     const countdown = useDailyCountdown();
-    const dailyScore = dailyDone && game.dailyStorageKey === LG_DAILY_KEY
-        ? Number(localStorage.getItem(LG_DAILY_SCORE_KEY))
+    // In dev mode, always show the histogram regardless of completion state
+    const dailyScore = (actuallyDone || import.meta.env.DEV) && game.dailyStorageKey === LG_DAILY_KEY
+        ? Number(localStorage.getItem(LG_DAILY_SCORE_KEY) ?? 0)
         : null;
 
     return (
@@ -163,7 +162,7 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                                 {dailyDone && (
                                     <p className="hub-card__daily-timer">Next in {countdown}</p>
                                 )}
-                                {dailyDone && dailyScore !== null && (
+                                {dailyScore !== null && (
                                     <DailyHistogram playerScore={dailyScore} totalRounds={LG_ROUND_COUNT}/>
                                 )}
                             </>
