@@ -4,14 +4,10 @@ import type {LGGameState} from '../LocationGuesserFlow';
 import {LG_DAILY_KEY, LG_DAILY_SCORE_KEY} from '../LocationGuesserFlow';
 import {getGolfScoreEmoji} from '../../../utils/scoring';
 import type {RoundScore} from '../../../types';
+import DailyHistogram from '../../../components/daily-histogram';
+import type {HistogramData} from '../../../components/daily-histogram';
 
 const API_URL = 'https://malloc--b83909f4289a11f1b97142dde27851f2.web.val.run';
-
-interface HistogramData {
-    date: string;
-    totalCount: number;
-    scores: { score: number; count: number }[];
-}
 
 interface FinalProps {
     state: LGGameState;
@@ -93,38 +89,15 @@ function Final({state, onPlayAgain, onExit}: FinalProps) {
                     <p className="final-score__total-max">with a maximum of {totalRounds * 3} points</p>
                 </div>
             )}
-            {isDaily && histogram && (() => {
-                const countByScore = Object.fromEntries(histogram.scores.map(s => [s.score, s.count]));
-                const allScores = Array.from({length: totalRounds * 3 - totalRounds + 1}, (_, i) => i + totalRounds);
-                const maxCount = Math.max(...allScores.map(s => countByScore[s] ?? 0), 1);
-                return (
-                    <div className="final-score__histogram">
-                        <p className="final-score__histogram-title">
-                            Today's scores — {histogram.totalCount} {histogram.totalCount === 1 ? 'player' : 'players'}
-                        </p>
-                        <div className="final-score__histogram-bars">
-                            {allScores.map(score => {
-                                const count = countByScore[score] ?? 0;
-                                const isPlayer = score === totalScore;
-                                const barHeight = Math.max(4, Math.round((count / maxCount) * 80));
-                                return (
-                                    <div key={score} className="final-score__histogram-bar-col">
-                                        <div
-                                            className={`final-score__histogram-bar${isPlayer ? ' final-score__histogram-bar--player' : ''}`}
-                                            style={{height: barHeight}}
-                                            title={`${count} player${count !== 1 ? 's' : ''}`}
-                                        />
-                                        <span
-                                            className={`final-score__histogram-label${isPlayer ? ' final-score__histogram-label--player' : ''}`}>
-                                            {score}
-                                        </span>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                );
-            })()}
+            {isDaily && histogram && (
+                <DailyHistogram
+                    histogram={histogram}
+                    playerScore={totalScore}
+                    totalRounds={totalRounds}
+                    title={`Today's scores — ${histogram.totalCount} ${histogram.totalCount === 1 ? 'player' : 'players'}`}
+                    large
+                />
+            )}
             {!isDaily && seed && (
                 <p className="final-score__seed">Seed: <code>{seed}</code></p>
             )}
