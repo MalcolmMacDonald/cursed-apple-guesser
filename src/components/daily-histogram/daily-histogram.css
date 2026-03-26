@@ -1,0 +1,100 @@
+.daily-histogram {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 10px 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.daily-histogram--large {
+    width: min(360px, 90vw);
+    border-radius: 14px;
+    padding: 14px 20px 10px;
+    gap: 10px;
+}
+
+.daily-histogram__title {
+    margin: 0;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.daily-histogram--large .daily-histogram__title {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.daily-histogram__bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+}
+
+.daily-histogram--large .daily-histogram__bars {
+    gap: 6px;
+}
+
+.daily-histogram__bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 16px;
+}
+
+.daily-histogram--large .daily-histogram__bar-col {
+    gap: 4px;
+    min-width: 22px;
+}
+
+.daily-histogram__perfect-count {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.daily-histogram--large .daily-histogram__perfect-count {
+    font-size: 0.65rem;
+}
+
+.daily-histogram__bar {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+    background: rgba(165, 180, 252, 0.3);
+}
+
+.daily-histogram--large .daily-histogram__bar {
+    border-radius: 4px 4px 0 0;
+    background: rgba(165, 180, 252, 0.35);
+    transition: background 0.15s ease;
+}
+
+.daily-histogram__bar--player {
+    background: #6ee7b7;
+    box-shadow: 0 0 6px rgba(110, 231, 183, 0.45);
+}
+
+.daily-histogram--large .daily-histogram__bar--player {
+    box-shadow: 0 0 8px rgba(110, 231, 183, 0.5);
+}
+
+.daily-histogram__label {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.daily-histogram--large .daily-histogram__label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.daily-histogram__label--player {
+    color: #6ee7b7;
+    font-weight: 700;
+}
