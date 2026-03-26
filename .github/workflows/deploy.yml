@@ -22,20 +22,15 @@ jobs:
 
     steps:
       - name: Download main artifact
-        uses: dawidd6/action-download-artifact@v3
+        uses: dawidd6/action-download-artifact@v8
         with:
-          workflow: build-main.yml
           name: site-main
-          path: main
-          branch: main
 
       - name: Download dev artifact
-        uses: dawidd6/action-download-artifact@v3
+        uses: dawidd6/action-download-artifact@v8
         with:
           workflow: build-dev.yml
           name: site-dev
-          path: dev
-          branch: dev
 
       - name: Combine
         run: |
