@@ -220,6 +220,60 @@
     letter-spacing: 0.03em;
 }
 
+.hub-card__histogram {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 10px 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hub-card__histogram-title {
+    margin: 0;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.hub-card__histogram-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+}
+
+.hub-card__histogram-bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 16px;
+}
+
+.hub-card__histogram-bar {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+    background: rgba(165, 180, 252, 0.3);
+}
+
+.hub-card__histogram-bar--player {
+    background: #6ee7b7;
+    box-shadow: 0 0 6px rgba(110, 231, 183, 0.45);
+}
+
+.hub-card__histogram-label {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.hub-card__histogram-label--player {
+    color: #6ee7b7;
+    font-weight: 700;
+}
+
 .hub-dev-section {
     margin-top: 24px;
 }

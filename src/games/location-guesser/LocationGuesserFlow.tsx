@@ -9,8 +9,10 @@ import Final from './screens/Final';
 import type {LocationData, MapLocation, RoundScore} from '../../types';
 import {DEFAULT_SCORING_RADIUS} from '../../utils/scoring';
 
-const ROUND_COUNT = 5;
+export const LG_ROUND_COUNT = 5;
+const ROUND_COUNT = LG_ROUND_COUNT;
 export const LG_DAILY_KEY = 'dailyChallenge_completed';
+export const LG_DAILY_SCORE_KEY = 'dailyChallenge_score';
 
 export interface LGGameState {
     locations: LocationData[];
