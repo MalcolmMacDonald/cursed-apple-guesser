@@ -37,7 +37,7 @@ jobs:
           name: site-main
           github_token: ${{github.token}}
           repo: MalcolmMacDonald/cursed-apple-guesser
-          run-id: ${{ steps.get-run-id.outputs.run-id }}
+          run_id: ${{ steps.get-run-id.outputs.run-id }}
 
       - name: Download dev artifact
         uses: dawidd6/action-download-artifact@v8
