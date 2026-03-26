@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Get run ID of "Main" workflow
-        id: get-run-id
+        id: get-run-id-main
         run: |
           OTHER_REPO="${{ github.repository }}"
           RUN_ID=`gh run --repo ${OTHER_REPO} list --workflow "Build Main" --json databaseId --jq .[0].databaseId`
@@ -37,14 +37,23 @@ jobs:
           name: site-main
           github_token: ${{github.token}}
           repo: MalcolmMacDonald/cursed-apple-guesser
-          run_id: ${{ steps.get-run-id.outputs.run-id }}
-
+          run_id: ${{ steps.get-run-id-main.outputs.run-id }}
+      - name: Get run ID of "Dev" workflow
+        id: get-run-id-dev
+        run: |
+          OTHER_REPO="${{ github.repository }}"
+          RUN_ID=`gh run --repo ${OTHER_REPO} list --workflow "Build Dev" --json databaseId --jq .[0].databaseId`
+          echo "Detected latest run id of ${RUN_ID} for workflow build dev"
+          echo "run-id=${RUN_ID}" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Download dev artifact
         uses: dawidd6/action-download-artifact@v8
         with:
           name: site-dev
           github_token: ${{secrets.GITHUB_TOKEN}}
           repo: MalcolmMacDonald/cursed-apple-guesser
+          run_id: ${{ steps.get-run-id-dev.outputs.run-id }}
 
       - name: Combine
         run: |
