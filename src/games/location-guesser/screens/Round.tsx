@@ -9,7 +9,7 @@ function Round({state, onSubmit}: { state: LGGameState; onSubmit: (state: LGGame
     React.useEffect(() => {
         state.locations.forEach(loc => {
             const img = new Image();
-            img.src = `locations/${loc.fileName}`;
+            img.src = `/locations/${loc.fileName}`;
         });
     }, []);
 
