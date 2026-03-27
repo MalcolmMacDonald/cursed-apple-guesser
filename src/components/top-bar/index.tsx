@@ -10,9 +10,17 @@ function TopBar() {
         location === '/dev/issue-tracker' ? 'Issue Tracker' :
         undefined;
 
+    const handleHomeClick = () => {
+        if (location === '/dev/issue-tracker') {
+            window.location.href = 'https://map-trainer.lloc.ca/dev';
+        } else {
+            navigate('/');
+        }
+    };
+
     return (
         <div className="topbar">
-            <button className="topbar__home-btn" onClick={() => navigate('/')}>
+            <button className="topbar__home-btn" onClick={handleHomeClick}>
                 <span className="topbar__icon">🎮</span>
                 Game Hub
             </button>

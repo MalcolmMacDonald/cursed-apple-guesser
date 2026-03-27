@@ -3,6 +3,7 @@ import React from 'react';
 import type {LGGameState} from '../LocationGuesserFlow';
 import {LG_DAILY_KEY, LG_DAILY_SCORE_KEY} from '../LocationGuesserFlow';
 import {getGolfScoreEmoji} from '../../../utils/scoring';
+import {makeLocalDate} from '../../../utils/rng';
 import type {RoundScore} from '../../../types';
 import DailyHistogram from '../../../components/daily-histogram';
 import type {HistogramData} from '../../../components/daily-histogram';
@@ -54,7 +55,7 @@ function Final({state, onPlayAgain, onExit}: FinalProps) {
     }, []);
 
     const handleCopyResults = () => {
-        const date = dailyDate ?? new Date().toISOString().split('T')[0];
+        const date = dailyDate ?? makeLocalDate();
         const url = window.location.origin;
         const text = [
             isDaily ? `Deadlock Location Guesser Daily - ${date}` : `Deadlock Location Guesser`,
