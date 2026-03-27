@@ -495,8 +495,8 @@ function timeAgo(dateStr: string): string {
     return `${Math.floor(diff / 3600)}h ago`;
 }
 
-function WorkflowRunsPanel({ runs }: { runs: WorkflowRun[] }) {
-    if (runs.length === 0) return null;
+function WorkflowRunsPanel({ runs, loading }: { runs: WorkflowRun[]; loading?: boolean }) {
+    if (runs.length === 0 && !loading) return null;
 
     return (
         <div
@@ -522,6 +522,11 @@ function WorkflowRunsPanel({ runs }: { runs: WorkflowRun[] }) {
                 <span style={{ fontSize: 12, fontWeight: 600, color: '#f9e2af', letterSpacing: 0.5 }}>
                     LIVE CI STATUS
                 </span>
+                {loading && (
+                    <span style={{ fontSize: 11, color: '#6c7086', fontStyle: 'italic' }}>
+                        refreshing…
+                    </span>
+                )}
                 <span
                     style={{
                         background: '#f9e2af33',
@@ -621,6 +626,7 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
     const [tokenInput, setTokenInput] = React.useState(token);
     const [inProgressNumbers, setInProgressNumbers] = React.useState<Set<number>>(new Set());
     const [activeRuns, setActiveRuns] = React.useState<WorkflowRun[]>([]);
+    const [ciLoading, setCiLoading] = React.useState(false);
     const [promoting, setPromoting] = React.useState(false);
     const [promoteStatus, setPromoteStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
 
@@ -649,6 +655,7 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
 
     async function fetchIssues() {
         setLoading(true);
+        setCiLoading(true);
         setError('');
         try {
             const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
@@ -672,6 +679,7 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
             setError(e.message ?? 'Failed to load issues');
         }
         setLoading(false);
+        setCiLoading(false);
     }
 
     React.useEffect(() => { fetchIssues(); }, [token]);
@@ -838,7 +846,7 @@ export default function KanbanScreen({ onBack }: { onBack: () => void }) {
             )}
 
             {/* Live CI Status */}
-            <WorkflowRunsPanel runs={activeRuns} />
+            <WorkflowRunsPanel runs={activeRuns} loading={ciLoading} />
 
             {/* Board */}
             <div
