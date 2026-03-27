@@ -245,3 +245,28 @@
     color: #6c7086;
     font-size: 13px;
 }
+
+.hub-past-histograms {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 24px;
+}
+
+.hub-past-histograms__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.hub-past-histograms__item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.hub-past-histograms__loading {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    padding: 8px 0;
+}

@@ -6,6 +6,66 @@ import DailyHistogram from '../../components/daily-histogram';
 import type {HistogramData} from '../../components/daily-histogram';
 
 const LG_API_URL = 'https://malloc--b83909f4289a11f1b97142dde27851f2.web.val.run';
+const IS_DEV_DEPLOY = import.meta.env.DEV || import.meta.env.VITE_BASE_PATH === '/dev/';
+const PAST_HISTOGRAMS_START = '2026-03-26';
+
+function getPastDates(): string[] {
+    const dates: string[] = [];
+    const start = new Date(PAST_HISTOGRAMS_START + 'T00:00:00');
+    const today = new Date(makeLocalDate() + 'T00:00:00');
+    const current = new Date(start);
+    while (current <= today) {
+        const year = current.getFullYear();
+        const month = String(current.getMonth() + 1).padStart(2, '0');
+        const day = String(current.getDate()).padStart(2, '0');
+        dates.push(`${year}-${month}-${day}`);
+        current.setDate(current.getDate() + 1);
+    }
+    return dates.reverse();
+}
+
+function PastHistogramsSection() {
+    const [histograms, setHistograms] = React.useState<Record<string, HistogramData>>({});
+
+    React.useEffect(() => {
+        const dates = getPastDates();
+        dates.forEach(date => {
+            fetch(`${LG_API_URL}/scores?date=${date}`)
+                .then(r => r.json())
+                .then((data: HistogramData) => {
+                    setHistograms(prev => ({...prev, [date]: data}));
+                })
+                .catch(() => {/* silently fail */});
+        });
+    }, []);
+
+    const dates = getPastDates();
+
+    return (
+        <div className="hub-past-histograms">
+            <div className="hub-dev-header">
+                <span className="hub-dev-badge">DEV</span>
+                <span className="hub-dev-label">Past Daily Histograms</span>
+            </div>
+            <div className="hub-past-histograms__grid">
+                {dates.map(date => (
+                    <div key={date} className="hub-past-histograms__item">
+                        {histograms[date] ? (
+                            <DailyHistogram
+                                histogram={histograms[date]}
+                                playerScore={0}
+                                totalRounds={LG_ROUND_COUNT}
+                                title={`${date} — ${histograms[date].totalCount} ${histograms[date].totalCount === 1 ? 'player' : 'players'}`}
+                            />
+                        ) : (
+                            <div className="hub-past-histograms__loading">{date}</div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
 
 function HubDailyHistogram({playerScore, totalRounds}: { playerScore: number; totalRounds: number }) {
     const [histogram, setHistogram] = React.useState<HistogramData | null>(null);
@@ -189,6 +249,13 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
                 ))}
             </div>
 
+
+            {IS_DEV_DEPLOY && (
+                <div className="hub-dev-section">
+                    <div className="hub-divider"/>
+                    <PastHistogramsSection/>
+                </div>
+            )}
 
             {import.meta.env.DEV && (
                 <div className="hub-dev-section">
