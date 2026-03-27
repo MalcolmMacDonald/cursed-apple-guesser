@@ -1,6 +1,6 @@
 import './hub.css';
 import React from 'react';
-import {makeDailyDate, makePSTDate, nextPSTMidnightMs} from '../../utils/rng';
+import {makeDailyDate, makeLocalDate, nextLocalMidnightMs} from '../../utils/rng';
 import {LG_DAILY_KEY, LG_DAILY_SCORE_KEY, LG_ROUND_COUNT} from '../../games/location-guesser/LocationGuesserFlow';
 import DailyHistogram from '../../components/daily-histogram';
 import type {HistogramData} from '../../components/daily-histogram';
@@ -11,7 +11,7 @@ function HubDailyHistogram({playerScore, totalRounds}: { playerScore: number; to
     const [histogram, setHistogram] = React.useState<HistogramData | null>(null);
 
     React.useEffect(() => {
-        const date = makePSTDate();
+        const date = makeLocalDate();
         fetch(`${LG_API_URL}/scores?date=${date}`)
             .then(r => r.json())
             .then((data: HistogramData) => setHistogram(data))
@@ -78,7 +78,7 @@ function useDailyCountdown(): string {
     const [text, setText] = React.useState('');
     React.useEffect(() => {
         const update = () => {
-            const diff = nextPSTMidnightMs() - Date.now();
+            const diff = nextLocalMidnightMs() - Date.now();
             const h = Math.floor(diff / 3600000);
             const m = Math.floor((diff % 3600000) / 60000);
             const s = Math.floor((diff % 60000) / 1000);

@@ -8,7 +8,7 @@ import Scoring from './screens/Scoring';
 import Final from './screens/Final';
 import type {LocationData, MapLocation, RoundScore} from '../../types';
 import {DEFAULT_SCORING_RADIUS} from '../../utils/scoring';
-import {makePSTDate} from '../../utils/rng';
+import {makeLocalDate} from '../../utils/rng';
 
 export const LG_ROUND_COUNT = 5;
 const ROUND_COUNT = LG_ROUND_COUNT;
@@ -74,7 +74,7 @@ function LocationGuesserFlow() {
         const seed = params.get('seed');
         const isDaily = params.get('daily') === 'true';
         if (seed) {
-            setState(initState(seed, isDaily, isDaily ? makePSTDate() : ''));
+            setState(initState(seed, isDaily, isDaily ? makeLocalDate() : ''));
             navigate('/play/round');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
