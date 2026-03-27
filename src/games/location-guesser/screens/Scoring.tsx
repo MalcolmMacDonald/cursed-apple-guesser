@@ -56,7 +56,7 @@ function Scoring({state, onContinue}: {state: LGGameState; onContinue: (score: R
     return (
         <div className="intermediate-score">
             <img
-                src={`locations/${locationData.fileName}`}
+                src={`/locations/${locationData.fileName}`}
                 alt="Location"
                 className="game-bg"
                 draggable={false}
