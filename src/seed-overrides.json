@@ -1,4 +1,12 @@
 {
   "_comment": "Map seed strings to arrays of screenshot filenames. When a seed matches, these screenshots are used in order instead of RNG selection. Example: \"my-seed\": [\"cap_001.jpg\", \"cap_002.jpg\", \"cap_003.jpg\", \"cap_004.jpg\", \"cap_005.jpg\"]",
-  "overrides": {}
+  "overrides": {
+    "2026-03-26-daily": [
+      "cap_127_x-5340_y1652_z1141.jpg",
+      "cap_205_x534_y7269_z857.jpg",
+      "cap_095_x3802_y-4231_z454.jpg",
+      "cap_002_x3219_y-6007_z637.jpg",
+      "cap_294_x-8763_y-2053_z399.jpg"
+    ]
+  }
 }
