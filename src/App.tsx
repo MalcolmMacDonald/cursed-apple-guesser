@@ -26,13 +26,17 @@ function App() {
         if (id === 'kanban') navigate('/dev/issue-tracker');
     }
 
+    function handleSelectLeaderboard(id: string) {
+        if (id === 'smoke-ranking') navigate('/smoke-ranking/leaderboard');
+    }
+
     return (
         <>
             <BuildBadge/>
             <TopBar/>
             <div className="app-content">
                 {!isPlay && !isSmokeRanking && !isKanban && (
-                    <HubScreen onSelectGame={handleSelectGame}/>
+                    <HubScreen onSelectGame={handleSelectGame} onSelectLeaderboard={handleSelectLeaderboard}/>
                 )}
                 {isPlay && (
                     <LocationGuesserFlow/>

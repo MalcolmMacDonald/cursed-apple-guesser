@@ -4,10 +4,11 @@ import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 interface VoteProps {
     pair: [string, string];
     onVote: (winnerId: string, loserId: string) => void;
+    onViewLeaderboard: () => void;
     onExit: () => void;
 }
 
-function Vote({pair, onVote, onExit}: VoteProps) {
+function Vote({pair, onVote, onViewLeaderboard, onExit}: VoteProps) {
     const [hovered, setHovered] = React.useState<0 | 1 | null>(null);
     const availableHeight = `calc(100vh - ${TOPBAR_HEIGHT}px)`;
 
@@ -100,10 +101,28 @@ function Vote({pair, onVote, onExit}: VoteProps) {
             </div>
 
             <div style={{
-                textAlign: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 12,
                 padding: '8px',
                 flexShrink: 0,
             }}>
+                <button
+                    onClick={onViewLeaderboard}
+                    style={{
+                        background: 'rgba(99, 102, 241, 0.15)',
+                        border: '1px solid rgba(99, 102, 241, 0.4)',
+                        borderRadius: 8,
+                        color: '#a5b4fc',
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        padding: '6px 16px',
+                    }}
+                >
+                    View Leaderboard
+                </button>
                 <button
                     onClick={onExit}
                     style={{

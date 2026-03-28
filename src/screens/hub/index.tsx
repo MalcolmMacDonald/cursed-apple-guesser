@@ -94,6 +94,8 @@ type GameEntry = {
     available: boolean;
     tags: string[];
     dailyStorageKey?: string;
+    primaryLabel?: string;
+    leaderboardId?: string;
 };
 
 const games: GameEntry[] = [
@@ -115,6 +117,8 @@ const games: GameEntry[] = [
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #3b1f6b 50%, #6d28d9 100%)",
         available: IS_DEV_DEPLOY,
         tags: ["Community", "Ranking"],
+        primaryLabel: "Vote Now",
+        leaderboardId: "smoke-ranking",
     },
     {
         id: "navigate",
@@ -162,7 +166,7 @@ function useDailyCountdown(): string {
     return text;
 }
 
-function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void }) {
+function GameCard({game, onPlay, onPlayDaily, onViewLeaderboard}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void; onViewLeaderboard?: () => void }) {
     const actuallyDone = game.dailyStorageKey
         ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
         : false;
@@ -202,8 +206,13 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                                 )}
                             </>
                         )}
+                        {onViewLeaderboard && (
+                            <button className="hub-card__daily-btn" onClick={onViewLeaderboard}>
+                                View Leaderboard
+                            </button>
+                        )}
                         <button className="hub-card__play-btn" onClick={onPlay}>
-                            Play Now
+                            {game.primaryLabel ?? 'Play Now'}
                         </button>
                     </div>
                 ) : (
@@ -216,7 +225,7 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
     );
 }
 
-function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolean) => void }) {
+function HubScreen({onSelectGame, onSelectLeaderboard}: { onSelectGame: (id: string, isDaily?: boolean) => void; onSelectLeaderboard?: (id: string) => void }) {
     const isDev = import.meta.env.DEV;
 
     React.useEffect(() => {
@@ -243,6 +252,9 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
                         game={game}
                         onPlay={() => onSelectGame(game.id)}
                         onPlayDaily={() => onSelectGame(game.id, true)}
+                        onViewLeaderboard={game.leaderboardId && onSelectLeaderboard
+                            ? () => onSelectLeaderboard!(game.leaderboardId!)
+                            : undefined}
                     />
                 ))}
             </div>
