@@ -17,11 +17,11 @@ function computeElo(wins: number, losses: number): number {
     return ELO_START + (ELO_K / 2) * (wins - losses);
 }
 
-// unlockedCount: 0–5 based on dailyVoteCount / 5
+// unlockedCount: 0–5 based on dailyVoteCount / 3
 // topFive[i] is unlocked when i >= (5 - unlockedCount)  → rank 5 first, rank 1 last
 // bottomFive[i] is unlocked when i < unlockedCount       → 5th lowest first, 1st lowest last
 function getUnlockedCount(dailyVoteCount: number): number {
-    return Math.min(5, Math.floor(dailyVoteCount / 5));
+    return Math.min(5, Math.floor(dailyVoteCount / 3));
 }
 
 function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {

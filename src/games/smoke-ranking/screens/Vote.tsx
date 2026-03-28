@@ -1,8 +1,8 @@
 import React from 'react';
 import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 
-const VOTE_GOAL = 25;
-const VOTE_STEP = 5;
+const VOTE_GOAL = 15;
+const VOTE_STEP = 3;
 const MILESTONE_COUNT = VOTE_GOAL / VOTE_STEP; // 5
 
 interface VoteProps {
