@@ -106,6 +106,15 @@ const games: GameEntry[] = [
         dailyStorageKey: LG_DAILY_KEY,
     },
     {
+        id: "smoke-ranking",
+        title: "Smoke Spot Ranking",
+        description: "Two screenshots. One question: which spot would you rather smoke at? Vote to build the community leaderboard of top smoke spots.",
+        icon: "💨",
+        gradient: "linear-gradient(135deg, #1a0a2e 0%, #3b1f6b 50%, #6d28d9 100%)",
+        available: IS_DEV_DEPLOY,
+        tags: ["Community", "Ranking"],
+    },
+    {
         id: "navigate",
         title: "Dead Reckoning",
         description: "You're shown a start and a destination. Give step-by-step directions — forward, left, turn around — to get there.",

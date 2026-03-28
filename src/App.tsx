@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import {useLocation} from 'wouter';
 import LocationGuesserFlow from './games/location-guesser/LocationGuesserFlow';
+import SmokeRankingFlow from './games/smoke-ranking/SmokeRankingFlow';
 import HubScreen from './screens/hub/index.tsx';
 import TopBar from './components/top-bar/index.tsx';
 import {makeDailyDate} from './utils/rng';
@@ -14,12 +15,14 @@ function App() {
     const [location, navigate] = useLocation();
 
     const isPlay = location.startsWith('/play');
+    const isSmokeRanking = location.startsWith('/smoke-ranking');
     const isKanban = location === '/dev/issue-tracker';
 
     function handleSelectGame(id: string, isDaily?: boolean) {
         if (id === 'location-guesser') {
             navigate(isDaily ? `/play?seed=${makeDailyDate()}&daily=true` : '/play');
         }
+        if (id === 'smoke-ranking') navigate('/smoke-ranking');
         if (id === 'kanban') navigate('/dev/issue-tracker');
     }
 
@@ -28,11 +31,14 @@ function App() {
             <BuildBadge/>
             <TopBar/>
             <div className="app-content">
-                {!isPlay && !isKanban && (
+                {!isPlay && !isSmokeRanking && !isKanban && (
                     <HubScreen onSelectGame={handleSelectGame}/>
                 )}
                 {isPlay && (
                     <LocationGuesserFlow/>
+                )}
+                {isSmokeRanking && (
+                    <SmokeRankingFlow/>
                 )}
                 {isKanban && import.meta.env.DEV && (
                     <KanbanScreen onBack={() => navigate('/')}/>
