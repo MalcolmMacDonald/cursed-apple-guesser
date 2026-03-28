@@ -1,7 +1,7 @@
 import './scoring.css';
 import MapDisplay from '../../../components/map-display';
 import GuessLocation from '../../../components/guess-location';
-import {calculateDistance, worldToNorm, MAP_SIZE} from '../../../utils/coordinates';
+import {calculateDistance, worldToNorm, MAP_SIZE, toMeters} from '../../../utils/coordinates';
 import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 import {calculateGolfScore, GOLF_SCORE_INFO} from '../../../utils/scoring';
 import type {LGGameState} from '../LocationGuesserFlow';
@@ -126,7 +126,7 @@ function Scoring({state, onContinue}: {state: LGGameState; onContinue: (score: R
                 )}
                 <div className="intermediate-score__info">
                     <p className="intermediate-score__distance">
-                        Distance: {effectiveDistance.toFixed(0)} units
+                        Distance: {toMeters(effectiveDistance).toFixed(0)} m
                     </p>
                     <p className="intermediate-score__score" style={{color: scoreInfo.color}}>
                         {scoreInfo.emoji} {score} <span className="intermediate-score__score-max">/ 3</span>
