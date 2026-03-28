@@ -8,10 +8,12 @@ interface LeaderboardProps {
     onExit: () => void;
 }
 
-function winRate(wins: number, losses: number): number {
-    const total = wins + losses;
-    if (total === 0) return 0;
-    return wins / total;
+const ELO_START = 1500;
+const ELO_K = 32;
+
+function computeElo(wins: number, losses: number): number {
+    // Assumes all opponents are equal (1500 ELO), so expected score per game = 0.5
+    return ELO_START + (ELO_K / 2) * (wins - losses);
 }
 
 function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
@@ -32,7 +34,8 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
         fetch(`${SMOKE_RANKING_BACKEND_URL}/leaderboard`)
             .then(r => r.json())
             .then((data: SmokeScore[]) => {
-                setEntries(data.slice(0, 20));
+                const sorted = [...data].sort((a, b) => computeElo(b.wins, b.losses) - computeElo(a.wins, a.losses));
+                setEntries(sorted.slice(0, 20));
                 setLoading(false);
             })
             .catch(() => setLoading(false));
@@ -64,7 +67,7 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                     Top Smoke Spots
                 </p>
                 <p style={{margin: '4px 0 0', color: '#64748b', fontSize: '0.8rem'}}>
-                    Ranked by community votes
+                    Ranked by ELO rating (starting at 1500)
                 </p>
             </div>
 
@@ -84,7 +87,9 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                 ) : (
                     entries.map((entry, i) => {
                         const total = entry.wins + entry.losses;
-                        const rate = Math.round(winRate(entry.wins, entry.losses) * 100);
+                        const elo = Math.round(computeElo(entry.wins, entry.losses));
+                        // Progress bar: map ELO range [1000, 2000] to [0%, 100%]
+                        const eloBarPct = Math.min(100, Math.max(0, ((elo - 1000) / 1000) * 100));
                         return (
                             <div key={entry.fileName} style={{
                                 display: 'flex',
@@ -128,11 +133,11 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                                             fontSize: '1rem',
                                             fontWeight: 700,
                                             color: '#a78bfa',
-                                        }}>{rate}%</span>
+                                        }}>{elo}</span>
                                         <span style={{
                                             fontSize: '0.75rem',
                                             color: '#64748b',
-                                        }}>win rate</span>
+                                        }}>ELO</span>
                                     </div>
                                     <div style={{
                                         background: 'rgba(255,255,255,0.07)',
@@ -141,7 +146,7 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                                         overflow: 'hidden',
                                     }}>
                                         <div style={{
-                                            width: `${rate}%`,
+                                            width: `${eloBarPct}%`,
                                             height: '100%',
                                             background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
                                             borderRadius: 4,
