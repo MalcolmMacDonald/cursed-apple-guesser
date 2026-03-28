@@ -109,7 +109,7 @@ const games: GameEntry[] = [
     },
     {
         id: "smoke-ranking",
-        title: "Smoke Spot Ranking",
+        title: "Smoke Spot Leaderboard",
         description: "Two screenshots. One question: which spot would you rather smoke at? Vote to build the community leaderboard of top smoke spots.",
         icon: "🌿",
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #3b1f6b 50%, #6d28d9 100%)",
