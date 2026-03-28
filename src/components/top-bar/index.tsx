@@ -7,6 +7,7 @@ function TopBar() {
     const [location, navigate] = useLocation();
     const currentGame =
         location.startsWith('/play') ? 'Location Guesser' :
+        location.startsWith('/smoke-ranking') ? 'Smoke Spot Ranking' :
         location === '/dev/issue-tracker' ? 'Issue Tracker' :
         undefined;
 
