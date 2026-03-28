@@ -20,6 +20,14 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
     const [entries, setEntries] = React.useState<SmokeScore[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [fullscreenImage, setFullscreenImage] = React.useState<string | null>(null);
+    const [isPortrait, setIsPortrait] = React.useState(() => window.matchMedia('(orientation: portrait)').matches);
+
+    React.useEffect(() => {
+        const mq = window.matchMedia('(orientation: portrait)');
+        const handler = (e: MediaQueryListEvent) => setIsPortrait(e.matches);
+        mq.addEventListener('change', handler);
+        return () => mq.removeEventListener('change', handler);
+    }, []);
 
     React.useEffect(() => {
         if (!fullscreenImage) return;
@@ -93,8 +101,9 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                         return (
                             <div key={entry.fileName} style={{
                                 display: 'flex',
-                                alignItems: 'center',
-                                gap: 12,
+                                flexDirection: isPortrait ? 'column' : 'row',
+                                alignItems: isPortrait ? 'stretch' : 'center',
+                                gap: isPortrait ? 8 : 12,
                                 padding: '8px 12px',
                                 borderRadius: 10,
                                 marginBottom: 8,
@@ -105,62 +114,107 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                                     ? '1px solid rgba(167,139,250,0.2)'
                                     : '1px solid rgba(255,255,255,0.06)',
                             }}>
-                                <span style={{fontSize: '1.2rem', width: 28, textAlign: 'center', flexShrink: 0}}>
-                                    {medals[i] ?? <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>}
-                                </span>
-                                <img
-                                    src={`/locations/${entry.fileName}`}
-                                    alt={entry.fileName}
-                                    draggable={false}
-                                    onClick={() => setFullscreenImage(entry.fileName)}
-                                    style={{
-                                        width: 80,
-                                        height: 50,
-                                        objectFit: 'cover',
-                                        borderRadius: 6,
-                                        flexShrink: 0,
-                                        cursor: 'pointer',
-                                    }}
-                                />
-                                <div style={{flex: 1, minWidth: 0}}>
-                                    <div style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: 8,
-                                        marginBottom: 4,
-                                    }}>
-                                        <span style={{
-                                            fontSize: '1rem',
-                                            fontWeight: 700,
-                                            color: '#a78bfa',
-                                        }}>{elo}</span>
-                                        <span style={{
-                                            fontSize: '0.75rem',
-                                            color: '#64748b',
-                                        }}>ELO</span>
-                                    </div>
-                                    <div style={{
-                                        background: 'rgba(255,255,255,0.07)',
-                                        borderRadius: 4,
-                                        height: 6,
-                                        overflow: 'hidden',
-                                    }}>
+                                {isPortrait ? (
+                                    <>
+                                        <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
+                                            <span style={{fontSize: '1.2rem', width: 28, textAlign: 'center', flexShrink: 0}}>
+                                                {medals[i] ?? <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>}
+                                            </span>
+                                            <span style={{fontSize: '1rem', fontWeight: 700, color: '#a78bfa'}}>{elo}</span>
+                                            <span style={{fontSize: '0.75rem', color: '#64748b'}}>ELO</span>
+                                            <span style={{fontSize: '0.72rem', color: '#475569', marginLeft: 'auto'}}>
+                                                {entry.wins}W / {entry.losses}L · {total} vote{total !== 1 ? 's' : ''}
+                                            </span>
+                                        </div>
+                                        <img
+                                            src={`/locations/${entry.fileName}`}
+                                            alt={entry.fileName}
+                                            draggable={false}
+                                            onClick={() => setFullscreenImage(entry.fileName)}
+                                            style={{
+                                                width: '100%',
+                                                aspectRatio: '16/9',
+                                                objectFit: 'cover',
+                                                borderRadius: 6,
+                                                cursor: 'pointer',
+                                                display: 'block',
+                                            }}
+                                        />
                                         <div style={{
-                                            width: `${eloBarPct}%`,
-                                            height: '100%',
-                                            background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
+                                            background: 'rgba(255,255,255,0.07)',
                                             borderRadius: 4,
-                                            transition: 'width 0.3s ease',
-                                        }}/>
-                                    </div>
-                                    <p style={{
-                                        margin: '4px 0 0',
-                                        fontSize: '0.72rem',
-                                        color: '#475569',
-                                    }}>
-                                        {entry.wins}W / {entry.losses}L &nbsp;·&nbsp; {total} vote{total !== 1 ? 's' : ''}
-                                    </p>
-                                </div>
+                                            height: 6,
+                                            overflow: 'hidden',
+                                        }}>
+                                            <div style={{
+                                                width: `${eloBarPct}%`,
+                                                height: '100%',
+                                                background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
+                                                borderRadius: 4,
+                                                transition: 'width 0.3s ease',
+                                            }}/>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span style={{fontSize: '1.2rem', width: 28, textAlign: 'center', flexShrink: 0}}>
+                                            {medals[i] ?? <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>}
+                                        </span>
+                                        <img
+                                            src={`/locations/${entry.fileName}`}
+                                            alt={entry.fileName}
+                                            draggable={false}
+                                            onClick={() => setFullscreenImage(entry.fileName)}
+                                            style={{
+                                                width: 80,
+                                                height: 50,
+                                                objectFit: 'cover',
+                                                borderRadius: 6,
+                                                flexShrink: 0,
+                                                cursor: 'pointer',
+                                            }}
+                                        />
+                                        <div style={{flex: 1, minWidth: 0}}>
+                                            <div style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: 8,
+                                                marginBottom: 4,
+                                            }}>
+                                                <span style={{
+                                                    fontSize: '1rem',
+                                                    fontWeight: 700,
+                                                    color: '#a78bfa',
+                                                }}>{elo}</span>
+                                                <span style={{
+                                                    fontSize: '0.75rem',
+                                                    color: '#64748b',
+                                                }}>ELO</span>
+                                            </div>
+                                            <div style={{
+                                                background: 'rgba(255,255,255,0.07)',
+                                                borderRadius: 4,
+                                                height: 6,
+                                                overflow: 'hidden',
+                                            }}>
+                                                <div style={{
+                                                    width: `${eloBarPct}%`,
+                                                    height: '100%',
+                                                    background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
+                                                    borderRadius: 4,
+                                                    transition: 'width 0.3s ease',
+                                                }}/>
+                                            </div>
+                                            <p style={{
+                                                margin: '4px 0 0',
+                                                fontSize: '0.72rem',
+                                                color: '#475569',
+                                            }}>
+                                                {entry.wins}W / {entry.losses}L &nbsp;·&nbsp; {total} vote{total !== 1 ? 's' : ''}
+                                            </p>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                         );
                     })
