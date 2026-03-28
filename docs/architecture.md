@@ -88,7 +88,8 @@ MapLocation   = { x: number, y: number }
 Val Town serverless backends (see `.claude/commands/` for full API reference):
 
 - `malloc/map-trainer-backend` — stores and histograms daily Location Guesser scores (`POST /scores`, `GET /scores?date=`)
-- `malloc/smoke-ranking-backend` — stores pairwise smoke spot votes and serves aggregated leaderboard (`POST /votes`, `GET /leaderboard`)
+- `malloc/smoke-ranking-backend` — legacy: stores raw pairwise votes (`POST /votes`, `GET /leaderboard`)
+- `malloc/smoke-elo-backend` — Elo-based smoke spot ranking: updates real Elo ratings on every vote, exposes `/backfill` to seed from historical data (`POST /votes`, `GET /leaderboard`, `POST /backfill`). Source: `backends/smoke-elo-backend.ts`. See `.claude/commands/smoke-elo-backend.md`.
 
 ## Planned Games
 
