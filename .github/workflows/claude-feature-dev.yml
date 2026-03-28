@@ -20,7 +20,9 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          claude_args: "--dangerously-skip-permissions"
+          claude_args: |
+            --dangerously-skip-permissions
+            --mcp-config '{"mcpServers": {"val-town": {"type": "http","url": "https://api.val.town/v3/mcp"}},"headers": {"x-val-town-token": "${{secrets.VAL_TOWN_API_TOKEN}}"}}'
           prompt: |
             You are implementing a feature for the cursed-apple-guesser project. Read CLAUDE.md for full project context.
 
