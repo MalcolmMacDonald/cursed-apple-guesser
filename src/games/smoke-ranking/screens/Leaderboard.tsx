@@ -1,5 +1,5 @@
 import React from 'react';
-import {SMOKE_RANKING_BACKEND_URL} from '../SmokeRankingFlow';
+import {SMOKE_ELO_BACKEND_URL} from '../SmokeRankingFlow';
 import type {SmokeScore} from '../SmokeRankingFlow';
 import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 
@@ -7,14 +7,6 @@ interface LeaderboardProps {
     onVoteAgain: () => void;
     onExit: () => void;
     dailyVoteCount: number;
-}
-
-const ELO_START = 1500;
-const ELO_K = 32;
-
-function computeElo(wins: number, losses: number): number {
-    // Assumes all opponents are equal (1500 ELO), so expected score per game = 0.5
-    return ELO_START + (ELO_K / 2) * (wins - losses);
 }
 
 // unlockedCount: 0–5 based on dailyVoteCount / 3
@@ -50,10 +42,11 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
     }, [fullscreenImage]);
 
     React.useEffect(() => {
-        fetch(`${SMOKE_RANKING_BACKEND_URL}/leaderboard`)
+        fetch(`${SMOKE_ELO_BACKEND_URL}/leaderboard`)
             .then(r => r.json())
             .then((data: SmokeScore[]) => {
-                const sorted = [...data].sort((a, b) => computeElo(b.wins, b.losses) - computeElo(a.wins, a.losses));
+                // Backend returns data pre-sorted by Elo descending
+                const sorted = [...data];
                 setTopFive(sorted.slice(0, 5));
                 setSixthTop(sorted[5] ?? null);
                 // bottomFive: index 0 = 5th lowest (least bad of worst), index 4 = 1st lowest (worst)
@@ -72,7 +65,7 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
 
     function renderEntry(entry: SmokeScore, rank: React.ReactNode, isLocked: boolean, highlight: boolean) {
         const total = entry.wins + entry.losses;
-        const elo = Math.round(computeElo(entry.wins, entry.losses));
+        const elo = entry.elo;
         const eloBarPct = Math.min(100, Math.max(0, ((elo - 1000) / 1000) * 100));
 
         return (
