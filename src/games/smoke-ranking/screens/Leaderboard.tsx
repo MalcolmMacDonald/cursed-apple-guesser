@@ -81,6 +81,7 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
 
             <div style={{
                 flex: 1,
+                minHeight: 0,
                 overflowY: 'auto',
                 padding: '8px 16px',
             }}>
@@ -133,11 +134,11 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                                             onClick={() => setFullscreenImage(entry.fileName)}
                                             style={{
                                                 width: '100%',
-                                                aspectRatio: '16/9',
-                                                objectFit: 'cover',
+                                                maxWidth: '100%',
+                                                height: 'auto',
+                                                display: 'block',
                                                 borderRadius: 6,
                                                 cursor: 'pointer',
-                                                display: 'block',
                                             }}
                                         />
                                         <div style={{
