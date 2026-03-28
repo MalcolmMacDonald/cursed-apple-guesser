@@ -83,6 +83,13 @@ MapLocation   = { x: number, y: number }
   layers
 - `public/locations/*.jpg` — 70+ in-game screenshots with metadata in `metadata.json`
 
+## Backends
+
+Val Town serverless backends (see `.claude/commands/` for full API reference):
+
+- `malloc/map-trainer-backend` — stores and histograms daily Location Guesser scores (`POST /scores`, `GET /scores?date=`)
+- `malloc/smoke-ranking-backend` — stores pairwise smoke spot votes and serves aggregated leaderboard (`POST /votes`, `GET /leaderboard`)
+
 ## Planned Games
 
 | ID                 | Name             | Status |

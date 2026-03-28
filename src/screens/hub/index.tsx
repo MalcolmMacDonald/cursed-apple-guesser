@@ -6,6 +6,67 @@ import DailyHistogram from '../../components/daily-histogram';
 import type {HistogramData} from '../../components/daily-histogram';
 
 const LG_API_URL = 'https://malloc--b83909f4289a11f1b97142dde27851f2.web.val.run';
+const IS_DEV_DEPLOY = import.meta.env.DEV || import.meta.env.VITE_BASE_PATH === '/dev/';
+const PAST_HISTOGRAMS_START = '2026-03-26';
+
+function getPastDates(): string[] {
+    const dates: string[] = [];
+    const start = new Date(PAST_HISTOGRAMS_START + 'T00:00:00');
+    const today = new Date(makeLocalDate() + 'T00:00:00');
+    const current = new Date(start);
+    while (current <= today) {
+        const year = current.getFullYear();
+        const month = String(current.getMonth() + 1).padStart(2, '0');
+        const day = String(current.getDate()).padStart(2, '0');
+        dates.push(`${year}-${month}-${day}`);
+        current.setDate(current.getDate() + 1);
+    }
+    return dates.reverse();
+}
+
+function PastHistogramsSection() {
+    const [histograms, setHistograms] = React.useState<Record<string, HistogramData>>({});
+
+    React.useEffect(() => {
+        const dates = getPastDates();
+        dates.forEach(date => {
+            fetch(`${LG_API_URL}/scores?date=${date}`)
+                .then(r => r.json())
+                .then((data: HistogramData) => {
+                    setHistograms(prev => ({...prev, [date]: data}));
+                })
+                .catch(() => {/* silently fail */
+                });
+        });
+    }, []);
+
+    const dates = getPastDates();
+
+    return (
+        <div className="hub-past-histograms">
+            <div className="hub-dev-header">
+                <span className="hub-dev-badge">DEV</span>
+                <span className="hub-dev-label">Past Daily Histograms</span>
+            </div>
+            <div className="hub-past-histograms__grid">
+                {dates.map(date => (
+                    <div key={date} className="hub-past-histograms__item">
+                        {histograms[date] ? (
+                            <DailyHistogram
+                                histogram={histograms[date]}
+                                playerScore={0}
+                                totalRounds={LG_ROUND_COUNT}
+                                title={`${date} — ${histograms[date].totalCount} ${histograms[date].totalCount === 1 ? 'player' : 'players'}`}
+                            />
+                        ) : (
+                            <div className="hub-past-histograms__loading">{date}</div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
 
 function HubDailyHistogram({playerScore, totalRounds}: { playerScore: number; totalRounds: number }) {
     const [histogram, setHistogram] = React.useState<HistogramData | null>(null);
@@ -15,7 +76,8 @@ function HubDailyHistogram({playerScore, totalRounds}: { playerScore: number; to
         fetch(`${LG_API_URL}/scores?date=${date}`)
             .then(r => r.json())
             .then((data: HistogramData) => setHistogram(data))
-            .catch(() => {/* silently fail */});
+            .catch(() => {/* silently fail */
+            });
     }, []);
 
     if (!histogram) return null;
@@ -32,6 +94,8 @@ type GameEntry = {
     available: boolean;
     tags: string[];
     dailyStorageKey?: string;
+    primaryLabel?: string;
+    leaderboardId?: string;
 };
 
 const games: GameEntry[] = [
@@ -44,6 +108,17 @@ const games: GameEntry[] = [
         available: true,
         tags: ["Location"],
         dailyStorageKey: LG_DAILY_KEY,
+    },
+    {
+        id: "smoke-ranking",
+        title: "Smoke Spot Leaderboard",
+        description: "Two screenshots. One question: which spot would you rather smoke at? Vote to build the community leaderboard of top smoke spots.",
+        icon: "🌿",
+        gradient: "linear-gradient(135deg, #1a0a2e 0%, #3b1f6b 50%, #6d28d9 100%)",
+        available: IS_DEV_DEPLOY,
+        tags: ["Community", "Ranking"],
+        primaryLabel: "Vote Now",
+        leaderboardId: "smoke-ranking",
     },
     {
         id: "navigate",
@@ -91,7 +166,7 @@ function useDailyCountdown(): string {
     return text;
 }
 
-function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void }) {
+function GameCard({game, onPlay, onPlayDaily, onViewLeaderboard}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void; onViewLeaderboard?: () => void }) {
     const actuallyDone = game.dailyStorageKey
         ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
         : false;
@@ -131,8 +206,13 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
                                 )}
                             </>
                         )}
+                        {onViewLeaderboard && (
+                            <button className="hub-card__daily-btn" onClick={onViewLeaderboard}>
+                                View Leaderboard
+                            </button>
+                        )}
                         <button className="hub-card__play-btn" onClick={onPlay}>
-                            Play Now
+                            {game.primaryLabel ?? 'Play Now'}
                         </button>
                     </div>
                 ) : (
@@ -145,7 +225,7 @@ function GameCard({game, onPlay, onPlayDaily}: { game: GameEntry; onPlay: () => 
     );
 }
 
-function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolean) => void }) {
+function HubScreen({onSelectGame, onSelectLeaderboard}: { onSelectGame: (id: string, isDaily?: boolean) => void; onSelectLeaderboard?: (id: string) => void }) {
     const isDev = import.meta.env.DEV;
 
     React.useEffect(() => {
@@ -172,6 +252,9 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
                         game={game}
                         onPlay={() => onSelectGame(game.id)}
                         onPlayDaily={() => onSelectGame(game.id, true)}
+                        onViewLeaderboard={game.leaderboardId && onSelectLeaderboard
+                            ? () => onSelectLeaderboard!(game.leaderboardId!)
+                            : undefined}
                     />
                 ))}
             </div>
@@ -189,6 +272,13 @@ function HubScreen({onSelectGame}: { onSelectGame: (id: string, isDaily?: boolea
                 ))}
             </div>
 
+
+            {IS_DEV_DEPLOY && (
+                <div className="hub-dev-section">
+                    <div className="hub-divider"/>
+                    <PastHistogramsSection/>
+                </div>
+            )}
 
             {import.meta.env.DEV && (
                 <div className="hub-dev-section">
