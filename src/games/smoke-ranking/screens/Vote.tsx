@@ -10,7 +10,15 @@ interface VoteProps {
 
 function Vote({pair, onVote, onViewLeaderboard, onExit}: VoteProps) {
     const [hovered, setHovered] = React.useState<0 | 1 | null>(null);
+    const [isPortrait, setIsPortrait] = React.useState(() => window.matchMedia('(orientation: portrait)').matches);
     const availableHeight = `calc(100vh - ${TOPBAR_HEIGHT}px)`;
+
+    React.useEffect(() => {
+        const mq = window.matchMedia('(orientation: portrait)');
+        const handler = (e: MediaQueryListEvent) => setIsPortrait(e.matches);
+        mq.addEventListener('change', handler);
+        return () => mq.removeEventListener('change', handler);
+    }, []);
 
     return (
         <div style={{
@@ -39,10 +47,11 @@ function Vote({pair, onVote, onViewLeaderboard, onExit}: VoteProps) {
 
             <div style={{
                 display: 'flex',
+                flexDirection: isPortrait ? 'column' : 'row',
                 flex: 1,
                 gap: 4,
                 padding: '0 4px 4px',
-                overflow: 'hidden',
+                overflow: isPortrait ? 'auto' : 'hidden',
             }}>
                 {pair.map((fileName, idx) => (
                     <button
@@ -52,6 +61,7 @@ function Vote({pair, onVote, onViewLeaderboard, onExit}: VoteProps) {
                         onMouseLeave={() => setHovered(null)}
                         style={{
                             flex: 1,
+                            minHeight: isPortrait ? 0 : undefined,
                             border: hovered === idx
                                 ? '3px solid #a78bfa'
                                 : '3px solid transparent',
@@ -71,8 +81,8 @@ function Vote({pair, onVote, onViewLeaderboard, onExit}: VoteProps) {
                             draggable={false}
                             style={{
                                 width: '100%',
-                                height: '100%',
-                                objectFit: 'cover',
+                                height: isPortrait ? 'auto' : '100%',
+                                objectFit: isPortrait ? 'contain' : 'cover',
                                 display: 'block',
                                 filter: hovered === idx ? 'brightness(1.1)' : 'brightness(0.85)',
                                 transition: 'filter 0.15s',
