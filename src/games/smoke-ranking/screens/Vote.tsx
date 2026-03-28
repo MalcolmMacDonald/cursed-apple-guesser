@@ -1,14 +1,19 @@
 import React from 'react';
 import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 
+const VOTE_GOAL = 25;
+const VOTE_STEP = 5;
+const MILESTONE_COUNT = VOTE_GOAL / VOTE_STEP; // 5
+
 interface VoteProps {
     pair: [string, string];
     onVote: (winnerId: string, loserId: string) => void;
     onViewLeaderboard: () => void;
     onExit: () => void;
+    dailyVoteCount: number;
 }
 
-function Vote({pair, onVote, onViewLeaderboard, onExit}: VoteProps) {
+function Vote({pair, onVote, onViewLeaderboard, onExit, dailyVoteCount}: VoteProps) {
     const [hovered, setHovered] = React.useState<0 | 1 | null>(null);
     const [isPortrait, setIsPortrait] = React.useState(() => window.matchMedia('(orientation: portrait)').matches);
     const availableHeight = `calc(100vh - ${TOPBAR_HEIGHT}px)`;
@@ -19,6 +24,10 @@ function Vote({pair, onVote, onViewLeaderboard, onExit}: VoteProps) {
         mq.addEventListener('change', handler);
         return () => mq.removeEventListener('change', handler);
     }, []);
+
+    const clampedVotes = Math.min(dailyVoteCount, VOTE_GOAL);
+    const nextMilestone = Math.min(VOTE_GOAL, Math.ceil(clampedVotes / VOTE_STEP) * VOTE_STEP);
+    const votesUntilNext = nextMilestone - clampedVotes;
 
     return (
         <div style={{
@@ -112,40 +121,65 @@ function Vote({pair, onVote, onViewLeaderboard, onExit}: VoteProps) {
 
             <div style={{
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
-                gap: 12,
-                padding: '8px',
+                gap: 8,
+                padding: '8px 16px',
                 flexShrink: 0,
             }}>
-                <button
-                    onClick={onViewLeaderboard}
-                    style={{
-                        background: 'rgba(99, 102, 241, 0.15)',
-                        border: '1px solid rgba(99, 102, 241, 0.4)',
-                        borderRadius: 8,
-                        color: '#a5b4fc',
-                        fontSize: '0.82rem',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        padding: '6px 16px',
-                    }}
-                >
-                    View Leaderboard
-                </button>
-                <button
-                    onClick={onExit}
-                    style={{
-                        background: 'none',
-                        border: 'none',
-                        color: '#475569',
-                        fontSize: '0.8rem',
-                        cursor: 'pointer',
-                        padding: '4px 12px',
-                    }}
-                >
-                    Back to Hub
-                </button>
+                {/* Vote progress */}
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, width: '100%', maxWidth: 260}}>
+                    <div style={{display: 'flex', gap: 6}}>
+                        {Array.from({length: MILESTONE_COUNT}, (_, i) => {
+                            const filled = clampedVotes >= (i + 1) * VOTE_STEP;
+                            return (
+                                <div key={i} style={{
+                                    width: 32,
+                                    height: 8,
+                                    borderRadius: 4,
+                                    background: filled ? '#a78bfa' : 'rgba(255,255,255,0.1)',
+                                    transition: 'background 0.2s',
+                                }}/>
+                            );
+                        })}
+                    </div>
+                    <p style={{margin: 0, color: '#475569', fontSize: '0.72rem'}}>
+                        {clampedVotes >= VOTE_GOAL
+                            ? 'All leaderboard spots unlocked today!'
+                            : `${clampedVotes}/${VOTE_GOAL} votes today · ${votesUntilNext} more to unlock next spot`}
+                    </p>
+                </div>
+
+                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12}}>
+                    <button
+                        onClick={onViewLeaderboard}
+                        style={{
+                            background: 'rgba(99, 102, 241, 0.15)',
+                            border: '1px solid rgba(99, 102, 241, 0.4)',
+                            borderRadius: 8,
+                            color: '#a5b4fc',
+                            fontSize: '0.82rem',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                            padding: '6px 16px',
+                        }}
+                    >
+                        View Leaderboard
+                    </button>
+                    <button
+                        onClick={onExit}
+                        style={{
+                            background: 'none',
+                            border: 'none',
+                            color: '#475569',
+                            fontSize: '0.8rem',
+                            cursor: 'pointer',
+                            padding: '4px 12px',
+                        }}
+                    >
+                        Back to Hub
+                    </button>
+                </div>
             </div>
         </div>
     );
