@@ -17,6 +17,16 @@ function winRate(wins: number, losses: number): number {
 function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
     const [entries, setEntries] = React.useState<SmokeScore[]>([]);
     const [loading, setLoading] = React.useState(true);
+    const [fullscreenImage, setFullscreenImage] = React.useState<string | null>(null);
+
+    React.useEffect(() => {
+        if (!fullscreenImage) return;
+        const handler = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setFullscreenImage(null);
+        };
+        window.addEventListener('keydown', handler);
+        return () => window.removeEventListener('keydown', handler);
+    }, [fullscreenImage]);
 
     React.useEffect(() => {
         fetch(`${SMOKE_RANKING_BACKEND_URL}/leaderboard`)
@@ -97,12 +107,14 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                                     src={`/locations/${entry.fileName}`}
                                     alt={entry.fileName}
                                     draggable={false}
+                                    onClick={() => setFullscreenImage(entry.fileName)}
                                     style={{
                                         width: 80,
                                         height: 50,
                                         objectFit: 'cover',
                                         borderRadius: 6,
                                         flexShrink: 0,
+                                        cursor: 'pointer',
                                     }}
                                 />
                                 <div style={{flex: 1, minWidth: 0}}>
@@ -188,6 +200,35 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                     Hub
                 </button>
             </div>
+
+            {fullscreenImage && (
+                <div
+                    onClick={() => setFullscreenImage(null)}
+                    style={{
+                        position: 'fixed',
+                        inset: 0,
+                        background: 'rgba(0,0,0,0.9)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 1000,
+                        cursor: 'zoom-out',
+                    }}
+                >
+                    <img
+                        src={`/locations/${fullscreenImage}`}
+                        alt={fullscreenImage}
+                        draggable={false}
+                        style={{
+                            maxWidth: '95vw',
+                            maxHeight: '95vh',
+                            objectFit: 'contain',
+                            borderRadius: 8,
+                            boxShadow: '0 0 60px rgba(0,0,0,0.8)',
+                        }}
+                    />
+                </div>
+            )}
         </div>
     );
 }
