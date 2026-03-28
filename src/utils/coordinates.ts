@@ -2,6 +2,12 @@ import type { MapLocation } from '../types';
 
 export const MAP_RADIUS = 10900;
 export const MAP_SIZE = MAP_RADIUS * 2;
+export const UNITS_PER_METER = 40;
+
+/** Converts world-space units to meters. */
+export function toMeters(units: number): number {
+    return units / UNITS_PER_METER;
+}
 
 /**
  * Converts Deadlock world coordinates to normalized [0, 1] minimap coordinates.
