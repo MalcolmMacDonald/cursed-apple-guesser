@@ -126,7 +126,7 @@ function Scoring({state, onContinue}: {state: LGGameState; onContinue: (score: R
                 )}
                 <div className="intermediate-score__info">
                     <p className="intermediate-score__distance">
-                        Distance: {toMeters(effectiveDistance).toFixed(0)} m
+                        Distance: {toMeters(effectiveDistance).toFixed(1)} m
                     </p>
                     <p className="intermediate-score__score" style={{color: scoreInfo.color}}>
                         {scoreInfo.emoji} {score} <span className="intermediate-score__score-max">/ 3</span>
