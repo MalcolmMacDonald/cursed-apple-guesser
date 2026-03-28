@@ -35,7 +35,8 @@ function PastHistogramsSection() {
                 .then((data: HistogramData) => {
                     setHistograms(prev => ({...prev, [date]: data}));
                 })
-                .catch(() => {/* silently fail */});
+                .catch(() => {/* silently fail */
+                });
         });
     }, []);
 
@@ -75,7 +76,8 @@ function HubDailyHistogram({playerScore, totalRounds}: { playerScore: number; to
         fetch(`${LG_API_URL}/scores?date=${date}`)
             .then(r => r.json())
             .then((data: HistogramData) => setHistogram(data))
-            .catch(() => {/* silently fail */});
+            .catch(() => {/* silently fail */
+            });
     }, []);
 
     if (!histogram) return null;
@@ -109,7 +111,7 @@ const games: GameEntry[] = [
         id: "smoke-ranking",
         title: "Smoke Spot Ranking",
         description: "Two screenshots. One question: which spot would you rather smoke at? Vote to build the community leaderboard of top smoke spots.",
-        icon: "💨",
+        icon: "🌿",
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #3b1f6b 50%, #6d28d9 100%)",
         available: IS_DEV_DEPLOY,
         tags: ["Community", "Ranking"],

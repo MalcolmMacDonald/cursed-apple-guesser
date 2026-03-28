@@ -31,7 +31,7 @@ function Vote({pair, onVote, onExit}: VoteProps) {
                     fontWeight: 600,
                     letterSpacing: '0.01em',
                 }}>
-                    Which spot would you rather <span style={{color: '#a78bfa'}}>smoke at</span>?
+                    Which spot would you rather <span style={{color: '#06b627'}}>smoke at</span>?
                 </p>
                 <p style={{margin: '4px 0 0', color: '#64748b', fontSize: '0.8rem'}}>Click to vote</p>
             </div>
