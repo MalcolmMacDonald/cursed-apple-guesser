@@ -5,7 +5,7 @@ import allLocations from '../../../public/locations/metadata.json';
 import Vote from './screens/Vote';
 import Leaderboard from './screens/Leaderboard';
 
-export const SMOKE_RANKING_STORAGE_KEY = 'smokeRanking_scores';
+export const SMOKE_RANKING_BACKEND_URL = 'https://malloc--ae8f7de82aca11f1be7a42dde27851f2.web.val.run';
 
 export type SmokeScore = {
     fileName: string;
@@ -13,21 +13,12 @@ export type SmokeScore = {
     losses: number;
 };
 
-export function getSmokeScores(): Record<string, SmokeScore> {
-    try {
-        return JSON.parse(localStorage.getItem(SMOKE_RANKING_STORAGE_KEY) ?? '{}');
-    } catch {
-        return {};
-    }
-}
-
-export function recordVote(winnerId: string, loserId: string) {
-    const scores = getSmokeScores();
-    if (!scores[winnerId]) scores[winnerId] = {fileName: winnerId, wins: 0, losses: 0};
-    if (!scores[loserId]) scores[loserId] = {fileName: loserId, wins: 0, losses: 0};
-    scores[winnerId].wins += 1;
-    scores[loserId].losses += 1;
-    localStorage.setItem(SMOKE_RANKING_STORAGE_KEY, JSON.stringify(scores));
+async function recordVote(winnerId: string, loserId: string): Promise<void> {
+    await fetch(`${SMOKE_RANKING_BACKEND_URL}/votes`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({winner: winnerId, loser: loserId}),
+    });
 }
 
 function pickPair(exclude: string[]): [string, string] {
@@ -53,8 +44,8 @@ function SmokeRankingFlow() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    function handleVote(winnerId: string, loserId: string) {
-        recordVote(winnerId, loserId);
+    async function handleVote(winnerId: string, loserId: string) {
+        await recordVote(winnerId, loserId);
         const seen = [...seenPairs, pair[0], pair[1]];
         setSeenPairs(seen);
         setPair(pickPair(seen.length >= (allLocations.length - 2) ? [] : seen));

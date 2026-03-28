@@ -5,7 +5,11 @@
       "Bash(bun run lint)",
       "Bash(bun run build)",
       "Bash(bun run tsc --noEmit)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "mcp__val-town__list_vals",
+      "mcp__val-town__list_files",
+      "mcp__val-town__read_file",
+      "mcp__val-town__create_val"
     ]
   }
 }

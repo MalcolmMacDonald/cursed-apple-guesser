@@ -24,3 +24,5 @@ bun run cms       # Start screenshot metadata manager (port 5174)
 - @docs/architecture.md — project structure, game engine, game flow, coordinate system, data types
 - @docs/tools.md — deadlock-capture and screenshot-metadata-manager docs
 - @rules/conventions.md — platform notes, coding conventions, deployment notes
+- @.claude/commands/map-trainer-backend.md — Val Town backend API (score submission + histogram)
+- @.claude/commands/smoke-ranking-backend.md — Val Town backend API (smoke spot vote submission + leaderboard)

@@ -1,5 +1,6 @@
 import React from 'react';
-import {getSmokeScores} from '../SmokeRankingFlow';
+import {SMOKE_RANKING_BACKEND_URL} from '../SmokeRankingFlow';
+import type {SmokeScore} from '../SmokeRankingFlow';
 import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 
 interface LeaderboardProps {
@@ -14,15 +15,18 @@ function winRate(wins: number, losses: number): number {
 }
 
 function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
-    const scores = getSmokeScores();
-    const entries = Object.values(scores)
-        .filter(e => e.wins + e.losses >= 1)
-        .sort((a, b) => {
-            const rateB = winRate(b.wins, b.losses);
-            const rateA = winRate(a.wins, a.losses);
-            if (rateB !== rateA) return rateB - rateA;
-            return (b.wins + b.losses) - (a.wins + a.losses);
-        });
+    const [entries, setEntries] = React.useState<SmokeScore[]>([]);
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        fetch(`${SMOKE_RANKING_BACKEND_URL}/leaderboard`)
+            .then(r => r.json())
+            .then((data: SmokeScore[]) => {
+                setEntries(data.slice(0, 20));
+                setLoading(false);
+            })
+            .catch(() => setLoading(false));
+    }, []);
 
     const availableHeight = `calc(100vh - ${TOPBAR_HEIGHT}px)`;
     const medals = ['🥇', '🥈', '🥉'];
@@ -59,12 +63,16 @@ function Leaderboard({onVoteAgain, onExit}: LeaderboardProps) {
                 overflowY: 'auto',
                 padding: '8px 16px',
             }}>
-                {entries.length === 0 ? (
+                {loading ? (
+                    <p style={{textAlign: 'center', color: '#475569', marginTop: 40}}>
+                        Loading votes...
+                    </p>
+                ) : entries.length === 0 ? (
                     <p style={{textAlign: 'center', color: '#475569', marginTop: 40}}>
                         No votes recorded yet. Be the first!
                     </p>
                 ) : (
-                    entries.slice(0, 20).map((entry, i) => {
+                    entries.map((entry, i) => {
                         const total = entry.wins + entry.losses;
                         const rate = Math.round(winRate(entry.wins, entry.losses) * 100);
                         return (
