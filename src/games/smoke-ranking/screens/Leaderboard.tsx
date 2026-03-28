@@ -27,6 +27,8 @@ function getUnlockedCount(dailyVoteCount: number): number {
 function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
     const [topFive, setTopFive] = React.useState<SmokeScore[]>([]);
     const [bottomFive, setBottomFive] = React.useState<SmokeScore[]>([]);
+    const [sixthTop, setSixthTop] = React.useState<SmokeScore | null>(null);
+    const [sixthBottom, setSixthBottom] = React.useState<SmokeScore | null>(null);
     const [loading, setLoading] = React.useState(true);
     const [fullscreenImage, setFullscreenImage] = React.useState<string | null>(null);
     const [isPortrait, setIsPortrait] = React.useState(() => window.matchMedia('(orientation: portrait)').matches);
@@ -53,8 +55,12 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
             .then((data: SmokeScore[]) => {
                 const sorted = [...data].sort((a, b) => computeElo(b.wins, b.losses) - computeElo(a.wins, a.losses));
                 setTopFive(sorted.slice(0, 5));
+                setSixthTop(sorted[5] ?? null);
                 // bottomFive: index 0 = 5th lowest (least bad of worst), index 4 = 1st lowest (worst)
                 setBottomFive(sorted.slice(-5));
+                const sixthFromBottom = sorted.length >= 6 ? sorted[sorted.length - 6] : null;
+                // avoid duplicate if list is short enough that 6th top === 6th bottom
+                setSixthBottom(sixthFromBottom && sixthFromBottom !== sorted[5] ? sixthFromBottom : null);
                 setLoading(false);
             })
             .catch(() => setLoading(false));
@@ -226,7 +232,7 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                 </p>
                 <p style={{margin: '4px 0 0', color: '#64748b', fontSize: '0.8rem'}}>
                     {unlockedCount < 5
-                        ? `Vote to unlock · ${unlockedCount * 2} of 10 spots revealed`
+                        ? `Vote to unlock · ${unlockedCount * 2 + 2} of 12 spots revealed`
                         : 'All spots revealed · Ranked by ELO rating'}
                 </p>
             </div>
@@ -249,6 +255,12 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                             const rankLabel = medals[i] ?? <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>;
                             return renderEntry(entry, rankLabel, isLocked, i < 3 && !isLocked);
                         })}
+                        {sixthTop && renderEntry(
+                            sixthTop,
+                            <span style={{color: '#475569', fontSize: '0.85rem'}}>#6</span>,
+                            false,
+                            false,
+                        )}
 
                         {/* Divider */}
                         <div style={{
@@ -260,6 +272,12 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                         <p style={{margin: '0 0 8px', color: '#64748b', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em'}}>
                             Worst spots
                         </p>
+                        {sixthBottom && renderEntry(
+                            sixthBottom,
+                            <span style={{color: '#475569', fontSize: '0.85rem'}}>↓6</span>,
+                            false,
+                            false,
+                        )}
                         {bottomFive.map((entry, i) => {
                             const isLocked = i >= unlockedCount;
                             // i=0 → 5th worst (5th lowest), i=4 → worst (1st lowest)
