@@ -15,7 +15,9 @@ interface VoteProps {
 
 function Vote({pair, onVote, onViewLeaderboard, onExit, dailyVoteCount}: VoteProps) {
     const [hovered, setHovered] = React.useState<0 | 1 | null>(null);
+    const [selected, setSelected] = React.useState<0 | 1 | null>(null);
     const [isPortrait, setIsPortrait] = React.useState(() => window.matchMedia('(orientation: portrait)').matches);
+    const [isTouchDevice] = React.useState(() => window.matchMedia('(hover: none) and (pointer: coarse)').matches);
     const availableHeight = `calc(100vh - ${TOPBAR_HEIGHT}px)`;
 
     React.useEffect(() => {
@@ -24,6 +26,11 @@ function Vote({pair, onVote, onViewLeaderboard, onExit, dailyVoteCount}: VotePro
         mq.addEventListener('change', handler);
         return () => mq.removeEventListener('change', handler);
     }, []);
+
+    // Reset selected state when the pair changes (new vote round)
+    React.useEffect(() => {
+        setSelected(null);
+    }, [pair]);
 
     const clampedVotes = Math.min(dailyVoteCount, VOTE_GOAL);
     const nextMilestone = Math.min(VOTE_GOAL, Math.ceil(clampedVotes / VOTE_STEP) * VOTE_STEP);
@@ -51,7 +58,9 @@ function Vote({pair, onVote, onViewLeaderboard, onExit, dailyVoteCount}: VotePro
                 }}>
                     Which spot would you rather <span style={{color: '#06b627'}}>smoke at</span>?
                 </p>
-                <p style={{margin: '4px 0 0', color: '#64748b', fontSize: '0.8rem'}}>Click to vote</p>
+                <p style={{margin: '4px 0 0', color: '#64748b', fontSize: '0.8rem'}}>
+                    {isTouchDevice ? 'Tap to select, tap again to vote' : 'Click to vote'}
+                </p>
             </div>
 
             <div style={{
@@ -62,61 +71,74 @@ function Vote({pair, onVote, onViewLeaderboard, onExit, dailyVoteCount}: VotePro
                 padding: '0 4px 4px',
                 overflow: isPortrait ? 'auto' : 'hidden',
             }}>
-                {pair.map((fileName, idx) => (
-                    <button
-                        key={fileName}
-                        onClick={() => onVote(fileName, pair[idx === 0 ? 1 : 0])}
-                        onMouseEnter={() => setHovered(idx as 0 | 1)}
-                        onMouseLeave={() => setHovered(null)}
-                        style={{
-                            flex: 1,
-                            minHeight: isPortrait ? 0 : undefined,
-                            border: hovered === idx
-                                ? '3px solid #a78bfa'
-                                : '3px solid transparent',
-                            borderRadius: 12,
-                            padding: 0,
-                            overflow: 'hidden',
-                            cursor: 'pointer',
-                            background: 'none',
-                            position: 'relative',
-                            transition: 'border-color 0.15s, transform 0.1s',
-                            transform: hovered === idx ? 'scale(1.01)' : 'scale(1)',
-                        }}
-                    >
-                        <img
-                            src={`/locations/${fileName}`}
-                            alt={`Option ${idx + 1}`}
-                            draggable={false}
-                            style={{
-                                width: '100%',
-                                height: isPortrait ? 'auto' : '100%',
-                                objectFit: isPortrait ? 'contain' : 'cover',
-                                display: 'block',
-                                filter: hovered === idx ? 'brightness(1.1)' : 'brightness(0.85)',
-                                transition: 'filter 0.15s',
+                {pair.map((fileName, idx) => {
+                    const isActive = isTouchDevice ? selected === idx : hovered === idx;
+                    return (
+                        <button
+                            key={fileName}
+                            onClick={() => {
+                                if (isTouchDevice) {
+                                    if (selected === idx) {
+                                        onVote(fileName, pair[idx === 0 ? 1 : 0]);
+                                    } else {
+                                        setSelected(idx as 0 | 1);
+                                    }
+                                } else {
+                                    onVote(fileName, pair[idx === 0 ? 1 : 0]);
+                                }
                             }}
-                        />
-                        {hovered === idx && (
-                            <div style={{
-                                position: 'absolute',
-                                bottom: 16,
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                background: 'rgba(167, 139, 250, 0.9)',
-                                color: '#fff',
-                                fontWeight: 700,
-                                fontSize: '0.95rem',
-                                padding: '8px 20px',
-                                borderRadius: 20,
-                                pointerEvents: 'none',
-                                whiteSpace: 'nowrap',
-                            }}>
-                                Vote for this spot
-                            </div>
-                        )}
-                    </button>
-                ))}
+                            onMouseEnter={() => !isTouchDevice && setHovered(idx as 0 | 1)}
+                            onMouseLeave={() => !isTouchDevice && setHovered(null)}
+                            style={{
+                                flex: 1,
+                                minHeight: isPortrait ? 0 : undefined,
+                                border: isActive
+                                    ? '3px solid #a78bfa'
+                                    : '3px solid transparent',
+                                borderRadius: 12,
+                                padding: 0,
+                                overflow: 'hidden',
+                                cursor: 'pointer',
+                                background: 'none',
+                                position: 'relative',
+                                transition: 'border-color 0.15s, transform 0.1s',
+                                transform: isActive ? 'scale(1.01)' : 'scale(1)',
+                            }}
+                        >
+                            <img
+                                src={`/locations/${fileName}`}
+                                alt={`Option ${idx + 1}`}
+                                draggable={false}
+                                style={{
+                                    width: '100%',
+                                    height: isPortrait ? 'auto' : '100%',
+                                    objectFit: isPortrait ? 'contain' : 'cover',
+                                    display: 'block',
+                                    filter: isActive ? 'brightness(1.1)' : 'brightness(0.85)',
+                                    transition: 'filter 0.15s',
+                                }}
+                            />
+                            {isActive && (
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: 16,
+                                    left: '50%',
+                                    transform: 'translateX(-50%)',
+                                    background: 'rgba(167, 139, 250, 0.9)',
+                                    color: '#fff',
+                                    fontWeight: 700,
+                                    fontSize: '0.95rem',
+                                    padding: '8px 20px',
+                                    borderRadius: 20,
+                                    pointerEvents: 'none',
+                                    whiteSpace: 'nowrap',
+                                }}>
+                                    {isTouchDevice && selected === idx ? 'Tap again to confirm' : 'Vote for this spot'}
+                                </div>
+                            )}
+                        </button>
+                    );
+                })}
             </div>
 
             <div style={{
