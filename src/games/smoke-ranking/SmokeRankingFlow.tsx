@@ -49,6 +49,9 @@ function SmokeRankingFlow() {
         const seen = [...seenPairs, pair[0], pair[1]];
         setSeenPairs(seen);
         setPair(pickPair(seen.length >= (allLocations.length - 2) ? [] : seen));
+    }
+
+    function handleViewLeaderboard() {
         navigate('/smoke-ranking/leaderboard');
     }
 
@@ -61,7 +64,7 @@ function SmokeRankingFlow() {
     return (
         <>
             {routerLocation === '/smoke-ranking' && (
-                <Vote pair={pair} onVote={handleVote} onExit={onExit}/>
+                <Vote pair={pair} onVote={handleVote} onViewLeaderboard={handleViewLeaderboard} onExit={onExit}/>
             )}
             {routerLocation === '/smoke-ranking/leaderboard' && (
                 <Leaderboard onVoteAgain={handleVoteAgain} onExit={onExit}/>
