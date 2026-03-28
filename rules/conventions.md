@@ -19,6 +19,20 @@
 Add `.jpg` files to `public/locations/` and add entries to `metadata.json` with the correct world coordinates.
 Prefer using the `screenshot-metadata-manager` + promote workflow.
 
+## Feature Implementation Workflow
+
+When implementing a feature (whether via the automated Claude Feature Development action or manually):
+
+1. Implement the feature following existing conventions.
+2. **Update documentation** to reflect the change. This includes:
+   - `CLAUDE.md` — if the project structure, commands, or high-level context changed.
+   - `docs/architecture.md` — if new screens, components, game engine changes, or data types were added/modified.
+   - `docs/tools.md` — if tooling (deadlock-capture, screenshot-metadata-manager) changed.
+   - `rules/conventions.md` — if a new coding convention or workflow step was introduced.
+   - `.claude/` skill files — if Claude-specific workflows or settings changed.
+   - Only update docs that are **actually affected** — don't make gratuitous edits.
+3. Commit implementation and documentation changes together.
+
 ## Deployment
 
 - Deploys automatically to GitHub Pages on push to `main`.
