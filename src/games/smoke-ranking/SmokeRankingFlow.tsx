@@ -13,6 +13,19 @@ export type SmokeScore = {
     losses: number;
 };
 
+function getDailyVoteKey(): string {
+    const d = new Date();
+    return `smoke-daily-votes-${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+}
+
+function loadDailyVoteCount(): number {
+    return parseInt(localStorage.getItem(getDailyVoteKey()) ?? '0', 10);
+}
+
+function saveDailyVoteCount(count: number): void {
+    localStorage.setItem(getDailyVoteKey(), count.toString());
+}
+
 async function recordVote(winnerId: string, loserId: string): Promise<void> {
     await fetch(`${SMOKE_RANKING_BACKEND_URL}/votes`, {
         method: 'POST',
@@ -36,6 +49,7 @@ function SmokeRankingFlow() {
     const [routerLocation, navigate] = useLocation();
     const [pair, setPair] = React.useState<[string, string]>(() => pickPair([]));
     const [seenPairs, setSeenPairs] = React.useState<string[]>([]);
+    const [dailyVoteCount, setDailyVoteCount] = React.useState(() => loadDailyVoteCount());
 
     React.useEffect(() => {
         if (routerLocation !== '/smoke-ranking' && routerLocation !== '/smoke-ranking/leaderboard') {
@@ -46,6 +60,9 @@ function SmokeRankingFlow() {
 
     async function handleVote(winnerId: string, loserId: string) {
         await recordVote(winnerId, loserId);
+        const newCount = dailyVoteCount + 1;
+        saveDailyVoteCount(newCount);
+        setDailyVoteCount(newCount);
         const seen = [...seenPairs, pair[0], pair[1]];
         setSeenPairs(seen);
         setPair(pickPair(seen.length >= (allLocations.length - 2) ? [] : seen));
@@ -64,10 +81,10 @@ function SmokeRankingFlow() {
     return (
         <>
             {routerLocation === '/smoke-ranking' && (
-                <Vote pair={pair} onVote={handleVote} onViewLeaderboard={handleViewLeaderboard} onExit={onExit}/>
+                <Vote pair={pair} onVote={handleVote} onViewLeaderboard={handleViewLeaderboard} onExit={onExit} dailyVoteCount={dailyVoteCount}/>
             )}
             {routerLocation === '/smoke-ranking/leaderboard' && (
-                <Leaderboard onVoteAgain={handleVoteAgain} onExit={onExit}/>
+                <Leaderboard onVoteAgain={handleVoteAgain} onExit={onExit} dailyVoteCount={dailyVoteCount}/>
             )}
         </>
     );
