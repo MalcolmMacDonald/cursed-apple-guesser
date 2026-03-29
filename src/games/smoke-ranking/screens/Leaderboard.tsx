@@ -11,7 +11,7 @@ interface LeaderboardProps {
 
 // unlockedCount: 0–5 based on dailyVoteCount / 3
 // topFive[i] is unlocked when i >= (5 - unlockedCount)  → rank 5 first, rank 1 last
-// bottomFive[i] is unlocked when i < unlockedCount       → 5th lowest first, 1st lowest last
+// bottomFive[i] is unlocked when i >= (5 - unlockedCount) → 5th lowest first, 1st lowest last
 function getUnlockedCount(dailyVoteCount: number): number {
     return Math.min(5, Math.floor(dailyVoteCount / 3));
 }
@@ -49,8 +49,8 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                 const sorted = [...data];
                 setTopFive(sorted.slice(0, 5));
                 setSixthTop(sorted[5] ?? null);
-                // bottomFive: index 0 = 5th lowest (least bad of worst), index 4 = 1st lowest (worst)
-                setBottomFive(sorted.slice(-5));
+                // bottomFive: index 0 = 1st lowest (worst), index 4 = 5th lowest (least bad of worst)
+                setBottomFive(sorted.slice(-5).reverse());
                 const sixthFromBottom = sorted.length >= 6 ? sorted[sorted.length - 6] : null;
                 // avoid duplicate if list is short enough that 6th top === 6th bottom
                 setSixthBottom(sixthFromBottom && sixthFromBottom !== sorted[5] ? sixthFromBottom : null);
@@ -228,9 +228,9 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                             </p>
 
                             {bottomFive.map((entry, i) => {
-                                const isLocked = i >= unlockedCount;
-                                // i=0 → 5th worst (5th lowest), i=4 → worst (1st lowest)
-                                const rankLabel = <span style={{color: '#475569', fontSize: '0.85rem'}}>↓{i}</span>;
+                                const isLocked = i < (5 - unlockedCount);
+                                // i=0 → worst (1st lowest), i=4 → 5th worst (5th lowest)
+                                const rankLabel = <span style={{color: '#475569', fontSize: '0.85rem'}}>↓{i + 1}</span>;
                                 return renderEntry(entry, rankLabel, isLocked, false);
                             })}
                             {sixthBottom && renderEntry(
