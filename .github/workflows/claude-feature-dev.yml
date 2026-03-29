@@ -23,7 +23,7 @@ jobs:
           claude_args: |
             --dangerously-skip-permissions
             --mcp-config '{"mcpServers": {"val-town": {"type": "http","url": "https://api.val.town/v3/mcp"}},"headers": {"x-val-town-token": "${{secrets.VAL_TOWN_API_TOKEN}}"}}'
-            --allowedTools val-town
+            --allowedTools "mcp__val-town__list_vals,mcp__val-town__list_files,mcp__val-town__read_file,mcp__val-town__create_val"
             --debug
           prompt: |
             You are implementing a feature for the cursed-apple-guesser project. Read CLAUDE.md for full project context.
