@@ -87,7 +87,7 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                         {rank}
                     </span>
                     {isLocked && (
-                        <span style={{color: '#475569', fontSize: '0.8rem'}}>
+                        <span style={{color: '#94a3b8', fontSize: '0.8rem'}}>
                             {isPortrait ? '🔒 Vote more to unlock' : 'Vote more to unlock'}
                         </span>
                     )}
@@ -181,46 +181,52 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                         No votes recorded yet. Be the first!
                     </p>
                 ) : (
-                    <>
-                        {/* Top 5 */}
-                        <p style={{margin: '0 0 8px', color: '#64748b', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em'}}>
-                            Best spots
-                        </p>
-                        {topFive.map((entry, i) => {
-                            const isLocked = i < (5 - unlockedCount);
-                            const rankLabel = medals[i] ?? <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>;
-                            return renderEntry(entry, rankLabel, isLocked, i < 3 && !isLocked);
-                        })}
-                        {sixthTop && renderEntry(
-                            sixthTop,
-                            <span style={{color: '#475569', fontSize: '0.85rem'}}>#6</span>,
-                            false,
-                            false,
-                        )}
+                    <div style={{display: 'flex', gap: 12, alignItems: 'flex-start'}}>
+                        {/* Best spots column */}
+                        <div style={{flex: 1, minWidth: 0}}>
+                            <p style={{margin: '0 0 8px', color: '#64748b', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em'}}>
+                                Best spots
+                            </p>
+                            {topFive.map((entry, i) => {
+                                const isLocked = i < (5 - unlockedCount);
+                                const rankLabel = medals[i] ?? <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>;
+                                return renderEntry(entry, rankLabel, isLocked, i < 3 && !isLocked);
+                            })}
+                            {sixthTop && renderEntry(
+                                sixthTop,
+                                <span style={{color: '#475569', fontSize: '0.85rem'}}>#6</span>,
+                                false,
+                                false,
+                            )}
+                        </div>
 
-                        {/* Divider */}
+                        {/* Vertical divider */}
                         <div style={{
-                            borderTop: '1px solid rgba(255,255,255,0.06)',
-                            margin: '12px 0 8px',
+                            width: 1,
+                            alignSelf: 'stretch',
+                            background: 'rgba(255,255,255,0.06)',
+                            flexShrink: 0,
                         }}/>
 
-                        {/* Bottom 5 */}
-                        <p style={{margin: '0 0 8px', color: '#64748b', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em'}}>
-                            Worst spots
-                        </p>
-                        {sixthBottom && renderEntry(
-                            sixthBottom,
-                            <span style={{color: '#475569', fontSize: '0.85rem'}}>↓6</span>,
-                            false,
-                            false,
-                        )}
-                        {bottomFive.map((entry, i) => {
-                            const isLocked = i >= unlockedCount;
-                            // i=0 → 5th worst (5th lowest), i=4 → worst (1st lowest)
-                            const rankLabel = <span style={{color: '#475569', fontSize: '0.85rem'}}>↓{5 - i}</span>;
-                            return renderEntry(entry, rankLabel, isLocked, false);
-                        })}
-                    </>
+                        {/* Worst spots column */}
+                        <div style={{flex: 1, minWidth: 0}}>
+                            <p style={{margin: '0 0 8px', color: '#64748b', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em'}}>
+                                Worst spots
+                            </p>
+                            {sixthBottom && renderEntry(
+                                sixthBottom,
+                                <span style={{color: '#475569', fontSize: '0.85rem'}}>↓6</span>,
+                                false,
+                                false,
+                            )}
+                            {bottomFive.map((entry, i) => {
+                                const isLocked = i >= unlockedCount;
+                                // i=0 → 5th worst (5th lowest), i=4 → worst (1st lowest)
+                                const rankLabel = <span style={{color: '#475569', fontSize: '0.85rem'}}>↓{5 - i}</span>;
+                                return renderEntry(entry, rankLabel, isLocked, false);
+                            })}
+                        </div>
+                    </div>
                 )}
             </div>
 
