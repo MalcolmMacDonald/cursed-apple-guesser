@@ -184,12 +184,19 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                     <div style={{display: 'flex', gap: 12, alignItems: 'flex-start'}}>
                         {/* Best spots column */}
                         <div style={{flex: 1, minWidth: 0}}>
-                            <p style={{margin: '0 0 8px', color: '#64748b', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em'}}>
+                            <p style={{
+                                margin: '0 0 8px',
+                                color: '#64748b',
+                                fontSize: '0.72rem',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.08em'
+                            }}>
                                 Best spots
                             </p>
                             {topFive.map((entry, i) => {
                                 const isLocked = i < (5 - unlockedCount);
-                                const rankLabel = medals[i] ?? <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>;
+                                const rankLabel = medals[i] ??
+                                    <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>;
                                 return renderEntry(entry, rankLabel, isLocked, i < 3 && !isLocked);
                             })}
                             {sixthTop && renderEntry(
@@ -210,21 +217,28 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
 
                         {/* Worst spots column */}
                         <div style={{flex: 1, minWidth: 0}}>
-                            <p style={{margin: '0 0 8px', color: '#64748b', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em'}}>
+                            <p style={{
+                                margin: '0 0 8px',
+                                color: '#64748b',
+                                fontSize: '0.72rem',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.08em'
+                            }}>
                                 Worst spots
                             </p>
+
+                            {bottomFive.map((entry, i) => {
+                                const isLocked = i >= unlockedCount;
+                                // i=0 → 5th worst (5th lowest), i=4 → worst (1st lowest)
+                                const rankLabel = <span style={{color: '#475569', fontSize: '0.85rem'}}>↓{i}</span>;
+                                return renderEntry(entry, rankLabel, isLocked, false);
+                            })}
                             {sixthBottom && renderEntry(
                                 sixthBottom,
                                 <span style={{color: '#475569', fontSize: '0.85rem'}}>↓6</span>,
                                 false,
                                 false,
                             )}
-                            {bottomFive.map((entry, i) => {
-                                const isLocked = i >= unlockedCount;
-                                // i=0 → 5th worst (5th lowest), i=4 → worst (1st lowest)
-                                const rankLabel = <span style={{color: '#475569', fontSize: '0.85rem'}}>↓{5 - i}</span>;
-                                return renderEntry(entry, rankLabel, isLocked, false);
-                            })}
                         </div>
                     </div>
                 )}
@@ -252,20 +266,6 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                     }}
                 >
                     Vote Again
-                </button>
-                <button
-                    onClick={onExit}
-                    style={{
-                        padding: '12px 20px',
-                        background: 'none',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        borderRadius: 10,
-                        color: '#475569',
-                        fontSize: '0.9rem',
-                        cursor: 'pointer',
-                    }}
-                >
-                    Hub
                 </button>
             </div>
 

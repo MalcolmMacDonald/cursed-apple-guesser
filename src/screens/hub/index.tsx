@@ -115,7 +115,7 @@ const games: GameEntry[] = [
         description: "Two screenshots. One question: which spot would you rather smoke at? Vote to build the community leaderboard of top smoke spots.",
         icon: "🌿",
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #3b1f6b 50%, #6d28d9 100%)",
-        available: IS_DEV_DEPLOY,
+        available: true,
         tags: ["Community", "Ranking"],
         primaryLabel: "Vote Now",
         leaderboardId: "smoke-ranking",
@@ -166,7 +166,12 @@ function useDailyCountdown(): string {
     return text;
 }
 
-function GameCard({game, onPlay, onPlayDaily, onViewLeaderboard}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void; onViewLeaderboard?: () => void }) {
+function GameCard({game, onPlay, onPlayDaily, onViewLeaderboard}: {
+    game: GameEntry;
+    onPlay: () => void;
+    onPlayDaily?: () => void;
+    onViewLeaderboard?: () => void
+}) {
     const actuallyDone = game.dailyStorageKey
         ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
         : false;
@@ -225,7 +230,10 @@ function GameCard({game, onPlay, onPlayDaily, onViewLeaderboard}: { game: GameEn
     );
 }
 
-function HubScreen({onSelectGame, onSelectLeaderboard}: { onSelectGame: (id: string, isDaily?: boolean) => void; onSelectLeaderboard?: (id: string) => void }) {
+function HubScreen({onSelectGame, onSelectLeaderboard}: {
+    onSelectGame: (id: string, isDaily?: boolean) => void;
+    onSelectLeaderboard?: (id: string) => void
+}) {
     const isDev = import.meta.env.DEV;
 
     React.useEffect(() => {
