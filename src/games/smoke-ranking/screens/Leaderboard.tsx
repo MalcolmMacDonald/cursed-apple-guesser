@@ -62,6 +62,7 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
     const availableHeight = `calc(100vh - ${TOPBAR_HEIGHT}px)`;
     const medals = ['🥇', '🥈', '🥉'];
     const unlockedCount = getUnlockedCount(dailyVoteCount);
+    const votesNeeded = (unlockedCount + 1) * 3 - dailyVoteCount;
 
     function renderEntry(entry: SmokeScore, rank: React.ReactNode, isLocked: boolean, highlight: boolean) {
         const totalVotes = entry.wins + entry.losses;
@@ -88,7 +89,7 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                     </span>
                     {isLocked && (
                         <span style={{color: '#94a3b8', fontSize: '0.8rem'}}>
-                            {isPortrait ? '🔒 Vote more to unlock' : 'Vote more to unlock'}
+                            {isPortrait ? `🔒 ${votesNeeded} more votes to unlock` : `${votesNeeded} more votes to unlock`}
                         </span>
                     )}
                 </div>
