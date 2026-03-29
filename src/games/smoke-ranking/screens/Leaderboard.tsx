@@ -64,6 +64,7 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
     const unlockedCount = getUnlockedCount(dailyVoteCount);
 
     function renderEntry(entry: SmokeScore, rank: React.ReactNode, isLocked: boolean, highlight: boolean) {
+        const totalVotes = entry.wins + entry.losses;
         return (
             <div key={entry.fileName} style={{
                 display: 'flex',
@@ -107,27 +108,46 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                         🔒
                     </div>
                 ) : (
-                    <img
-                        src={`/locations/${entry.fileName}`}
-                        alt={entry.fileName}
-                        draggable={false}
-                        onClick={() => setFullscreenImage(entry.fileName)}
-                        style={isPortrait ? {
-                            width: '100%',
-                            maxWidth: '100%',
-                            height: 'auto',
-                            display: 'block',
-                            borderRadius: 6,
-                            cursor: 'pointer',
-                        } : {
-                            flex: 1,
-                            minWidth: 0,
-                            height: 70,
-                            objectFit: 'cover',
-                            borderRadius: 6,
-                            cursor: 'pointer',
-                        }}
-                    />
+                    <div style={{
+                        flex: isPortrait ? undefined : 1,
+                        minWidth: isPortrait ? undefined : 0,
+                        position: 'relative',
+                        display: 'block',
+                        borderRadius: 6,
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                    }} onClick={() => setFullscreenImage(entry.fileName)}>
+                        <img
+                            src={`/locations/${entry.fileName}`}
+                            alt={entry.fileName}
+                            draggable={false}
+                            style={{
+                                width: '100%',
+                                height: 'auto',
+                                display: 'block',
+                                objectFit: 'contain',
+                                borderRadius: 6,
+                            }}
+                        />
+                        <div style={{
+                            position: 'absolute',
+                            bottom: 4,
+                            right: 4,
+                            background: 'rgba(0,0,0,0.65)',
+                            borderRadius: 4,
+                            padding: '2px 6px',
+                            display: 'flex',
+                            gap: 6,
+                            fontSize: '0.7rem',
+                            fontWeight: 600,
+                            lineHeight: 1.4,
+                            backdropFilter: 'blur(2px)',
+                        }}>
+                            <span style={{color: '#4ade80'}}>{entry.wins}W</span>
+                            <span style={{color: '#f87171'}}>{entry.losses}L</span>
+                            <span style={{color: '#94a3b8'}}>{totalVotes}</span>
+                        </div>
+                    </div>
                 )}
             </div>
         );
