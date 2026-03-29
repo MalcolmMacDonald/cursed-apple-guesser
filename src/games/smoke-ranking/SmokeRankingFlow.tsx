@@ -5,7 +5,6 @@ import allLocations from '../../../public/locations/metadata.json';
 import Vote from './screens/Vote';
 import Leaderboard from './screens/Leaderboard';
 
-export const SMOKE_RANKING_BACKEND_URL = 'https://malloc--4cd57d1e2b8d11f1967042dde27851f2.web.val.run';
 export const SMOKE_ELO_BACKEND_URL = 'https://malloc--f34c83322b8c11f1ae2742dde27851f2.web.val.run';
 
 export type SmokeScore = {

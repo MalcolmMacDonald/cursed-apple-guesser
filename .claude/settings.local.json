@@ -9,7 +9,9 @@
       "mcp__val-town__list_vals",
       "mcp__val-town__list_files",
       "mcp__val-town__read_file",
-      "mcp__val-town__create_val"
+      "mcp__val-town__create_val",
+      "mcp__val-town__update_file",
+      "mcp__val-town__sqlite_execute"
     ]
   }
 }
