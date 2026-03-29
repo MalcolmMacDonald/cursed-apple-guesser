@@ -33,6 +33,12 @@ When implementing a feature (whether via the automated Claude Feature Developmen
    - Only update docs that are **actually affected** — don't make gratuitous edits.
 3. Commit implementation and documentation changes together.
 
+## Val Town Backend Conventions
+
+- Each Val Town val has exactly **one** SQLite table. Never create a second `CREATE TABLE` in the same val.
+- If a backend needs vote history (e.g. for backfill), it must fetch from another val's API rather than maintaining its own vote log table.
+- Backend source files live in `backends/`. API reference skill files live in `.claude/commands/`.
+
 ## Deployment
 
 - Deploys automatically to GitHub Pages on push to `main`.
