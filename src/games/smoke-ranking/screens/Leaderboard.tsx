@@ -1,5 +1,5 @@
 import React from 'react';
-import {SMOKE_RANKING_BACKEND_URL} from '../SmokeRankingFlow';
+import {SMOKE_ELO_BACKEND_URL} from '../SmokeRankingFlow';
 import type {SmokeScore} from '../SmokeRankingFlow';
 import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 
@@ -9,17 +9,9 @@ interface LeaderboardProps {
     dailyVoteCount: number;
 }
 
-const ELO_START = 1500;
-const ELO_K = 32;
-
-function computeElo(wins: number, losses: number): number {
-    // Assumes all opponents are equal (1500 ELO), so expected score per game = 0.5
-    return ELO_START + (ELO_K / 2) * (wins - losses);
-}
-
 // unlockedCount: 0–5 based on dailyVoteCount / 3
 // topFive[i] is unlocked when i >= (5 - unlockedCount)  → rank 5 first, rank 1 last
-// bottomFive[i] is unlocked when i < unlockedCount       → 5th lowest first, 1st lowest last
+// bottomFive[i] is unlocked when i >= (5 - unlockedCount) → 5th lowest first, 1st lowest last
 function getUnlockedCount(dailyVoteCount: number): number {
     return Math.min(5, Math.floor(dailyVoteCount / 3));
 }
@@ -50,14 +42,15 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
     }, [fullscreenImage]);
 
     React.useEffect(() => {
-        fetch(`${SMOKE_RANKING_BACKEND_URL}/leaderboard`)
+        fetch(`${SMOKE_ELO_BACKEND_URL}/leaderboard`)
             .then(r => r.json())
             .then((data: SmokeScore[]) => {
-                const sorted = [...data].sort((a, b) => computeElo(b.wins, b.losses) - computeElo(a.wins, a.losses));
+                // Backend returns data pre-sorted by Elo descending
+                const sorted = [...data];
                 setTopFive(sorted.slice(0, 5));
                 setSixthTop(sorted[5] ?? null);
-                // bottomFive: index 0 = 5th lowest (least bad of worst), index 4 = 1st lowest (worst)
-                setBottomFive(sorted.slice(-5));
+                // bottomFive: index 0 = 1st lowest (worst), index 4 = 5th lowest (least bad of worst)
+                setBottomFive(sorted.slice(-5).reverse());
                 const sixthFromBottom = sorted.length >= 6 ? sorted[sorted.length - 6] : null;
                 // avoid duplicate if list is short enough that 6th top === 6th bottom
                 setSixthBottom(sixthFromBottom && sixthFromBottom !== sorted[5] ? sixthFromBottom : null);
@@ -69,19 +62,17 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
     const availableHeight = `calc(100vh - ${TOPBAR_HEIGHT}px)`;
     const medals = ['🥇', '🥈', '🥉'];
     const unlockedCount = getUnlockedCount(dailyVoteCount);
+    const votesNeeded = (unlockedCount + 1) * 3 - dailyVoteCount;
 
     function renderEntry(entry: SmokeScore, rank: React.ReactNode, isLocked: boolean, highlight: boolean) {
-        const total = entry.wins + entry.losses;
-        const elo = Math.round(computeElo(entry.wins, entry.losses));
-        const eloBarPct = Math.min(100, Math.max(0, ((elo - 1000) / 1000) * 100));
-
+        const totalVotes = entry.wins + entry.losses;
         return (
             <div key={entry.fileName} style={{
                 display: 'flex',
                 flexDirection: isPortrait ? 'column' : 'row',
                 alignItems: isPortrait ? 'stretch' : 'center',
-                gap: isPortrait ? 8 : 12,
-                padding: '8px 12px',
+                gap: isPortrait ? 6 : 10,
+                padding: '6px 10px',
                 borderRadius: 10,
                 marginBottom: 8,
                 background: highlight
@@ -92,126 +83,72 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                     : '1px solid rgba(255,255,255,0.06)',
                 opacity: isLocked ? 0.5 : 1,
             }}>
-                {isPortrait ? (
-                    <>
-                        <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
-                            <span style={{fontSize: '1.2rem', width: 28, textAlign: 'center', flexShrink: 0}}>
-                                {rank}
-                            </span>
-                            {isLocked ? (
-                                <span style={{color: '#475569', fontSize: '0.8rem'}}>🔒 Vote more to unlock</span>
-                            ) : (
-                                <>
-                                    <span style={{fontSize: '1rem', fontWeight: 700, color: '#a78bfa'}}>{elo}</span>
-                                    <span style={{fontSize: '0.75rem', color: '#64748b'}}>ELO</span>
-                                    <span style={{fontSize: '0.72rem', color: '#475569', marginLeft: 'auto'}}>
-                                        {entry.wins}W / {entry.losses}L · {total} vote{total !== 1 ? 's' : ''}
-                                    </span>
-                                </>
-                            )}
-                        </div>
-                        {isLocked ? (
-                            <div style={{
-                                width: '100%',
-                                height: 80,
-                                borderRadius: 6,
-                                background: 'rgba(255,255,255,0.04)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: '#334155',
-                                fontSize: '1.5rem',
-                            }}>
-                                🔒
-                            </div>
-                        ) : (
-                            <>
-                                <img
-                                    src={`/locations/${entry.fileName}`}
-                                    alt={entry.fileName}
-                                    draggable={false}
-                                    onClick={() => setFullscreenImage(entry.fileName)}
-                                    style={{
-                                        width: '100%',
-                                        maxWidth: '100%',
-                                        height: 'auto',
-                                        display: 'block',
-                                        borderRadius: 6,
-                                        cursor: 'pointer',
-                                    }}
-                                />
-                                <div style={{background: 'rgba(255,255,255,0.07)', borderRadius: 4, height: 6, overflow: 'hidden'}}>
-                                    <div style={{
-                                        width: `${eloBarPct}%`,
-                                        height: '100%',
-                                        background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
-                                        borderRadius: 4,
-                                        transition: 'width 0.3s ease',
-                                    }}/>
-                                </div>
-                            </>
-                        )}
-                    </>
-                ) : (
-                    <>
-                        <span style={{fontSize: '1.2rem', width: 28, textAlign: 'center', flexShrink: 0}}>
-                            {rank}
+                <div style={{display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0}}>
+                    <span style={{fontSize: '1.2rem', width: 28, textAlign: 'center'}}>
+                        {rank}
+                    </span>
+                    {isLocked && (
+                        <span style={{color: '#94a3b8', fontSize: '0.8rem'}}>
+                            {isPortrait ? `🔒 ${votesNeeded} more votes to unlock` : `${votesNeeded} more votes to unlock`}
                         </span>
-                        {isLocked ? (
-                            <>
-                                <div style={{
-                                    width: 80,
-                                    height: 50,
-                                    borderRadius: 6,
-                                    flexShrink: 0,
-                                    background: 'rgba(255,255,255,0.04)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: '#334155',
-                                    fontSize: '1.2rem',
-                                }}>
-                                    🔒
-                                </div>
-                                <span style={{color: '#475569', fontSize: '0.8rem'}}>Vote more to unlock</span>
-                            </>
-                        ) : (
-                            <>
-                                <img
-                                    src={`/locations/${entry.fileName}`}
-                                    alt={entry.fileName}
-                                    draggable={false}
-                                    onClick={() => setFullscreenImage(entry.fileName)}
-                                    style={{
-                                        width: 80,
-                                        height: 50,
-                                        objectFit: 'cover',
-                                        borderRadius: 6,
-                                        flexShrink: 0,
-                                        cursor: 'pointer',
-                                    }}
-                                />
-                                <div style={{flex: 1, minWidth: 0}}>
-                                    <div style={{display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4}}>
-                                        <span style={{fontSize: '1rem', fontWeight: 700, color: '#a78bfa'}}>{elo}</span>
-                                        <span style={{fontSize: '0.75rem', color: '#64748b'}}>ELO</span>
-                                    </div>
-                                    <div style={{background: 'rgba(255,255,255,0.07)', borderRadius: 4, height: 6, overflow: 'hidden'}}>
-                                        <div style={{
-                                            width: `${eloBarPct}%`,
-                                            height: '100%',
-                                            background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
-                                            borderRadius: 4,
-                                            transition: 'width 0.3s ease',
-                                        }}/>
-                                    </div>
-                                    <p style={{margin: '4px 0 0', fontSize: '0.72rem', color: '#475569'}}>
-                                        {entry.wins}W / {entry.losses}L &nbsp;·&nbsp; {total} vote{total !== 1 ? 's' : ''}
-                                    </p>
-                                </div>
-                            </>
-                        )}
-                    </>
+                    )}
+                </div>
+                {isLocked ? (
+                    <div style={{
+                        flex: isPortrait ? undefined : 1,
+                        width: isPortrait ? '100%' : undefined,
+                        height: isPortrait ? 80 : 70,
+                        borderRadius: 6,
+                        background: 'rgba(255,255,255,0.04)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#334155',
+                        fontSize: '1.5rem',
+                    }}>
+                        🔒
+                    </div>
+                ) : (
+                    <div style={{
+                        flex: isPortrait ? undefined : 1,
+                        minWidth: isPortrait ? undefined : 0,
+                        position: 'relative',
+                        display: 'block',
+                        borderRadius: 6,
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                    }} onClick={() => setFullscreenImage(entry.fileName)}>
+                        <img
+                            src={`/locations/${entry.fileName}`}
+                            alt={entry.fileName}
+                            draggable={false}
+                            style={{
+                                width: '100%',
+                                height: 'auto',
+                                display: 'block',
+                                objectFit: 'contain',
+                                borderRadius: 6,
+                            }}
+                        />
+                        <div style={{
+                            position: 'absolute',
+                            bottom: 4,
+                            right: 4,
+                            background: 'rgba(0,0,0,0.65)',
+                            borderRadius: 4,
+                            padding: '2px 6px',
+                            display: 'flex',
+                            gap: 6,
+                            fontSize: '0.7rem',
+                            fontWeight: 600,
+                            lineHeight: 1.4,
+                            backdropFilter: 'blur(2px)',
+                        }}>
+                            <span style={{color: '#4ade80'}}>{entry.wins}W</span>
+                            <span style={{color: '#f87171'}}>{entry.losses}L</span>
+                            <span style={{color: '#94a3b8'}}>{totalVotes}</span>
+                        </div>
+                    </div>
                 )}
             </div>
         );
@@ -245,46 +182,66 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                         No votes recorded yet. Be the first!
                     </p>
                 ) : (
-                    <>
-                        {/* Top 5 */}
-                        <p style={{margin: '0 0 8px', color: '#64748b', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em'}}>
-                            Best spots
-                        </p>
-                        {topFive.map((entry, i) => {
-                            const isLocked = i < (5 - unlockedCount);
-                            const rankLabel = medals[i] ?? <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>;
-                            return renderEntry(entry, rankLabel, isLocked, i < 3 && !isLocked);
-                        })}
-                        {sixthTop && renderEntry(
-                            sixthTop,
-                            <span style={{color: '#475569', fontSize: '0.85rem'}}>#6</span>,
-                            false,
-                            false,
-                        )}
+                    <div style={{display: 'flex', gap: 12, alignItems: 'flex-start'}}>
+                        {/* Best spots column */}
+                        <div style={{flex: 1, minWidth: 0}}>
+                            <p style={{
+                                margin: '0 0 8px',
+                                color: '#64748b',
+                                fontSize: '0.72rem',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.08em'
+                            }}>
+                                Best spots
+                            </p>
+                            {topFive.map((entry, i) => {
+                                const isLocked = i < (5 - unlockedCount);
+                                const rankLabel = medals[i] ??
+                                    <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>;
+                                return renderEntry(entry, rankLabel, isLocked, i < 3 && !isLocked);
+                            })}
+                            {sixthTop && renderEntry(
+                                sixthTop,
+                                <span style={{color: '#475569', fontSize: '0.85rem'}}>#6</span>,
+                                false,
+                                false,
+                            )}
+                        </div>
 
-                        {/* Divider */}
+                        {/* Vertical divider */}
                         <div style={{
-                            borderTop: '1px solid rgba(255,255,255,0.06)',
-                            margin: '12px 0 8px',
+                            width: 1,
+                            alignSelf: 'stretch',
+                            background: 'rgba(255,255,255,0.06)',
+                            flexShrink: 0,
                         }}/>
 
-                        {/* Bottom 5 */}
-                        <p style={{margin: '0 0 8px', color: '#64748b', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em'}}>
-                            Worst spots
-                        </p>
-                        {sixthBottom && renderEntry(
-                            sixthBottom,
-                            <span style={{color: '#475569', fontSize: '0.85rem'}}>↓6</span>,
-                            false,
-                            false,
-                        )}
-                        {bottomFive.map((entry, i) => {
-                            const isLocked = i >= unlockedCount;
-                            // i=0 → 5th worst (5th lowest), i=4 → worst (1st lowest)
-                            const rankLabel = <span style={{color: '#475569', fontSize: '0.85rem'}}>↓{5 - i}</span>;
-                            return renderEntry(entry, rankLabel, isLocked, false);
-                        })}
-                    </>
+                        {/* Worst spots column */}
+                        <div style={{flex: 1, minWidth: 0}}>
+                            <p style={{
+                                margin: '0 0 8px',
+                                color: '#64748b',
+                                fontSize: '0.72rem',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.08em'
+                            }}>
+                                Worst spots
+                            </p>
+
+                            {bottomFive.map((entry, i) => {
+                                const isLocked = i < (5 - unlockedCount);
+                                // i=0 → worst (1st lowest), i=4 → 5th worst (5th lowest)
+                                const rankLabel = <span style={{color: '#475569', fontSize: '0.85rem'}}>↓{i + 1}</span>;
+                                return renderEntry(entry, rankLabel, isLocked, false);
+                            })}
+                            {sixthBottom && renderEntry(
+                                sixthBottom,
+                                <span style={{color: '#475569', fontSize: '0.85rem'}}>↓6</span>,
+                                false,
+                                false,
+                            )}
+                        </div>
+                    </div>
                 )}
             </div>
 
@@ -310,20 +267,6 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                     }}
                 >
                     Vote Again
-                </button>
-                <button
-                    onClick={onExit}
-                    style={{
-                        padding: '12px 20px',
-                        background: 'none',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        borderRadius: 10,
-                        color: '#475569',
-                        fontSize: '0.9rem',
-                        cursor: 'pointer',
-                    }}
-                >
-                    Hub
                 </button>
             </div>
 
