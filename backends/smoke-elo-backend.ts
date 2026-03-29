@@ -4,14 +4,14 @@
  * Deploy as a new Val Town HTTP val (e.g. malloc/smoke-elo-backend).
  * After deploying, update SMOKE_ELO_BACKEND_URL in SmokeRankingFlow.tsx with the generated URL.
  *
- * To backfill from the old smoke_ranking_votes data, call GET /backfill from Val Town's console
- * or via curl (no auth required — it reads the old backend's leaderboard for ordering guidance,
- * but actually processes the raw votes if exposed, else seeds from leaderboard aggregate).
+ * Each Val Town val may only use a single SQLite table. This val owns `smoke_elo_ratings`.
+ * Votes are persisted in `smoke_ranking_votes` (owned by smoke-ranking-backend val).
+ * Both vals share the same Val Town SQLite instance per account, so cross-table reads/writes work.
  *
  * Endpoints:
- *   POST /votes          { winner, loser }  → records vote, updates both Elos
+ *   POST /votes          { winner, loser }  → records vote in smoke_ranking_votes, updates both Elos
  *   GET  /leaderboard                       → [{ fileName, elo, wins, losses }] sorted by elo desc
- *   POST /backfill       { votes: [{winner,loser}][] }  → resets & recomputes all Elos from history
+ *   POST /backfill                          → resets & recomputes all Elos from smoke_ranking_votes
  */
 
 import { sqlite } from "https://esm.town/v/stevekrouse/sqlite";
@@ -47,14 +47,6 @@ async function initDb() {
             losses   INTEGER NOT NULL DEFAULT 0
         )
     `);
-    await sqlite.execute(`
-        CREATE TABLE IF NOT EXISTS smoke_elo_votes (
-            id       INTEGER PRIMARY KEY AUTOINCREMENT,
-            winner   TEXT    NOT NULL,
-            loser    TEXT    NOT NULL,
-            voted_at INTEGER NOT NULL
-        )
-    `);
 }
 
 async function getOrDefault(fileName: string): Promise<{ elo: number; wins: number; losses: number }> {
@@ -84,7 +76,7 @@ export default async function handler(req: Request): Promise<Response> {
 
     const url = new URL(req.url);
 
-    // POST /votes — record one vote and update Elos
+    // POST /votes — record one vote in smoke_ranking_votes and update Elos
     if (req.method === "POST" && url.pathname === "/votes") {
         const { winner, loser } = await req.json() as { winner: string; loser: string };
 
@@ -96,8 +88,9 @@ export default async function handler(req: Request): Promise<Response> {
         await upsertElo(winner, newWinnerElo, winnerData.wins + 1, winnerData.losses);
         await upsertElo(loser, newLoserElo, loserData.wins, loserData.losses + 1);
 
+        // Persist vote in the shared smoke_ranking_votes table (owned by smoke-ranking-backend val)
         await sqlite.execute(
-            `INSERT INTO smoke_elo_votes (winner, loser, voted_at) VALUES (?, ?, ?)`,
+            `INSERT INTO smoke_ranking_votes (winner, loser, voted_at) VALUES (?, ?, ?)`,
             [winner, loser, Date.now()],
         );
 
@@ -125,23 +118,22 @@ export default async function handler(req: Request): Promise<Response> {
         });
     }
 
-    // POST /backfill — reset all Elos and recompute from a provided chronological vote list.
-    // Body: { votes: Array<{ winner: string; loser: string }> }
-    // The votes array should be ordered oldest-first (as stored in smoke_ranking_votes.voted_at).
-    // To obtain the raw votes from the old backend, query its SQLite via Val Town's console:
-    //   SELECT winner, loser FROM smoke_ranking_votes ORDER BY voted_at ASC
-    // then POST that array here.
+    // POST /backfill — reset all Elos and recompute from smoke_ranking_votes (chronological order).
+    // No request body needed — reads votes directly from the shared smoke_ranking_votes table.
     if (req.method === "POST" && url.pathname === "/backfill") {
-        const { votes } = await req.json() as { votes: Array<{ winner: string; loser: string }> };
+        // Read all votes from the shared smoke_ranking_votes table, oldest first
+        const votesResult = await sqlite.execute(
+            `SELECT winner, loser FROM smoke_ranking_votes ORDER BY voted_at ASC`,
+        );
+        const votes = votesResult.rows as [string, string][];
 
-        // Reset
+        // Reset ratings
         await sqlite.execute(`DELETE FROM smoke_elo_ratings`);
-        await sqlite.execute(`DELETE FROM smoke_elo_votes`);
 
-        // Replay votes in order
+        // Replay votes in chronological order
         const eloMap: Record<string, { elo: number; wins: number; losses: number }> = {};
 
-        for (const { winner, loser } of votes) {
+        for (const [winner, loser] of votes) {
             const w = eloMap[winner] ?? { elo: ELO_START, wins: 0, losses: 0 };
             const l = eloMap[loser] ?? { elo: ELO_START, wins: 0, losses: 0 };
             const [newW, newL] = applyElo(w.elo, l.elo);

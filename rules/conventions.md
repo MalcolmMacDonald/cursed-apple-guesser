@@ -33,6 +33,12 @@ When implementing a feature (whether via the automated Claude Feature Developmen
    - Only update docs that are **actually affected** — don't make gratuitous edits.
 3. Commit implementation and documentation changes together.
 
+## Val Town Backend Conventions
+
+- Each Val Town val has exactly **one** SQLite table. Never create a second `CREATE TABLE` in the same val.
+- Vals under the same account share a single SQLite instance, so a val may **read from or write to another val's table** when needed (e.g. `smoke-elo-backend` writes/reads `smoke_ranking_votes` owned by `smoke-ranking-backend`).
+- Backend source files live in `backends/`. API reference skill files live in `.claude/commands/`.
+
 ## Deployment
 
 - Deploys automatically to GitHub Pages on push to `main`.
