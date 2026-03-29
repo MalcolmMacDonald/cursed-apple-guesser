@@ -64,17 +64,13 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
     const unlockedCount = getUnlockedCount(dailyVoteCount);
 
     function renderEntry(entry: SmokeScore, rank: React.ReactNode, isLocked: boolean, highlight: boolean) {
-        const total = entry.wins + entry.losses;
-        const elo = entry.elo;
-        const eloBarPct = Math.min(100, Math.max(0, ((elo - 1000) / 1000) * 100));
-
         return (
             <div key={entry.fileName} style={{
                 display: 'flex',
                 flexDirection: isPortrait ? 'column' : 'row',
                 alignItems: isPortrait ? 'stretch' : 'center',
-                gap: isPortrait ? 8 : 12,
-                padding: '8px 12px',
+                gap: isPortrait ? 6 : 10,
+                padding: '6px 10px',
                 borderRadius: 10,
                 marginBottom: 8,
                 background: highlight
@@ -85,126 +81,53 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                     : '1px solid rgba(255,255,255,0.06)',
                 opacity: isLocked ? 0.5 : 1,
             }}>
-                {isPortrait ? (
-                    <>
-                        <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
-                            <span style={{fontSize: '1.2rem', width: 28, textAlign: 'center', flexShrink: 0}}>
-                                {rank}
-                            </span>
-                            {isLocked ? (
-                                <span style={{color: '#475569', fontSize: '0.8rem'}}>🔒 Vote more to unlock</span>
-                            ) : (
-                                <>
-                                    <span style={{fontSize: '1rem', fontWeight: 700, color: '#a78bfa'}}>{elo}</span>
-                                    <span style={{fontSize: '0.75rem', color: '#64748b'}}>ELO</span>
-                                    <span style={{fontSize: '0.72rem', color: '#475569', marginLeft: 'auto'}}>
-                                        {entry.wins}W / {entry.losses}L · {total} vote{total !== 1 ? 's' : ''}
-                                    </span>
-                                </>
-                            )}
-                        </div>
-                        {isLocked ? (
-                            <div style={{
-                                width: '100%',
-                                height: 80,
-                                borderRadius: 6,
-                                background: 'rgba(255,255,255,0.04)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: '#334155',
-                                fontSize: '1.5rem',
-                            }}>
-                                🔒
-                            </div>
-                        ) : (
-                            <>
-                                <img
-                                    src={`/locations/${entry.fileName}`}
-                                    alt={entry.fileName}
-                                    draggable={false}
-                                    onClick={() => setFullscreenImage(entry.fileName)}
-                                    style={{
-                                        width: '100%',
-                                        maxWidth: '100%',
-                                        height: 'auto',
-                                        display: 'block',
-                                        borderRadius: 6,
-                                        cursor: 'pointer',
-                                    }}
-                                />
-                                <div style={{background: 'rgba(255,255,255,0.07)', borderRadius: 4, height: 6, overflow: 'hidden'}}>
-                                    <div style={{
-                                        width: `${eloBarPct}%`,
-                                        height: '100%',
-                                        background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
-                                        borderRadius: 4,
-                                        transition: 'width 0.3s ease',
-                                    }}/>
-                                </div>
-                            </>
-                        )}
-                    </>
-                ) : (
-                    <>
-                        <span style={{fontSize: '1.2rem', width: 28, textAlign: 'center', flexShrink: 0}}>
-                            {rank}
+                <div style={{display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0}}>
+                    <span style={{fontSize: '1.2rem', width: 28, textAlign: 'center'}}>
+                        {rank}
+                    </span>
+                    {isLocked && (
+                        <span style={{color: '#475569', fontSize: '0.8rem'}}>
+                            {isPortrait ? '🔒 Vote more to unlock' : 'Vote more to unlock'}
                         </span>
-                        {isLocked ? (
-                            <>
-                                <div style={{
-                                    width: 80,
-                                    height: 50,
-                                    borderRadius: 6,
-                                    flexShrink: 0,
-                                    background: 'rgba(255,255,255,0.04)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: '#334155',
-                                    fontSize: '1.2rem',
-                                }}>
-                                    🔒
-                                </div>
-                                <span style={{color: '#475569', fontSize: '0.8rem'}}>Vote more to unlock</span>
-                            </>
-                        ) : (
-                            <>
-                                <img
-                                    src={`/locations/${entry.fileName}`}
-                                    alt={entry.fileName}
-                                    draggable={false}
-                                    onClick={() => setFullscreenImage(entry.fileName)}
-                                    style={{
-                                        width: 80,
-                                        height: 50,
-                                        objectFit: 'cover',
-                                        borderRadius: 6,
-                                        flexShrink: 0,
-                                        cursor: 'pointer',
-                                    }}
-                                />
-                                <div style={{flex: 1, minWidth: 0}}>
-                                    <div style={{display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4}}>
-                                        <span style={{fontSize: '1rem', fontWeight: 700, color: '#a78bfa'}}>{elo}</span>
-                                        <span style={{fontSize: '0.75rem', color: '#64748b'}}>ELO</span>
-                                    </div>
-                                    <div style={{background: 'rgba(255,255,255,0.07)', borderRadius: 4, height: 6, overflow: 'hidden'}}>
-                                        <div style={{
-                                            width: `${eloBarPct}%`,
-                                            height: '100%',
-                                            background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
-                                            borderRadius: 4,
-                                            transition: 'width 0.3s ease',
-                                        }}/>
-                                    </div>
-                                    <p style={{margin: '4px 0 0', fontSize: '0.72rem', color: '#475569'}}>
-                                        {entry.wins}W / {entry.losses}L &nbsp;·&nbsp; {total} vote{total !== 1 ? 's' : ''}
-                                    </p>
-                                </div>
-                            </>
-                        )}
-                    </>
+                    )}
+                </div>
+                {isLocked ? (
+                    <div style={{
+                        flex: isPortrait ? undefined : 1,
+                        width: isPortrait ? '100%' : undefined,
+                        height: isPortrait ? 80 : 70,
+                        borderRadius: 6,
+                        background: 'rgba(255,255,255,0.04)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#334155',
+                        fontSize: '1.5rem',
+                    }}>
+                        🔒
+                    </div>
+                ) : (
+                    <img
+                        src={`/locations/${entry.fileName}`}
+                        alt={entry.fileName}
+                        draggable={false}
+                        onClick={() => setFullscreenImage(entry.fileName)}
+                        style={isPortrait ? {
+                            width: '100%',
+                            maxWidth: '100%',
+                            height: 'auto',
+                            display: 'block',
+                            borderRadius: 6,
+                            cursor: 'pointer',
+                        } : {
+                            flex: 1,
+                            minWidth: 0,
+                            height: 70,
+                            objectFit: 'cover',
+                            borderRadius: 6,
+                            cursor: 'pointer',
+                        }}
+                    />
                 )}
             </div>
         );
