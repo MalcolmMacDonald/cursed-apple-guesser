@@ -36,10 +36,10 @@ async function recordVote(winnerId: string, loserId: string): Promise<void> {
 }
 
 function pickPair(exclude: string[]): [string, string] {
-    const available = (allLocations as {fileName: string}[])
+    const available = (allLocations as { fileName: string }[])
         .map(l => l.fileName)
         .filter(f => !exclude.includes(f));
-    const rng = seedRandom(Date.now().toString());
+    const rng = seedRandom();
     const i = Math.floor(rng() * available.length);
     let j = Math.floor(rng() * (available.length - 1));
     if (j >= i) j++;
