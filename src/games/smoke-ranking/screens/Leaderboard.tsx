@@ -62,9 +62,9 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
     const availableHeight = `calc(100vh - ${TOPBAR_HEIGHT}px)`;
     const medals = ['🥇', '🥈', '🥉'];
     const unlockedCount = getUnlockedCount(dailyVoteCount);
-    const votesNeeded = (unlockedCount + 1) * 3 - dailyVoteCount;
 
-    function renderEntry(entry: SmokeScore, rank: React.ReactNode, isLocked: boolean, highlight: boolean) {
+    function renderEntry(entry: SmokeScore, rank: React.ReactNode, isLocked: boolean, highlight: boolean, cardIndex?: number) {
+        const votesNeeded = cardIndex !== undefined ? (5 - cardIndex) * 3 - dailyVoteCount : 0;
         const totalVotes = entry.wins + entry.losses;
         return (
             <div key={entry.fileName} style={{
@@ -198,7 +198,7 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                                 const isLocked = i < (5 - unlockedCount);
                                 const rankLabel = medals[i] ??
                                     <span style={{color: '#475569', fontSize: '0.85rem'}}>#{i + 1}</span>;
-                                return renderEntry(entry, rankLabel, isLocked, i < 3 && !isLocked);
+                                return renderEntry(entry, rankLabel, isLocked, i < 3 && !isLocked, i);
                             })}
                             {sixthTop && renderEntry(
                                 sixthTop,
@@ -232,7 +232,7 @@ function Leaderboard({onVoteAgain, onExit, dailyVoteCount}: LeaderboardProps) {
                                 const isLocked = i < (5 - unlockedCount);
                                 // i=0 → worst (1st lowest), i=4 → 5th worst (5th lowest)
                                 const rankLabel = <span style={{color: '#475569', fontSize: '0.85rem'}}>↓{i + 1}</span>;
-                                return renderEntry(entry, rankLabel, isLocked, false);
+                                return renderEntry(entry, rankLabel, isLocked, false, i);
                             })}
                             {sixthBottom && renderEntry(
                                 sixthBottom,
