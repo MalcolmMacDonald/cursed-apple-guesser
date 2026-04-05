@@ -1,5 +1,4 @@
 import React from 'react';
-import {useLocation} from 'wouter';
 import seedRandom from 'seedrandom';
 import allLocations from '../../../public/locations/metadata.json';
 import Vote from './screens/Vote';
@@ -46,18 +45,16 @@ function pickPair(exclude: string[]): [string, string] {
     return [available[i], available[j]];
 }
 
+type SRView = 'vote' | 'leaderboard';
+
 function SmokeRankingFlow() {
-    const [routerLocation, navigate] = useLocation();
+    const [view, setView] = React.useState<SRView>(() => {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('view') === 'leaderboard' ? 'leaderboard' : 'vote';
+    });
     const [pair, setPair] = React.useState<[string, string]>(() => pickPair([]));
     const [seenPairs, setSeenPairs] = React.useState<string[]>([]);
     const [dailyVoteCount, setDailyVoteCount] = React.useState(() => loadDailyVoteCount());
-
-    React.useEffect(() => {
-        if (routerLocation !== '/smoke-ranking' && routerLocation !== '/smoke-ranking/leaderboard') {
-            navigate('/smoke-ranking');
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     async function handleVote(winnerId: string, loserId: string) {
         await recordVote(winnerId, loserId);
@@ -70,21 +67,21 @@ function SmokeRankingFlow() {
     }
 
     function handleViewLeaderboard() {
-        navigate('/smoke-ranking/leaderboard');
+        setView('leaderboard');
     }
 
     function handleVoteAgain() {
-        navigate('/smoke-ranking');
+        setView('vote');
     }
 
-    const onExit = () => navigate('/');
+    const onExit = () => { window.location.href = import.meta.env.BASE_URL; };
 
     return (
         <>
-            {routerLocation === '/smoke-ranking' && (
+            {view === 'vote' && (
                 <Vote pair={pair} onVote={handleVote} onViewLeaderboard={handleViewLeaderboard} onExit={onExit} dailyVoteCount={dailyVoteCount}/>
             )}
-            {routerLocation === '/smoke-ranking/leaderboard' && (
+            {view === 'leaderboard' && (
                 <Leaderboard onVoteAgain={handleVoteAgain} onExit={onExit} dailyVoteCount={dailyVoteCount}/>
             )}
         </>
