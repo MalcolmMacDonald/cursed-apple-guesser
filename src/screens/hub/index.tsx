@@ -193,7 +193,7 @@ const gameRoutes: Record<string, { play: () => void; daily?: () => void; leaderb
         leaderboard: 'smoke-ranking/?view=leaderboard',
     },
     'kanban': {
-        play: () => navigateTo('dev/issue-tracker/'),
+        play: () => navigateTo('issue-tracker/'),
     },
 };
 
@@ -240,7 +240,8 @@ function GameCard({game}: {
                             </>
                         )}
                         {game.leaderboardId && (
-                            <button className="hub-card__daily-btn" onClick={() => navigateTo(gameRoutes[game.id]?.leaderboard ?? '')}>
+                            <button className="hub-card__daily-btn"
+                                    onClick={() => navigateTo(gameRoutes[game.id]?.leaderboard ?? '')}>
                                 View Leaderboard
                             </button>
                         )}
@@ -324,7 +325,8 @@ function HubScreen() {
                                 <p className="hub-card__desc">View, create, and manage GitHub issues for this repo in a
                                     kanban board.</p>
                                 <div className="hub-card__btn-group">
-                                    <button className="hub-card__play-btn" onClick={() => navigateTo('dev/issue-tracker/')}>
+                                    <button className="hub-card__play-btn"
+                                            onClick={() => navigateTo('dev/issue-tracker/')}>
                                         Open Board
                                     </button>
                                 </div>

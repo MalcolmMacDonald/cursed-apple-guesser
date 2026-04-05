@@ -1,13 +1,13 @@
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
-import '../index.css';
-import PageShell from '../components/PageShell';
-import SmokeRankingFlow from '../games/smoke-ranking/SmokeRankingFlow';
+import '@/index.css';
+import PageShell from '@/components/PageShell';
+import LocationGuesserFlow from '@/games/location-guesser/LocationGuesserFlow';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <PageShell>
-            <SmokeRankingFlow/>
+            <LocationGuesserFlow/>
         </PageShell>
     </StrictMode>,
 );
