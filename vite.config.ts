@@ -66,7 +66,7 @@ export default defineConfig({
     },
     server: {},
     optimizeDeps: {
-        exclude: ['@malcolm/github-kanban'],
+        exclude: ['@malcolmmacdonald/github-kanban'],
     },
     build: {
         rolldownOptions: {
