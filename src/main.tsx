@@ -3,10 +3,13 @@
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import PageShell from './components/PageShell'
+import HubScreen from './screens/hub/index.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <App/>
+        <PageShell>
+            <HubScreen/>
+        </PageShell>
     </StrictMode>,
 )

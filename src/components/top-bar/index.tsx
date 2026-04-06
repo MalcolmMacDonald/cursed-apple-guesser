@@ -1,21 +1,23 @@
-import {useLocation} from 'wouter';
 import './top-bar.css';
 
 export const TOPBAR_HEIGHT = 52;
 
 function TopBar() {
-    const [location, navigate] = useLocation();
+    const pathname = window.location.pathname;
+    const base = import.meta.env.BASE_URL;
+    const relativePath = pathname.startsWith(base) ? pathname.slice(base.length - 1) : pathname;
+
     const currentGame =
-        location.startsWith('/play') ? 'Location Guesser' :
-        location.startsWith('/smoke-ranking') ? 'Smoke Spot Leaderboard' :
-        location === '/dev/issue-tracker' ? 'Issue Tracker' :
+        relativePath.startsWith('/play') ? 'Location Guesser' :
+        relativePath.startsWith('/smoke-ranking') ? 'Smoke Spot Leaderboard' :
+        relativePath.startsWith('/dev/issue-tracker') ? 'Issue Tracker' :
         undefined;
 
     const handleHomeClick = () => {
-        if (location === '/dev/issue-tracker') {
+        if (relativePath.startsWith('/dev/issue-tracker')) {
             window.location.href = 'https://map-trainer.lloc.ca/dev';
         } else {
-            navigate('/');
+            window.location.href = base;
         }
     };
 
