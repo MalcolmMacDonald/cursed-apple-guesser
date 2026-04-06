@@ -1,5 +1,4 @@
 import React from 'react';
-import {useLocation} from 'wouter';
 import seedRandom from 'seedrandom';
 import allLocations from '../../../public/locations/metadata.json';
 import seedOverrides from '../../seed-overrides.json';
@@ -78,37 +77,33 @@ function initState(seed: string, isDaily: boolean, dailyDate: string, roundCount
     };
 }
 
+type LGView = 'landing' | 'round' | 'score' | 'final';
+
 function LocationGuesserFlow() {
-    const [location, navigate] = useLocation();
+    const [view, setView] = React.useState<LGView>('landing');
     const [state, setState] = React.useState<LGGameState | null>(null);
 
-    // On first mount at /play, check for daily challenge query params
+    // On first mount, check for a pending seed stored by the hub
     React.useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const seed = params.get('seed');
-        const isDaily = params.get('daily') === 'true';
+        const seed = sessionStorage.getItem('lg_pending_seed');
+        const isDaily = sessionStorage.getItem('lg_pending_daily') === 'true';
         if (seed) {
+            sessionStorage.removeItem('lg_pending_seed');
+            sessionStorage.removeItem('lg_pending_daily');
             setState(initState(seed, isDaily, isDaily ? makeLocalDate() : ''));
-            navigate('/play/round');
+            setView('round');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // Guard: redirect to landing if at a sub-route without state
-    React.useEffect(() => {
-        if (location !== '/play' && state === null) {
-            navigate('/play');
-        }
-    }, [location, state, navigate]);
-
     function handleStart(seed: string, isDaily: boolean, dailyDate: string, roundCount?: number, minRadius?: number) {
         setState(initState(seed, isDaily, dailyDate, roundCount, minRadius));
-        navigate('/play/round');
+        setView('round');
     }
 
     function handleRoundSubmit(updatedState: LGGameState) {
         setState(updatedState);
-        navigate('/play/score');
+        setView('score');
     }
 
     function handleScoringContinue(score: RoundScore) {
@@ -118,28 +113,28 @@ function LocationGuesserFlow() {
             currentRound: state!.currentRound + 1,
         };
         setState(newState);
-        navigate(newState.currentRound >= newState.totalRounds ? '/play/final' : '/play/round');
+        setView(newState.currentRound >= newState.totalRounds ? 'final' : 'round');
     }
 
     function handlePlayAgain() {
         setState(null);
-        navigate('/play');
+        setView('landing');
     }
 
-    const onExit = () => navigate('/');
+    const onExit = () => { window.location.href = import.meta.env.BASE_URL; };
 
     return (
         <>
-            {location === '/play' && (
+            {view === 'landing' && (
                 <Landing onStart={handleStart} onExit={onExit}/>
             )}
-            {location === '/play/round' && state !== null && (
+            {view === 'round' && state !== null && (
                 <Round state={state} onSubmit={handleRoundSubmit}/>
             )}
-            {location === '/play/score' && state !== null && (
+            {view === 'score' && state !== null && (
                 <Scoring state={state} onContinue={handleScoringContinue}/>
             )}
-            {location === '/play/final' && state !== null && (
+            {view === 'final' && state !== null && (
                 <Final state={state} onPlayAgain={handlePlayAgain} onExit={onExit}/>
             )}
         </>

@@ -5,6 +5,8 @@ import {LG_DAILY_KEY, LG_DAILY_SCORE_KEY, LG_ROUND_COUNT} from '../../games/loca
 import DailyHistogram from '../../components/daily-histogram';
 import type {HistogramData} from '../../components/daily-histogram';
 
+const BASE = import.meta.env.BASE_URL;
+
 const LG_API_URL = 'https://malloc--b83909f4289a11f1b97142dde27851f2.web.val.run';
 const IS_DEV_DEPLOY = import.meta.env.DEV || import.meta.env.VITE_BASE_PATH === '/dev/';
 const PAST_HISTOGRAMS_START = '2026-03-26';
@@ -115,7 +117,7 @@ const games: GameEntry[] = [
         description: "Two screenshots. One question: which spot would you rather smoke at? Vote to build the community leaderboard of top smoke spots.",
         icon: "🌿",
         gradient: "linear-gradient(135deg, #1a0a2e 0%, #3b1f6b 50%, #6d28d9 100%)",
-        available: IS_DEV_DEPLOY,
+        available: true,
         tags: ["Community", "Ranking"],
         primaryLabel: "Vote Now",
         leaderboardId: "smoke-ranking",
@@ -166,7 +168,38 @@ function useDailyCountdown(): string {
     return text;
 }
 
-function GameCard({game, onPlay, onPlayDaily, onViewLeaderboard}: { game: GameEntry; onPlay: () => void; onPlayDaily?: () => void; onViewLeaderboard?: () => void }) {
+export const LG_PENDING_SEED_KEY = 'lg_pending_seed';
+export const LG_PENDING_DAILY_KEY = 'lg_pending_daily';
+
+function navigateTo(path: string) {
+    window.location.href = BASE + path;
+}
+
+function navigateToPlay(isDaily: boolean) {
+    if (isDaily) {
+        sessionStorage.setItem(LG_PENDING_SEED_KEY, makeDailyDate());
+        sessionStorage.setItem(LG_PENDING_DAILY_KEY, 'true');
+    }
+    navigateTo('play/');
+}
+
+const gameRoutes: Record<string, { play: () => void; daily?: () => void; leaderboard?: string }> = {
+    'location-guesser': {
+        play: () => navigateToPlay(false),
+        daily: () => navigateToPlay(true),
+    },
+    'smoke-ranking': {
+        play: () => navigateTo('smoke-ranking/'),
+        leaderboard: 'smoke-ranking/?view=leaderboard',
+    },
+    'kanban': {
+        play: () => navigateTo('issue-tracker/'),
+    },
+};
+
+function GameCard({game}: {
+    game: GameEntry;
+}) {
     const actuallyDone = game.dailyStorageKey
         ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
         : false;
@@ -193,7 +226,7 @@ function GameCard({game, onPlay, onPlayDaily, onViewLeaderboard}: { game: GameEn
                             <>
                                 <button
                                     className="hub-card__daily-btn"
-                                    onClick={onPlayDaily}
+                                    onClick={() => gameRoutes[game.id]?.daily?.()}
                                     disabled={dailyDone}
                                 >
                                     {dailyDone ? 'Daily Done ✓' : 'Daily Challenge'}
@@ -206,12 +239,13 @@ function GameCard({game, onPlay, onPlayDaily, onViewLeaderboard}: { game: GameEn
                                 )}
                             </>
                         )}
-                        {onViewLeaderboard && (
-                            <button className="hub-card__daily-btn" onClick={onViewLeaderboard}>
+                        {game.leaderboardId && (
+                            <button className="hub-card__daily-btn"
+                                    onClick={() => navigateTo(gameRoutes[game.id]?.leaderboard ?? '')}>
                                 View Leaderboard
                             </button>
                         )}
-                        <button className="hub-card__play-btn" onClick={onPlay}>
+                        <button className="hub-card__play-btn" onClick={() => gameRoutes[game.id]?.play()}>
                             {game.primaryLabel ?? 'Play Now'}
                         </button>
                     </div>
@@ -225,7 +259,7 @@ function GameCard({game, onPlay, onPlayDaily, onViewLeaderboard}: { game: GameEn
     );
 }
 
-function HubScreen({onSelectGame, onSelectLeaderboard}: { onSelectGame: (id: string, isDaily?: boolean) => void; onSelectLeaderboard?: (id: string) => void }) {
+function HubScreen() {
     const isDev = import.meta.env.DEV;
 
     React.useEffect(() => {
@@ -250,11 +284,6 @@ function HubScreen({onSelectGame, onSelectLeaderboard}: { onSelectGame: (id: str
                     <GameCard
                         key={game.id}
                         game={game}
-                        onPlay={() => onSelectGame(game.id)}
-                        onPlayDaily={() => onSelectGame(game.id, true)}
-                        onViewLeaderboard={game.leaderboardId && onSelectLeaderboard
-                            ? () => onSelectLeaderboard!(game.leaderboardId!)
-                            : undefined}
                     />
                 ))}
             </div>
@@ -266,8 +295,6 @@ function HubScreen({onSelectGame, onSelectLeaderboard}: { onSelectGame: (id: str
                     <GameCard
                         key={game.id}
                         game={game}
-                        onPlay={() => onSelectGame(game.id)}
-                        onPlayDaily={() => onSelectGame(game.id, true)}
                     />
                 ))}
             </div>
@@ -288,7 +315,7 @@ function HubScreen({onSelectGame, onSelectLeaderboard}: { onSelectGame: (id: str
                         <span className="hub-dev-label">Developer Tools</span>
                     </div>
                     <div className="hub-grid">
-                        <div className="hub-card" onClick={() => onSelectGame('kanban')}>
+                        <div className="hub-card" onClick={() => navigateTo('issue-tracker/')}>
                             <div className="hub-card__art"
                                  style={{background: 'linear-gradient(135deg, #1e1e2e 0%, #313244 50%, #45475a 100%)'}}>
                                 <span className="hub-card__icon">📋</span>
@@ -298,7 +325,8 @@ function HubScreen({onSelectGame, onSelectLeaderboard}: { onSelectGame: (id: str
                                 <p className="hub-card__desc">View, create, and manage GitHub issues for this repo in a
                                     kanban board.</p>
                                 <div className="hub-card__btn-group">
-                                    <button className="hub-card__play-btn" onClick={() => onSelectGame('kanban')}>
+                                    <button className="hub-card__play-btn"
+                                            onClick={() => navigateTo('issue-tracker/')}>
                                         Open Board
                                     </button>
                                 </div>
