@@ -1,5 +1,5 @@
 {
-  "name": "@malcolm/github-kanban",
+  "name": "@malcolmmacdonald/github-kanban",
   "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.cjs",
