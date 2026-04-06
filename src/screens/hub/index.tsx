@@ -193,7 +193,7 @@ const gameRoutes: Record<string, { play: () => void; daily?: () => void; leaderb
         leaderboard: 'smoke-ranking/?view=leaderboard',
     },
     'kanban': {
-        play: () => navigateTo('issue-tracker/'),
+        play: () => navigateTo('github-kanban/'),
     },
 };
 
@@ -315,7 +315,7 @@ function HubScreen() {
                         <span className="hub-dev-label">Developer Tools</span>
                     </div>
                     <div className="hub-grid">
-                        <div className="hub-card" onClick={() => navigateTo('issue-tracker/')}>
+                        <div className="hub-card" onClick={() => navigateTo('github-kanban/')}>
                             <div className="hub-card__art"
                                  style={{background: 'linear-gradient(135deg, #1e1e2e 0%, #313244 50%, #45475a 100%)'}}>
                                 <span className="hub-card__icon">📋</span>
@@ -326,7 +326,7 @@ function HubScreen() {
                                     kanban board.</p>
                                 <div className="hub-card__btn-group">
                                     <button className="hub-card__play-btn"
-                                            onClick={() => navigateTo('issue-tracker/')}>
+                                            onClick={() => navigateTo('github-kanban/')}>
                                         Open Board
                                     </button>
                                 </div>

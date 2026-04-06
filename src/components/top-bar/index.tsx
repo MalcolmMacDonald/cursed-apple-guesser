@@ -9,12 +9,12 @@ function TopBar() {
 
     const currentGame =
         relativePath.startsWith('/play') ? 'Location Guesser' :
-        relativePath.startsWith('/smoke-ranking') ? 'Smoke Spot Leaderboard' :
-        relativePath.startsWith('/dev/issue-tracker') ? 'Issue Tracker' :
-        undefined;
+            relativePath.startsWith('/smoke-ranking') ? 'Smoke Spot Leaderboard' :
+                relativePath.startsWith('/dev/github-kanban') ? 'Issue Tracker' :
+                    undefined;
 
     const handleHomeClick = () => {
-        if (relativePath.startsWith('/dev/issue-tracker')) {
+        if (relativePath.startsWith('/dev/github-kanban')) {
             window.location.href = 'https://map-trainer.lloc.ca/dev';
         } else {
             window.location.href = base;

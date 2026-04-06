@@ -9,7 +9,7 @@ const src = resolve(root, 'src');
 const entryPages: Record<string, string> = {
     play: resolve(src, 'entries/play/index.html'),
     'smoke-ranking': resolve(src, 'entries/smoke-ranking/index.html'),
-    'issue-tracker': resolve(src, 'entries/issue-tracker/index.html'),
+    'github-kanban': resolve(src, 'entries/github-kanban/index.html'),
 };
 
 // https://vite.dev/config/
@@ -17,7 +17,7 @@ export default defineConfig({
     plugins: [
         react(),
         {
-            // In dev, serve /play/, /smoke-ranking/, /issue-tracker/ from src/entries/
+            // In dev, serve /play/, /smoke-ranking/, /github-kanban/ from src/entries/
             // (simple req.url rewrite doesn't work because Vite's SPA fallback runs first)
             name: 'mpa-dev-serve',
             configureServer(server) {
@@ -31,6 +31,12 @@ export default defineConfig({
                             res.setHeader('Content-Type', 'text/html; charset=utf-8');
                             res.end(html);
                             return;
+                        }
+                        // Rewrite sub-path requests (e.g. /github-kanban/kanban.tsx) to
+                        // their actual source location so Vite can transform them.
+                        if (url.startsWith(`/${key}/`)) {
+                            req.url = `/src/entries${url}`;
+                            return next();
                         }
                     }
                     next();
@@ -59,6 +65,9 @@ export default defineConfig({
         __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
     },
     server: {},
+    optimizeDeps: {
+        exclude: ['@malcolm/github-kanban'],
+    },
     build: {
         rolldownOptions: {
             cwd: root,
