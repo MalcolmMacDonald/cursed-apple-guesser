@@ -4,7 +4,7 @@
     "": {
       "name": "cursed-apple-guesser",
       "dependencies": {
-        "@malcolmmacdonald/github-kanban": "git@github.com:MalcolmMacDonald/github-kanban.git",
+        "@malcolmmacdonald/github-kanban": "https://github.com/MalcolmMacDonald/github-kanban.git",
         "@tursodatabase/database": "^0.5.1",
         "@types/seedrandom": "^3.0.8",
         "react": "^19.1.1",
@@ -113,7 +113,7 @@
 
     "@humanwhocodes/retry": ["@humanwhocodes/retry@0.4.3", "", {}, "sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ=="],
 
-    "@malcolmmacdonald/github-kanban": ["@malcolm/github-kanban@git+ssh://git@github.com:MalcolmMacDonald/github-kanban.git#e76164155994bbe49bb9a8562d57fc620745a2e7", { "peerDependencies": { "react": "^18 || ^19", "react-dom": "^18 || ^19" } }, "e76164155994bbe49bb9a8562d57fc620745a2e7"],
+    "@malcolmmacdonald/github-kanban": ["@malcolmmacdonald/github-kanban@github:MalcolmMacDonald/github-kanban#09a1045", { "peerDependencies": { "react": "^18 || ^19", "react-dom": "^18 || ^19" } }, "MalcolmMacDonald-github-kanban-09a1045"],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.2", "", { "dependencies": { "@tybys/wasm-util": "^0.10.1" }, "peerDependencies": { "@emnapi/core": "^1.7.1", "@emnapi/runtime": "^1.7.1" } }, "sha512-sNXv5oLJ7ob93xkZ1XnxisYhGYXfaG9f65/ZgYuAu3qt7b3NadcOEhLvx28hv31PgX8SZJRYrAIPQilQmFpLVw=="],
 

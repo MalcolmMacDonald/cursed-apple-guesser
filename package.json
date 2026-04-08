@@ -12,7 +12,7 @@
     "capture:status": "bun run tools/deadlock-capture/src/main.ts status"
   },
   "dependencies": {
-    "@malcolmmacdonald/github-kanban": "git@github.com:MalcolmMacDonald/github-kanban.git",
+    "@malcolmmacdonald/github-kanban": "https://github.com/MalcolmMacDonald/github-kanban.git",
     "@tursodatabase/database": "^0.5.1",
     "@types/seedrandom": "^3.0.8",
     "react": "^19.1.1",
