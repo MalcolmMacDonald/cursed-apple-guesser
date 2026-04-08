@@ -2,8 +2,7 @@ import './landing.css';
 import React from 'react';
 import {makeRandomSeed} from '../../../utils/rng';
 import {DEFAULT_SCORING_RADIUS} from '../../../utils/scoring';
-
-const ROUND_COUNT = 5;
+import {LG_ROUND_COUNT} from '../LocationGuesserFlow';
 
 interface LandingProps {
     onStart: (seed: string, isDaily: boolean, dailyDate: string, roundCount?: number, minRadius?: number) => void;
@@ -14,7 +13,7 @@ function Landing({onStart}: LandingProps) {
     const defaultSeed = React.useRef(makeRandomSeed()).current;
     const [showAdvanced, setShowAdvanced] = React.useState(false);
     const [customSeed, setCustomSeed] = React.useState(defaultSeed);
-    const [rounds, setRounds] = React.useState(ROUND_COUNT);
+    const [rounds, setRounds] = React.useState(LG_ROUND_COUNT);
     const [minRadius, setMinRadius] = React.useState(DEFAULT_SCORING_RADIUS);
 
     return (

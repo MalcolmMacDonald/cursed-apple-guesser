@@ -11,7 +11,10 @@
       "mcp__val-town__read_file",
       "mcp__val-town__create_val",
       "mcp__val-town__update_file",
-      "mcp__val-town__sqlite_execute"
+      "mcp__val-town__sqlite_execute",
+      "Bash(bun outdated:*)",
+      "Bash(bun info:*)",
+      "Bash(bun add:*)"
     ]
   }
 }

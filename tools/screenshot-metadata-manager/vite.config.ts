@@ -13,7 +13,7 @@ const SESSIONS_DIR = path.join(ROOT_DIR, 'tools', 'deadlock-capture', 'output', 
 const TAGS_PATH = path.join(ROOT_DIR, 'tools', 'deadlock-capture', 'output', 'tag-definitions.json')
 const MAP_IMAGE_PATH = path.join(ROOT_DIR, 'src', 'assets', 'IMG_6117.png')
 const PRODUCTION_DIR = path.join(ROOT_DIR, 'public', 'locations')
-const PRODUCTION_METADATA_PATH = path.join(PRODUCTION_DIR, 'metadata.json')
+const PRODUCTION_METADATA_PATH = path.join(ROOT_DIR, 'src', 'data', 'metadata.json')
 
 // ── SSE: watch for new captures ──────────────────────────────────────────────
 const sseClients = new Set<import('http').ServerResponse>()

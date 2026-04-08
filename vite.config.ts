@@ -24,7 +24,13 @@ export default defineConfig({
                 server.middlewares.use(async (req, res, next) => {
                     const url = (req.url ?? '').split('?')[0].split('#')[0];
                     for (const [key, htmlPath] of Object.entries(entryPages)) {
-                        if (url === `/${key}` || url === `/${key}/`) {
+                        if (url === `/${key}`) {
+                            res.statusCode = 301;
+                            res.setHeader('Location', `/${key}/`);
+                            res.end();
+                            return;
+                        }
+                        if (url === `/${key}/`) {
                             const rawHtml = readFileSync(htmlPath, 'utf-8');
                             const html = await server.transformIndexHtml(url, rawHtml, req.originalUrl);
                             res.statusCode = 200;

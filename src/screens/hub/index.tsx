@@ -1,15 +1,27 @@
 import './hub.css';
 import React from 'react';
 import {makeDailyDate, makeLocalDate, nextLocalMidnightMs} from '../../utils/rng';
-import {LG_DAILY_KEY, LG_DAILY_SCORE_KEY, LG_ROUND_COUNT} from '../../games/location-guesser/LocationGuesserFlow';
+import {LG_DAILY_KEY, LG_DAILY_SCORE_KEY, LG_ROUND_COUNT, LG_PENDING_SEED_KEY, LG_PENDING_DAILY_KEY} from '../../games/location-guesser/LocationGuesserFlow';
+import {LG_API_URL} from '../../config';
 import DailyHistogram from '../../components/daily-histogram';
 import type {HistogramData} from '../../components/daily-histogram';
 
 const BASE = import.meta.env.BASE_URL;
 
-const LG_API_URL = 'https://malloc--b83909f4289a11f1b97142dde27851f2.web.val.run';
 const IS_DEV_DEPLOY = import.meta.env.DEV || import.meta.env.VITE_BASE_PATH === '/dev/';
 const PAST_HISTOGRAMS_START = '2026-03-26';
+
+function navigateTo(path: string) {
+    window.location.href = BASE + path;
+}
+
+function navigateToPlay(isDaily: boolean) {
+    if (isDaily) {
+        sessionStorage.setItem(LG_PENDING_SEED_KEY, makeDailyDate());
+        sessionStorage.setItem(LG_PENDING_DAILY_KEY, 'true');
+    }
+    navigateTo('play/');
+}
 
 function getPastDates(): string[] {
     const dates: string[] = [];
@@ -37,8 +49,7 @@ function PastHistogramsSection() {
                 .then((data: HistogramData) => {
                     setHistograms(prev => ({...prev, [date]: data}));
                 })
-                .catch(() => {/* silently fail */
-                });
+                .catch(() => {/* silently fail */});
         });
     }, []);
 
@@ -78,8 +89,7 @@ function HubDailyHistogram({playerScore, totalRounds}: { playerScore: number; to
         fetch(`${LG_API_URL}/scores?date=${date}`)
             .then(r => r.json())
             .then((data: HistogramData) => setHistogram(data))
-            .catch(() => {/* silently fail */
-            });
+            .catch(() => {/* silently fail */});
     }, []);
 
     if (!histogram) return null;
@@ -95,59 +105,72 @@ type GameEntry = {
     gradient: string;
     available: boolean;
     tags: string[];
+    /** localStorage key checked against makeDailyDate() to mark the daily as done */
     dailyStorageKey?: string;
+    /** localStorage key for the daily score value; presence enables the histogram */
+    dailyScoreKey?: string;
+    /** round count passed to the histogram when dailyScoreKey is set */
+    totalRounds?: number;
     primaryLabel?: string;
-    leaderboardId?: string;
+    /** path (relative to BASE) to navigate to for the leaderboard view */
+    leaderboardPath?: string;
+    onPlay?: () => void;
+    onDaily?: () => void;
 };
 
 const games: GameEntry[] = [
     {
-        id: "location-guesser",
-        title: "Location Guesser",
-        description: "Drop a pin on the map to guess where a screenshot was taken. The closer you are, the higher you score.",
-        icon: "🗺️",
-        gradient: "linear-gradient(135deg, #1a472a 0%, #2d6a4f 50%, #40916c 100%)",
+        id: 'location-guesser',
+        title: 'Location Guesser',
+        description: 'Drop a pin on the map to guess where a screenshot was taken. The closer you are, the higher you score.',
+        icon: '🗺️',
+        gradient: 'linear-gradient(135deg, #1a472a 0%, #2d6a4f 50%, #40916c 100%)',
         available: true,
-        tags: ["Location"],
+        tags: ['Location'],
         dailyStorageKey: LG_DAILY_KEY,
+        dailyScoreKey: LG_DAILY_SCORE_KEY,
+        totalRounds: LG_ROUND_COUNT,
+        onPlay: () => navigateToPlay(false),
+        onDaily: () => navigateToPlay(true),
     },
     {
-        id: "smoke-ranking",
-        title: "Smoke Spot Leaderboard",
-        description: "Two screenshots. One question: which spot would you rather smoke at? Vote to build the community leaderboard of top smoke spots.",
-        icon: "🌿",
-        gradient: "linear-gradient(135deg, #1a0a2e 0%, #3b1f6b 50%, #6d28d9 100%)",
+        id: 'smoke-ranking',
+        title: 'Smoke Spot Leaderboard',
+        description: 'Two screenshots. One question: which spot would you rather smoke at? Vote to build the community leaderboard of top smoke spots.',
+        icon: '🌿',
+        gradient: 'linear-gradient(135deg, #1a0a2e 0%, #3b1f6b 50%, #6d28d9 100%)',
         available: true,
-        tags: ["Community", "Ranking"],
-        primaryLabel: "Vote Now",
-        leaderboardId: "smoke-ranking",
+        tags: ['Community', 'Ranking'],
+        primaryLabel: 'Vote Now',
+        leaderboardPath: 'smoke-ranking/?view=leaderboard',
+        onPlay: () => navigateTo('smoke-ranking/'),
     },
     {
-        id: "navigate",
-        title: "Dead Reckoning",
+        id: 'navigate',
+        title: 'Dead Reckoning',
         description: "You're shown a start and a destination. Give step-by-step directions — forward, left, turn around — to get there.",
-        icon: "🧭",
-        gradient: "linear-gradient(135deg, #3d2000 0%, #7a4500 50%, #b86800 100%)",
+        icon: '🧭',
+        gradient: 'linear-gradient(135deg, #3d2000 0%, #7a4500 50%, #b86800 100%)',
         available: false,
-        tags: ["Navigation"],
+        tags: ['Navigation'],
     },
     {
-        id: "nameit",
-        title: "Name That Spot",
-        description: "Recognise the location — but can you name it? Pick the correct name from a list of options.",
-        icon: "📍",
-        gradient: "linear-gradient(135deg, #1a1a4e 0%, #2d2d8f 50%, #4a4ac4 100%)",
+        id: 'nameit',
+        title: 'Name That Spot',
+        description: 'Recognise the location — but can you name it? Pick the correct name from a list of options.',
+        icon: '📍',
+        gradient: 'linear-gradient(135deg, #1a1a4e 0%, #2d2d8f 50%, #4a4ac4 100%)',
         available: false,
-        tags: ["Multiple Choice"],
+        tags: ['Multiple Choice'],
     },
     {
-        id: "aboutface",
-        title: "About Face",
-        description: "Study the screenshot carefully, then pick which other screenshot was taken facing the exact opposite direction.",
-        icon: "🔄",
-        gradient: "linear-gradient(135deg, #3d001a 0%, #7a0035 50%, #b80050 100%)",
+        id: 'aboutface',
+        title: 'About Face',
+        description: 'Study the screenshot carefully, then pick which other screenshot was taken facing the exact opposite direction.',
+        icon: '🔄',
+        gradient: 'linear-gradient(135deg, #3d001a 0%, #7a0035 50%, #b80050 100%)',
         available: false,
-        tags: ["Orientation"],
+        tags: ['Orientation'],
     },
 ];
 
@@ -168,47 +191,15 @@ function useDailyCountdown(): string {
     return text;
 }
 
-export const LG_PENDING_SEED_KEY = 'lg_pending_seed';
-export const LG_PENDING_DAILY_KEY = 'lg_pending_daily';
-
-function navigateTo(path: string) {
-    window.location.href = BASE + path;
-}
-
-function navigateToPlay(isDaily: boolean) {
-    if (isDaily) {
-        sessionStorage.setItem(LG_PENDING_SEED_KEY, makeDailyDate());
-        sessionStorage.setItem(LG_PENDING_DAILY_KEY, 'true');
-    }
-    navigateTo('play/');
-}
-
-const gameRoutes: Record<string, { play: () => void; daily?: () => void; leaderboard?: string }> = {
-    'location-guesser': {
-        play: () => navigateToPlay(false),
-        daily: () => navigateToPlay(true),
-    },
-    'smoke-ranking': {
-        play: () => navigateTo('smoke-ranking/'),
-        leaderboard: 'smoke-ranking/?view=leaderboard',
-    },
-    'kanban': {
-        play: () => navigateTo('github-kanban/'),
-    },
-};
-
-function GameCard({game}: {
-    game: GameEntry;
-}) {
+function GameCard({game}: { game: GameEntry }) {
     const actuallyDone = game.dailyStorageKey
         ? localStorage.getItem(game.dailyStorageKey) === makeDailyDate()
         : false;
-    //if in dev mode, always set daily done to false so the daily can always be replayed
+    // In dev mode always allow replaying the daily
     const dailyDone = import.meta.env.DEV ? false : actuallyDone;
     const countdown = useDailyCountdown();
-    // In dev mode, always show the histogram regardless of completion state
-    const dailyScore = (actuallyDone || import.meta.env.DEV) && game.dailyStorageKey === LG_DAILY_KEY
-        ? Number(localStorage.getItem(LG_DAILY_SCORE_KEY) ?? 0)
+    const dailyScore = (actuallyDone || import.meta.env.DEV) && game.dailyScoreKey
+        ? Number(localStorage.getItem(game.dailyScoreKey) ?? 0)
         : null;
 
     return (
@@ -222,11 +213,11 @@ function GameCard({game}: {
 
                 {game.available ? (
                     <div className="hub-card__btn-group">
-                        {game.dailyStorageKey && (
+                        {game.dailyStorageKey && game.onDaily && (
                             <>
                                 <button
                                     className="hub-card__daily-btn"
-                                    onClick={() => gameRoutes[game.id]?.daily?.()}
+                                    onClick={game.onDaily}
                                     disabled={dailyDone}
                                 >
                                     {dailyDone ? 'Daily Done ✓' : 'Daily Challenge'}
@@ -234,18 +225,20 @@ function GameCard({game}: {
                                 {dailyDone && (
                                     <p className="hub-card__daily-timer">Next in {countdown}</p>
                                 )}
-                                {dailyScore !== null && (
-                                    <HubDailyHistogram playerScore={dailyScore} totalRounds={LG_ROUND_COUNT}/>
+                                {dailyScore !== null && game.totalRounds !== undefined && (
+                                    <HubDailyHistogram playerScore={dailyScore} totalRounds={game.totalRounds}/>
                                 )}
                             </>
                         )}
-                        {game.leaderboardId && (
-                            <button className="hub-card__daily-btn"
-                                    onClick={() => navigateTo(gameRoutes[game.id]?.leaderboard ?? '')}>
+                        {game.leaderboardPath && (
+                            <button
+                                className="hub-card__daily-btn"
+                                onClick={() => navigateTo(game.leaderboardPath!)}
+                            >
                                 View Leaderboard
                             </button>
                         )}
-                        <button className="hub-card__play-btn" onClick={() => gameRoutes[game.id]?.play()}>
+                        <button className="hub-card__play-btn" onClick={game.onPlay}>
                             {game.primaryLabel ?? 'Play Now'}
                         </button>
                     </div>
@@ -281,24 +274,16 @@ function HubScreen() {
             <div className="hub-divider"/>
             <div className="hub-grid">
                 {games.filter(game => game.available).map(game => (
-                    <GameCard
-                        key={game.id}
-                        game={game}
-                    />
+                    <GameCard key={game.id} game={game}/>
                 ))}
             </div>
-
 
             <div className="hub-divider"/>
             <div className="hub-grid">
                 {games.filter(game => !game.available).map(game => (
-                    <GameCard
-                        key={game.id}
-                        game={game}
-                    />
+                    <GameCard key={game.id} game={game}/>
                 ))}
             </div>
-
 
             {IS_DEV_DEPLOY && (
                 <div className="hub-dev-section">
