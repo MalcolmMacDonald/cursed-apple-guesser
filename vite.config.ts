@@ -66,14 +66,10 @@ export default defineConfig({
     ],
     base: process.env.VITE_BASE_PATH ?? '/',
     publicDir: 'public',
-    assetsInclude: ['**/*.png'],
     define: {
         __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
     },
     server: {},
-    optimizeDeps: {
-        exclude: ['@malcolmmacdonald/github-kanban'],
-    },
     build: {
         rolldownOptions: {
             cwd: root,
