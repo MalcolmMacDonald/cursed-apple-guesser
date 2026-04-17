@@ -1,5 +1,5 @@
 import React from 'react';
-import {SMOKE_ELO_BACKEND_URL} from '../SmokeRankingFlow';
+import {SMOKE_ELO_BACKEND_URL} from '../../../config';
 import type {SmokeScore} from '../SmokeRankingFlow';
 import {TOPBAR_HEIGHT} from '../../../components/top-bar';
 

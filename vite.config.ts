@@ -9,7 +9,7 @@ const src = resolve(root, 'src');
 const entryPages: Record<string, string> = {
     play: resolve(src, 'entries/play/index.html'),
     'smoke-ranking': resolve(src, 'entries/smoke-ranking/index.html'),
-    'issue-tracker': resolve(src, 'entries/issue-tracker/index.html'),
+    'github-kanban': resolve(src, 'entries/github-kanban/index.html'),
 };
 
 // https://vite.dev/config/
@@ -17,20 +17,32 @@ export default defineConfig({
     plugins: [
         react(),
         {
-            // In dev, serve /play/, /smoke-ranking/, /issue-tracker/ from src/entries/
+            // In dev, serve /play/, /smoke-ranking/, /github-kanban/ from src/entries/
             // (simple req.url rewrite doesn't work because Vite's SPA fallback runs first)
             name: 'mpa-dev-serve',
             configureServer(server) {
                 server.middlewares.use(async (req, res, next) => {
                     const url = (req.url ?? '').split('?')[0].split('#')[0];
                     for (const [key, htmlPath] of Object.entries(entryPages)) {
-                        if (url === `/${key}` || url === `/${key}/`) {
+                        if (url === `/${key}`) {
+                            res.statusCode = 301;
+                            res.setHeader('Location', `/${key}/`);
+                            res.end();
+                            return;
+                        }
+                        if (url === `/${key}/`) {
                             const rawHtml = readFileSync(htmlPath, 'utf-8');
                             const html = await server.transformIndexHtml(url, rawHtml, req.originalUrl);
                             res.statusCode = 200;
                             res.setHeader('Content-Type', 'text/html; charset=utf-8');
                             res.end(html);
                             return;
+                        }
+                        // Rewrite sub-path requests (e.g. /github-kanban/kanban.tsx) to
+                        // their actual source location so Vite can transform them.
+                        if (url.startsWith(`/${key}/`)) {
+                            req.url = `/src/entries${url}`;
+                            return next();
                         }
                     }
                     next();
@@ -54,7 +66,6 @@ export default defineConfig({
     ],
     base: process.env.VITE_BASE_PATH ?? '/',
     publicDir: 'public',
-    assetsInclude: ['**/*.png'],
     define: {
         __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
     },

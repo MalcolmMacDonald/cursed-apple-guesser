@@ -1,6 +1,6 @@
 import React from 'react';
 import seedRandom from 'seedrandom';
-import allLocations from '../../../public/locations/metadata.json';
+import allLocations from '../../data/metadata.json';
 import seedOverrides from '../../seed-overrides.json';
 import Landing from './screens/Landing';
 import Round from './screens/Round';
@@ -11,9 +11,10 @@ import {DEFAULT_SCORING_RADIUS} from '../../utils/scoring';
 import {makeLocalDate} from '../../utils/rng';
 
 export const LG_ROUND_COUNT = 5;
-const ROUND_COUNT = LG_ROUND_COUNT;
 export const LG_DAILY_KEY = 'dailyChallenge_completed';
 export const LG_DAILY_SCORE_KEY = 'dailyChallenge_score';
+export const LG_PENDING_SEED_KEY = 'lg_pending_seed';
+export const LG_PENDING_DAILY_KEY = 'lg_pending_daily';
 
 export interface LGGameState {
     locations: LocationData[];
@@ -35,19 +36,18 @@ const locationByFileName = new Map<string, LocationData>(
 );
 
 function initState(seed: string, isDaily: boolean, dailyDate: string, roundCount?: number, minRadius?: number): LGGameState {
-    const count = roundCount ?? ROUND_COUNT;
+    const count = roundCount ?? LG_ROUND_COUNT;
     const radius = minRadius ?? DEFAULT_SCORING_RADIUS;
-    if (isDaily) {
-        seed = dailyDate + "-daily";
-    }
+    const effectiveSeed = isDaily ? `${dailyDate}-daily` : seed;
+
     let locations: LocationData[];
-    if (overrideMap[seed]) {
-        locations = overrideMap[seed]
+    if (overrideMap[effectiveSeed]) {
+        locations = overrideMap[effectiveSeed]
             .map(fileName => locationByFileName.get(fileName))
             .filter((loc): loc is LocationData => loc !== undefined)
             .slice(0, count);
     } else {
-        const rng = seedRandom(seed);
+        const rng = seedRandom(effectiveSeed);
         const availableLocations = ([...allLocations] as LocationData[]).filter(
             location => !location.tags.includes('Difficulty/Hard')
         );
@@ -59,7 +59,6 @@ function initState(seed: string, isDaily: boolean, dailyDate: string, roundCount
             locationIndices.push(index);
             availableIndices.splice(indexInArray, 1);
         }
-        console.log(locationIndices);
         locations = locationIndices.map(i => availableLocations[i]);
     }
     return {
@@ -70,7 +69,7 @@ function initState(seed: string, isDaily: boolean, dailyDate: string, roundCount
         scores: [],
         currentRound: 0,
         totalRounds: count,
-        seed,
+        seed: effectiveSeed,
         isDaily,
         dailyDate: isDaily ? dailyDate : undefined,
         minRadius: radius,
@@ -85,11 +84,11 @@ function LocationGuesserFlow() {
 
     // On first mount, check for a pending seed stored by the hub
     React.useEffect(() => {
-        const seed = sessionStorage.getItem('lg_pending_seed');
-        const isDaily = sessionStorage.getItem('lg_pending_daily') === 'true';
+        const seed = sessionStorage.getItem(LG_PENDING_SEED_KEY);
+        const isDaily = sessionStorage.getItem(LG_PENDING_DAILY_KEY) === 'true';
         if (seed) {
-            sessionStorage.removeItem('lg_pending_seed');
-            sessionStorage.removeItem('lg_pending_daily');
+            sessionStorage.removeItem(LG_PENDING_SEED_KEY);
+            sessionStorage.removeItem(LG_PENDING_DAILY_KEY);
             setState(initState(seed, isDaily, isDaily ? makeLocalDate() : ''));
             setView('round');
         }

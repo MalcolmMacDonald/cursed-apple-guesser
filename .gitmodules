@@ -1,0 +1,4 @@
+[submodule "packages/github-kanban"]
+	path = packages/github-kanban
+	url = git@github.com:MalcolmMacDonald/github-kanban.git
+	branch = main

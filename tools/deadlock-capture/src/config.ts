@@ -36,7 +36,7 @@ export function loadConfig(): CaptureConfig {
   );
 
   const outputDir = process.env["OUTPUT_DIR"] ?? defaultOutputDir;
-  const metadataPath = join(outputDir, "metadata.json");
+  const metadataPath = process.env["METADATA_PATH"] ?? join(repoRoot, "src", "data", "metadata.json");
 
   return {
     rconHost: process.env["RCON_HOST"] ?? "127.0.0.1",

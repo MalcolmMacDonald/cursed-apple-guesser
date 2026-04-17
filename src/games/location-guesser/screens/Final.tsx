@@ -8,7 +8,7 @@ import type {RoundScore} from '../../../types';
 import DailyHistogram from '../../../components/daily-histogram';
 import type {HistogramData} from '../../../components/daily-histogram';
 
-const API_URL = 'https://malloc--b83909f4289a11f1b97142dde27851f2.web.val.run';
+import {LG_API_URL as API_URL} from '../../../config';
 
 interface FinalProps {
     state: LGGameState;

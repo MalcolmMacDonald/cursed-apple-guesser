@@ -260,13 +260,6 @@
     gap: 16px;
 }
 
-.hub-past-histograms__item {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 16px;
-}
-
 .hub-past-histograms__loading {
     color: rgba(255, 255, 255, 0.3);
     font-size: 13px;

@@ -1,10 +1,10 @@
 import React from 'react';
 import seedRandom from 'seedrandom';
-import allLocations from '../../../public/locations/metadata.json';
+import allLocations from '../../data/metadata.json';
 import Vote from './screens/Vote';
 import Leaderboard from './screens/Leaderboard';
-
-export const SMOKE_ELO_BACKEND_URL = 'https://malloc--f34c83322b8c11f1ae2742dde27851f2.web.val.run';
+import {SMOKE_ELO_BACKEND_URL} from '../../config';
+import {makeLocalDate} from '../../utils/rng';
 
 export type SmokeScore = {
     fileName: string;
@@ -14,8 +14,7 @@ export type SmokeScore = {
 };
 
 function getDailyVoteKey(): string {
-    const d = new Date();
-    return `smoke-daily-votes-${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    return `smoke-daily-votes-${makeLocalDate()}`;
 }
 
 function loadDailyVoteCount(): number {
