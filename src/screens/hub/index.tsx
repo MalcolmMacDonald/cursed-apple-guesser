@@ -38,6 +38,58 @@ function getPastDates(): string[] {
     return dates.reverse();
 }
 
+function DailyPlayersGraph() {
+    const [counts, setCounts] = React.useState<Record<string, number>>({});
+
+    React.useEffect(() => {
+        getPastDates().forEach(date => {
+            fetch(`${LG_API_URL}/scores?date=${date}`)
+                .then(r => r.json())
+                .then((data: HistogramData) => setCounts(prev => ({...prev, [date]: data.totalCount})))
+                .catch(() => {});
+        });
+    }, []);
+
+    const dates = getPastDates().slice().reverse(); // chronological: oldest → newest
+    const maxCount = Math.max(1, ...dates.map(d => counts[d] ?? 0));
+    const totalPlayers = dates.reduce((sum, d) => sum + (counts[d] ?? 0), 0);
+
+    return (
+        <div style={{width: '100%', maxWidth: 1200, padding: '0 24px'}}>
+            <div className="hub-dev-header">
+                <span className="hub-dev-badge">DEV</span>
+                <span className="hub-dev-label">Daily Challenge Players — {totalPlayers} total</span>
+            </div>
+            <div style={{display: 'flex', alignItems: 'flex-end', gap: 4, paddingBottom: 2, overflowX: 'auto'}}>
+                {dates.map(date => {
+                    const loaded = date in counts;
+                    const count = counts[date] ?? 0;
+                    const barH = loaded ? Math.max(count > 0 ? 4 : 0, Math.round((count / maxCount) * 80)) : 0;
+                    return (
+                        <div key={date} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, minWidth: 30}}>
+                            <span style={{fontSize: 10, color: 'rgba(255,255,255,0.55)', height: 14, lineHeight: '14px', textAlign: 'center'}}>
+                                {loaded ? count : '·'}
+                            </span>
+                            <div
+                                style={{
+                                    width: 26,
+                                    height: barH,
+                                    background: 'rgba(99, 102, 241, 0.7)',
+                                    borderRadius: '3px 3px 0 0',
+                                }}
+                                title={`${date}: ${count} player${count !== 1 ? 's' : ''}`}
+                            />
+                            <span style={{fontSize: 9, color: 'rgba(255,255,255,0.3)', whiteSpace: 'nowrap'}}>
+                                {date.slice(5)}
+                            </span>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+
 function PastHistogramsSection() {
     const [histograms, setHistograms] = React.useState<Record<string, HistogramData>>({});
 
@@ -287,6 +339,8 @@ function HubScreen() {
 
             {IS_DEV_DEPLOY && (
                 <div className="hub-dev-section">
+                    <div className="hub-divider"/>
+                    <DailyPlayersGraph/>
                     <div className="hub-divider"/>
                     <PastHistogramsSection/>
                 </div>
